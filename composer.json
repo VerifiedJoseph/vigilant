@@ -2,5 +2,10 @@
     "require": {
         "verifiedjoseph/gotify-api-php": "^1.6",
         "verifiedjoseph/ntfy-php-library": "^3.14"
+    },
+    "autoload": {
+        "psr-4": {
+            "Vigilant\\": "src/"
+        }
     }
 }
