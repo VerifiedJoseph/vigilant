@@ -17,7 +17,7 @@ final class Cache
 	 * @var array $data Data from cache file
 	 */
 	private array $data = [
-		'feed_url' => NULL,
+		'feed_url' => null,
 		'first_check' => 0,
 		'next_check' => 0,
 		'items' => []
@@ -25,7 +25,7 @@ final class Cache
 
 	/**
 	 * Constructor
-	 * 
+	 *
 	 * @param string $hash
 	 */
 	public function __construct(string $hash)
@@ -35,8 +35,8 @@ final class Cache
 	}
 
 	/**
-	 * Get feed URL from cache data 
-	 * 
+	 * Get feed URL from cache data
+	 *
 	 * @return string|null
 	 */
 	public function getFeedUrl(): string|null
@@ -46,7 +46,7 @@ final class Cache
 
 	/**
 	 * Get first check unix timestamp
-	 * 
+	 *
 	 * @return int
 	 */
 	public function getFirstCheck(): int
@@ -56,7 +56,7 @@ final class Cache
 
 	/**
 	 * Get nexct check unix timestamp
-	 * 
+	 *
 	 * @return int
 	 */
 	public function getNextCheck(): int
@@ -70,7 +70,7 @@ final class Cache
 
 	/**
 	 * Get item hashes
-	 * 
+	 *
 	 * @return array
 	 */
 	public function getItems(): array
@@ -90,7 +90,7 @@ final class Cache
 
 	/**
 	 * Set feed URL
-	 * 
+	 *
 	 * @param string $url Feed URL
 	 */
 	public function setFeedUrl(string $url): void
@@ -100,7 +100,7 @@ final class Cache
 
 	/**
 	 * Update next check using interval value
-	 * 
+	 *
 	 * @param int $interval Interval in seconds
 	 */
 	public function updateNextCheck(int $interval): void
@@ -110,7 +110,7 @@ final class Cache
 
 	/**
 	 * Update item hashes
-	 * 
+	 *
 	 * @param array $items item hashes
 	 */
 	public function updateItems(array $items): void
@@ -140,8 +140,8 @@ final class Cache
 
 	/**
 	 * Get cache file path
-	 * 
-	 * @return string 
+	 *
+	 * @return string
 	 */
 	private function getPath(): string
 	{

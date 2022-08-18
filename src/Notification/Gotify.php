@@ -22,16 +22,16 @@ final class Gotify extends Base
 		try {
 			// Set server
 			$server = new Server(Config::get('NOTIFICATION_GOTIFY_URL'));
-		
+
 			// Set application token
 			$auth = new Token(Config::get('NOTIFICATION_GOTIFY_TOKEN'));
-		
+
 			// Create Message class instance
 			$message = new Message(
 				$server->get(),
 				$auth->get()
 			);
-		
+
 			// Send message
 			$message->create(
 				title: $this->config['title'],

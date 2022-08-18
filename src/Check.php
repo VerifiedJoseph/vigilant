@@ -101,7 +101,7 @@ final class Check
 
 	/**
 	 * Send a notification
-	 * 
+	 *
 	 * @param array $config Notification config
 	 */
 	private function notify(array $config): void
