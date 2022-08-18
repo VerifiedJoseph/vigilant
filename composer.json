@@ -9,5 +9,8 @@
         "psr-4": {
             "Vigilant\\": "src/"
         }
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.8"
     }
 }
