@@ -6,7 +6,7 @@
 
 # User files
 feeds.yaml
-config.php
+/config.php
 
 # phpunit
 .phpunit.result.cache
