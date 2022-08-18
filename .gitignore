@@ -4,8 +4,9 @@
 # Cache
 /cache/
 
-# feeds.yaml
+# User files
 feeds.yaml
+config.php
 
 # phpunit
 .phpunit.result.cache
