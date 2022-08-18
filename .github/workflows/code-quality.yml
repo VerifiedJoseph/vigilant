@@ -21,7 +21,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-version: ['8.0', '8.1']
+        php-version: ['8.1']
         operating-system: [ubuntu-latest]
 
     steps:
@@ -35,7 +35,7 @@ jobs:
         tools: phpstan
 
     - name: "Validate composer.json and composer.lock"
-      run: "composer validate --strict"
+      run: "composer validate --no-check-publish"
 
     - name: Install dependencies with composer
       run: composer install --prefer-dist
@@ -50,7 +50,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-version: ['8.0', '8.1']
+        php-version: ['8.1']
         operating-system: [ubuntu-latest]
 
     steps:
@@ -64,27 +64,5 @@ jobs:
         tools: cs2pr, phpcs
 
     - name: Run phpcs
-      run: phpcs src tests --report=checkstyle | cs2pr
+      run: phpcs src --report=checkstyle | cs2pr
 
-  phpmd:
-    name: phpmd (php${{ matrix.php-version }})
-
-    runs-on: ${{ matrix.operating-system }}
-    strategy:
-      fail-fast: false
-      matrix:
-        php-version: ['8.0', '8.1']
-        operating-system: [ubuntu-latest]
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Setup PHP environment
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php-version }}
-          tools: phpmd
-
-      - name: Run phpmd
-        run: phpmd . github phpmd.ruleset.xml --exclude 'vendor/*'
