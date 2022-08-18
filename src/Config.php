@@ -12,7 +12,7 @@ final class Config
 	private static string $minPhpVersion = '8.1.0';
 
 	/**
-	 * @var string $minCheckInterval Minimum feed check interval in seconds 
+	 * @var int $minCheckInterval Minimum feed check interval in seconds
 	 */
 	private static int $minCheckInterval = 300;
 
@@ -31,8 +31,8 @@ final class Config
 	 */
 	private static array $notificationServices = ['gotify', 'ntfy'];
 
-	/** 
-	 * @var string $defaults Default values for config parameters
+	/**
+	 * @var array $defaults Default values for config parameters
 	 */
 	private static array $defaults = array(
 		'NOTIFICATION_GOTIFY_PRIORITY' => 4,
@@ -157,7 +157,7 @@ final class Config
 
 	/**
 	 * Get cache path
-	 * 
+	 *
 	 * @return string
 	 */
 	public static function getCachePath(): string
@@ -167,7 +167,7 @@ final class Config
 
 	/**
 	 * Get SimplePie cache path
-	 * 
+	 *
 	 * @return string
 	 */
 	public static function getSimplePieCachePath(): string
@@ -177,7 +177,7 @@ final class Config
 
 	/**
 	 * Get minimum feed check interval
-	 * 
+	 *
 	 * @return int
 	 */
 	public static function getMinCheckInterval(): int
@@ -187,7 +187,7 @@ final class Config
 
 	/**
 	 * Get feeds path
-	 * 
+	 *
 	 * @return string
 	 */
 	public static function getFeedsPath() {
@@ -213,7 +213,7 @@ final class Config
 
 	/**
 	 * Check if a environment variable is set
-	 * 
+	 *
 	 * @return bool
 	 */
 	private static function isEnvSet(string $name): bool
@@ -227,7 +227,7 @@ final class Config
 
 	/**
 	 * Get environment variable value
-	 * 
+	 *
 	 * @param string $name Environment variable name
 	 * @return mixed
 	 */

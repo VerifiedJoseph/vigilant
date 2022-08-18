@@ -67,7 +67,7 @@ final class Check
 				if (in_array($hash, $this->cache->getItems()) === false) {
 					Output::text('Found...' . html_entity_decode($item->get_title()) . ' (' . $hash . ')');
 
-					if ($this->firstRun === false) {
+					if ($this->firstCheck === false) {
 						$config = [
 							'title' => html_entity_decode($item->get_title()),
 							'message' => strip_tags(html_entity_decode($item->get_description())),
@@ -101,18 +101,16 @@ final class Check
 
 	/**
 	 * Send a notification
-	 * 
+	 *
 	 * @param array $config Notification config
 	 */
 	private function notify(array $config): void
 	{
-		switch (Config::get('NOTIFICATION_SERVICE')) {
-			case 'nfty':
-				//$notification = new Nfty();
-				break;
-			default:
-				$notification = new Gotify();
-		}
+		$notification = new Gotify();
+
+		/*if (Config::get('NOTIFICATION_SERVICE') === 'nfty') {
+			$notification = new Nfty();
+		}*/
 
 		$notification->config($config);
 		$notification->send();

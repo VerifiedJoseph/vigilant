@@ -11,7 +11,7 @@ abstract class Base
 
 	/**
 	 * Set notification config
-	 * 
+	 *
 	 * @param array $config
 	 */
 	public function config(array $config): void
