@@ -2,7 +2,8 @@
     "require": {
         "verifiedjoseph/gotify-api-php": "^1.6",
         "verifiedjoseph/ntfy-php-library": "^3.14",
-        "symfony/yaml": "^6.1"
+        "symfony/yaml": "^6.1",
+        "simplepie/simplepie": "^1.6"
     },
     "autoload": {
         "psr-4": {
