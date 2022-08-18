@@ -26,7 +26,7 @@ final class Cache
 	/**
 	 * Constructor
 	 * 
-	 * @var string $hash
+	 * @param string $hash
 	 */
 	public function __construct(string $hash)
 	{
@@ -101,7 +101,7 @@ final class Cache
 	/**
 	 * Update next check using interval value
 	 * 
-	 * @param string $interval Interval in seconds
+	 * @param int $interval Interval in seconds
 	 */
 	public function updateNextCheck(int $interval): void
 	{
