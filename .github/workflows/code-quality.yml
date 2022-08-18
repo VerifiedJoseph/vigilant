@@ -64,5 +64,5 @@ jobs:
         tools: cs2pr, phpcs
 
     - name: Run phpcs
-      run: phpcs src tests --report=checkstyle | cs2pr
+      run: phpcs src --report=checkstyle | cs2pr
 
