@@ -135,7 +135,7 @@ final class Cache
 	public function save(): void
 	{
 		$json = Json::encode($this->data);
-		$json = File::write($this->getPath(), $json);
+		File::write($this->getPath(), $json);
 	}
 
 	/**
