@@ -64,7 +64,8 @@ final class Feeds
 			}
 
 			if ($feed['interval'] < Config::getMinCheckInterval()) {
-				throw new Exception('Feed error: Interval is less than ' . Config::getMinCheckInterval() . " seconds for feed '" . $feed['name'] . "'");
+				throw new Exception('Feed error: Interval is less than ' . 
+					Config::getMinCheckInterval() . " seconds for feed '" . $feed['name'] . "'");
 			}
 		}
 	}
