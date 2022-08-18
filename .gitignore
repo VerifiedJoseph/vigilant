@@ -1,6 +1,9 @@
 # Composer
 /vendor/
 
+# Cache
+/cache/
+
 # phpunit
 .phpunit.result.cache
 
