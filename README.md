@@ -7,6 +7,9 @@
 - PHP Extensions:
   - [`JSON`](https://www.php.net/manual/en/book.json.php)
   - [`cURL`](https://secure.php.net/manual/en/book.curl.php)
+  - [`PCRE`](https://www.php.net/manual/en/book.pcre.php)
+  - [`XML`](https://www.php.net/manual/en/book.xml.php)
+  - [`XMLReader`](https://www.php.net/manual/en/book.xmlreader.php)
 
 ## Dependencies
 
