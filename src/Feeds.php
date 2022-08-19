@@ -2,7 +2,6 @@
 
 namespace Vigilant;
 
-use Exception;
 use Vigilant\Config;
 use Vigilant\Exception\FeedsException;
 
@@ -33,6 +32,8 @@ final class Feeds
 
 	/**
 	 * Load feeds file
+	 * 
+	 * @throws FeedsException if file could not be read or the YAML is not valid.
 	 */
 	private function load(): void
 	{
