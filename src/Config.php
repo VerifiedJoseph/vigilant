@@ -66,7 +66,7 @@ final class Config
 	}
 
 	/**
-	 * Check config constants
+	 * Check config
 	 *
 	 * @throws ConfigException if cache directory could not be created.
 	 * @throws ConfigException if cache directory is not writable.
@@ -98,45 +98,7 @@ final class Config
 			throw new ConfigException('Feeds file not found: ' . self::getFeedsPath());
 		}
 
-		if (self::isEnvSet('NOTIFICATION_SERVICE') === false) {
-			throw new ConfigException('No notification service given [VIGILANT_NOTIFICATION_SERVICE]');
-		}
-
-		$noteService = strtolower(self::getEnv('NOTIFICATION_SERVICE'));
-
-		if (in_array($noteService, self::$notificationServices) === false) {
-			throw new ConfigException('Unknown notification service given. [VIGILANT_NOTIFICATION_SERVICE]');
-		}
-
-		self::$config['NOTIFICATION_SERVICE'] = $noteService;
-
-		if ($noteService === 'gotify') {
-			if (self::isEnvSet('NOTIFICATION_GOTIFY_URL') === false) {
-				throw new ConfigException('No Gotify URL given [VIGILANT_NOTIFICATION_GOTIFY_URL]');
-			}
-
-			self::$config['NOTIFICATION_GOTIFY_URL'] = self::getEnv('NOTIFICATION_GOTIFY_URL');
-
-			if (self::isEnvSet('NOTIFICATION_GOTIFY_TOKEN') === false) {
-				throw new ConfigException('No Gotify app token given [VIGILANT_NOTIFICATION_GOTIFY_TOKEN]');
-			}
-
-			self::$config['NOTIFICATION_GOTIFY_TOKEN'] = self::getEnv('NOTIFICATION_GOTIFY_TOKEN');
-		}
-
-		if ($noteService === 'ntfy') {
-			if (self::isEnvSet('NOTIFICATION_NTFY_URL') === false) {
-				throw new ConfigException('No ntfy URL given [VIGILANT_NOTIFICATION_NTFY_URL]');
-			}
-
-			self::$config['NOTIFICATION_NTFY_URL'] = self::getEnv('NOTIFICATION_NTFY_URL');
-
-			if (self::isEnvSet('NOTIFICATION_NTFY_TOPIC') === false) {
-				throw new ConfigException('No ntfy topic given [VIGILANT_NOTIFICATION_NTFY_TOPIC]');
-			}
-
-			self::$config['NOTIFICATION_NTFY_TOPIC'] = self::getEnv('NOTIFICATION_NTFY_TOPIC');
-		}
+		self::checkEnvs();
 	}
 
 	/**
@@ -234,5 +196,54 @@ final class Config
 	private static function getEnv(string $name): mixed
 	{
 		return getenv('VIGILANT_' . $name);
+	}
+
+	/**
+	 * Check environment variables
+	 *
+	 * @throws ConfigException if a environment variable is not given.
+	 * @throws ConfigException if a environment variable is invalid.
+	 */
+	private static function checkEnvs(): void
+	{
+		if (self::isEnvSet('NOTIFICATION_SERVICE') === false) {
+			throw new ConfigException('No notification service given [VIGILANT_NOTIFICATION_SERVICE]');
+		}
+
+		$noteService = strtolower(self::getEnv('NOTIFICATION_SERVICE'));
+
+		if (in_array($noteService, self::$notificationServices) === false) {
+			throw new ConfigException('Unknown notification service given. [VIGILANT_NOTIFICATION_SERVICE]');
+		}
+
+		self::$config['NOTIFICATION_SERVICE'] = $noteService;
+
+		if ($noteService === 'gotify') {
+			if (self::isEnvSet('NOTIFICATION_GOTIFY_URL') === false) {
+				throw new ConfigException('No Gotify URL given [VIGILANT_NOTIFICATION_GOTIFY_URL]');
+			}
+
+			self::$config['NOTIFICATION_GOTIFY_URL'] = self::getEnv('NOTIFICATION_GOTIFY_URL');
+
+			if (self::isEnvSet('NOTIFICATION_GOTIFY_TOKEN') === false) {
+				throw new ConfigException('No Gotify app token given [VIGILANT_NOTIFICATION_GOTIFY_TOKEN]');
+			}
+
+			self::$config['NOTIFICATION_GOTIFY_TOKEN'] = self::getEnv('NOTIFICATION_GOTIFY_TOKEN');
+		}
+
+		if ($noteService === 'ntfy') {
+			if (self::isEnvSet('NOTIFICATION_NTFY_URL') === false) {
+				throw new ConfigException('No ntfy URL given [VIGILANT_NOTIFICATION_NTFY_URL]');
+			}
+
+			self::$config['NOTIFICATION_NTFY_URL'] = self::getEnv('NOTIFICATION_NTFY_URL');
+
+			if (self::isEnvSet('NOTIFICATION_NTFY_TOPIC') === false) {
+				throw new ConfigException('No ntfy topic given [VIGILANT_NOTIFICATION_NTFY_TOPIC]');
+			}
+
+			self::$config['NOTIFICATION_NTFY_TOPIC'] = self::getEnv('NOTIFICATION_NTFY_TOPIC');
+		}
 	}
 }
