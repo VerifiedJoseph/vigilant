@@ -2,10 +2,11 @@
 
 namespace Vigilant;
 
-use Exception;
 use Vigilant\Config;
+use Vigilant\Exception\FeedsException;
 
 use Symfony\Component\Yaml\Yaml;
+use Symfony\Component\Yaml\Exception\ParseException;
 
 final class Feeds
 {
@@ -31,12 +32,19 @@ final class Feeds
 
 	/**
 	 * Load feeds file
+	 *
+	 * @throws FeedsException if file could not be read or the YAML is not valid.
 	 */
 	private function load(): void
 	{
-		Output::text('Loading feeds.yaml (' . Config::getFeedsPath() . ')');
+		try {
+			Output::text('Loading feeds.yaml (' . Config::getFeedsPath() . ')');
 
-		$this->feeds = Yaml::parseFile(Config::getFeedsPath());
+			$this->feeds = Yaml::parseFile(Config::getFeedsPath());
+
+		} catch (ParseException $err) {
+			throw new FeedsException($err->getMessage());
+		}
 	}
 
 	/**
@@ -47,24 +55,24 @@ final class Feeds
 		Output::text('Validating feeds.yaml');
 
 		if (array_key_exists('feeds', $this->feeds) === false || is_array($this->feeds['feeds']) === false) {
-			throw new Exception('Error No feeds in feeds.yaml');
+			throw new FeedsException('No feeds in feeds.yaml');
 		}
 
 		foreach ($this->get() as $index => $feed) {
 			if (array_key_exists('name', $feed) === false || $feed['name'] === null) {
-				throw new Exception('Feed error: No name given for feed ' . $index);
+				throw new FeedsException('No name given for feed ' . $index);
 			}
 
 			if (array_key_exists('url', $feed) === false || $feed['url'] === null) {
-				throw new Exception("Feed error: No url given for feed '" . $feed['name'] . "'");
+				throw new FeedsException("No url given for feed '" . $feed['name'] . "'");
 			}
 
 			if (array_key_exists('interval', $feed) === false || $feed['interval'] === '') {
-				throw new Exception('Feed error: No interval given for feed ' . "'" . $feed['name'] . "'");
+				throw new FeedsException('No interval given for feed ' . "'" . $feed['name'] . "'");
 			}
 
 			if ($feed['interval'] < Config::getMinCheckInterval()) {
-				throw new Exception('Feed error: Interval is less than ' .
+				throw new FeedsException('Interval is less than ' .
 					Config::getMinCheckInterval() . " seconds for feed '" . $feed['name'] . "'");
 			}
 		}

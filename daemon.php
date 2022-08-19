@@ -6,6 +6,7 @@ use Vigilant\Check;
 use Vigilant\Output;
 
 use Vigilant\Exception\ConfigException;
+use Vigilant\Exception\FeedsException;
 
 require('vendor/autoload.php');
 
@@ -26,6 +27,6 @@ try {
 			Output::text($err->getMessage());
 		}
 	}
-} catch (ConfigException $err) {
+} catch (ConfigException | FeedsException $err) {
 	Output::text($err->getMessage());
 }
