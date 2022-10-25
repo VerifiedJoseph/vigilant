@@ -33,20 +33,14 @@ final class Json
      * Decode JSON
      *
      * @param string $json
-     * @return stdClass|array<mixed>
+     * @return array<mixed>
      *
      * @throws Exception if JSON could not be decoded
      */
-    public static function decode(string $json): stdClass|array
+    public static function decode(string $json): array
     {
         try {
-            $decoded = json_decode($json, associative: true, flags: JSON_THROW_ON_ERROR);
-
-            if (is_array($decoded) === true) {
-                return (array) $decoded;
-            }
-
-            return (object) $decoded;
+           return json_decode($json, associative: true, flags: JSON_THROW_ON_ERROR);
         } catch (JsonException $err) {
             throw new Exception('JSON Error: ' . $err->getMessage());
         }
