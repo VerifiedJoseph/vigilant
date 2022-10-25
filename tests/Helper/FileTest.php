@@ -42,7 +42,7 @@ class FileTest extends TestCase
 
 	/**
 	 * Test read() file not opened exception.
-	 * 
+	 *
 	 * '@' is used suppress notices and errors from fopen()
 	 */
     public function testReadNotOpenedException(): void
