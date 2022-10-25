@@ -105,10 +105,10 @@ final class Config
      * Returns config value
      *
      * @param string $key Config key
-     * @return string|boolean
+     * @return string|int|boolean
      * @throws ConfigException if config key is invalid
      */
-    public static function get(string $key): string|bool
+    public static function get(string $key): string|int|bool
     {
         if (array_key_exists($key, self::$config) === false) {
             throw new ConfigException('Invalid config key given: ' . $key);
