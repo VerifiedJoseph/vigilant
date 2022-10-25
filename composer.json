@@ -10,6 +10,11 @@
             "Vigilant\\": "src/"
         }
     },
+    "autoload-dev": {
+        "classmap": [
+            "tests/"
+        ]
+    },
     "require-dev": {
         "phpstan/phpstan": "^1.0",
         "phpunit/phpunit": "^9.5",
