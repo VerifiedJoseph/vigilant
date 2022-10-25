@@ -62,15 +62,15 @@ final class FeedDetails
     /**
      * Get gotify applications token
      *
-	 * Returns token from global config if not found in feed.yaml
-	 *
+     * Returns token from global config if not found in feed.yaml
+     *
      * @return string
      */
     public function getGotifyToken(): string
     {
-		if (array_key_exists('gotify_token', $this->details) === true || $this->details['gotify_token'] !== '') {
-			return $this->details['gotify_token'];
-		}
+        if (array_key_exists('gotify_token', $this->details) === true || $this->details['gotify_token'] !== '') {
+            return $this->details['gotify_token'];
+        }
 
         return Config::get('NOTIFICATION_GOTIFY_TOKEN');
     }
@@ -78,15 +78,15 @@ final class FeedDetails
     /**
      * Get gotify priority
      *
-	 * Returns priority from global config if not found in feed.yaml
-	 *
+     * Returns priority from global config if not found in feed.yaml
+     *
      * @return string
      */
     public function getGotifyPriority(): string
     {
-		if (array_key_exists('gotify_token', $this->details) === true || $this->details['gotify_token'] !== '') {
-			return $this->details['gotify_token'];
-		}
+        if (array_key_exists('gotify_token', $this->details) === true || $this->details['gotify_token'] !== '') {
+            return $this->details['gotify_token'];
+        }
 
         return Config::get('NOTIFICATION_GOTIFY_PRIORITY');
     }
