@@ -11,8 +11,8 @@ class JsonTest extends TestCase
 
     public function testDecodeValid(): void
     {
-        $expected = new stdClass();
-        $expected->foo = 'bar';
+        $expected = [];
+        $expected['foo'] = 'bar';
         self::assertEquals($expected, Json::decode('{"foo": "bar"}'));
     }
 
