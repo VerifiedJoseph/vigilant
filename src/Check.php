@@ -110,8 +110,8 @@ final class Check
         if (Config::get('NOTIFICATION_SERVICE') === 'nfty') {
             $notification = new Ntfy();
 
-            $config['priority'] = Config::get('NOTIFICATION_NFTY_PRIORITY');
-            $config['topic'] = Config::get('NOTIFICATION_NFTY_TOPIC');
+            $config['topic'] = $this->details->getNtfyTopic();
+            $config['priority'] = $this->details->getNtfyPriority();
         }
 
         if (Config::get('NOTIFICATION_SERVICE') === 'gotify') {

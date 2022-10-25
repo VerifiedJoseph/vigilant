@@ -90,4 +90,36 @@ final class FeedDetails
 
         return Config::get('NOTIFICATION_GOTIFY_PRIORITY');
     }
+
+    /**
+     * Get Ntfy topic
+     *
+     * Returns topic from global config if not found in feed.yaml
+     *
+     * @return string
+     */
+    public function getNtfyTopic(): string
+    {
+        if (array_key_exists('ntfy_topic', $this->details) === true || $this->details['ntfy_topic'] !== '') {
+            return $this->details['ntfy_topic'];
+        }
+
+        return Config::get('NOTIFICATION_NTFY_TOPIC');
+    }
+
+    /**
+     * Get Ntfy priority
+     *
+     * Returns priority from global config if not found in feed.yaml
+     *
+     * @return string
+     */
+    public function getNtfyPriority(): int
+    {
+        if (array_key_exists('ntfy_priority', $this->details) === true || $this->details['ntfy_priority'] !== '') {
+            return $this->details['ntfy_priority'];
+        }
+
+        return Config::get('NOTIFICATION_NTFY_PRIORITY');
+    }
 }
