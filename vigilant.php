@@ -11,24 +11,24 @@ use Vigilant\Exception\FeedsException;
 require('vendor/autoload.php');
 
 try {
-	Config::checkInstall();
-	Config::checkConfig();
+    Config::checkInstall();
+    Config::checkConfig();
 
-	$feeds = new Feeds(
-		Config::getFeedsPath()
-	);
+    $feeds = new Feeds(
+        Config::getFeedsPath()
+    );
 
-	Output::text('---');
+    Output::text('---');
 
-	foreach ($feeds->get() as $feed) {
-		try {
-			$check = new Check($feed);
-			$check->run();
+    foreach ($feeds->get() as $feed) {
+        try {
+            $check = new Check($feed);
+            $check->run();
 
-		} catch (Exception $err) {
-			Output::text($err->getMessage());
-		}
-	}
+        } catch (Exception $err) {
+            Output::text($err->getMessage());
+        }
+    }
 } catch (ConfigException | FeedsException $err) {
-	Output::text($err->getMessage());
+    Output::text($err->getMessage());
 }

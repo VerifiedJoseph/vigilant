@@ -19,7 +19,7 @@ final class Feeds
 
     /**
      * Constructor
-     * 
+     *
      * @param string $path Feeds filepath
      */
     public function __construct(string $path)
@@ -42,7 +42,7 @@ final class Feeds
      * Load feeds file
      *
      * @param string $path Feeds filepath
-     * 
+     *
      * @throws FeedsException if file could not be read or the YAML is not valid.
      */
     private function load(string $path): void
