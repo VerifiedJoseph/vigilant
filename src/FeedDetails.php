@@ -62,14 +62,32 @@ final class FeedDetails
     /**
      * Get gotify applications token
      *
-     * @return string|null
+	 * Returns token from global config if not found in feed.yaml
+	 * 
+     * @return string
      */
-    public function getGotifyToken(): string|null
+    public function getGotifyToken(): string
     {
 		if (array_key_exists('gotify_token', $this->details) === true || $this->details['gotify_token'] !== '') {
 			return $this->details['gotify_token'];
 		}
 
-        return null;
+        return Config::get('NOTIFICATION_GOTIFY_TOKEN');
+    }
+
+    /**
+     * Get gotify priority
+     *
+	 * Returns priority from global config if not found in feed.yaml
+	 * 
+     * @return string
+     */
+    public function getGotifyPriority(): string
+    {
+		if (array_key_exists('gotify_token', $this->details) === true || $this->details['gotify_token'] !== '') {
+			return $this->details['gotify_token'];
+		}
+
+        return Config::get('NOTIFICATION_GOTIFY_PRIORITY');;
     }
 }
