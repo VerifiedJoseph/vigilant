@@ -5,6 +5,7 @@ namespace Vigilant\Notification;
 use Vigilant\Config;
 use Vigilant\Notification;
 
+use Ntfy\Auth;
 use Ntfy\Client;
 use Ntfy\Server;
 use Ntfy\Message;
@@ -32,7 +33,15 @@ final class Ntfy extends Notification
             $message->body($this->config['message']);
             $message->priority($this->config['priority']);
 
-            $client = new Client($server);
+            $auth = null;
+            if (Config::get('NOTIFICATION_NTFY_AUTH') === true) {
+                $auth = new Auth(
+                    Config::get('NOTIFICATION_NTFY_USERNAME'),
+                    Config::get('NOTIFICATION_NTFY_PASSWORD')
+                );
+            }
+
+            $client = new Client($server, $auth);
             $client->send($message);
         } catch (EndpointException | NtfyException $err) {
             throw new Exception('[Ntfy error] ' . $err->getMessage());
