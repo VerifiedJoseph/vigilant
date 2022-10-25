@@ -6,17 +6,17 @@ use Symfony\Component\Yaml\Yaml;
 class FeedDetailsTest extends TestCase
 {
     private static array $feeds = [];
-	private static array $details = [];
+    private static array $details = [];
 
-	public static function setUpBeforeClass(): void
-	{
+    public static function setUpBeforeClass(): void
+    {
         $feeds = Yaml::parse(self::loadFixture('feeds.yaml'));
 
         foreach ($feeds['feeds'] as $feed) {
             self::$feeds[] = $feed;
             self::$details[] = new FeedDetails($feed);
         }
-	}
+    }
 
     /**
      * Test getHash()
