@@ -8,7 +8,7 @@ class FileTest extends TestCase
 
     public static function setUpBeforeClass(): void
     {
-        self::$tempFilePath = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'feeds.yaml';;
+        self::$tempFilePath = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'feeds.yaml';
     }
 
     /**
