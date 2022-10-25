@@ -11,9 +11,11 @@ use Symfony\Component\Yaml\Exception\ParseException;
 final class Feeds
 {
     /**
-     * @var array $feeds Feeds details from feeds.yaml
+     * @var array $feeds Feeds from feeds.yaml
      */
     private array $feeds = [];
+
+    private array $feedDetails = [];
 
     /**
      * Constructor
@@ -22,12 +24,11 @@ final class Feeds
     {
         $this->load();
         $this->validate();
-        $this->calculateHashes();
     }
 
     public function get(): array
     {
-        return $this->feeds['feeds'];
+        return $this->feedDetails;
     }
 
     /**
@@ -57,7 +58,7 @@ final class Feeds
             throw new FeedsException('No feeds in feeds.yaml');
         }
 
-        foreach ($this->get() as $index => $feed) {
+        foreach ($this->feeds['feeds'] as $index => $feed) {
             if (array_key_exists('name', $feed) === false || $feed['name'] === null) {
                 throw new FeedsException('No name given for feed ' . $index);
             }
@@ -74,16 +75,8 @@ final class Feeds
                 throw new FeedsException('Interval is less than ' .
                     Config::getMinCheckInterval() . " seconds for feed '" . $feed['name'] . "'");
             }
-        }
-    }
 
-    /**
-     * Calculate sha1 hash for each feed from its URL
-     */
-    private function calculateHashes(): void
-    {
-        foreach ($this->get() as $index => $feed) {
-            $this->feeds['feeds'][$index]['hash'] = sha1($feed['url']);
+            $this->feedDetails[] = new FeedDetails($feed);
         }
     }
 }

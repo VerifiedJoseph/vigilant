@@ -12,9 +12,9 @@ use Exception;
 final class Check
 {
     /**
-     * @var array $details Feed details (name, url, interval and hash)
+     * @var FeedDetails $details Feed details (name, url, interval and hash)
      */
-    private array $details = [];
+    private FeedDetails $details;
 
     /**
      * @var Cache $cache Cache class object
@@ -29,10 +29,10 @@ final class Check
     /**
      * Constructor
      */
-    public function __construct(array $details)
+    public function __construct(FeedDetails $details)
     {
         $this->details = $details;
-        $this->cache = new Cache($this->details['hash']);
+        $this->cache = new Cache($this->details->getHash());
     }
 
     /**
@@ -45,14 +45,14 @@ final class Check
         }
 
         if ($this->cache->isExpired() === true) {
-            Output::text('Checking...' . $this->details['name'] . ' (' . $this->details['url'] . ')');
+            Output::text('Checking...' . $this->details->getName() . ' (' . $this->details->getUrl() . ')');
 
             if ($this->firstCheck === true) {
                 Output::text('First feed check, not sending notifications.');
             }
 
             $feed = new SimplePie();
-            $feed->set_feed_url($this->details['url']);
+            $feed->set_feed_url($this->details->getUrl());
             $feed->set_cache_duration(60);
             $feed->set_cache_location(Config::getSimplePieCachePath());
             $feed->init();
@@ -94,11 +94,11 @@ final class Check
 
             if ($this->firstCheck === true) {
                 $this->cache->setFirstCheck();
-                $this->cache->setFeedUrl($this->details['url']);
+                $this->cache->setFeedUrl($this->details->getUrl());
             }
 
             $this->cache->updateItems($itemHashes);
-            $this->cache->updateNextCheck($this->details['interval']);
+            $this->cache->updateNextCheck($this->details->getInterval());
             $this->cache->save();
         }
     }
