@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "06fba46268675fea4139b11fdb79236e",
+    "content-hash": "8d793ef5a58f963053c1046b29347788",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -832,28 +832,29 @@
         },
         {
             "name": "verifiedjoseph/gotify-api-php",
-            "version": "v1.6.5",
+            "version": "v1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/VerifiedJoseph/gotify-api-php.git",
-                "reference": "22ef4691e3b177937f68294f81e301b05ca26ddb"
+                "reference": "5ff54eb154390de7bb00dc958bab5286f5d7e35a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/VerifiedJoseph/gotify-api-php/zipball/22ef4691e3b177937f68294f81e301b05ca26ddb",
-                "reference": "22ef4691e3b177937f68294f81e301b05ca26ddb",
+                "url": "https://api.github.com/repos/VerifiedJoseph/gotify-api-php/zipball/5ff54eb154390de7bb00dc958bab5286f5d7e35a",
+                "reference": "5ff54eb154390de7bb00dc958bab5286f5d7e35a",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
                 "ext-json": "*",
-                "guzzlehttp/guzzle": "^7.4",
+                "guzzlehttp/guzzle": "^7.4.5",
                 "php": ">=8.0"
             },
             "require-dev": {
                 "phpmd/phpmd": "^2.11",
                 "phpstan/phpstan": "^1.0",
-                "phpunit/phpunit": "^9.5"
+                "phpunit/phpunit": "^9.5",
+                "squizlabs/php_codesniffer": "^3.7"
             },
             "type": "library",
             "autoload": {
@@ -878,9 +879,9 @@
             ],
             "support": {
                 "issues": "https://github.com/VerifiedJoseph/gotify-api-php/issues",
-                "source": "https://github.com/VerifiedJoseph/gotify-api-php/tree/v1.6.5"
+                "source": "https://github.com/VerifiedJoseph/gotify-api-php/tree/v1.7.0"
             },
-            "time": "2022-07-28T20:48:39+00:00"
+            "time": "2022-10-24T12:52:18+00:00"
         },
         {
             "name": "verifiedjoseph/ntfy-php-library",
