@@ -8,7 +8,7 @@
 .php-cs-fixer.cache
 
 # User files
-/feeds.yaml
+feeds.yaml
 /config.php
 
 # phpunit
