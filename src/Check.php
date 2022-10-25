@@ -113,7 +113,6 @@ final class Check
 
                 $config['topic'] = $this->details->getNtfyTopic();
                 $config['priority'] = $this->details->getNtfyPriority();
-
                 break;
             default:
                 $notification = new Gotify();
