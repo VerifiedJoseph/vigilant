@@ -72,22 +72,11 @@ final class Check
                     Output::text('Found...' . html_entity_decode($item->get_title()) . ' (' . $hash . ')');
 
                     if ($this->firstCheck === false) {
-                        $config = [
-                            'title' => html_entity_decode($item->get_title()),
-                            'message' => strip_tags(html_entity_decode($item->get_description())),
-                            'url' => $item->get_permalink()
-                        ];
-
-                        if (Config::get('NOTIFICATION_SERVICE') === 'nfty') {
-                            $config['priority'] = Config::get('NOTIFICATION_NFTY_PRIORITY');
-                            $config['topic'] = Config::get('NOTIFICATION_NFTY_TOPIC');
-                        }
-
-                        if (Config::get('NOTIFICATION_SERVICE') === 'gotify') {
-                            $config['priority'] = Config::get('NOTIFICATION_GOTIFY_PRIORITY');
-                        }
-
-                        $this->notify($config);
+                        $this->notify(
+                            title: html_entity_decode($item->get_title()),
+                            message: strip_tags(html_entity_decode($item->get_description())),
+                            url: $item->get_permalink()
+                        );
                     }
                 }
             }
@@ -106,15 +95,31 @@ final class Check
     /**
      * Send a notification
      *
-     * @param array $config Notification config
+     * @param string $title Notification title
+     * @param string $message Notification message
+     * @param string $url Notification URL
      */
-    private function notify(array $config): void
+    private function notify(string $title, string $message, string $url): void
     {
+        $config = [];
+        $config['title'] = $title;
+        $config['message'] = $message;
+        $config['url'] = $url;
+
+        if (Config::get('NOTIFICATION_SERVICE') === 'nfty') {
+            $config['priority'] = Config::get('NOTIFICATION_NFTY_PRIORITY');
+            $config['topic'] = Config::get('NOTIFICATION_NFTY_TOPIC');
+        }
+
+        if (Config::get('NOTIFICATION_SERVICE') === 'gotify') {
+            $notification = new Gotify();
+
+            $config['token'] = $this->details->getGotifyToken();
+            $config['priority'] = $this->details->getGotifyPriority();
+        }
+
         $notification = new Gotify();
 
-        /*if (Config::get('NOTIFICATION_SERVICE') === 'nfty') {
-            $notification = new Nfty();
-        }*/
 
         $notification->config($config);
         $notification->send();

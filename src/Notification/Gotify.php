@@ -24,7 +24,7 @@ final class Gotify extends Base
             $server = new Server(Config::get('NOTIFICATION_GOTIFY_URL'));
 
             // Set application token
-            $auth = new Token(Config::get('NOTIFICATION_GOTIFY_TOKEN'));
+            $auth = new Token($this->config['token']);
 
             // Create Message class instance
             $message = new Message($server, $auth);
