@@ -84,8 +84,8 @@ final class FeedDetails
      */
     public function getGotifyPriority(): string
     {
-        if (array_key_exists('gotify_token', $this->details) === true || $this->details['gotify_token'] !== '') {
-            return $this->details['gotify_token'];
+        if (array_key_exists('gotify_priority', $this->details) === true || $this->details['gotify_priority'] !== '') {
+            return $this->details['gotify_priority'];
         }
 
         return Config::get('NOTIFICATION_GOTIFY_PRIORITY');
