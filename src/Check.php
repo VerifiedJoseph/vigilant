@@ -107,18 +107,19 @@ final class Check
         $config['message'] = $message;
         $config['url'] = $url;
 
-        if (Config::get('NOTIFICATION_SERVICE') === 'nfty') {
-            $notification = new Ntfy();
+        switch (Config::get('NOTIFICATION_SERVICE')) {
+            case 'nfty':
+                $notification = new Ntfy();
 
-            $config['topic'] = $this->details->getNtfyTopic();
-            $config['priority'] = $this->details->getNtfyPriority();
-        }
+                $config['topic'] = $this->details->getNtfyTopic();
+                $config['priority'] = $this->details->getNtfyPriority();
 
-        if (Config::get('NOTIFICATION_SERVICE') === 'gotify') {
-            $notification = new Gotify();
+                break;
+            default:
+                $notification = new Gotify();
 
-            $config['token'] = $this->details->getGotifyToken();
-            $config['priority'] = $this->details->getGotifyPriority();
+                $config['token'] = $this->details->getGotifyToken();
+                $config['priority'] = $this->details->getGotifyPriority();
         }
 
         $notification->config($config);
