@@ -3,6 +3,7 @@
 namespace Vigilant\Notification;
 
 use Vigilant\Config;
+use Vigilant\Notification;
 
 use Gotify\Server;
 use Gotify\Auth\Token;
@@ -12,7 +13,7 @@ use Gotify\Exception\EndpointException;
 
 use Exception;
 
-final class Gotify extends Base
+final class Gotify extends Notification
 {
     /**
      * Send notification using `verifiedjoseph/gotify-api-php`

@@ -1,8 +1,8 @@
 <?php
 
-namespace Vigilant\Notification;
+namespace Vigilant;
 
-abstract class Base
+abstract class Notification
 {
     /**
      * @var array $config Notification config
