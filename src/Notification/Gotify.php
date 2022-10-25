@@ -14,33 +14,32 @@ use Exception;
 
 final class Gotify extends Base
 {
-	/**
-	 * Send notification using `verifiedjoseph/gotify-api-php`
-	 */
-	public function send(): void
-	{
-		try {
-			// Set server
-			$server = new Server(Config::get('NOTIFICATION_GOTIFY_URL'));
+    /**
+     * Send notification using `verifiedjoseph/gotify-api-php`
+     */
+    public function send(): void
+    {
+        try {
+            // Set server
+            $server = new Server(Config::get('NOTIFICATION_GOTIFY_URL'));
 
-			// Set application token
-			$auth = new Token(Config::get('NOTIFICATION_GOTIFY_TOKEN'));
+            // Set application token
+            $auth = new Token(Config::get('NOTIFICATION_GOTIFY_TOKEN'));
 
-			// Create Message class instance
-			$message = new Message(
-				$server->get(),
-				$auth->get()
-			);
+            // Create Message class instance
+            $message = new Message(
+                $server->get(),
+                $auth->get()
+            );
 
-			// Send message
-			$message->create(
-				title: $this->config['title'],
-				message: $this->config['message'],
-				priority: $this->config['priority'],
-			);
-
-		} catch (EndpointException | GotifyException $err) {
-			throw new Exception('[Gotify error] ' . $err->getMessage());
-		}
-	}
+            // Send message
+            $message->create(
+                title: $this->config['title'],
+                message: $this->config['message'],
+                priority: $this->config['priority'],
+            );
+        } catch (EndpointException | GotifyException $err) {
+            throw new Exception('[Gotify error] ' . $err->getMessage());
+        }
+    }
 }
