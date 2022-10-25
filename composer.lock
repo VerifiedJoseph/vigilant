@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7ca6e974f1c703e1a90996acbad064c2",
+    "content-hash": "06fba46268675fea4139b11fdb79236e",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -884,16 +884,16 @@
         },
         {
             "name": "verifiedjoseph/ntfy-php-library",
-            "version": "v3.14",
+            "version": "v4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/VerifiedJoseph/ntfy-php-library.git",
-                "reference": "20ea74bad29bf547c2508f44513a9f982e99b3ed"
+                "reference": "4660aa9a8773af02207e33f5a641a1ce1a5a428e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/VerifiedJoseph/ntfy-php-library/zipball/20ea74bad29bf547c2508f44513a9f982e99b3ed",
-                "reference": "20ea74bad29bf547c2508f44513a9f982e99b3ed",
+                "url": "https://api.github.com/repos/VerifiedJoseph/ntfy-php-library/zipball/4660aa9a8773af02207e33f5a641a1ce1a5a428e",
+                "reference": "4660aa9a8773af02207e33f5a641a1ce1a5a428e",
                 "shasum": ""
             },
             "require": {
@@ -903,13 +903,15 @@
                 "php": ">=8.0"
             },
             "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.11",
                 "phpstan/phpstan": "^1.0",
-                "phpunit/phpunit": "^9.5"
+                "phpunit/phpunit": "^9.5",
+                "squizlabs/php_codesniffer": "^3.7"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Ntfy\\": "src/Ntfy"
+                    "Ntfy\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -929,9 +931,9 @@
             ],
             "support": {
                 "issues": "https://github.com/VerifiedJoseph/ntfy-php-library/issues",
-                "source": "https://github.com/VerifiedJoseph/ntfy-php-library/tree/v3.14"
+                "source": "https://github.com/VerifiedJoseph/ntfy-php-library/tree/v4.0.0"
             },
-            "time": "2022-06-04T16:44:15+00:00"
+            "time": "2022-10-10T16:36:24+00:00"
         }
     ],
     "packages-dev": [
