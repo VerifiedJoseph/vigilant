@@ -118,9 +118,6 @@ final class Check
             $config['priority'] = $this->details->getGotifyPriority();
         }
 
-        $notification = new Gotify();
-
-
         $notification->config($config);
         $notification->send();
     }
