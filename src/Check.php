@@ -3,7 +3,8 @@
 namespace Vigilant;
 
 use Vigilant\Config;
-use Vigilant\Notification\Gotify as Gotify;
+use Vigilant\Notification\Gotify;
+use Vigilant\Notification\Ntfy;
 
 use SimplePie\SimplePie;
 
@@ -107,6 +108,8 @@ final class Check
         $config['url'] = $url;
 
         if (Config::get('NOTIFICATION_SERVICE') === 'nfty') {
+            $notification = new Ntfy();
+
             $config['priority'] = Config::get('NOTIFICATION_NFTY_PRIORITY');
             $config['topic'] = Config::get('NOTIFICATION_NFTY_TOPIC');
         }
