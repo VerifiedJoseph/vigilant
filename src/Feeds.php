@@ -26,6 +26,11 @@ final class Feeds
         $this->validate();
     }
 
+    /**
+     * Get details of each feed in the YAML file.
+     * 
+     * @return array
+     */
     public function get(): array
     {
         return $this->feedDetails;
@@ -48,7 +53,7 @@ final class Feeds
     }
 
     /**
-     *
+     * Validate contents of feeds.yaml
      */
     private function validate(): void
     {
