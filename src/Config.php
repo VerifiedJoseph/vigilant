@@ -248,17 +248,22 @@ final class Config
 
             self::$config['NOTIFICATION_NTFY_TOPIC'] = self::getEnv('NOTIFICATION_NTFY_TOPIC');
 
-            if (self::isEnvSet('NOTIFICATION_NTFY_AUTH') === true && self::getEnv('NOTIFICATION_NTFY_AUTH') === 'true') {
+            if (self::isEnvSet('NOTIFICATION_NTFY_AUTH') === true &&
+                self::getEnv('NOTIFICATION_NTFY_AUTH') === 'true') {
                 self::$config['NOTIFICATION_NTFY_AUTH'] = true;
 
                 if (self::isEnvSet('NOTIFICATION_NTFY_USERNAME') === false) {
-                    throw new ConfigException('No ntfy authentication username given [VIGILANT_NOTIFICATION_NTFY_USERNAME]');
+                    throw new ConfigException(
+                        'No ntfy authentication username given [VIGILANT_NOTIFICATION_NTFY_USERNAME]'
+                    );
                 }
 
                 self::$config['NOTIFICATION_NTFY_USERNAME'] = self::getEnv('NOTIFICATION_NTFY_USERNAME');
 
                 if (self::isEnvSet('NOTIFICATION_NTFY_PASSWORD') === false) {
-                    throw new ConfigException('No ntfy authentication password given [VIGILANT_NOTIFICATION_NTFY_PASSWORD]');
+                    throw new ConfigException(
+                        'No ntfy authentication password given [VIGILANT_NOTIFICATION_NTFY_PASSWORD]'
+                    );
                 }
 
                 self::$config['NOTIFICATION_NTFY_PASSWORD'] = self::getEnv('NOTIFICATION_NTFY_PASSWORD');
