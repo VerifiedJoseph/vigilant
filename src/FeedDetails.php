@@ -68,7 +68,7 @@ final class FeedDetails
      */
     public function getGotifyToken(): string
     {
-        if (array_key_exists('gotify_token', $this->details) === true || $this->details['gotify_token'] !== '') {
+        if (array_key_exists('gotify_token', $this->details) === true && $this->details['gotify_token'] !== '') {
             return $this->details['gotify_token'];
         }
 
@@ -84,7 +84,7 @@ final class FeedDetails
      */
     public function getGotifyPriority(): int
     {
-        if (array_key_exists('gotify_priority', $this->details) === true || $this->details['gotify_priority'] !== '') {
+        if (array_key_exists('gotify_priority', $this->details) === true && $this->details['gotify_priority'] !== '') {
             return $this->details['gotify_priority'];
         }
 
@@ -100,7 +100,7 @@ final class FeedDetails
      */
     public function getNtfyTopic(): string
     {
-        if (array_key_exists('ntfy_topic', $this->details) === true || $this->details['ntfy_topic'] !== '') {
+        if (array_key_exists('ntfy_topic', $this->details) === true && $this->details['ntfy_topic'] !== '') {
             return $this->details['ntfy_topic'];
         }
 
@@ -116,7 +116,7 @@ final class FeedDetails
      */
     public function getNtfyPriority(): int
     {
-        if (array_key_exists('ntfy_priority', $this->details) === true || $this->details['ntfy_priority'] !== '') {
+        if (array_key_exists('ntfy_priority', $this->details) === true && $this->details['ntfy_priority'] !== '') {
             return $this->details['ntfy_priority'];
         }
 
