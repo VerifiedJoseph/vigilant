@@ -28,7 +28,7 @@ final class Feeds
 
     /**
      * Get details of each feed in the YAML file.
-     * 
+     *
      * @return array
      */
     public function get(): array

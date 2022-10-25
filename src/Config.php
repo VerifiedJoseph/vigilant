@@ -22,11 +22,6 @@ final class Config
     private static string $cachePath = 'cache';
 
     /**
-     * @var string $feedsPath feeds file path
-     */
-    private static string $feedsPath = 'feeds.yaml';
-
-    /**
      * @var array $notificationServices Supported notification services
      */
     private static array $notificationServices = ['gotify', 'ntfy'];
@@ -35,6 +30,7 @@ final class Config
      * @var array $defaults Default values for config parameters
      */
     private static array $defaults = [
+        'FEEDS_FILE' => 'feeds.yaml',
         'NOTIFICATION_GOTIFY_PRIORITY' => 4,
         'NOTIFICATION_NTFY_PRIORITY' => 3,
         'NOTIFICATION_NTFY_AUTH' => false
@@ -95,10 +91,6 @@ final class Config
             throw new ConfigException('SimplePie cache directory is not writable: ' . self::getSimplePieCachePath());
         }
 
-        if (file_exists(self::getFeedsPath()) == false) {
-            throw new ConfigException('Feeds file not found: ' . self::getFeedsPath());
-        }
-
         self::checkEnvs();
     }
 
@@ -153,9 +145,9 @@ final class Config
      *
      * @return string
      */
-    public static function getFeedsPath()
+    public static function getFeedsPath(): string
     {
-        return dirname(__DIR__) . DIRECTORY_SEPARATOR . self::$feedsPath;
+        return self::$config['FEEDS_FILE'];
     }
 
     /**
@@ -174,6 +166,7 @@ final class Config
     private static function setDefaults()
     {
         self::$config = self::$defaults;
+        self::$config['FEEDS_FILE'] = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'feeds.yaml';
     }
 
     /**
@@ -209,6 +202,18 @@ final class Config
      */
     private static function checkEnvs(): void
     {
+        if (self::isEnvSet('FEEDS_FILE') === true) {
+            if (file_exists(self::getEnv('FEEDS_FILE')) === false) {
+                throw new ConfigException('Feeds file not found: ' . self::getEnv('FEEDS_FILE') . ' [VIGILANT_FEEDS_FILE]');
+            }
+
+            if (is_readable(self::getEnv('FEEDS_FILE')) === false) {
+                throw new ConfigException('Feeds file is readable: ' . self::getEnv('FEEDS_FILE') . ' [VIGILANT_FEEDS_FILE]');
+            }
+
+            self::$config['FEEDS_FILE'] = self::getEnv('FEEDS_FILE');
+        }
+
         if (self::isEnvSet('NOTIFICATION_SERVICE') === false) {
             throw new ConfigException('No notification service given [VIGILANT_NOTIFICATION_SERVICE]');
         }
