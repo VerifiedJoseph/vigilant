@@ -108,7 +108,7 @@ final class Check
         $config['url'] = $url;
 
         switch (Config::get('NOTIFICATION_SERVICE')) {
-            case 'nfty':
+            case 'ntfy':
                 $notification = new Ntfy();
 
                 $config['topic'] = $this->details->getNtfyTopic();
