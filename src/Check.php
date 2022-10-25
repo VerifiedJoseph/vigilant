@@ -44,8 +44,12 @@ final class Check
 			$this->firstCheck = false;
 		}
 
-		if (time() >= $this->cache->getNextCheck()) {
+		if ($this->cache->isExpired() === true) {
 			Output::text('Checking...' . $this->details['name'] . ' (' . $this->details['url'] . ')');
+
+			if ($this->firstCheck === true) {
+				Output::text('First feed check, not sending notifications.');
+			}
 
 			$feed = new SimplePie();
 			$feed->set_feed_url($this->details['url']);

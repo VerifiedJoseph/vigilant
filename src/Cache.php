@@ -55,16 +55,26 @@ final class Cache
 	}
 
 	/**
+	 * Has the cache expired
+	 * 
+	 * @return bool
+	 */
+	public function isExpired(): bool
+	{
+		if (time() >= $this->data['next_check']) {
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
 	 * Get next check unix timestamp
 	 *
 	 * @return int
 	 */
 	public function getNextCheck(): int
 	{
-		if ($this->data['next_check'] === 0) {
-			return time();
-		}
-
 		return $this->data['next_check'];
 	}
 
