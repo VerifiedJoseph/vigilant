@@ -55,7 +55,7 @@ final class Cache
 	}
 
 	/**
-	 * Get nexct check unix timestamp
+	 * Get next check unix timestamp
 	 *
 	 * @return int
 	 */

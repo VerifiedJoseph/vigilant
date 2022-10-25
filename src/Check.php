@@ -12,7 +12,7 @@ use Exception;
 final class Check
 {
 	/**
-	 * @var array $details Feed deatils (name, url, interval and hash)
+	 * @var array $details Feed details (name, url, interval and hash)
 	 */
 	private array $details = [];
 
