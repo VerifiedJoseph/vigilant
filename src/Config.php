@@ -204,11 +204,15 @@ final class Config
     {
         if (self::isEnvSet('FEEDS_FILE') === true) {
             if (file_exists(self::getEnv('FEEDS_FILE')) === false) {
-                throw new ConfigException('Feeds file not found: ' . self::getEnv('FEEDS_FILE') . ' [VIGILANT_FEEDS_FILE]');
+                throw new ConfigException(
+                    'Feeds file not found: ' . self::getEnv('FEEDS_FILE') . ' [VIGILANT_FEEDS_FILE]'
+                );
             }
 
             if (is_readable(self::getEnv('FEEDS_FILE')) === false) {
-                throw new ConfigException('Feeds file is readable: ' . self::getEnv('FEEDS_FILE') . ' [VIGILANT_FEEDS_FILE]');
+                throw new ConfigException(
+                    'Feeds file is readable: ' . self::getEnv('FEEDS_FILE') . ' [VIGILANT_FEEDS_FILE]'
+                );
             }
 
             self::$config['FEEDS_FILE'] = self::getEnv('FEEDS_FILE');
