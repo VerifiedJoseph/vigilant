@@ -76,6 +76,10 @@ final class Feeds
                     Config::getMinCheckInterval() . " seconds for feed '" . $feed['name'] . "'");
             }
 
+            if (array_key_exists('gotify_token', $feed) === true && $feed['gotify_token'] === '') {
+                throw new FeedsException('Empty Gotify token given for feed ' . "'" . $feed['name'] . "'");
+            }
+
             $this->feedDetails[] = new FeedDetails($feed);
         }
     }

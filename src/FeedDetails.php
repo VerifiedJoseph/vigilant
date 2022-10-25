@@ -58,4 +58,18 @@ final class FeedDetails
     {
         return $this->details['interval'];
     }
+
+    /**
+     * Get gotify applications token
+     *
+     * @return string|null
+     */
+    public function getGotifyToken(): string|null
+    {
+		if (array_key_exists('gotify_token', $this->details) === true || $this->details['gotify_token'] !== '') {
+			return $this->details['gotify_token'];
+		}
+
+        return null;
+    }
 }
