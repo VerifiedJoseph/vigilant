@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-$finder = PhpCsFixer\Finder::create()->in(['src']);
+$finder = PhpCsFixer\Finder::create()->in(['src', 'tests']);
 
 $config = new PhpCsFixer\Config();
 
