@@ -14,7 +14,9 @@ try {
 	Config::checkInstall();
 	Config::checkConfig();
 
-	$feeds = new Feeds();
+	$feeds = new Feeds(
+		Config::getFeedsPath()
+	);
 
 	Output::text('---');
 
