@@ -11,112 +11,112 @@ use Exception;
 
 final class Check
 {
-	/**
-	 * @var array $details Feed details (name, url, interval and hash)
-	 */
-	private array $details = [];
+    /**
+     * @var array $details Feed details (name, url, interval and hash)
+     */
+    private array $details = [];
 
-	/**
-	 * @var Cache $cache Cache class object
-	 */
-	private Cache $cache;
+    /**
+     * @var Cache $cache Cache class object
+     */
+    private Cache $cache;
 
-	/**
-	 * @var bool $firstCheck Feed first check status
-	 */
-	private bool $firstCheck = true;
+    /**
+     * @var bool $firstCheck Feed first check status
+     */
+    private bool $firstCheck = true;
 
-	/**
-	 * Constructor
-	 */
-	function __construct(array $details)
-	{
-		$this->details = $details;
-		$this->cache = new Cache($this->details['hash']);
-	}
+    /**
+     * Constructor
+     */
+    public function __construct(array $details)
+    {
+        $this->details = $details;
+        $this->cache = new Cache($this->details['hash']);
+    }
 
-	/**
-	 * Run check
-	 */
-	public function run(): void
-	{
-		if ($this->cache->getFirstCheck() !== 0) {
-			$this->firstCheck = false;
-		}
+    /**
+     * Run check
+     */
+    public function run(): void
+    {
+        if ($this->cache->getFirstCheck() !== 0) {
+            $this->firstCheck = false;
+        }
 
-		if ($this->cache->isExpired() === true) {
-			Output::text('Checking...' . $this->details['name'] . ' (' . $this->details['url'] . ')');
+        if ($this->cache->isExpired() === true) {
+            Output::text('Checking...' . $this->details['name'] . ' (' . $this->details['url'] . ')');
 
-			if ($this->firstCheck === true) {
-				Output::text('First feed check, not sending notifications.');
-			}
+            if ($this->firstCheck === true) {
+                Output::text('First feed check, not sending notifications.');
+            }
 
-			$feed = new SimplePie();
-			$feed->set_feed_url($this->details['url']);
-			$feed->set_cache_duration(60);
-			$feed->set_cache_location(Config::getSimplePieCachePath());
-			$feed->init();
-			$feed->handle_content_type();
+            $feed = new SimplePie();
+            $feed->set_feed_url($this->details['url']);
+            $feed->set_cache_duration(60);
+            $feed->set_cache_location(Config::getSimplePieCachePath());
+            $feed->init();
+            $feed->handle_content_type();
 
-			if ($feed->error()) {
-				throw new Exception($feed->error());
-			}
+            if ($feed->error()) {
+                throw new Exception($feed->error());
+            }
 
-			$itemHashes = [];
+            $itemHashes = [];
 
-			foreach($feed->get_items() as $item) {
-				$hash = sha1($item->get_permalink());
-				$itemHashes[] = $hash;
+            foreach ($feed->get_items() as $item) {
+                $hash = sha1($item->get_permalink());
+                $itemHashes[] = $hash;
 
-				if (in_array($hash, $this->cache->getItems()) === false) {
-					Output::text('Found...' . html_entity_decode($item->get_title()) . ' (' . $hash . ')');
+                if (in_array($hash, $this->cache->getItems()) === false) {
+                    Output::text('Found...' . html_entity_decode($item->get_title()) . ' (' . $hash . ')');
 
-					if ($this->firstCheck === false) {
-						$config = [
-							'title' => html_entity_decode($item->get_title()),
-							'message' => strip_tags(html_entity_decode($item->get_description())),
-							'url' => $item->get_permalink()
-						];
+                    if ($this->firstCheck === false) {
+                        $config = [
+                            'title' => html_entity_decode($item->get_title()),
+                            'message' => strip_tags(html_entity_decode($item->get_description())),
+                            'url' => $item->get_permalink()
+                        ];
 
-						if (Config::get('NOTIFICATION_SERVICE') === 'nfty') {
-							$config['priority'] = Config::get('NOTIFICATION_NFTY_PRIORITY');
-							$config['topic'] = Config::get('NOTIFICATION_NFTY_TOPIC');
-						}
+                        if (Config::get('NOTIFICATION_SERVICE') === 'nfty') {
+                            $config['priority'] = Config::get('NOTIFICATION_NFTY_PRIORITY');
+                            $config['topic'] = Config::get('NOTIFICATION_NFTY_TOPIC');
+                        }
 
-						if (Config::get('NOTIFICATION_SERVICE') === 'gotify') {
-							$config['priority'] = Config::get('NOTIFICATION_GOTIFY_PRIORITY');
-						}
+                        if (Config::get('NOTIFICATION_SERVICE') === 'gotify') {
+                            $config['priority'] = Config::get('NOTIFICATION_GOTIFY_PRIORITY');
+                        }
 
-						$this->notify($config);
-					}
-				}
-			}
+                        $this->notify($config);
+                    }
+                }
+            }
 
-			if ($this->firstCheck === true) {
-				$this->cache->setFirstCheck();
-				$this->cache->setFeedUrl($this->details['url']);
-			}
+            if ($this->firstCheck === true) {
+                $this->cache->setFirstCheck();
+                $this->cache->setFeedUrl($this->details['url']);
+            }
 
-			$this->cache->updateItems($itemHashes);
-			$this->cache->updateNextCheck($this->details['interval']);
-			$this->cache->save();
-		}
-	}
+            $this->cache->updateItems($itemHashes);
+            $this->cache->updateNextCheck($this->details['interval']);
+            $this->cache->save();
+        }
+    }
 
-	/**
-	 * Send a notification
-	 *
-	 * @param array $config Notification config
-	 */
-	private function notify(array $config): void
-	{
-		$notification = new Gotify();
+    /**
+     * Send a notification
+     *
+     * @param array $config Notification config
+     */
+    private function notify(array $config): void
+    {
+        $notification = new Gotify();
 
-		/*if (Config::get('NOTIFICATION_SERVICE') === 'nfty') {
-			$notification = new Nfty();
-		}*/
+        /*if (Config::get('NOTIFICATION_SERVICE') === 'nfty') {
+            $notification = new Nfty();
+        }*/
 
-		$notification->config($config);
-		$notification->send();
-	}
+        $notification->config($config);
+        $notification->send();
+    }
 }

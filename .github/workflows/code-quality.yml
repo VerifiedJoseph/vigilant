@@ -7,7 +7,7 @@ on:
       - "phpcs.xml"
       - ".github/workflows/code-quality.yml"
   push:
-    branches: main
+    branches: [main]
     paths:
       - "**.php"
       - "phpcs.xml"
@@ -15,24 +15,16 @@ on:
 
 jobs:
   phpstan:
-    name: PHPStan (php${{ matrix.php-version }})
-
-    runs-on: ${{ matrix.operating-system }}
-    strategy:
-      fail-fast: false
-      matrix:
-        php-version: ['8.1']
-        operating-system: [ubuntu-latest]
-
+    name: PHPStan
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: ${{ matrix.php-version }}
-        tools: phpstan
+        php-version: '8.1'
 
     - name: "Validate composer.json and composer.lock"
       run: "composer validate --no-check-publish"
@@ -41,28 +33,41 @@ jobs:
       run: composer install --prefer-dist
 
     - name: Run PHPStan
-      run: phpstan analyse -c phpstan.neon
+      run: ./vendor/bin/phpstan analyse
 
   phpcs:
-    name: phpcs (php${{ matrix.php-version }})
-
-    runs-on: ${{ matrix.operating-system }}
-    strategy:
-      fail-fast: false
-      matrix:
-        php-version: ['8.1']
-        operating-system: [ubuntu-latest]
-
+    name: PHP_CodeSniffer
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: ${{ matrix.php-version }}
-        tools: cs2pr, phpcs
+        php-version: '8.1'
+        tools: cs2pr
+
+    - name: Install dependencies with composer
+      run: composer install --prefer-dist
 
     - name: Run phpcs
-      run: phpcs src --report=checkstyle | cs2pr
+      run: ./vendor/bin/phpcs . --report=checkstyle | cs2pr
 
+  php-cs-fixer:
+    name: PHP CS Fixer
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+
+      - name: Install dependencies with composer
+        run: composer install --prefer-dist
+
+      - name: Run php-cs-fixer
+        run:  ./vendor/bin/php-cs-fixer fix --dry-run
