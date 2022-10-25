@@ -1,0 +1,14 @@
+feeds:
+    -
+     name: Met Office weather warnings
+     url: http://www.metoffice.gov.uk/public/data/PWSCache/WarningsRSS/Region/UK
+     interval: 1900
+     gotify_token: 7ZHeHM3awd45rn9W
+     gotify_priority: 1
+    -
+     name: GitHub status
+     url: https://www.githubstatus.com/history.rss
+     interval: 300
+     ntfy_topic: GitHub_status
+     ntfy_priority: 1
+
