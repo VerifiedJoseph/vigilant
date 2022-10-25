@@ -80,9 +80,9 @@ final class FeedDetails
      *
      * Returns priority from global config if not found in feed.yaml
      *
-     * @return string
+     * @return int
      */
-    public function getGotifyPriority(): string
+    public function getGotifyPriority(): int
     {
         if (array_key_exists('gotify_priority', $this->details) === true || $this->details['gotify_priority'] !== '') {
             return $this->details['gotify_priority'];
@@ -112,7 +112,7 @@ final class FeedDetails
      *
      * Returns priority from global config if not found in feed.yaml
      *
-     * @return string
+     * @return int
      */
     public function getNtfyPriority(): int
     {
