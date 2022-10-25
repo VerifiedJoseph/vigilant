@@ -21,4 +21,12 @@ abstract class TestCase extends BaseTestCase
 
         return $contents;
     }
+
+    /**
+     * Get fixture path
+     */
+    protected static function getFixturePath(string $name): string
+    {
+        return __DIR__ . '/Fixtures/' . $name;
+    }
 }
