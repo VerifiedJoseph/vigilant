@@ -63,7 +63,7 @@ final class FeedDetails
      * Get gotify applications token
      *
 	 * Returns token from global config if not found in feed.yaml
-	 * 
+	 *
      * @return string
      */
     public function getGotifyToken(): string
@@ -79,7 +79,7 @@ final class FeedDetails
      * Get gotify priority
      *
 	 * Returns priority from global config if not found in feed.yaml
-	 * 
+	 *
      * @return string
      */
     public function getGotifyPriority(): string
@@ -88,6 +88,6 @@ final class FeedDetails
 			return $this->details['gotify_token'];
 		}
 
-        return Config::get('NOTIFICATION_GOTIFY_PRIORITY');;
+        return Config::get('NOTIFICATION_GOTIFY_PRIORITY');
     }
 }
