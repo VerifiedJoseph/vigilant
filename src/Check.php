@@ -13,9 +13,9 @@ use Exception;
 final class Check
 {
     /**
-     * @var FeedDetails $details Feed details (name, url, interval and hash)
+     * @var Feed\Details $details Feed details (name, url, interval and hash)
      */
-    private FeedDetails $details;
+    private Feed\Details $details;
 
     /**
      * @var Cache $cache Cache class object
@@ -30,7 +30,7 @@ final class Check
     /**
      * Constructor
      */
-    public function __construct(FeedDetails $details)
+    public function __construct(Feed\Details $details)
     {
         $this->details = $details;
         $this->cache = new Cache($this->details->getHash());
