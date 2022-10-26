@@ -35,7 +35,7 @@ class OutputTest extends TestCase
         Output::text($text);
     }
 
-	/**
+    /**
      * Test newline()
      */
     public function testNewline(): void
