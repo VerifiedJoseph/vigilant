@@ -2,7 +2,6 @@
 
 use Vigilant\Config;
 use Vigilant\Feeds;
-use Vigilant\Check;
 use Vigilant\Output;
 
 use Vigilant\Exception\ConfigException;
@@ -19,15 +18,8 @@ try {
 
     Output::newline();
 
-    foreach ($feeds->get() as $feed) {
-        try {
-            $check = new Check($feed);
-            $check->run();
+    $feeds->check();
 
-        } catch (Exception $err) {
-            Output::text($err->getMessage());
-        }
-    }
 } catch (ConfigException | FeedsException $err) {
     Output::text($err->getMessage());
 }

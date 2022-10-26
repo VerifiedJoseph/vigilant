@@ -2,8 +2,10 @@
 
 namespace Vigilant;
 
+use Vigilant\Check;
 use Vigilant\Feed\Feed;
 use Vigilant\Exception\FeedsException;
+use Exception;
 
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Yaml\Exception\ParseException;
@@ -11,11 +13,9 @@ use Symfony\Component\Yaml\Exception\ParseException;
 final class Feeds
 {
     /**
-     * @var array $feeds Feeds from feeds.yaml
+     * @var array $feeds Feed classes for each feeds.yaml entry
      */
     private array $feeds = [];
-
-    private array $feedDetails = [];
 
     /**
      * Constructor
@@ -24,8 +24,23 @@ final class Feeds
      */
     public function __construct(string $path)
     {
-        $this->load($path);
-        $this->validate();
+        $feeds = $this->load($path);
+        $this->validate($feeds);
+    }
+
+    /**
+     * Check each feed for new items
+     */
+    public function check(): void
+    {
+        foreach ($this->feeds as $feed) {
+            try {
+                $check = new Check($feed);
+                $check->run();
+            } catch (Exception $err) {
+                Output::text($err->getMessage());
+            }
+        }
     }
 
     /**
@@ -35,22 +50,23 @@ final class Feeds
      */
     public function get(): array
     {
-        return $this->feedDetails;
+        return $this->feeds;
     }
 
     /**
      * Load feeds file
      *
      * @param string $path Feeds filepath
+     * @return array
      *
      * @throws FeedsException if file could not be read or the YAML is not valid.
      */
-    private function load(string $path): void
+    private function load(string $path): array
     {
         try {
             Output::text('Loading feeds.yaml (' . $path . ')');
 
-            $this->feeds = Yaml::parseFile($path);
+            return Yaml::parseFile($path);
         } catch (ParseException $err) {
             throw new FeedsException($err->getMessage());
         }
@@ -58,18 +74,20 @@ final class Feeds
 
     /**
      * Validate contents of feeds.yaml
+     *
+     * @throws FeedsException if not feeds in feeds.yaml
      */
-    private function validate(): void
+    private function validate(array $feeds): void
     {
         Output::text('Validating feeds.yaml');
 
-        if (array_key_exists('feeds', $this->feeds) === false || is_array($this->feeds['feeds']) === false) {
+        if (array_key_exists('feeds', $feeds) === false || is_array($feeds['feeds']) === false) {
             throw new FeedsException('No feeds in feeds.yaml');
         }
 
-        foreach ($this->feeds['feeds'] as $entry) {
+        foreach ($feeds['feeds'] as $entry) {
             $feed = new Feed($entry);
-            $this->feedDetails[] = $feed->getDetails();
+            $this->feeds[] = $feed->getDetails();
         }
     }
 }
