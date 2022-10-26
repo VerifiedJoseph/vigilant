@@ -20,24 +20,24 @@ final class Feed
     public function __construct(array $feed)
     {
         $this->feed = $feed;
-		$this->validate();
+        $this->validate();
     }
 
-	/**
-	 * Get details for feed entry
-	 * 
-	 * @return Details
-	 */
+    /**
+     * Get details for feed entry
+     *
+     * @return Details
+     */
     public function getDetails(): Details
     {
         return new Details($this->feed);
     }
 
-	/**
-	 * Validate feed entry
-	 */
-	private function validate(): void
-	{
-		new Validate($this->feed);
-	}
+    /**
+     * Validate feed entry
+     */
+    private function validate(): void
+    {
+        new Validate($this->feed);
+    }
 }
