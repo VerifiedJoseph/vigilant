@@ -2,12 +2,11 @@
 
 namespace Vigilant;
 
-use Vigilant\Config;
+use Vigilant\Feed\Feed;
 use Vigilant\Exception\FeedsException;
 
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Yaml\Exception\ParseException;
-use Vigilant\Feed\Feed;
 
 final class Feeds
 {
