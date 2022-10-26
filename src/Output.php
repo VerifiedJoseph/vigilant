@@ -18,6 +18,14 @@ final class Output
     }
 
     /**
+     * Disable suppressing text output
+     */
+    public static function disableQuiet()
+    {
+        self::$quiet = false;
+    }
+
+    /**
      * Display text in terminal
      *
      * @param string $text Text string to display
