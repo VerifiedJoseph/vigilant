@@ -1,6 +1,6 @@
 <?php
 
-namespace Vigilant;
+namespace Vigilant\Notification;
 
 abstract class Notification
 {

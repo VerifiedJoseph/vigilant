@@ -3,7 +3,7 @@
 namespace Vigilant\Notification;
 
 use Vigilant\Config;
-use Vigilant\Notification;
+use Vigilant\Notification\Notification;
 
 use Gotify\Server;
 use Gotify\Auth\Token;
