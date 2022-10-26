@@ -127,7 +127,7 @@ final class Details
 
     /**
      * Has the entry got a value
-     * 
+     *
      * @return bool
      */
     private function has(string $name): bool
