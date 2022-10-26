@@ -1,9 +1,9 @@
 <?php
 
-use Vigilant\FeedDetails;
+use Vigilant\Feed\Details;
 use Symfony\Component\Yaml\Yaml;
 
-class FeedDetailsTest extends TestCase
+class DetailsTest extends TestCase
 {
     private static array $feeds = [];
     private static array $details = [];
@@ -14,7 +14,7 @@ class FeedDetailsTest extends TestCase
 
         foreach ($feeds['feeds'] as $feed) {
             self::$feeds[] = $feed;
-            self::$details[] = new FeedDetails($feed);
+            self::$details[] = new Details($feed);
         }
     }
 

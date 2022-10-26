@@ -1,0 +1,51 @@
+feeds:
+  noName:
+    url: https://www.example.com/feed.rss
+    interval: 300
+    
+  emptyName:
+    name:
+    url: https://www.example.com/feed.rss
+    interval: 300
+
+  noUrl:
+    name: Example.com Feed
+    interval: 300
+    
+  emptyUrl:
+    name: Example.com Feed
+    url:
+    interval: 300
+
+  noInterval:
+    name: Example.com Feed
+    url: https://www.example.com/feed.rss
+
+  emptyInterval:
+    name: Example.com Feed
+    url: https://www.example.com/feed.rss
+    interval:
+
+  emptyGotifyToken:
+    name: Example.com Feed
+    url: https://www.example.com/feed.rss
+    interval: 300
+    gotify_token:
+
+  emptyGotifyPriority:
+    name: Example.com Feed
+    url: https://www.example.com/feed.rss
+    interval: 300
+    gotify_priority:
+
+  emptyNtfyTopic:
+    name: Example.com Feed
+    url: https://www.example.com/feed.rss
+    interval: 300
+    ntfy_topic:
+
+  emptyNtfyPriority:
+    name: Example.com Feed
+    url: https://www.example.com/feed.rss
+    interval: 300
+    ntfy_priority:
