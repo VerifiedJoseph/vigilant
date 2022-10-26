@@ -18,7 +18,7 @@ try {
         Config::getFeedsPath()
     );
 
-    Output::text('---');
+    Output::newline();
 
     foreach ($feeds->get() as $feed) {
         try {
