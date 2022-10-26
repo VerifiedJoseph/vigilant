@@ -2,12 +2,16 @@
 
 namespace Vigilant;
 
-use Vigilant\Config;
 use Vigilant\Helper\File;
 use Vigilant\Helper\Json;
 
 final class Cache
 {
+    /**
+     * @var string $path Cache folder path
+     */
+    private string $path = '';
+
     /**
      * @var string $filename Cache filename
      */
@@ -26,11 +30,13 @@ final class Cache
     /**
      * Constructor
      *
-     * @param string $hash
+     * @param string $path Cache folder path
+     * @param string $filename Cache filename
      */
-    public function __construct(string $hash)
+    public function __construct(string $path, string $filename)
     {
-        $this->filename = $hash;
+        $this->path = $path;
+        $this->filename = $filename;
         $this->load();
     }
 
@@ -155,6 +161,6 @@ final class Cache
      */
     private function getPath(): string
     {
-        return Config::getCachePath() . DIRECTORY_SEPARATOR . $this->filename;
+        return $this->path . DIRECTORY_SEPARATOR . $this->filename;
     }
 }

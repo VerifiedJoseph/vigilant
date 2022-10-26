@@ -29,11 +29,17 @@ final class Check
 
     /**
      * Constructor
+     *
+     * @param Feed\Details $details Feed details
      */
     public function __construct(Feed\Details $details)
     {
         $this->details = $details;
-        $this->cache = new Cache($this->details->getHash());
+
+        $this->cache = new Cache(
+            Config::getCachePath(),
+            $this->details->getHash()
+        );
     }
 
     /**
