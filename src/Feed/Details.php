@@ -86,7 +86,7 @@ final class Details
      */
     public function getGotifyPriority(): int
     {
-        if (array_key_exists('gotify_priority', $this->details) === true && $this->details['gotify_priority'] !== '') {
+        if ($this->has('gotify_priority') === true) {
             return $this->details['gotify_priority'];
         }
 
@@ -102,7 +102,7 @@ final class Details
      */
     public function getNtfyTopic(): string
     {
-        if (array_key_exists('ntfy_topic', $this->details) === true && $this->details['ntfy_topic'] !== '') {
+        if ($this->has('ntfy_topic') === true) {
             return $this->details['ntfy_topic'];
         }
 
@@ -118,10 +118,20 @@ final class Details
      */
     public function getNtfyPriority(): int
     {
-        if (array_key_exists('ntfy_priority', $this->details) === true && $this->details['ntfy_priority'] !== '') {
+        if ($this->has('ntfy_priority') === true) {
             return $this->details['ntfy_priority'];
         }
 
         return Config::get('NOTIFICATION_NTFY_PRIORITY');
+    }
+
+    /**
+     * Has the entry got a value
+     * 
+     * @return bool
+     */
+    private function has(string $name): bool
+    {
+        return array_key_exists($name, $this->details);
     }
 }
