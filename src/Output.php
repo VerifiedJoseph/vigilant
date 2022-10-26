@@ -12,7 +12,8 @@ final class Output
     /**
      * Suppress text output
      */
-    public static function quiet() {
+    public static function quiet()
+    {
         self::$quiet = true;
     }
 
