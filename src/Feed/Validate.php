@@ -29,11 +29,6 @@ final class Validate
         $this->gotifyPriority();
     }
 
-    public function get(): array
-    {
-        return $this->details;
-    }
-
     /**
      * Validate entry name
      */
