@@ -4,7 +4,7 @@ use Vigilant\Output;
 
 class OutputTest extends TestCase
 {
-    public static function setUpBeforeClass(): void
+    public function setUp(): void
     {
         Output::disableQuiet();
     }
@@ -33,5 +33,20 @@ class OutputTest extends TestCase
         $this->expectOutputString('');
 
         Output::text($text);
+    }
+
+	/**
+     * Test newline()
+     */
+    public function testNewline(): void
+    {
+        $this->expectOutputString(PHP_EOL);
+
+        Output::newline();
+    }
+
+    public function tearDown(): void
+    {
+        Output::disableQuiet();
     }
 }

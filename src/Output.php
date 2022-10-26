@@ -10,17 +10,17 @@ final class Output
     private static bool $quiet = false;
 
     /**
-     * Suppress text output
+     * Suppress output
      */
-    public static function quiet()
+    public static function quiet(): void
     {
         self::$quiet = true;
     }
 
     /**
-     * Disable suppressing text output
+     * Disable suppressing output
      */
-    public static function disableQuiet()
+    public static function disableQuiet(): void
     {
         self::$quiet = false;
     }
@@ -34,6 +34,16 @@ final class Output
     {
         if (self::$quiet === false) {
             echo $text . "\n";
+        }
+    }
+
+    /**
+     * Output system newline character in terminal
+     */
+    public static function newline(): void
+    {
+        if (self::$quiet === false) {
+            echo PHP_EOL;
         }
     }
 }
