@@ -20,4 +20,9 @@ class FeedsTest extends TestCase
         $this->assertIsArray($feeds->get());
         $this->assertContainsOnlyInstancesOf('Vigilant\Feed\Details', $feeds->get());
     }
+
+    public static function tearDownAfterClass(): void
+    {
+        Output::disableQuiet();
+    }
 }
