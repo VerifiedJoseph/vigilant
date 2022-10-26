@@ -2,6 +2,10 @@
 
 namespace Vigilant;
 
+use Vigilant\Config\Check\Install as CheckInstall;
+use Vigilant\Config\Check\Paths as CheckPaths;
+use Vigilant\Config\Check\Envs as checkEnvs;
+
 use Vigilant\Exception\ConfigException;
 
 final class Config
@@ -10,6 +14,11 @@ final class Config
      * @var string $minPhpVersion Minimum PHP version
      */
     private static string $minPhpVersion = '8.1.0';
+
+    /**
+     * @var array $requiredPhpExtensions Required PHP extensions
+     */
+    private static array $requiredPhpExtensions = ['xml', 'xmlreader'];
 
     /**
      * @var int $minCheckInterval Minimum feed check interval in seconds
@@ -42,56 +51,44 @@ final class Config
     private static array $config = [];
 
     /**
+     * Check install and load config
+     */
+    public static function load(): void
+    {
+        self::checkInstall();
+        self::checkPaths();
+        self::checkEnvs();
+    }
+
+    /**
      * Check PHP version and loaded extensions
      *
      * @throws ConfigException if PHP version is not supported
      * @throws ConfigException if a PHP extension is not loaded
      */
-    public static function checkInstall()
+    public static function checkInstall(): void
     {
-        if (version_compare(PHP_VERSION, self::$minPhpVersion) === -1) {
-            throw new ConfigException('Vigilant requires at least PHP version ' . self::$minPhpVersion . '!');
-        }
-
-        if (extension_loaded('curl') === false) {
-            throw new ConfigException('Extension Error: cURL extension not loaded.');
-        }
-
-        if (extension_loaded('json') === false) {
-            throw new ConfigException('Extension Error: JSON extension not loaded.');
-        }
+        new CheckInstall();
     }
 
     /**
-     * Check config
-     *
-     * @throws ConfigException if cache directory could not be created.
-     * @throws ConfigException if cache directory is not writable.
-     * @throws ConfigException if SimplePie cache directory could not be created.
-     * @throws ConfigException if SimplePie cache directory is not writable.
+     * Check cache paths
      */
-    public static function checkConfig(): void
+    public static function checkPaths(): void
+    {
+        new CheckPaths();
+    }
+
+    /**
+     * Check environment variables
+     */
+    public static function checkEnvs(): void
     {
         self::requireConfigFile();
         self::setDefaults();
 
-        if (is_dir(self::getCachePath()) === false && mkdir(self::getCachePath()) === false) {
-            throw new ConfigException('Could not create cache directory:' . self::getCachePath());
-        }
-
-        if (is_dir(self::getCachePath()) === true && is_writable(self::getCachePath()) === false) {
-            throw new ConfigException('Cache directory is not writable: ' . self::getCachePath());
-        }
-
-        if (is_dir(self::getSimplePieCachePath()) === false && mkdir(self::getSimplePieCachePath()) === false) {
-            throw new ConfigException('Could not create SimplePie cache directory:' . self::getSimplePieCachePath());
-        }
-
-        if (is_dir(self::getSimplePieCachePath()) === true && is_writable(self::getSimplePieCachePath()) === false) {
-            throw new ConfigException('SimplePie cache directory is not writable: ' . self::getSimplePieCachePath());
-        }
-
-        self::checkEnvs();
+        $envs = new CheckEnvs(self::$config);
+        self::$config = $envs->getConfig();
     }
 
     /**
@@ -108,6 +105,36 @@ final class Config
         }
 
         return self::$config[$key];
+    }
+
+    /**
+     * Get minimum PHP version
+     *
+     * @return string
+     */
+    public static function getMinPhpVersion(): string
+    {
+        return self::$minPhpVersion;
+    }
+
+    /**
+     * Get notification services
+     *
+     * @return array
+     */
+    public static function getNotificationServices(): array
+    {
+        return self::$notificationServices;
+    }
+
+    /**
+     * Get required PHP extensions
+     *
+     * @return array
+     */
+    public static function getRequiredPhpExtensions(): array
+    {
+        return self::$requiredPhpExtensions;
     }
 
     /**
@@ -167,116 +194,5 @@ final class Config
     {
         self::$config = self::$defaults;
         self::$config['FEEDS_FILE'] = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'feeds.yaml';
-    }
-
-    /**
-     * Check if a environment variable is set
-     *
-     * @return bool
-     */
-    private static function isEnvSet(string $name): bool
-    {
-        if (getenv('VIGILANT_' . $name) !== false) {
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * Get environment variable value
-     *
-     * @param string $name Environment variable name
-     * @return mixed
-     */
-    private static function getEnv(string $name): mixed
-    {
-        return getenv('VIGILANT_' . $name);
-    }
-
-    /**
-     * Check environment variables
-     *
-     * @throws ConfigException if a environment variable is not given.
-     * @throws ConfigException if a environment variable is invalid.
-     */
-    private static function checkEnvs(): void
-    {
-        if (self::isEnvSet('FEEDS_FILE') === true) {
-            if (file_exists(self::getEnv('FEEDS_FILE')) === false) {
-                throw new ConfigException(
-                    'Feeds file not found: ' . self::getEnv('FEEDS_FILE') . ' [VIGILANT_FEEDS_FILE]'
-                );
-            }
-
-            if (is_readable(self::getEnv('FEEDS_FILE')) === false) {
-                throw new ConfigException(
-                    'Feeds file is readable: ' . self::getEnv('FEEDS_FILE') . ' [VIGILANT_FEEDS_FILE]'
-                );
-            }
-
-            self::$config['FEEDS_FILE'] = self::getEnv('FEEDS_FILE');
-        }
-
-        if (self::isEnvSet('NOTIFICATION_SERVICE') === false) {
-            throw new ConfigException('No notification service given [VIGILANT_NOTIFICATION_SERVICE]');
-        }
-
-        $noteService = strtolower(self::getEnv('NOTIFICATION_SERVICE'));
-
-        if (in_array($noteService, self::$notificationServices) === false) {
-            throw new ConfigException('Unknown notification service given. [VIGILANT_NOTIFICATION_SERVICE]');
-        }
-
-        self::$config['NOTIFICATION_SERVICE'] = $noteService;
-
-        if ($noteService === 'gotify') {
-            if (self::isEnvSet('NOTIFICATION_GOTIFY_URL') === false) {
-                throw new ConfigException('No Gotify URL given [VIGILANT_NOTIFICATION_GOTIFY_URL]');
-            }
-
-            self::$config['NOTIFICATION_GOTIFY_URL'] = self::getEnv('NOTIFICATION_GOTIFY_URL');
-
-            if (self::isEnvSet('NOTIFICATION_GOTIFY_TOKEN') === false) {
-                throw new ConfigException('No Gotify app token given [VIGILANT_NOTIFICATION_GOTIFY_TOKEN]');
-            }
-
-            self::$config['NOTIFICATION_GOTIFY_TOKEN'] = self::getEnv('NOTIFICATION_GOTIFY_TOKEN');
-        }
-
-        if ($noteService === 'ntfy') {
-            if (self::isEnvSet('NOTIFICATION_NTFY_URL') === false) {
-                throw new ConfigException('No ntfy URL given [VIGILANT_NOTIFICATION_NTFY_URL]');
-            }
-
-            self::$config['NOTIFICATION_NTFY_URL'] = self::getEnv('NOTIFICATION_NTFY_URL');
-
-            if (self::isEnvSet('NOTIFICATION_NTFY_TOPIC') === false) {
-                throw new ConfigException('No ntfy topic given [VIGILANT_NOTIFICATION_NTFY_TOPIC]');
-            }
-
-            self::$config['NOTIFICATION_NTFY_TOPIC'] = self::getEnv('NOTIFICATION_NTFY_TOPIC');
-
-            if (self::isEnvSet('NOTIFICATION_NTFY_AUTH') === true &&
-                self::getEnv('NOTIFICATION_NTFY_AUTH') === 'true') {
-                self::$config['NOTIFICATION_NTFY_AUTH'] = true;
-
-                if (self::isEnvSet('NOTIFICATION_NTFY_USERNAME') === false) {
-                    throw new ConfigException(
-                        'No ntfy authentication username given [VIGILANT_NOTIFICATION_NTFY_USERNAME]'
-                    );
-                }
-
-                self::$config['NOTIFICATION_NTFY_USERNAME'] = self::getEnv('NOTIFICATION_NTFY_USERNAME');
-
-                if (self::isEnvSet('NOTIFICATION_NTFY_PASSWORD') === false) {
-                    throw new ConfigException(
-                        'No ntfy authentication password given [VIGILANT_NOTIFICATION_NTFY_PASSWORD]'
-                    );
-                }
-
-                self::$config['NOTIFICATION_NTFY_PASSWORD'] = self::getEnv('NOTIFICATION_NTFY_PASSWORD');
-            }
-        }
     }
 }

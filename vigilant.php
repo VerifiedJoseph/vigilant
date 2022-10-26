@@ -11,8 +11,7 @@ use Vigilant\Exception\FeedsException;
 require('vendor/autoload.php');
 
 try {
-    Config::checkInstall();
-    Config::checkConfig();
+    Config::load();
 
     $feeds = new Feeds(
         Config::getFeedsPath()
