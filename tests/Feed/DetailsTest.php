@@ -5,7 +5,14 @@ use Symfony\Component\Yaml\Yaml;
 
 class DetailsTest extends TestCase
 {
+    /**
+     * @var array<int, array<string, mixed>> $feeds
+     */
     private static array $feeds = [];
+
+    /**
+     * @var array<int, Details> $details
+     */
     private static array $details = [];
 
     public static function setUpBeforeClass(): void
