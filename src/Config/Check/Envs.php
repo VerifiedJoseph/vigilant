@@ -7,10 +7,15 @@ use Vigilant\Exception\ConfigException;
 
 final class Envs
 {
+    /**
+     * @var array<string, int|string|boolean> $config
+     */
     private array $config = [];
 
     /**
      * Constructor
+     * 
+     * @param array<string, int|string|boolean> $config
      */
     public function __construct(array $config)
     {
@@ -23,7 +28,9 @@ final class Envs
     }
 
     /**
-     *
+     * Get config
+     * 
+     * @return array<string, int|string|boolean>
      */
     public function getConfig(): array
     {
