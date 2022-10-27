@@ -5,14 +5,14 @@ namespace Vigilant\Notification;
 abstract class Notification
 {
     /**
-     * @var array $config Notification config
+     * @var array<string, mixed> $config Notification config
       */
     protected array $config = [];
 
     /**
      * Set notification config
      *
-     * @param array $config
+     * @param array<string, mixed> $config
      */
     public function config(array $config): void
     {
@@ -22,5 +22,5 @@ abstract class Notification
     /**
      * Send notification
      */
-    abstract public function send();
+    abstract public function send(): void;
 }
