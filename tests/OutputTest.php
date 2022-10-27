@@ -4,6 +4,11 @@ use Vigilant\Output;
 
 class OutputTest extends TestCase
 {
+    /**
+     * @var string $text
+     */
+    private string $text = 'Hello World';
+
     public function setUp(): void
     {
         Output::disableQuiet();
@@ -14,11 +19,9 @@ class OutputTest extends TestCase
      */
     public function testOutput(): void
     {
-        $text = 'hello Word';
+        $this->expectOutputString($this->text . "\n");
 
-        $this->expectOutputString($text . "\n");
-
-        Output::text($text);
+        Output::text($this->text);
     }
 
     /**
@@ -28,11 +31,9 @@ class OutputTest extends TestCase
     {
         Output::quiet();
 
-        $text = 'hello Word';
-
         $this->expectOutputString('');
 
-        Output::text($text);
+        Output::text($this->text);
     }
 
     /**
