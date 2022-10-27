@@ -46,7 +46,7 @@ final class Config
     ];
 
     /**
-     * @var array<string, int|string|boolean> $config Loaded config parameters
+     * @var array<string, mixed> $config Loaded config parameters
      */
     private static array $config = [];
 
@@ -95,10 +95,10 @@ final class Config
      * Returns config value
      *
      * @param string $key Config key
-     * @return string|int|boolean
+     * @return mixed
      * @throws ConfigException if config key is invalid
      */
-    public static function get(string $key): string|int|bool
+    public static function get(string $key): mixed
     {
         if (array_key_exists($key, self::$config) === false) {
             throw new ConfigException('Invalid config key given: ' . $key);
