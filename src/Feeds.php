@@ -4,6 +4,7 @@ namespace Vigilant;
 
 use Vigilant\Check;
 use Vigilant\Feed\Feed;
+use Vigilant\Exception\AppException;
 use Vigilant\Exception\FeedsException;
 use Vigilant\Exception\CheckException;
 use Vigilant\Exception\NotificationException;
@@ -25,8 +26,13 @@ final class Feeds
      */
     public function __construct(string $path)
     {
-        $feeds = $this->load($path);
-        $this->validate($feeds);
+        try {
+            $feeds = $this->load($path);
+            $this->validate($feeds);
+
+        } catch(FeedsException $err) {
+            throw new AppException($err->getMessage());
+        }
     }
 
     /**
