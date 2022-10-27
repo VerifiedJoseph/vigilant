@@ -37,6 +37,18 @@ class OutputTest extends TestCase
     }
 
     /**
+     * Test disableQuiet()
+     */
+    public function testDisableQuiet(): void
+    {
+        Output::disableQuiet();
+
+        $this->expectOutputString($this->text . "\n");
+
+        Output::text($this->text);
+    }
+
+    /**
      * Test newline()
      */
     public function testNewline(): void
