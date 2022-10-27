@@ -5,7 +5,7 @@ use Vigilant\Exception\AppException;
 
 class FileTest extends TestCase
 {
-    private static $tempFilePath;
+    private static string $tempFilePath;
 
     public static function setUpBeforeClass(): void
     {
