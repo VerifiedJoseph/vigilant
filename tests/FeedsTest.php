@@ -3,7 +3,7 @@
 use Vigilant\Feeds;
 use Vigilant\Output;
 
-use Vigilant\Exception\FeedsException;
+use Vigilant\Exception\AppException;
 
 class FeedsTest extends TestCase
 {
@@ -28,7 +28,7 @@ class FeedsTest extends TestCase
      */
     public function testNoFeedsException(): void
     {
-        $this->expectException(FeedsException::class);
+        $this->expectException(AppException::class);
         $this->expectExceptionMessage('No feeds in feeds.yaml');
 
         new Feeds(self::getFixturePath('feeds-empty-file.yaml'));

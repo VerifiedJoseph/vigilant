@@ -9,8 +9,6 @@ use Vigilant\Exception\CheckException;
 
 use SimplePie\SimplePie;
 
-use Exception;
-
 final class Check
 {
     /**
