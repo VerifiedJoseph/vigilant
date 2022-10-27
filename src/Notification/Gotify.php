@@ -4,14 +4,13 @@ namespace Vigilant\Notification;
 
 use Vigilant\Config;
 use Vigilant\Notification\Notification;
+use Vigilant\Exception\NotificationException;
 
 use Gotify\Server;
 use Gotify\Auth\Token;
 use Gotify\Endpoint\Message;
 use Gotify\Exception\GotifyException;
 use Gotify\Exception\EndpointException;
-
-use Exception;
 
 final class Gotify extends Notification
 {
@@ -37,7 +36,7 @@ final class Gotify extends Notification
                 priority: $this->config['priority'],
             );
         } catch (EndpointException | GotifyException $err) {
-            throw new Exception('[Gotify error] ' . $err->getMessage());
+            throw new NotificationException('[Gotify] ' . $err->getMessage());
         }
     }
 }

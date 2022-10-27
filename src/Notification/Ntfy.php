@@ -4,16 +4,14 @@ namespace Vigilant\Notification;
 
 use Vigilant\Config;
 use Vigilant\Notification\Notification;
+use Vigilant\Exception\NotificationException;
 
 use Ntfy\Auth;
 use Ntfy\Client;
 use Ntfy\Server;
 use Ntfy\Message;
-
 use Ntfy\Exception\NtfyException;
 use Ntfy\Exception\EndpointException;
-
-use Exception;
 
 final class Ntfy extends Notification
 {
@@ -44,7 +42,7 @@ final class Ntfy extends Notification
             $client = new Client($server, $auth);
             $client->send($message);
         } catch (EndpointException | NtfyException $err) {
-            throw new Exception('[Ntfy error] ' . $err->getMessage());
+            throw new NotificationException('[Ntfy] ' . $err->getMessage());
         }
     }
 }

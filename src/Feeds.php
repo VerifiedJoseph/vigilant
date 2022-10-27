@@ -6,6 +6,7 @@ use Vigilant\Check;
 use Vigilant\Feed\Feed;
 use Vigilant\Exception\FeedsException;
 use Vigilant\Exception\CheckException;
+use Vigilant\Exception\NotificationException;
 
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Yaml\Exception\ParseException;
@@ -37,7 +38,7 @@ final class Feeds
             try {
                 $check = new Check($feed);
                 $check->run();
-            } catch (CheckException $err) {
+            } catch (CheckException | NotificationException $err) {
                 Output::text($err->getMessage());
             }
         }
