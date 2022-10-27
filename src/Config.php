@@ -2,6 +2,7 @@
 
 namespace Vigilant;
 
+use Vigilant\Output;
 use Vigilant\Config\Check\Install as CheckInstall;
 use Vigilant\Config\Check\Paths as CheckPaths;
 use Vigilant\Config\Check\Envs as checkEnvs;
@@ -39,6 +40,7 @@ final class Config
      * @var array<string, int|string|false> $defaults Default values for config parameters
      */
     private static array $defaults = [
+        'QUIET' => false,
         'FEEDS_FILE' => 'feeds.yaml',
         'NOTIFICATION_GOTIFY_PRIORITY' => 4,
         'NOTIFICATION_NTFY_PRIORITY' => 3,
@@ -58,6 +60,10 @@ final class Config
         self::checkInstall();
         self::checkPaths();
         self::checkEnvs();
+
+        if (self::$config['QUIET'] === true) {
+            Output::quiet();
+        }
     }
 
     /**

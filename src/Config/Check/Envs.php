@@ -21,6 +21,7 @@ final class Envs
     {
         $this->config = $config;
 
+        $this->quiet();
         $this->feedsFile();
         $this->notificationService();
         $this->notificationGotify();
@@ -35,6 +36,16 @@ final class Envs
     public function getConfig(): array
     {
         return $this->config;
+    }
+
+    /**
+     * Check QUIET
+     */
+    private function quiet(): void
+    {
+        if ($this->isEnvSet('QUIET') === true && $this->getEnv('QUIET') === 'true') {
+            $this->config['QUIET'] = true;
+        }
     }
 
     /**
