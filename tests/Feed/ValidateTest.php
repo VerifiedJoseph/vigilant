@@ -7,6 +7,9 @@ use Symfony\Component\Yaml\Yaml;
 
 class ValidateTest extends TestCase
 {
+    /**
+     * @var array<string, array<string, mixed>> $feedsInvalid
+     */
     private static array $feedsInvalid = [];
 
     public static function setUpBeforeClass(): void

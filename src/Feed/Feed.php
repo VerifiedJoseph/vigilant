@@ -8,14 +8,14 @@ use Vigilant\Feed\Details;
 final class Feed
 {
     /**
-     * @var array $feed Feed entry from feeds.yaml
+     * @var array<string, mixed> $feed Feed entry from feeds.yaml
      */
     private array $feed = [];
 
     /**
      * Constructor
      *
-     * @param array $feed
+     * @param array<string, mixed> $feed
      */
     public function __construct(array $feed)
     {

@@ -7,14 +7,14 @@ use Vigilant\Config;
 final class Details
 {
     /**
-     * @var array $details Feed details from feeds.yaml
+     * @var array<string, mixed> $details Feed details from feeds.yaml
      */
     private array $details = [];
 
     /**
      * Constructor
      *
-     * @param array $feed
+     * @param array<string, mixed> $feed
      */
     public function __construct(array $feed)
     {

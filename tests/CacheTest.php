@@ -5,11 +5,24 @@ use Vigilant\Helper\Json;
 
 class CacheTest extends TestCase
 {
-    private static $tempCacheFolder = '';
-    private static $tempCacheFileName = '';
+    /**
+     * @var string $tempCacheFolder Temp cache folder path
+     */
+    private static string $tempCacheFolder = '';
 
-    private static array $data = [];
+    /**
+     * @var string $tempCacheFileName Temp cache filename
+     */
+    private static string $tempCacheFileName = '';
 
+    /**
+     * @var array<string, mixed> fixtureData Data from fixture cache.json
+     */
+    private static array $fixtureData = [];
+
+    /**
+     * @var Cache $cache
+     */
     private static Cache $cache;
 
     public static function setUpBeforeClass(): void
@@ -24,7 +37,7 @@ class CacheTest extends TestCase
         self::$tempCacheFileName = bin2hex(random_bytes(5));
         $this->createTempCacheFile();
 
-        self::$data = Json::decode(self::loadFixture('cache.json'));
+        self::$fixtureData = Json::decode(self::loadFixture('cache.json'));
 
         self::$cache = new Cache(
             self::$tempCacheFolder,
@@ -41,7 +54,7 @@ class CacheTest extends TestCase
 
         $this->assertIsString($url);
         $this->assertEquals(
-            self::$data['feed_url'],
+            self::$fixtureData['feed_url'],
             $url
         );
     }
@@ -55,7 +68,7 @@ class CacheTest extends TestCase
 
         $this->assertIsInt($check);
         $this->assertEquals(
-            self::$data['first_check'],
+            self::$fixtureData['first_check'],
             $check
         );
     }
@@ -83,7 +96,7 @@ class CacheTest extends TestCase
 
         $this->assertIsInt($check);
         $this->assertEquals(
-            self::$data['next_check'],
+            self::$fixtureData['next_check'],
             $check
         );
     }
@@ -97,7 +110,7 @@ class CacheTest extends TestCase
 
         $this->assertIsArray($items);
         $this->assertEquals(
-            self::$data['items'],
+            self::$fixtureData['items'],
             $items
         );
     }

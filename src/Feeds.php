@@ -4,6 +4,7 @@ namespace Vigilant;
 
 use Vigilant\Check;
 use Vigilant\Feed\Feed;
+use Vigilant\Feed\Details;
 use Vigilant\Exception\AppException;
 use Vigilant\Exception\FeedsException;
 use Vigilant\Exception\CheckException;
@@ -15,7 +16,7 @@ use Symfony\Component\Yaml\Exception\ParseException;
 final class Feeds
 {
     /**
-     * @var array $feeds Feed classes for each feeds.yaml entry
+     * @var array<int, Details> $feeds Feed classes for each feeds.yaml entry
      */
     private array $feeds = [];
 
@@ -52,7 +53,7 @@ final class Feeds
     /**
      * Get details of each feed in the YAML file.
      *
-     * @return array
+     * @return array<int, Details>
      */
     public function get(): array
     {
@@ -63,7 +64,7 @@ final class Feeds
      * Load feeds file
      *
      * @param string $path Feeds filepath
-     * @return array
+     * @return array<mixed>
      *
      * @throws FeedsException if file could not be read or the YAML is not valid.
      */
@@ -81,6 +82,7 @@ final class Feeds
     /**
      * Validate contents of feeds.yaml
      *
+     * @param array<mixed> $feeds
      * @throws FeedsException if not feeds in feeds.yaml
      */
     private function validate(array $feeds): void
