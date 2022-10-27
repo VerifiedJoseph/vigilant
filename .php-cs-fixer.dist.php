@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-$finder = PhpCsFixer\Finder::create()->in(['src', 'tests']);
+$finder = PhpCsFixer\Finder::create()
+    ->exclude('vendor')
+    ->in(__DIR__);
 
 $config = new PhpCsFixer\Config();
 
