@@ -61,6 +61,20 @@ final class Cache
     }
 
     /**
+     * Is this the first feed check
+     *
+     * @return bool
+     */
+    public function isFirstCheck(): bool
+    {
+        if ($this->data['first_check'] === 0) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * Has the cache expired
      *
      * @return bool

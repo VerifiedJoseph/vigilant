@@ -88,6 +88,20 @@ class CacheTest extends TestCase
     }
 
     /**
+     * Test isFirstCheck()
+     */
+    public function testIsFirstCheck(): void
+    {
+        $status = self::$cache->isFirstCheck();
+
+        $this->assertIsBool($status);
+        $this->assertEquals(
+            false,
+            $status
+        );
+    }
+
+    /**
      * Test getNextCheck()
      */
     public function testGetNextCheck(): void
