@@ -29,7 +29,6 @@ final class Feeds
         try {
             $feeds = $this->load($path);
             $this->validate($feeds);
-
         } catch(FeedsException $err) {
             throw new AppException($err->getMessage());
         }

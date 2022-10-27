@@ -1,6 +1,7 @@
 <?php
 
 use Vigilant\Helper\File;
+use Vigilant\Exception\AppException;
 
 class FileTest extends TestCase
 {
@@ -47,7 +48,7 @@ class FileTest extends TestCase
      */
     public function testReadNotOpenedException(): void
     {
-        $this->expectException(Exception::class);
+        $this->expectException(AppException::class);
         $this->expectExceptionMessage('File not opened');
 
         @File::read('no-file-exists.yaml');

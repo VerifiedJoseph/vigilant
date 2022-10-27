@@ -1,6 +1,7 @@
 <?php
 
 use Vigilant\Helper\Json;
+use Vigilant\Exception\AppException;
 
 class JsonTest extends TestCase
 {
@@ -18,7 +19,7 @@ class JsonTest extends TestCase
 
     public function testDecodeInvalid(): void
     {
-        $this->expectException(Exception::class);
+        $this->expectException(AppException::class);
         $this->expectExceptionMessage('JSON Error: Syntax error');
         Json::decode('foo');
     }
