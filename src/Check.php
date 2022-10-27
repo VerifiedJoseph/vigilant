@@ -5,6 +5,7 @@ namespace Vigilant;
 use Vigilant\Config;
 use Vigilant\Notification\Gotify;
 use Vigilant\Notification\Ntfy;
+use Vigilant\Exception\CheckException;
 
 use SimplePie\SimplePie;
 
@@ -66,7 +67,7 @@ final class Check
             $feed->handle_content_type();
 
             if ($feed->error()) {
-                throw new Exception($feed->error());
+                throw new CheckException($feed->error());
             }
 
             $itemHashes = [];
