@@ -21,7 +21,7 @@ try {
     while (true) {
         $feeds->check();
 
-        sleep(60);
+        sleep(30);
     }
 } catch (ConfigException | AppException $err) {
     Output::text($err->getMessage());
