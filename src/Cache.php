@@ -18,7 +18,7 @@ final class Cache
     private string $filename = '';
 
     /**
-     * @var array $data Data from cache file
+     * @var array<string, mixed> $data Data from cache file
      */
     private array $data = [
         'feed_url' => null,
@@ -87,7 +87,7 @@ final class Cache
     /**
      * Get item hashes
      *
-     * @return array
+     * @return array<int, string>
      */
     public function getItems(): array
     {
@@ -127,7 +127,7 @@ final class Cache
     /**
      * Update item hashes
      *
-     * @param array $items item hashes
+     * @param array<int, string> $items item hashes
      */
     public function updateItems(array $items): void
     {
