@@ -19,7 +19,6 @@ try {
     Output::newline();
 
     $feeds->check();
-
 } catch (ConfigException | AppException $err) {
     Output::text($err->getMessage());
 }
