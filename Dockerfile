@@ -1,4 +1,5 @@
 FROM alpine:3.16.2
+FROM composer:2.4 AS composer
 
 # Install packages
 RUN apk add --no-cache \
@@ -17,10 +18,7 @@ RUN apk add --no-cache \
 RUN ln -s /usr/bin/php81 /usr/bin/php
 
 # Install Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
-# Create app folder
-RUN mkdir /app
+COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 # Add application
 COPY ./ /app
