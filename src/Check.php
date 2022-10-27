@@ -65,7 +65,7 @@ final class Check
             $feed->handle_content_type();
 
             if ($feed->error()) {
-                throw new CheckException($feed->error());
+                throw new CheckException($feed->error);
             }
 
             $itemHashes = [];
