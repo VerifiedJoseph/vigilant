@@ -16,7 +16,7 @@ final class Config
     private static string $minPhpVersion = '8.1.0';
 
     /**
-     * @var array $requiredPhpExtensions Required PHP extensions
+     * @var array<int, string> $requiredPhpExtensions Required PHP extensions
      */
     private static array $requiredPhpExtensions = ['xml', 'xmlreader'];
 
@@ -31,12 +31,12 @@ final class Config
     private static string $cachePath = 'cache';
 
     /**
-     * @var array $notificationServices Supported notification services
+     * @var array<int, string> $notificationServices Supported notification services
      */
     private static array $notificationServices = ['gotify', 'ntfy'];
 
     /**
-     * @var array $defaults Default values for config parameters
+     * @var array<string, int|string|false> $defaults Default values for config parameters
      */
     private static array $defaults = [
         'FEEDS_FILE' => 'feeds.yaml',
@@ -46,7 +46,7 @@ final class Config
     ];
 
     /**
-     * @var array $config Loaded config parameters
+     * @var array<string, int|string|boolean> $config Loaded config parameters
      */
     private static array $config = [];
 
@@ -120,7 +120,7 @@ final class Config
     /**
      * Get notification services
      *
-     * @return array
+     * @return array<int, string>
      */
     public static function getNotificationServices(): array
     {
@@ -130,7 +130,7 @@ final class Config
     /**
      * Get required PHP extensions
      *
-     * @return array
+     * @return array<int, string>
      */
     public static function getRequiredPhpExtensions(): array
     {
@@ -180,7 +180,7 @@ final class Config
     /**
      * Include (require) config file
      */
-    private static function requireConfigFile()
+    private static function requireConfigFile(): void
     {
         if (file_exists('config.php') === true) {
             require('config.php');
@@ -190,7 +190,7 @@ final class Config
     /**
      * Set defaults as config values
      */
-    private static function setDefaults()
+    private static function setDefaults(): void
     {
         self::$config = self::$defaults;
         self::$config['FEEDS_FILE'] = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'feeds.yaml';
