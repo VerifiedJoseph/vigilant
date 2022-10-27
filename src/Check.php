@@ -70,18 +70,18 @@ final class Check
 
             $itemHashes = [];
 
-            foreach ($feed->get_items() as $item) {
-                $hash = sha1($item->get_permalink());
+            foreach ((array) $feed->get_items() as $item) {
+                $hash = sha1((string) $item->get_permalink());
                 $itemHashes[] = $hash;
 
                 if (in_array($hash, $this->cache->getItems()) === false) {
-                    Output::text('Found...' . html_entity_decode($item->get_title()) . ' (' . $hash . ')');
+                    Output::text('Found...' . html_entity_decode((string) $item->get_title()) . ' (' . $hash . ')');
 
                     if ($this->firstCheck === false) {
                         $this->notify(
-                            title: html_entity_decode($item->get_title()),
-                            message: strip_tags(html_entity_decode($item->get_description())),
-                            url: $item->get_permalink()
+                            title: html_entity_decode((string) $item->get_title()),
+                            message: strip_tags(html_entity_decode((string) $item->get_description())),
+                            url: (string) $item->get_permalink()
                         );
                     }
                 }
