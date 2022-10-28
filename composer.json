@@ -3,7 +3,8 @@
         "verifiedjoseph/gotify-api-php": "^1.7",
         "verifiedjoseph/ntfy-php-library": "^4.0",
         "symfony/yaml": "^6.1",
-        "simplepie/simplepie": "^1.6"
+        "simplepie/simplepie": "^1.6",
+        "debril/feed-io": "^6.0"
     },
     "autoload": {
         "psr-4": {
