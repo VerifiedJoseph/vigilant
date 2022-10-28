@@ -15,7 +15,6 @@
 
 - [`verifiedjoseph/gotify-api-php`](https://github.com/VerifiedJoseph/gotify-api-php)
 - [`verifiedjoseph/ntfy-php-library`](https://github.com/VerifiedJoseph/ntfy-php-library)
-- [`simplepie/simplepie`](https://github.com/simplepie/simplepie)
 - [`symfony/yaml`](https://github.com/symfony/yaml)
 
 ## License
