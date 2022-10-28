@@ -31,7 +31,7 @@ RUN apk add --no-cache \
 # Create symlink for `php`
 RUN ln -s /usr/bin/php81 /usr/bin/php
 
-# Copy app folder composer build stage
+# Copy app folder from composer build stage
 COPY --from=composer /app /app
 
 WORKDIR /app
