@@ -2,9 +2,9 @@
     "require": {
         "verifiedjoseph/gotify-api-php": "^1.7",
         "verifiedjoseph/ntfy-php-library": "^4.0",
-        "symfony/yaml": "^6.1",
-        "simplepie/simplepie": "^1.6",
-        "debril/feed-io": "^6.0"
+        "symfony/yaml": "^6.1.6",
+        "debril/feed-io": "^6.0",
+        "guzzlehttp/guzzle": "^7.4.5"
     },
     "autoload": {
         "psr-4": {
