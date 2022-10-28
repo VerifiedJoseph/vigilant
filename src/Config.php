@@ -19,7 +19,7 @@ final class Config
     /**
      * @var array<int, string> $requiredPhpExtensions Required PHP extensions
      */
-    private static array $requiredPhpExtensions = ['xml', 'xmlreader'];
+    private static array $requiredPhpExtensions = ['xml', 'xmlreader', 'ctype'];
 
     /**
      * @var int $minCheckInterval Minimum feed check interval in seconds
