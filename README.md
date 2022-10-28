@@ -16,6 +16,7 @@
 - [`verifiedjoseph/gotify-api-php`](https://github.com/VerifiedJoseph/gotify-api-php)
 - [`verifiedjoseph/ntfy-php-library`](https://github.com/VerifiedJoseph/ntfy-php-library)
 - [`guzzlehttp/guzzle`](https://github.com/guzzle/guzzle/)
+- [`debril/feed-io`](https://github.com/alexdebril/feed-io)
 - [`symfony/yaml`](https://github.com/symfony/yaml)
 
 ## License
