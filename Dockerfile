@@ -1,4 +1,6 @@
-FROM composer:2.4 AS composer
+ARG COMPOSER_VERSION=2.4
+ARG ALPINE_VERSION=3.16.2
+FROM composer:${COMPOSER_VERSION} AS composer
 
 # Copy application
 COPY ./ /app
@@ -12,7 +14,7 @@ RUN composer install \
   --no-progress \
   --no-dev
 
-FROM alpine:3.16.2
+FROM alpine:${ALPINE_VERSION}
 
 # Install packages
 RUN apk add --no-cache \
