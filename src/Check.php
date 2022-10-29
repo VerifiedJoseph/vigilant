@@ -8,8 +8,6 @@ use Vigilant\Notification\Ntfy;
 use Vigilant\Exception\CheckException;
 use Vigilant\Exception\NotificationException;
 
-use SimplePie\SimplePie;
-
 final class Check
 {
     /**
@@ -21,6 +19,11 @@ final class Check
      * @var Cache $cache Cache class object
      */
     private Cache $cache;
+
+    /**
+     * @var bool $checkError Check error status
+     */
+    private bool $checkError = false;
 
     /**
      * Constructor
@@ -46,48 +49,15 @@ final class Check
             try {
                 Output::text('Checking...' . $this->details->getName() . ' (' . $this->details->getUrl() . ')');
 
-                $feed = new SimplePie();
-                $feed->set_feed_url($this->details->getUrl());
-                $feed->set_cache_duration(60);
-                $feed->set_cache_location(Config::getSimplePieCachePath());
-                $feed->init();
-                $feed->handle_content_type();
+                $result = $this->fetch(
+                    $this->details->getUrl()
+                );
 
-                if ($feed->error()) {
-                    throw new CheckException($feed->error);
-                }
-
-                $itemHashes = [];
-                $newItems = 0;
-
-                foreach ((array) $feed->get_items() as $item) {
-                    $hash = sha1((string) $item->get_permalink());
-                    $itemHashes[] = $hash;
-
-                    if (in_array($hash, $this->cache->getItems()) === false) {
-                        $newItems += 1;
-
-                        Output::text('Found...' . html_entity_decode((string) $item->get_title()) . ' (' . $hash . ')');
-
-                        if ($this->cache->isFirstCheck() === false) {
-                            $this->notify(
-                                title: html_entity_decode((string) $item->get_title()),
-                                message: strip_tags(html_entity_decode((string) $item->get_description())),
-                                url: (string) $item->get_permalink()
-                            );
-                        } else {
-                            Output::text('First feed check, not sending notifications.');
-                        }
-                    }
-                }
-
-                Output::text('Found ' . $newItems . ' new item(s).');
-
-                $this->cache->updateItems($itemHashes);
+                $this->process($result);
             } catch (CheckException | NotificationException $err) {
                 Output::text($err->getMessage());
             } finally {
-                if ($this->cache->isFirstCheck() === true) {
+                if ($this->cache->isFirstCheck() === true && $this->checkError === false) {
                     $this->cache->setFirstCheck();
                     $this->cache->setFeedUrl($this->details->getUrl());
                 }
@@ -98,6 +68,76 @@ final class Check
                 $when = date('Y-m-d H:i:s', $this->cache->getNextCheck());
                 Output::text('Next check in ' . $this->details->getInterval() . ' seconds at ' . $when);
             }
+        }
+    }
+
+    /**
+     * Fetch feed
+     *
+     * @param string $url Feed URL
+     * @return \FeedIo\Reader\Result
+     *
+     * @throws CheckException
+     */
+    private function fetch(string $url): \FeedIo\Reader\Result
+    {
+        try {
+            $client = new \FeedIo\Adapter\Http\Client(new \GuzzleHttp\Client());
+            $feedIo = new \FeedIo\FeedIo($client);
+
+            return $feedIo->read($url);
+        } catch (\FeedIo\Reader\ReadErrorException $err) {
+            $this->checkError = true;
+
+            switch ($err->getMessage()) {
+                case 'not found':
+                case 'internal server error':
+                    $message = 'Failed to fetch: ' . $url . ' (returned  ' . $err->getMessage() . ')';
+                    break;
+                default:
+                    $message = 'Failed to parse feed (' . $err->getMessage() . ')';
+                    break;
+            }
+
+            throw new CheckException($message);
+        }
+    }
+
+    /**
+     * Process fetched feed
+     *
+     * @param \FeedIo\Reader\Result $result
+     */
+    private function process(\FeedIo\Reader\Result $result): void
+    {
+        $itemHashes = [];
+        $newItems = 0;
+
+        foreach ($result->getFeed() as $item) {
+            $hash = sha1($item->getLink());
+            $itemHashes[] = $hash;
+
+            if (in_array($hash, $this->cache->getItems()) === false) {
+                $newItems += 1;
+
+                Output::text('Found...' . html_entity_decode($item->getTitle()) . ' (' . $hash . ')');
+
+                if ($this->cache->isFirstCheck() === false) {
+                    $this->notify(
+                        title: html_entity_decode($item->getTitle()),
+                        message: strip_tags(html_entity_decode($item->getContent())),
+                        url: $item->getLink()
+                    );
+                }
+            }
+        }
+
+        Output::text('Found ' . $newItems . ' new item(s).');
+
+        $this->cache->updateItems($itemHashes);
+
+        if ($newItems > 0 && $this->cache->isFirstCheck() === true) {
+            Output::text('First feed check, not sending notifications for found items.');
         }
     }
 
