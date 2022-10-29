@@ -95,7 +95,7 @@ final class Check
                     $message = 'Failed to fetch: ' . $url . ' (returned  ' . $err->getMessage() . ')';
                     break;
                 default:
-                    $message = $err->getMessage();
+                    $message = 'Failed to parse feed (' . $err->getMessage() . ')';
                     break;
             }
 
