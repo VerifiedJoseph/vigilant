@@ -154,16 +154,6 @@ final class Config
     }
 
     /**
-     * Get SimplePie cache path
-     *
-     * @return string
-     */
-    public static function getSimplePieCachePath(): string
-    {
-        return self::getCachePath() . DIRECTORY_SEPARATOR . 'simplepie';
-    }
-
-    /**
      * Get minimum feed check interval
      *
      * @return int
