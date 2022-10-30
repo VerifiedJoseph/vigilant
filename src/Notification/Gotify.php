@@ -34,6 +34,11 @@ final class Gotify extends Notification
                 title: $this->config['title'],
                 message: $this->config['message'],
                 priority: $this->config['priority'],
+                extras: [
+                    'client::notification' => [
+                        'click' => ['url' => 'https://example.com/']
+                    ]
+                ]
             );
         } catch (EndpointException | GotifyException $err) {
             throw new NotificationException('[Gotify] ' . $err->getMessage());
