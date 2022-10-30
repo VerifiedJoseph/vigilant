@@ -72,9 +72,13 @@ final class Check
             } catch (NotificationException $err) {
                 Output::text($err->getMessage());
             } finally {
-                if ($this->cache->isFirstCheck() === true && $this->checkError === false) {
-                    $this->cache->setFirstCheck();
-                    $this->cache->setFeedUrl($this->details->getUrl());
+                if ($this->checkError === false) {
+                    $this->cache->resetErrorCount();
+
+                    if ($this->cache->isFirstCheck() === true) {
+                        $this->cache->setFirstCheck();
+                        $this->cache->setFeedUrl($this->details->getUrl());
+                    }
                 }
 
                 $this->cache->updateNextCheck($this->details->getInterval());
