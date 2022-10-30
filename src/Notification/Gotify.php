@@ -36,7 +36,7 @@ final class Gotify extends Notification
                 priority: $this->config['priority'],
                 extras: [
                     'client::notification' => [
-                        'click' => ['url' => 'https://example.com/']
+                        'click' => ['url' => $this->config['url']]
                     ]
                 ]
             );
