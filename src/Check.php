@@ -172,4 +172,23 @@ final class Check
         $notification->config($config);
         $notification->send();
     }
+
+    /**
+     * Send a error notification
+     *
+     * @param string $title Notification title
+     * @param string $message Notification message
+     */
+    private function errorNotify(string $title, string $message): void
+    {
+        try {
+            $this->notify(
+                title: $title,
+                message: $message,
+                url: ''
+            );
+        } catch (NotificationException $err) {
+            Output::text($err->getMessage());
+        }
+    }
 }
