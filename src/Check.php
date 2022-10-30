@@ -54,7 +54,22 @@ final class Check
                 );
 
                 $this->process($result);
-            } catch (CheckException | NotificationException $err) {
+                $this->cache->resetErrorCount();
+            } catch (CheckException $err) {
+                Output::text($err->getMessage());
+
+                $this->cache->increaseErrorCount();
+
+                if ($this->cache->getErrorCount() >= 4) {
+                    $this->errorNotify(
+                        title: '[Vigilant] Error when fetching ' . $this->details->getName(),
+                        message: $err->getMessage()
+                    );
+
+                    $this->cache->resetErrorCount();
+                }
+
+            } catch (NotificationException $err) {
                 Output::text($err->getMessage());
             } finally {
                 if ($this->cache->isFirstCheck() === true && $this->checkError === false) {
