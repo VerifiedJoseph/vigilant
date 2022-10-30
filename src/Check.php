@@ -68,7 +68,6 @@ final class Check
 
                     $this->cache->resetErrorCount();
                 }
-
             } catch (NotificationException $err) {
                 Output::text($err->getMessage());
             } finally {
