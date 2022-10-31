@@ -13,7 +13,6 @@ final class Paths
     public function __construct()
     {
         $this->feedCache();
-        $this->simplePieCache();
     }
 
     /**
@@ -27,21 +26,6 @@ final class Paths
 
         if (is_dir(Config::getCachePath()) === true && is_writable(Config::getCachePath()) === false) {
             throw new ConfigException('Cache directory is not writable: ' . Config::getCachePath());
-        }
-    }
-
-    /**
-     * Check SimplePie cache path
-     */
-    private function simplePieCache(): void
-    {
-        if (is_dir(Config::getSimplePieCachePath()) === false && mkdir(Config::getSimplePieCachePath()) === false) {
-            throw new ConfigException('Could not create SimplePie cache directory:' . Config::getSimplePieCachePath());
-        }
-
-        if (is_dir(Config::getSimplePieCachePath()) === true &&
-            is_writable(Config::getSimplePieCachePath()) === false) {
-            throw new ConfigException('SimplePie cache directory is not writable: ' . Config::getSimplePieCachePath());
         }
     }
 }
