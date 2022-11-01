@@ -1,6 +1,6 @@
 # Feeds 
 
-A YAML formatted file named `feeds.yaml` is used to configure the RSS/ATOM and JSON feeds that Vigilant should monitor.
+A YAML file named `feeds.yaml` is used to configure the RSS, ATOM and JSON feeds that Vigilant should monitor.
 
 By default Vigilant looks for a `feeds.yaml` file in the project's main folder, this behavior can be overridden with an [environment variable](configuration.md#feeds-file).
 
@@ -16,9 +16,9 @@ interval: 1900
 
 | Name              | Required | Description                                                                 |
 | ----------------- | -------- | --------------------------------------------------------------------------- |
-| `name`      		| Yes      | Feed name                                                                   |
-| `url`       		| Yes      | Feed URL                                                                    |
-| `interval`        | Yes      | Interval between feed checks in seconds. Min value is `300` (5 minutes).    |
+| `name`      		| **Yes**  | Feed name                                                                   |
+| `url`       		| **Yes**  | Feed URL                                                                    |
+| `interval`        | **Yes**  | Interval between feed checks in seconds. Min value is `300` (5 minutes).    |
 | `gotify_token`    | No       | Gotify application token. Overrides token set with an environment variable. |
 | `gotify_priority` | No       | Gotify message priority.                                                    |
 | `ntfy_topic`      | No       | Ntfy topic. Overrides topic set with an environment variable.               |
