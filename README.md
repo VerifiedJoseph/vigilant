@@ -1,5 +1,10 @@
 # Vigilant
 
+## Documentation
+
+- [Configuration](docs/configuration.md)
+- [Feeds](docs/feeds.md)
+
 ## Requirements
 
 - PHP >= 8.1
