@@ -1,9 +1,10 @@
 # Vigilant
 
-Vigilant is an application for watching RSS/ATOM/JSON feeds and sending push notifications on new feed items.
+Vigilant is an application for watching RSS/ATOM/JSON feeds and sending push notifications on new entries.
 
 ## Documentation
 
+- [Installation](docs/install.md)
 - [Configuration](docs/configuration.md)
 - [Feeds](docs/feeds.md)
 
