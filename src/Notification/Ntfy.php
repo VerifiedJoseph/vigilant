@@ -30,6 +30,7 @@ final class Ntfy extends Notification
             $message->title($this->config['title']);
             $message->body($this->config['message']);
             $message->priority($this->config['priority']);
+            $message->clickAction($this->config['url']);
 
             $auth = null;
             if (Config::get('NOTIFICATION_NTFY_AUTH') === true) {
