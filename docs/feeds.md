@@ -9,9 +9,15 @@ An [`example file`](../feeds.example.yaml) is include.
 Each entry in the YAML file must have name, URL and an interval value, all other values are optional.
 
 ```YAML
-name: Met Office weather warnings
-url: http://www.metoffice.gov.uk/public/data/PWSCache/WarningsRSS/Region/UK
-interval: 1900
+feeds:
+    -
+	name: Met Office weather warnings
+	url: http://www.metoffice.gov.uk/public/data/PWSCache/WarningsRSS/Region/UK
+	interval: 1900
+    -
+	name: GitHub Status
+	url: https://www.githubstatus.com/history.rss
+	interval: 600
 ```
 
 | Name              | Required | Description                                                                 |
