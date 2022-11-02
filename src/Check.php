@@ -54,12 +54,30 @@ final class Check
                 );
 
                 $this->process($result);
-            } catch (CheckException | NotificationException $err) {
+                $this->cache->resetErrorCount();
+            } catch (CheckException $err) {
+                Output::text($err->getMessage());
+
+                $this->cache->increaseErrorCount();
+
+                if ($this->cache->getErrorCount() >= 4) {
+                    $this->errorNotify(
+                        title: '[Vigilant] Error when fetching ' . $this->details->getName(),
+                        message: $err->getMessage()
+                    );
+
+                    $this->cache->resetErrorCount();
+                }
+            } catch (NotificationException $err) {
                 Output::text($err->getMessage());
             } finally {
-                if ($this->cache->isFirstCheck() === true && $this->checkError === false) {
-                    $this->cache->setFirstCheck();
-                    $this->cache->setFeedUrl($this->details->getUrl());
+                if ($this->checkError === false) {
+                    $this->cache->resetErrorCount();
+
+                    if ($this->cache->isFirstCheck() === true) {
+                        $this->cache->setFirstCheck();
+                        $this->cache->setFeedUrl($this->details->getUrl());
+                    }
                 }
 
                 $this->cache->updateNextCheck($this->details->getInterval());
@@ -171,5 +189,24 @@ final class Check
 
         $notification->config($config);
         $notification->send();
+    }
+
+    /**
+     * Send a error notification
+     *
+     * @param string $title Notification title
+     * @param string $message Notification message
+     */
+    private function errorNotify(string $title, string $message): void
+    {
+        try {
+            $this->notify(
+                title: $title,
+                message: $message,
+                url: ''
+            );
+        } catch (NotificationException $err) {
+            Output::text($err->getMessage());
+        }
     }
 }

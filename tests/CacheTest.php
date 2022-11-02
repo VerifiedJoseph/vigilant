@@ -130,6 +130,48 @@ class CacheTest extends TestCase
     }
 
     /**
+     * Test getErrorCount()
+     */
+    public function testGetErrorCount(): void
+    {
+        $count = self::$cache->getErrorCount();
+
+        $this->assertIsInt($count);
+        $this->assertEquals(
+            self::$fixtureData['error_count'],
+            $count
+        );
+    }
+
+    /**
+     * Test increaseErrorCount()
+     */
+    public function testIncreaseErrorCount(): void
+    {
+        self::$cache->increaseErrorCount();
+        $count = self::$cache->getErrorCount();
+
+        $this->assertEquals(
+            2,
+            $count
+        );
+    }
+
+    /**
+     * Test resetErrorCount()
+     */
+    public function resetErrorCount(): void
+    {
+        self::$cache->resetErrorCount();
+        $count = self::$cache->getErrorCount();
+
+        $this->assertEquals(
+            0,
+            $count
+        );
+    }
+
+    /**
      * test setFirstCheck
      */
     public function testSetFirstCheck(): void

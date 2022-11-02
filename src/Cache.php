@@ -24,6 +24,7 @@ final class Cache
         'feed_url' => null,
         'first_check' => 0,
         'next_check' => 0,
+        'error_count' => 0,
         'items' => []
     ];
 
@@ -109,13 +110,21 @@ final class Cache
     }
 
     /**
-     * Set first check unix timestamp
+     * Get number of feed errors
+     *
+     * @return int
      */
-    public function setFirstCheck(): void
+    public function getErrorCount(): int
     {
-        if ($this->data['first_check'] === 0) {
-            $this->data['first_check'] = time();
-        }
+        return $this->data['error_count'];
+    }
+
+    /**
+     * Increase feed error count
+     */
+    public function increaseErrorCount(): void
+    {
+        $this->data['error_count']++;
     }
 
     /**
@@ -146,6 +155,24 @@ final class Cache
     public function updateItems(array $items): void
     {
         $this->data['items'] = $items;
+    }
+
+    /**
+     * Reset feed error count
+     */
+    public function resetErrorCount(): void
+    {
+        $this->data['error_count'] = 0;
+    }
+
+    /**
+     * Set first check unix timestamp
+     */
+    public function setFirstCheck(): void
+    {
+        if ($this->data['first_check'] === 0) {
+            $this->data['first_check'] = time();
+        }
     }
 
     /**
