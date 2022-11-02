@@ -6,7 +6,7 @@ By default Vigilant looks for a `feeds.yaml` file in the project's main folder, 
 
 An [`example file`](../feeds.example.yaml) is available.
 
-Each entry in the YAML file must have a name, URL and interval value, all other values are optional.
+Each entry in the YAML file must have a name, URL and interval parameter, all other parameters are optional.
 
 ```YAML
 feeds:
