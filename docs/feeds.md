@@ -1,4 +1,4 @@
-# Feeds 
+# Feeds File
 
 A YAML file named `feeds.yaml` is used to configure the RSS, ATOM and JSON feeds that Vigilant should monitor.
 
