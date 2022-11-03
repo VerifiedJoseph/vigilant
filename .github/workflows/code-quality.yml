@@ -26,16 +26,16 @@ jobs:
       with:
         php-version: '8.1'
 
-    - name: Get Composer Cache
+    - name: Get Composer Cache Directory
       id: get-composer-cache-dir
       run: |
         echo "::set-output name=dir::$(composer config cache-files-dir)"
-
+      
     - name: Cache Composer
-    - uses: actions/cache@v3.0.11
+      uses: actions/cache@v3.0.11
       id: composer-cache
       with:
-        path: ${{ steps.composer-cache.outputs.dir }}
+        path: ${{ steps.get-composer-cache-dir.outputs.dir }}
         key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
         restore-keys: |
           ${{ runner.os }}-composer-
@@ -57,13 +57,13 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Get Composer Cache
+    - name: Get Composer Cache Directory
       id: get-composer-cache-dir
       run: |
         echo "::set-output name=dir::$(composer config cache-files-dir)"
-    
+      
     - name: Cache Composer
-    - uses: actions/cache@v3.0.11
+      uses: actions/cache@v3.0.11
       id: composer-cache
       with:
         path: ${{ steps.get-composer-cache-dir.outputs.dir }}
