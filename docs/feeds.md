@@ -4,9 +4,9 @@ A YAML file named `feeds.yaml` is used to configure the RSS, ATOM and JSON feeds
 
 By default Vigilant looks for a `feeds.yaml` file in the project's main folder, this behavior can be overridden with an [environment variable](configuration.md#feeds-file).
 
-An [`example file`](../feeds.example.yaml) is available.
+An [example file](../feeds.example.yaml) is available.
 
-Each entry in the YAML file must have a name, URL and interval parameter, all other parameters are optional.
+Each entry in the YAML file must have a name, URL and interval parameter. All other parameters are optional.
 
 ```YAML
 feeds:
