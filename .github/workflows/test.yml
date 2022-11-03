@@ -46,6 +46,7 @@ jobs:
       run: "composer validate --no-check-publish"
 
     - name: Install dependencies with composer
+      if: steps.composer-cache.outputs.cache-hit != 'true'
       run: composer install --prefer-dist
 
     - name: Run phpunit
