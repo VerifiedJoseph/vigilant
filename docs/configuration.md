@@ -6,7 +6,7 @@ Alternatively, you can use `config.php` (copied from [`config.example.php`](../c
 
 ## Feeds File
 
-By default Vigilant looks for a `feeds.yaml` file in the project's main folder, this behavior can be overridden by setting the env `VIGILANT_FEEDS_FILE`.
+By default Vigilant looks for a `feeds.yaml` file in the project's main folder, this behavior can be overridden by setting the environment variable `VIGILANT_FEEDS_FILE`.
 
 | Name                  | Description                  |
 | --------------------- | ---------------------------- |
