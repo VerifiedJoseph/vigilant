@@ -30,11 +30,15 @@ services:
 
 Clone the repository.
 
-`git clone https://github.com/VerifiedJoseph/vigilant.git`
+```
+git clone https://github.com/VerifiedJoseph/vigilant.git
+```
 
 Install dependencies with composer.
 
-`composer install --no-dev`
+```
+composer install --no-dev
+```
 
 There are two scripts that can be used to run Vigilant: `vigilant.php` and `daemon.php`.
 
