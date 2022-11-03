@@ -4,7 +4,7 @@ The easiest way to deploy Vigilant is with Docker, it also can be installed manu
 
 ## Docker
 
-Configure Vigilant using [environment variables](configuration.md) and a [feeds file](feeds.md) and then run the prebuilt image.
+Configure Vigilant using [environment variables](configuration.md) and a [feeds file](feeds.md) then run the prebuilt image.
 
 ```
 docker run -it -v $(pwd)/feeds.yaml:/app/feeds.yaml --env-file .env ghcr.io/verifiedjoseph/vigilant:latest
@@ -44,4 +44,4 @@ Cron example:
 ```
 5 * * * * php vigilant.php
 ```
-When Vigilant running via a task scheduler, the script should ran at minimum of every 5 minutes.
+When Vigilant running via a task scheduler, the script should ran at a minimum of every 5 minutes.
