@@ -110,7 +110,7 @@ final class Check
             switch ($err->getMessage()) {
                 case 'not found':
                 case 'internal server error':
-                    $message = 'Failed to fetch: ' . $url . ' (returned  ' . $err->getMessage() . ')';
+                    $message = 'Failed to fetch: ' . $url . ' (returned ' . $err->getMessage() . ')';
                     break;
                 default:
                     $message = 'Failed to parse feed (' . $err->getMessage() . ')';
