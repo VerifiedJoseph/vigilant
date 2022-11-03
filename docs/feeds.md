@@ -11,13 +11,13 @@ Each entry in the YAML file must have a name, URL and interval parameter, all ot
 ```YAML
 feeds:
     -
-	name: Met Office weather warnings
-	url: http://www.metoffice.gov.uk/public/data/PWSCache/WarningsRSS/Region/UK
-	interval: 1900
+    name: Met Office weather warnings
+    url: http://www.metoffice.gov.uk/public/data/PWSCache/WarningsRSS/Region/UK
+    interval: 1900
     -
-	name: GitHub Status
-	url: https://www.githubstatus.com/history.rss
-	interval: 600
+    name: GitHub Status
+    url: https://www.githubstatus.com/history.rss
+    interval: 600
 ```
 
 | Name              | Required | Description                                                                   |
