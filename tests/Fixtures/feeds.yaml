@@ -2,7 +2,7 @@ feeds:
     -
      name: Met Office weather warnings
      url: http://www.metoffice.gov.uk/public/data/PWSCache/WarningsRSS/Region/UK
-     interval: 1900
+     interval: 900
      gotify_token: 7ZHeHM3awd45rn9W
      gotify_priority: 1
     -
