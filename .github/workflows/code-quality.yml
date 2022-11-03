@@ -57,6 +57,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'
+        tools: cs2pr
+
     - name: Get Composer Cache Directory
       id: get-composer-cache-dir
       run: |
@@ -70,12 +76,6 @@ jobs:
         key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
         restore-keys: |
           ${{ runner.os }}-composer-
-
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.1'
-        tools: cs2pr
 
     - name: Install dependencies with composer
       if: steps.composer-cache.outputs.cache-hit != 'true'
