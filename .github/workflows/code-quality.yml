@@ -26,6 +26,14 @@ jobs:
       with:
         php-version: '8.1'
 
+    - name: Composer Cache
+      id: composer-cache
+      uses: actions/cache@v3.0.11
+      with:
+        path: ${{ steps.composer-cache.outputs.dir }}
+        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+        restore-keys: ${{ runner.os }}-composer-
+    
     - name: "Validate composer.json and composer.lock"
       run: "composer validate --no-check-publish"
 
@@ -41,6 +49,14 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+
+    - name: Composer Cache
+      id: composer-cache
+      uses: actions/cache@v3.0.11
+      with:
+        path: ${{ steps.composer-cache.outputs.dir }}
+        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+        restore-keys: ${{ runner.os }}-composer-
 
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
