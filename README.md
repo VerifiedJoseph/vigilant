@@ -1,6 +1,6 @@
 # Vigilant
 
-Vigilant is a PHP script for monitoring RSS/ATOM/JSON feeds and sending push notifications on new entries.
+Vigilant is a PHP script for monitoring RSS/ATOM and JSON feeds, and sending push notifications on new entries.
 
 ## Documentation
 
