@@ -1,6 +1,9 @@
 name: Build
 
 on:
+  pull_request:
+    paths:
+      - ".github/workflows/docker-build.yml"
   push:
     branches: [main]
   release:
