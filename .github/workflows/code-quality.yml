@@ -66,7 +66,7 @@ jobs:
     - uses: actions/cache@v3.0.11
       id: composer-cache
       with:
-        path: ${{ steps.composer-cache.outputs.dir }}
+        path: ${{ steps.get-composer-cache-dir.outputs.dir }}
         key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
         restore-keys: |
           ${{ runner.os }}-composer-
