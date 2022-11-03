@@ -1,5 +1,18 @@
 # Vigilant
 
+[![Latest Version](https://img.shields.io/github/release/VerifiedJoseph/vigilant.svg?style=flat-square)](https://github.com/VerifiedJoseph/gotify-api-php/releases)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
+
+Vigilant is a PHP script for monitoring RSS/ATOM and JSON feeds, and sending push notifications on new entries.
+
+Vigilant supports sending push notifications with [Gotify](https://gotify.net) or [ntfy.sh](https://ntfy.sh).
+
+## Documentation
+
+- [Installation](docs/install.md)
+- [Configuration](docs/configuration.md)
+- [Feeds File](docs/feeds.md)
+
 ## Requirements
 
 - PHP >= 8.1
