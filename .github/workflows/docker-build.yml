@@ -1,0 +1,37 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  release:
+    types: [published]
+
+jobs:
+  docker:
+    name: Docker Images
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2.5.0
+      -  
+        name: Docker meta
+        id: docker_meta
+        uses: docker/metadata-action@v4.1.1
+        with:
+          images: verifiedjoseph/vigilant
+      -
+        name: Login to GitHub Container Registry
+        uses: docker/login-action@vv2.1.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v3.2.0
+        with:
+          context: .
+          push: false
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
