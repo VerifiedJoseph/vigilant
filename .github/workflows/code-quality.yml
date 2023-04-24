@@ -22,7 +22,7 @@ jobs:
       uses: actions/checkout@v3.5.2
 
     - name: Setup PHP
-      uses: shivammathur/setup-php@2.24.0
+      uses: shivammathur/setup-php@2.25.1
       with:
         php-version: '8.1'
 
@@ -43,7 +43,7 @@ jobs:
       uses: actions/checkout@v3.5.2
 
     - name: Setup PHP
-      uses: shivammathur/setup-php@2.24.0
+      uses: shivammathur/setup-php@2.25.1
       with:
         php-version: '8.1'
         tools: cs2pr
@@ -62,7 +62,7 @@ jobs:
         uses: actions/checkout@v3.5.2
 
       - name: Setup PHP
-        uses: shivammathur/setup-php@2.24.0
+        uses: shivammathur/setup-php@2.25.1
         with:
           php-version: '8.1'
 
