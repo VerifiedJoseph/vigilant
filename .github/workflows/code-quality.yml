@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3.6.0
+      uses: actions/checkout@v4.0.0
 
     - name: Setup PHP
       uses: shivammathur/setup-php@2.25.5
@@ -40,7 +40,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3.6.0
+      uses: actions/checkout@v4.0.0
 
     - name: Setup PHP
       uses: shivammathur/setup-php@2.25.5
@@ -59,7 +59,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3.6.0
+        uses: actions/checkout@v4.0.0
 
       - name: Setup PHP
         uses: shivammathur/setup-php@2.25.5
