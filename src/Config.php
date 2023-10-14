@@ -73,7 +73,10 @@ final class Config
      */
     public function checkInstall(): void
     {
-        new CheckInstall();
+        new CheckInstall(
+            $this->getMinPhpVersion(),
+            $this->getRequiredPhpExtensions()
+        );
     }
 
     /**
