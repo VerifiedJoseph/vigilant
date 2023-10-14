@@ -20,7 +20,7 @@ final class Gotify extends Notification
     {
         try {
             // Set server
-            $server = new Server(Config::get('NOTIFICATION_GOTIFY_URL'));
+            $server = new Server($this->config['server']);
 
             // Set application token
             $auth = new Token($this->config['token']);
