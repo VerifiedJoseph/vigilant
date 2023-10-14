@@ -9,11 +9,10 @@ use Vigilant\Exception\AppException;
 require('vendor/autoload.php');
 
 try {
-    Config::load();
+    $config = new Config();
+    $config->load();
 
-    $feeds = new Feeds(
-        Config::getFeedsPath()
-    );
+    $feeds = new Feeds($config);
 
     Output::newline();
 
