@@ -1,5 +1,6 @@
 <?php
 
+use Vigilant\Config;
 use Vigilant\Feed\Feed;
 use Symfony\Component\Yaml\Yaml;
 
@@ -21,7 +22,9 @@ class FeedTest extends TestCase
      */
     public function testGet(): void
     {
-        $feed = new Feed(self::$feeds[0]);
+        $config = new Config();
+
+        $feed = new Feed(self::$feeds[0], $config);
 
         $this->assertInstanceOf(
             'Vigilant\Feed\Details',
