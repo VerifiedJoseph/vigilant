@@ -33,7 +33,7 @@ jobs:
       run: composer install --prefer-dist
 
     - name: Run PHPStan
-      run: ./vendor/bin/phpstan analyse
+      run: composer lint-phpstan
 
   phpcs:
     name: PHP_CodeSniffer
@@ -52,22 +52,5 @@ jobs:
       run: composer install --prefer-dist
 
     - name: Run phpcs
-      run: ./vendor/bin/phpcs . --report=checkstyle | cs2pr
+      run: composer lint-phpcs-action
 
-  php-cs-fixer:
-    name: PHP CS Fixer
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4.0.0
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@2.25.5
-        with:
-          php-version: '8.1'
-
-      - name: Install dependencies with composer
-        run: composer install --prefer-dist
-
-      - name: Run php-cs-fixer
-        run:  ./vendor/bin/php-cs-fixer fix --dry-run

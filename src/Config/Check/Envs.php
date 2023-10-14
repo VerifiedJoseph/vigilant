@@ -140,8 +140,10 @@ final class Envs
 
             $this->config['NOTIFICATION_NTFY_TOPIC'] = $this->getEnv('NOTIFICATION_NTFY_TOPIC');
 
-            if ($this->isEnvSet('NOTIFICATION_NTFY_AUTH') === true &&
-                $this->getEnv('NOTIFICATION_NTFY_AUTH') === 'true') {
+            if (
+                $this->isEnvSet('NOTIFICATION_NTFY_AUTH') === true &&
+                $this->getEnv('NOTIFICATION_NTFY_AUTH') === 'true'
+            ) {
                 $this->config['NOTIFICATION_NTFY_AUTH'] = true;
 
                 if ($this->isEnvSet('NOTIFICATION_NTFY_USERNAME') === false) {

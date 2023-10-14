@@ -3,7 +3,6 @@
 use Vigilant\Config;
 use Vigilant\Feeds;
 use Vigilant\Output;
-
 use Vigilant\Exception\ConfigException;
 use Vigilant\Exception\AppException;
 

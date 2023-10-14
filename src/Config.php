@@ -6,7 +6,6 @@ use Vigilant\Output;
 use Vigilant\Config\Check\Install as CheckInstall;
 use Vigilant\Config\Check\Paths as CheckPaths;
 use Vigilant\Config\Check\Envs as checkEnvs;
-
 use Vigilant\Exception\ConfigException;
 
 final class Config

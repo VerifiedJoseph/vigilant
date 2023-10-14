@@ -5,7 +5,6 @@ namespace Vigilant\Notification;
 use Vigilant\Config;
 use Vigilant\Notification\Notification;
 use Vigilant\Exception\NotificationException;
-
 use Gotify\Server;
 use Gotify\Auth\Token;
 use Gotify\Endpoint\Message;

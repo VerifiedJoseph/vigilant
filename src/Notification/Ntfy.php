@@ -5,7 +5,6 @@ namespace Vigilant\Notification;
 use Vigilant\Config;
 use Vigilant\Notification\Notification;
 use Vigilant\Exception\NotificationException;
-
 use Ntfy\Auth\User as Auth;
 use Ntfy\Client;
 use Ntfy\Server;

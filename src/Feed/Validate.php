@@ -84,8 +84,10 @@ final class Validate
      */
     private function gotifyPriority(): void
     {
-        if (array_key_exists('gotify_priority', $this->details) === true &&
-             $this->details['gotify_priority'] === null) {
+        if (
+            array_key_exists('gotify_priority', $this->details) === true &&
+             $this->details['gotify_priority'] === null
+        ) {
             throw new FeedsException('Empty Gotify priority given for feed: ' . $this->details['name']);
         }
     }
@@ -105,8 +107,10 @@ final class Validate
      */
     private function ntfyPriority(): void
     {
-        if (array_key_exists('ntfy_priority', $this->details) === true &&
-             $this->details['ntfy_priority'] === null) {
+        if (
+            array_key_exists('ntfy_priority', $this->details) === true &&
+             $this->details['ntfy_priority'] === null
+        ) {
             throw new FeedsException('Empty Ntfy priority given for feed: ' . $this->details['name']);
         }
     }

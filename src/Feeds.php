@@ -7,7 +7,6 @@ use Vigilant\Feed\Feed;
 use Vigilant\Feed\Details;
 use Vigilant\Exception\AppException;
 use Vigilant\Exception\FeedsException;
-
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Yaml\Exception\ParseException;
 
@@ -28,7 +27,7 @@ final class Feeds
         try {
             $feeds = $this->load($path);
             $this->validate($feeds);
-        } catch(FeedsException $err) {
+        } catch (FeedsException $err) {
             throw new AppException($err->getMessage());
         }
     }
