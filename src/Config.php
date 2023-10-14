@@ -92,7 +92,11 @@ final class Config
         $this->requireConfigFile();
         $this->setDefaults();
 
-        $envs = new CheckEnvs($this->config);
+        $envs = new CheckEnvs(
+            $this->config,
+            $this->getNotificationServices()
+        );
+
         $this->config = $envs->getConfig();
     }
 
