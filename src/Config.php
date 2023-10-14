@@ -8,7 +8,7 @@ use Vigilant\Config\Check\Paths as CheckPaths;
 use Vigilant\Config\Check\Envs as checkEnvs;
 use Vigilant\Exception\ConfigException;
 
-final class Config
+class Config
 {
     /**
      * @var string $minPhpVersion Minimum PHP version
