@@ -81,7 +81,7 @@ final class Config
      */
     public function checkPaths(): void
     {
-        new CheckPaths();
+        new CheckPaths($this->getCachePath());
     }
 
     /**
