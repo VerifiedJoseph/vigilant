@@ -1,5 +1,6 @@
 {
     "require": {
+        "php": "^8.1",
         "verifiedjoseph/gotify-api-php": "^1.7",
         "verifiedjoseph/ntfy-php-library": "^4.0",
         "symfony/yaml": "^6.1.6",
