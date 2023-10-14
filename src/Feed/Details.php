@@ -2,8 +2,6 @@
 
 namespace Vigilant\Feed;
 
-use Vigilant\Config;
-
 final class Details
 {
     /**
@@ -66,15 +64,15 @@ final class Details
      *
      * Returns token from global config if not found in feed.yaml
      *
-     * @return string
+     * @return ?string
      */
-    public function getGotifyToken(): string
+    public function getGotifyToken(): ?string
     {
         if (array_key_exists('gotify_token', $this->details) === true && $this->details['gotify_token'] !== '') {
             return $this->details['gotify_token'];
         }
 
-        return Config::get('NOTIFICATION_GOTIFY_TOKEN');
+        return null;
     }
 
     /**
@@ -82,15 +80,15 @@ final class Details
      *
      * Returns priority from global config if not found in feed.yaml
      *
-     * @return int
+     * @return ?int
      */
-    public function getGotifyPriority(): int
+    public function getGotifyPriority(): ?int
     {
         if ($this->has('gotify_priority') === true) {
             return $this->details['gotify_priority'];
         }
 
-        return Config::get('NOTIFICATION_GOTIFY_PRIORITY');
+        return null;
     }
 
     /**
@@ -98,15 +96,15 @@ final class Details
      *
      * Returns topic from global config if not found in feed.yaml
      *
-     * @return string
+     * @return ?string
      */
-    public function getNtfyTopic(): string
+    public function getNtfyTopic(): ?string
     {
         if ($this->has('ntfy_topic') === true) {
             return $this->details['ntfy_topic'];
         }
 
-        return Config::get('NOTIFICATION_NTFY_TOPIC');
+        return null;
     }
 
     /**
@@ -114,15 +112,15 @@ final class Details
      *
      * Returns priority from global config if not found in feed.yaml
      *
-     * @return int
+     * @return ?int
      */
-    public function getNtfyPriority(): int
+    public function getNtfyPriority(): ?int
     {
         if ($this->has('ntfy_priority') === true) {
             return $this->details['ntfy_priority'];
         }
 
-        return Config::get('NOTIFICATION_NTFY_PRIORITY');
+        return null;
     }
 
     /**
