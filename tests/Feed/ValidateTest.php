@@ -11,6 +11,11 @@ class ValidateTest extends TestCase
      */
     private static array $feedsInvalid = [];
 
+    /**
+     * @var int $minCheckInterval Minimum feed check interval in seconds
+     */
+    private static int $minCheckInterval = 300;
+
     public static function setUpBeforeClass(): void
     {
         $feedsInvalid = Yaml::parse(self::loadFixture('feeds-invalid.yaml'));
@@ -24,7 +29,7 @@ class ValidateTest extends TestCase
     {
         $feeds = Yaml::parse(self::loadFixture('feeds.yaml'));
 
-        new Validate($feeds['feeds'][0]);
+        new Validate($feeds['feeds'][0], self::$minCheckInterval);
 
         $this->assertTrue(true);
     }
@@ -37,7 +42,7 @@ class ValidateTest extends TestCase
         $this->expectException(FeedsException::class);
         $this->expectExceptionMessage('No name given');
 
-        new Validate(self::$feedsInvalid['noName']);
+        new Validate(self::$feedsInvalid['noName'], self::$minCheckInterval);
     }
 
     /**
@@ -48,7 +53,7 @@ class ValidateTest extends TestCase
         $this->expectException(FeedsException::class);
         $this->expectExceptionMessage('No name given');
 
-        new Validate(self::$feedsInvalid['emptyName']);
+        new Validate(self::$feedsInvalid['emptyName'], self::$minCheckInterval);
     }
 
     /**
@@ -59,7 +64,7 @@ class ValidateTest extends TestCase
         $this->expectException(FeedsException::class);
         $this->expectExceptionMessage('No url given');
 
-        new Validate(self::$feedsInvalid['noUrl']);
+        new Validate(self::$feedsInvalid['noUrl'], self::$minCheckInterval);
     }
 
     /**
@@ -70,7 +75,7 @@ class ValidateTest extends TestCase
         $this->expectException(FeedsException::class);
         $this->expectExceptionMessage('No url given');
 
-        new Validate(self::$feedsInvalid['emptyUrl']);
+        new Validate(self::$feedsInvalid['emptyUrl'], self::$minCheckInterval);
     }
 
     /**
@@ -81,7 +86,7 @@ class ValidateTest extends TestCase
         $this->expectException(FeedsException::class);
         $this->expectExceptionMessage('No interval given');
 
-        new Validate(self::$feedsInvalid['noInterval']);
+        new Validate(self::$feedsInvalid['noInterval'], self::$minCheckInterval);
     }
 
     /**
@@ -92,7 +97,7 @@ class ValidateTest extends TestCase
         $this->expectException(FeedsException::class);
         $this->expectExceptionMessage('No interval given');
 
-        new Validate(self::$feedsInvalid['emptyInterval']);
+        new Validate(self::$feedsInvalid['emptyInterval'], self::$minCheckInterval);
     }
 
     /**
@@ -103,7 +108,7 @@ class ValidateTest extends TestCase
         $this->expectException(FeedsException::class);
         $this->expectExceptionMessage('Empty Gotify token given');
 
-        new Validate(self::$feedsInvalid['emptyGotifyToken']);
+        new Validate(self::$feedsInvalid['emptyGotifyToken'], self::$minCheckInterval);
     }
 
     /**
@@ -114,7 +119,7 @@ class ValidateTest extends TestCase
         $this->expectException(FeedsException::class);
         $this->expectExceptionMessage('Empty Gotify priority given');
 
-        new Validate(self::$feedsInvalid['emptyGotifyPriority']);
+        new Validate(self::$feedsInvalid['emptyGotifyPriority'], self::$minCheckInterval);
     }
 
     /**
@@ -125,7 +130,7 @@ class ValidateTest extends TestCase
         $this->expectException(FeedsException::class);
         $this->expectExceptionMessage('Empty Ntfy topic given');
 
-        new Validate(self::$feedsInvalid['emptyNtfyTopic']);
+        new Validate(self::$feedsInvalid['emptyNtfyTopic'], self::$minCheckInterval);
     }
 
     /**
@@ -136,6 +141,6 @@ class ValidateTest extends TestCase
         $this->expectException(FeedsException::class);
         $this->expectExceptionMessage('Empty Ntfy priority given');
 
-        new Validate(self::$feedsInvalid['emptyNtfyPriority']);
+        new Validate(self::$feedsInvalid['emptyNtfyPriority'], self::$minCheckInterval);
     }
 }
