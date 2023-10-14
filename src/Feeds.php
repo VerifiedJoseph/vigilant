@@ -94,7 +94,7 @@ final class Feeds
         }
 
         foreach ($feeds['feeds'] as $entry) {
-            $feed = new Feed($entry);
+            $feed = new Feed($entry, $this->config);
             $this->feeds[] = $feed->getDetails();
         }
     }
