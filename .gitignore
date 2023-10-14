@@ -4,9 +4,6 @@
 # Cache
 /cache/
 
-# php-cs-fixer
-.php-cs-fixer.cache
-
 # User files
 /feeds.yaml
 /config.php
