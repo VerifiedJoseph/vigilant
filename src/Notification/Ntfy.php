@@ -21,7 +21,7 @@ final class Ntfy extends Notification
     {
         try {
             // Set server
-            $server = new Server(Config::get('NOTIFICATION_NTFY_URL'));
+            $server = new Server($this->config['server']);
 
             // Create a new message
             $message = new Message();
@@ -32,10 +32,10 @@ final class Ntfy extends Notification
             $message->clickAction($this->config['url']);
 
             $auth = null;
-            if (Config::get('NOTIFICATION_NTFY_AUTH') === true) {
+            if (isset($this->config['auth']) === true) {
                 $auth = new Auth(
-                    Config::get('NOTIFICATION_NTFY_USERNAME'),
-                    Config::get('NOTIFICATION_NTFY_PASSWORD')
+                    $this->config['auth']['username'],
+                    $this->config['auth']['password']
                 );
             }
 
