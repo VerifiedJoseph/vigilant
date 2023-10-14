@@ -15,7 +15,7 @@ final class Envs
      * Constructor
      *
      * @param array<string, int|string|boolean> $config
-     * @param array<int, string $notificationServices
+     * @param array<int, string> $notificationServices
      */
     public function __construct(array $config, array $notificationServices)
     {
