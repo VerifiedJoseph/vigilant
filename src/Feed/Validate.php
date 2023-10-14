@@ -2,7 +2,6 @@
 
 namespace Vigilant\Feed;
 
-use Vigilant\Config;
 use Vigilant\Exception\FeedsException;
 
 final class Validate
@@ -16,14 +15,15 @@ final class Validate
      * Constructor
      *
      * @param array<string, mixed> $feed
+     * @param int $minCheckInterval Minimum feed check interval
      */
-    public function __construct(array $feed)
+    public function __construct(array $feed, int $minCheckInterval)
     {
         $this->details = $feed;
 
         $this->name();
         $this->url();
-        $this->interval();
+        $this->interval($minCheckInterval);
 
         $this->gotifyToken();
         $this->gotifyPriority();
@@ -54,16 +54,18 @@ final class Validate
 
     /**
      * Validate entry interval
+     *
+     * @param int $minCheckInterval Minimum feed check interval
      */
-    private function interval(): void
+    private function interval(int $minCheckInterval): void
     {
         if (array_key_exists('interval', $this->details) === false || $this->details['interval'] === null) {
             throw new FeedsException('No interval given for feed: ' . $this->details['name']);
         }
 
-        if ($this->details['interval'] < Config::getMinCheckInterval()) {
+        if ($this->details['interval'] < $minCheckInterval) {
             throw new FeedsException(
-                'Interval is less than ' . Config::getMinCheckInterval() .
+                'Interval is less than ' . $minCheckInterval .
                 ' seconds for feed: ' . $this->details['name']
             );
         }
