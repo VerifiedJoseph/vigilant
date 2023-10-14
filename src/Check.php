@@ -185,8 +185,8 @@ final class Check
                 $notification = new Ntfy();
 
                 $config['server'] = $this->config->get('NOTIFICATION_NTFY_URL');
-                $config['topic'] = $this->details->getNtfyTopic();
-                $config['priority'] = $this->details->getNtfyPriority();
+                $config['topic'] = $this->config->get('NOTIFICATION_NTFY_TOPIC');
+                $config['priority'] = $this->config->get('NOTIFICATION_NTFY_PRIORITY');
 
                 if ($this->config->get('NOTIFICATION_NTFY_AUTH') === true) {
                     $config['auth'] = [
@@ -195,13 +195,27 @@ final class Check
                     ];
                 }
 
+                if (is_null($this->details->getNtfyTopic()) === false) {
+                    $config['topic'] = $this->details->getNtfyTopic();
+                }
+
+                if (is_null($this->details->getNtfyPriority()) === false) {
+                    $config['priority'] = $this->details->getNtfyPriority();
+                }
                 break;
             default:
                 $notification = new Gotify();
 
                 $config['server'] = $this->config->get('NOTIFICATION_GOTIFY_URL');
-                $config['token'] = $this->details->getGotifyToken();
-                $config['priority'] = $this->details->getGotifyPriority();
+                $config['priority'] = $this->config->get('NOTIFICATION_GOTIFY_PRIORITY');
+
+                if (is_null($this->details->getGotifyToken()) === false) {
+                    $config['token'] = $this->details->getGotifyToken();
+                }
+
+                if (is_null($this->details->getGotifyPriority()) === false) {
+                    $config['priority'] = $this->details->getGotifyPriority();
+                }
         }
 
         $notification->config($config);
