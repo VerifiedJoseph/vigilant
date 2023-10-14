@@ -2,7 +2,6 @@
 
 namespace Vigilant\Config\Check;
 
-use Vigilant\Config;
 use Vigilant\Exception\ConfigException;
 
 final class Envs
@@ -16,14 +15,15 @@ final class Envs
      * Constructor
      *
      * @param array<string, int|string|boolean> $config
+     * @param array<int, string> $notificationServices
      */
-    public function __construct(array $config)
+    public function __construct(array $config, array $notificationServices)
     {
         $this->config = $config;
 
         $this->quiet();
         $this->feedsFile();
-        $this->notificationService();
+        $this->notificationService($notificationServices);
         $this->notificationGotify();
         $this->notificationNtfy();
     }
@@ -76,10 +76,12 @@ final class Envs
     /**
      * Check NOTIFICATION_SERVICE
      *
+     * @param array<int, string> $supportedServices Supported notification services
+     *
      * @throws ConfigException if no notification service is given
      * @throws ConfigException if unknown notification service is given
      */
-    private function notificationService(): void
+    private function notificationService(array $supportedServices): void
     {
         if ($this->isEnvSet('NOTIFICATION_SERVICE') === false) {
             throw new ConfigException('No notification service given [VIGILANT_NOTIFICATION_SERVICE]');
@@ -87,7 +89,7 @@ final class Envs
 
         $service = strtolower($this->getEnv('NOTIFICATION_SERVICE'));
 
-        if (in_array($service, Config::getNotificationServices()) === false) {
+        if (in_array($service, $supportedServices) === false) {
             throw new ConfigException('Unknown notification service given. [VIGILANT_NOTIFICATION_SERVICE]');
         }
 

@@ -11,6 +11,11 @@ use Vigilant\Exception\NotificationException;
 final class Check
 {
     /**
+     * @var Config
+     */
+    private Config $config;
+
+    /**
      * @var Feed\Details $details Feed details (name, url, interval and hash)
      */
     private Feed\Details $details;
@@ -29,13 +34,15 @@ final class Check
      * Constructor
      *
      * @param Feed\Details $details Feed details
+     * @param Config $config
      */
-    public function __construct(Feed\Details $details)
+    public function __construct(Feed\Details $details, Config $config)
     {
         $this->details = $details;
+        $this->config = $config;
 
         $this->cache = new Cache(
-            Config::getCachePath(),
+            $this->config->getCachePath(),
             $this->details->getHash()
         );
     }
@@ -173,18 +180,42 @@ final class Check
         $config['message'] = $message;
         $config['url'] = $url;
 
-        switch (Config::get('NOTIFICATION_SERVICE')) {
+        switch ($this->config->get('NOTIFICATION_SERVICE')) {
             case 'ntfy':
                 $notification = new Ntfy();
 
-                $config['topic'] = $this->details->getNtfyTopic();
-                $config['priority'] = $this->details->getNtfyPriority();
+                $config['server'] = $this->config->get('NOTIFICATION_NTFY_URL');
+                $config['topic'] = $this->config->get('NOTIFICATION_NTFY_TOPIC');
+                $config['priority'] = $this->config->get('NOTIFICATION_NTFY_PRIORITY');
+
+                if ($this->config->get('NOTIFICATION_NTFY_AUTH') === true) {
+                    $config['auth'] = [
+                        'username' => $this->config->get('NOTIFICATION_NTFY_USERNAME'),
+                        'password' => $this->config->get('NOTIFICATION_NTFY_PASSWORD')
+                    ];
+                }
+
+                if (is_null($this->details->getNtfyTopic()) === false) {
+                    $config['topic'] = $this->details->getNtfyTopic();
+                }
+
+                if (is_null($this->details->getNtfyPriority()) === false) {
+                    $config['priority'] = $this->details->getNtfyPriority();
+                }
                 break;
             default:
                 $notification = new Gotify();
 
-                $config['token'] = $this->details->getGotifyToken();
-                $config['priority'] = $this->details->getGotifyPriority();
+                $config['server'] = $this->config->get('NOTIFICATION_GOTIFY_URL');
+                $config['priority'] = $this->config->get('NOTIFICATION_GOTIFY_PRIORITY');
+
+                if (is_null($this->details->getGotifyToken()) === false) {
+                    $config['token'] = $this->details->getGotifyToken();
+                }
+
+                if (is_null($this->details->getGotifyPriority()) === false) {
+                    $config['priority'] = $this->details->getGotifyPriority();
+                }
         }
 
         $notification->config($config);

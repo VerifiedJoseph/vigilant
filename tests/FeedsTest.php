@@ -1,5 +1,6 @@
 <?php
 
+use Vigilant\Config;
 use Vigilant\Feeds;
 use Vigilant\Output;
 use Vigilant\Exception\AppException;
@@ -16,7 +17,10 @@ class FeedsTest extends TestCase
      */
     public function testGet(): void
     {
-        $feeds = new Feeds(self::getFixturePath('feeds.yaml'));
+        $config = $this->createStub(Config::class);
+        $config->method('getFeedsPath')->willReturn(self::getFixturePath('feeds.yaml'));
+
+        $feeds = new Feeds($config);
 
         $this->assertIsArray($feeds->get());
         $this->assertContainsOnlyInstancesOf('Vigilant\Feed\Details', $feeds->get());
@@ -27,10 +31,13 @@ class FeedsTest extends TestCase
      */
     public function testNoFeedsException(): void
     {
+        $config = $this->createStub(Config::class);
+        $config->method('getFeedsPath')->willReturn(self::getFixturePath('feeds-empty-file.yaml'));
+
         $this->expectException(AppException::class);
         $this->expectExceptionMessage('No feeds in feeds.yaml');
 
-        new Feeds(self::getFixturePath('feeds-empty-file.yaml'));
+        new Feeds($config);
     }
 
     public static function tearDownAfterClass(): void

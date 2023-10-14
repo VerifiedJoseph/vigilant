@@ -8,37 +8,37 @@ use Vigilant\Config\Check\Paths as CheckPaths;
 use Vigilant\Config\Check\Envs as checkEnvs;
 use Vigilant\Exception\ConfigException;
 
-final class Config
+class Config
 {
     /**
      * @var string $minPhpVersion Minimum PHP version
      */
-    private static string $minPhpVersion = '8.1.0';
+    private string $minPhpVersion = '8.1.0';
 
     /**
      * @var array<int, string> $requiredPhpExtensions Required PHP extensions
      */
-    private static array $requiredPhpExtensions = ['xml', 'xmlreader', 'ctype'];
+    private array $requiredPhpExtensions = ['xml', 'xmlreader', 'ctype'];
 
     /**
      * @var int $minCheckInterval Minimum feed check interval in seconds
      */
-    private static int $minCheckInterval = 300;
+    private int $minCheckInterval = 300;
 
     /**
      * @var string $cachePath Cache folder path
      */
-    private static string $cachePath = 'cache';
+    private string $cachePath = 'cache';
 
     /**
      * @var array<int, string> $notificationServices Supported notification services
      */
-    private static array $notificationServices = ['gotify', 'ntfy'];
+    private array $notificationServices = ['gotify', 'ntfy'];
 
     /**
      * @var array<string, int|string|false> $defaults Default values for config parameters
      */
-    private static array $defaults = [
+    private array $defaults = [
         'QUIET' => false,
         'FEEDS_FILE' => 'feeds.yaml',
         'NOTIFICATION_GOTIFY_PRIORITY' => 4,
@@ -49,18 +49,18 @@ final class Config
     /**
      * @var array<string, mixed> $config Loaded config parameters
      */
-    private static array $config = [];
+    private array $config = [];
 
     /**
      * Check install and load config
      */
-    public static function load(): void
+    public function load(): void
     {
-        self::checkInstall();
-        self::checkPaths();
-        self::checkEnvs();
+        $this->checkInstall();
+        $this->checkPaths();
+        $this->checkEnvs();
 
-        if (self::$config['QUIET'] === true) {
+        if ($this->config['QUIET'] === true) {
             Output::quiet();
         }
     }
@@ -71,29 +71,36 @@ final class Config
      * @throws ConfigException if PHP version is not supported
      * @throws ConfigException if a PHP extension is not loaded
      */
-    public static function checkInstall(): void
+    public function checkInstall(): void
     {
-        new CheckInstall();
+        new CheckInstall(
+            $this->getMinPhpVersion(),
+            $this->getRequiredPhpExtensions()
+        );
     }
 
     /**
      * Check cache paths
      */
-    public static function checkPaths(): void
+    public function checkPaths(): void
     {
-        new CheckPaths();
+        new CheckPaths($this->getCachePath());
     }
 
     /**
      * Check environment variables
      */
-    public static function checkEnvs(): void
+    public function checkEnvs(): void
     {
-        self::requireConfigFile();
-        self::setDefaults();
+        $this->requireConfigFile();
+        $this->setDefaults();
 
-        $envs = new CheckEnvs(self::$config);
-        self::$config = $envs->getConfig();
+        $envs = new CheckEnvs(
+            $this->config,
+            $this->getNotificationServices()
+        );
+
+        $this->config = $envs->getConfig();
     }
 
     /**
@@ -103,13 +110,13 @@ final class Config
      * @return mixed
      * @throws ConfigException if config key is invalid
      */
-    public static function get(string $key): mixed
+    public function get(string $key): mixed
     {
-        if (array_key_exists($key, self::$config) === false) {
+        if (array_key_exists($key, $this->config) === false) {
             throw new ConfigException('Invalid config key given: ' . $key);
         }
 
-        return self::$config[$key];
+        return $this->config[$key];
     }
 
     /**
@@ -117,9 +124,9 @@ final class Config
      *
      * @return string
      */
-    public static function getMinPhpVersion(): string
+    public function getMinPhpVersion(): string
     {
-        return self::$minPhpVersion;
+        return $this->minPhpVersion;
     }
 
     /**
@@ -127,9 +134,9 @@ final class Config
      *
      * @return array<int, string>
      */
-    public static function getNotificationServices(): array
+    public function getNotificationServices(): array
     {
-        return self::$notificationServices;
+        return $this->notificationServices;
     }
 
     /**
@@ -137,9 +144,9 @@ final class Config
      *
      * @return array<int, string>
      */
-    public static function getRequiredPhpExtensions(): array
+    public function getRequiredPhpExtensions(): array
     {
-        return self::$requiredPhpExtensions;
+        return $this->requiredPhpExtensions;
     }
 
     /**
@@ -147,9 +154,9 @@ final class Config
      *
      * @return string
      */
-    public static function getCachePath(): string
+    public function getCachePath(): string
     {
-        return dirname(__DIR__) . DIRECTORY_SEPARATOR . self::$cachePath;
+        return dirname(__DIR__) . DIRECTORY_SEPARATOR . $this->cachePath;
     }
 
     /**
@@ -157,9 +164,9 @@ final class Config
      *
      * @return int
      */
-    public static function getMinCheckInterval(): int
+    public function getMinCheckInterval(): int
     {
-        return self::$minCheckInterval;
+        return $this->minCheckInterval;
     }
 
     /**
@@ -167,15 +174,15 @@ final class Config
      *
      * @return string
      */
-    public static function getFeedsPath(): string
+    public function getFeedsPath(): string
     {
-        return self::$config['FEEDS_FILE'];
+        return $this->config['FEEDS_FILE'];
     }
 
     /**
      * Include (require) config file
      */
-    private static function requireConfigFile(): void
+    private function requireConfigFile(): void
     {
         if (file_exists('config.php') === true) {
             require('config.php');
@@ -185,9 +192,9 @@ final class Config
     /**
      * Set defaults as config values
      */
-    private static function setDefaults(): void
+    private function setDefaults(): void
     {
-        self::$config = self::$defaults;
-        self::$config['FEEDS_FILE'] = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'feeds.yaml';
+        $this->config = $this->defaults;
+        $this->config['FEEDS_FILE'] = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'feeds.yaml';
     }
 }
