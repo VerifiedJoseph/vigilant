@@ -13,6 +13,11 @@ use Symfony\Component\Yaml\Exception\ParseException;
 final class Feeds
 {
     /**
+     * @var Config
+     */
+    private Config $config;
+
+    /**
      * @var array<int, Details> $feeds Feed classes for each feeds.yaml entry
      */
     private array $feeds = [];
@@ -20,12 +25,14 @@ final class Feeds
     /**
      * Constructor
      *
-     * @param string $path Feeds filepath
+     * @param Config $config Feeds filepath
      */
-    public function __construct(string $path)
+    public function __construct(Config $config)
     {
+        $this->config = $config;
+
         try {
-            $feeds = $this->load($path);
+            $feeds = $this->load($this->config->getFeedsPath());
             $this->validate($feeds);
         } catch (FeedsException $err) {
             throw new AppException($err->getMessage());
@@ -38,7 +45,7 @@ final class Feeds
     public function check(): void
     {
         foreach ($this->feeds as $feed) {
-            $check = new Check($feed);
+            $check = new Check($feed, $this->config);
             $check->run();
         }
     }
