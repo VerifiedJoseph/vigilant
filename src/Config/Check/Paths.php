@@ -8,7 +8,7 @@ final class Paths
 {
     /**
      * Constructor
-     * 
+     *
      * @param string $cachePath Cache path
      */
     public function __construct(string $cachePath)
@@ -18,7 +18,7 @@ final class Paths
 
     /**
      * Check feed cache path
-     * 
+     *
      * @param string $path Cache path
      */
     private function feedCache(string $path): void

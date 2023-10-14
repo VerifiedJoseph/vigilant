@@ -77,7 +77,7 @@ final class Envs
      * Check NOTIFICATION_SERVICE
      *
      * @param array<int, string> $supportedServices Supported notification services
-     * 
+     *
      * @throws ConfigException if no notification service is given
      * @throws ConfigException if unknown notification service is given
      */

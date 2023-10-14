@@ -8,7 +8,7 @@ final class Install
 {
     /**
      * Constructor
-     * 
+     *
      * @param string $minPhpVersion Minimum supported PHP version
      * @param array<int, string> $requiredPhpExtensions Required PHP extensions
      */
