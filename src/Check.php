@@ -11,6 +11,11 @@ use Vigilant\Exception\NotificationException;
 final class Check
 {
     /**
+     * @var Config
+     */
+    private Config $config;
+
+    /**
      * @var Feed\Details $details Feed details (name, url, interval and hash)
      */
     private Feed\Details $details;
@@ -29,13 +34,15 @@ final class Check
      * Constructor
      *
      * @param Feed\Details $details Feed details
+     * @param Config $config
      */
-    public function __construct(Feed\Details $details)
+    public function __construct(Feed\Details $details, Config $config)
     {
         $this->details = $details;
+        $this->config = $config;
 
         $this->cache = new Cache(
-            Config::getCachePath(),
+            $this->config->getCachePath(),
             $this->details->getHash()
         );
     }
@@ -173,16 +180,26 @@ final class Check
         $config['message'] = $message;
         $config['url'] = $url;
 
-        switch (Config::get('NOTIFICATION_SERVICE')) {
+        switch ($this->config->get('NOTIFICATION_SERVICE')) {
             case 'ntfy':
                 $notification = new Ntfy();
 
+                $config['server'] = $this->config->get('NOTIFICATION_NTFY_URL');
                 $config['topic'] = $this->details->getNtfyTopic();
                 $config['priority'] = $this->details->getNtfyPriority();
+
+                if ($this->config->get('NOTIFICATION_NTFY_AUTH') === true) {
+                    $config['auth'] = [
+                        'username' => $this->config->get('NOTIFICATION_NTFY_USERNAME'),
+                        'password' => $this->config->get('NOTIFICATION_NTFY_PASSWORD')
+                    ];
+                }
+
                 break;
             default:
                 $notification = new Gotify();
 
+                $config['server'] = $this->config->get('NOTIFICATION_GOTIFY_URL');
                 $config['token'] = $this->details->getGotifyToken();
                 $config['priority'] = $this->details->getGotifyPriority();
         }
