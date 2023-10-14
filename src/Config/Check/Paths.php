@@ -2,30 +2,33 @@
 
 namespace Vigilant\Config\Check;
 
-use Vigilant\Config;
 use Vigilant\Exception\ConfigException;
 
 final class Paths
 {
     /**
      * Constructor
+     * 
+     * @param string $cachePath Cache path
      */
-    public function __construct()
+    public function __construct(string $cachePath)
     {
-        $this->feedCache();
+        $this->feedCache($cachePath);
     }
 
     /**
      * Check feed cache path
+     * 
+     * @param string $path Cache path
      */
-    private function feedCache(): void
+    private function feedCache(string $path): void
     {
-        if (is_dir(Config::getCachePath()) === false && mkdir(Config::getCachePath()) === false) {
-            throw new ConfigException('Could not create cache directory:' . Config::getCachePath());
+        if (is_dir($path) === false && mkdir($path) === false) {
+            throw new ConfigException('Could not create cache directory:' . $path);
         }
 
-        if (is_dir(Config::getCachePath()) === true && is_writable(Config::getCachePath()) === false) {
-            throw new ConfigException('Cache directory is not writable: ' . Config::getCachePath());
+        if (is_dir($path) === true && is_writable($path) === false) {
+            throw new ConfigException('Cache directory is not writable: ' . $path);
         }
     }
 }
