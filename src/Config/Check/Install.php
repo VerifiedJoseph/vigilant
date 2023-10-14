@@ -2,40 +2,44 @@
 
 namespace Vigilant\Config\Check;
 
-use Vigilant\Config;
 use Vigilant\Exception\ConfigException;
 
 final class Install
 {
     /**
      * Constructor
+     * 
+     * @param string $minPhpVersion Minimum supported PHP version
+     * @param array<int, string> $requiredPhpExtensions Required PHP extensions
      */
-    public function __construct()
+    public function __construct(string $minPhpVersion, array $requiredPhpExtensions)
     {
-        $this->version();
-        $this->extensions();
+        $this->version($minPhpVersion);
+        $this->extensions($requiredPhpExtensions);
     }
 
     /**
      * Check PHP version
      *
+     * @param string $minPhpVersion Minimum supported PHP version
      * @throws ConfigException if PHP version is not supported
      */
-    private function version(): void
+    private function version($minPhpVersion): void
     {
-        if (version_compare(PHP_VERSION, Config::getMinPhpVersion()) === -1) {
-            throw new ConfigException('Vigilant requires at least PHP version ' . Config::getMinPhpVersion() . '!');
+        if (version_compare(PHP_VERSION, $minPhpVersion) === -1) {
+            throw new ConfigException('Vigilant requires at least PHP version ' . $minPhpVersion . '!');
         }
     }
 
     /**
      * Check PHP extensions
      *
+     * @param array<int, string> $requiredPhpExtensions Required PHP extensions
      * @throws ConfigException if a PHP extension is not loaded
      */
-    private function extensions(): void
+    private function extensions($requiredPhpExtensions): void
     {
-        foreach (Config::getRequiredPhpExtensions() as $ext) {
+        foreach ($requiredPhpExtensions as $ext) {
             if (extension_loaded($ext) === false) {
                 throw new ConfigException('Extension Error: ' . $ext . ' extension not loaded.');
             }
