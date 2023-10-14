@@ -2,7 +2,6 @@
 
 use Vigilant\Feed\Validate;
 use Vigilant\Exception\FeedsException;
-
 use Symfony\Component\Yaml\Yaml;
 
 class ValidateTest extends TestCase
