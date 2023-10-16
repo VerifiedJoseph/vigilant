@@ -723,16 +723,16 @@
         },
         {
             "name": "psr/http-client",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/http-client.git",
-                "reference": "0955afe48220520692d2d09f7ab7e0f93ffd6a31"
+                "reference": "bb5906edc1c324c9a05aa0873d40117941e5fa90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/http-client/zipball/0955afe48220520692d2d09f7ab7e0f93ffd6a31",
-                "reference": "0955afe48220520692d2d09f7ab7e0f93ffd6a31",
+                "url": "https://api.github.com/repos/php-fig/http-client/zipball/bb5906edc1c324c9a05aa0873d40117941e5fa90",
+                "reference": "bb5906edc1c324c9a05aa0873d40117941e5fa90",
                 "shasum": ""
             },
             "require": {
@@ -769,9 +769,9 @@
                 "psr-18"
             ],
             "support": {
-                "source": "https://github.com/php-fig/http-client/tree/1.0.2"
+                "source": "https://github.com/php-fig/http-client"
             },
-            "time": "2023-04-10T20:12:12+00:00"
+            "time": "2023-09-23T14:17:50+00:00"
         },
         {
             "name": "psr/http-factory",
@@ -1198,16 +1198,16 @@
         },
         {
             "name": "verifiedjoseph/gotify-api-php",
-            "version": "v1.7.10",
+            "version": "v1.7.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/VerifiedJoseph/gotify-api-php.git",
-                "reference": "b3432d6aa90e7dae1824b0095d4402378ad2440b"
+                "reference": "d342c823552122bd16dc87c3e62417732bc41958"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/VerifiedJoseph/gotify-api-php/zipball/b3432d6aa90e7dae1824b0095d4402378ad2440b",
-                "reference": "b3432d6aa90e7dae1824b0095d4402378ad2440b",
+                "url": "https://api.github.com/repos/VerifiedJoseph/gotify-api-php/zipball/d342c823552122bd16dc87c3e62417732bc41958",
+                "reference": "d342c823552122bd16dc87c3e62417732bc41958",
                 "shasum": ""
             },
             "require": {
@@ -1245,9 +1245,9 @@
             ],
             "support": {
                 "issues": "https://github.com/VerifiedJoseph/gotify-api-php/issues",
-                "source": "https://github.com/VerifiedJoseph/gotify-api-php/tree/v1.7.10"
+                "source": "https://github.com/VerifiedJoseph/gotify-api-php/tree/v1.7.11"
             },
-            "time": "2023-08-28T19:28:03+00:00"
+            "time": "2023-09-17T10:46:36+00:00"
         },
         {
             "name": "verifiedjoseph/ntfy-php-library",
@@ -3164,5 +3164,5 @@
         "php": "^8.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }
