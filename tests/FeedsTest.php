@@ -17,8 +17,9 @@ class FeedsTest extends TestCase
      */
     public function testGet(): void
     {
+        /** @var PHPUnit\Framework\MockObject\Stub&Config */
         $config = $this->createStub(Config::class);
-        $config->method('getFeedsPath')->willReturn(self::getFixturePath('feeds.yaml'));
+        $config->method('getFeedsPath')->willReturn(self::getSamplePath('feeds.yaml'));
 
         $feeds = new Feeds($config);
 
@@ -31,8 +32,9 @@ class FeedsTest extends TestCase
      */
     public function testNoFeedsException(): void
     {
+        /** @var PHPUnit\Framework\MockObject\Stub&Config */
         $config = $this->createStub(Config::class);
-        $config->method('getFeedsPath')->willReturn(self::getFixturePath('feeds-empty-file.yaml'));
+        $config->method('getFeedsPath')->willReturn(self::getSamplePath('feeds-empty-file.yaml'));
 
         $this->expectException(AppException::class);
         $this->expectExceptionMessage('No feeds in feeds.yaml');
