@@ -17,7 +17,7 @@ class FileTest extends TestCase
      */
     public function testExists(): void
     {
-        $path = self::getFixturePath('feeds.yaml');
+        $path = self::getSamplePath('feeds.yaml');
 
         self::assertEquals(true, File::exists($path));
     }
@@ -35,8 +35,8 @@ class FileTest extends TestCase
      */
     public function testRead(): void
     {
-        $path = self::getFixturePath('feeds.yaml');
-        $data = self::loadFixture('feeds.yaml');
+        $path = self::getSamplePath('feeds.yaml');
+        $data = self::loadSample('feeds.yaml');
 
         self::assertEquals($data, File::read($path));
     }
@@ -59,7 +59,7 @@ class FileTest extends TestCase
      */
     public function testWrite(): void
     {
-        $data = self::loadFixture('feeds.yaml');
+        $data = self::loadSample('feeds.yaml');
 
         File::write(self::$tempFilePath, $data);
 
