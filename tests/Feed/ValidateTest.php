@@ -18,7 +18,7 @@ class ValidateTest extends TestCase
 
     public static function setUpBeforeClass(): void
     {
-        $feedsInvalid = Yaml::parse(self::loadFixture('feeds-invalid.yaml'));
+        $feedsInvalid = Yaml::parse(self::loadSample('feeds-invalid.yaml'));
         self::$feedsInvalid = $feedsInvalid['feeds'];
     }
 
@@ -27,7 +27,7 @@ class ValidateTest extends TestCase
      */
     public function testValidateWithValidEntry(): void
     {
-        $feeds = Yaml::parse(self::loadFixture('feeds.yaml'));
+        $feeds = Yaml::parse(self::loadSample('feeds.yaml'));
 
         new Validate($feeds['feeds'][0], self::$minCheckInterval);
 

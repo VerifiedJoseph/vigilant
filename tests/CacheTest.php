@@ -37,7 +37,7 @@ class CacheTest extends TestCase
         self::$tempCacheFileName = bin2hex(random_bytes(5));
         $this->createTempCacheFile();
 
-        self::$fixtureData = Json::decode(self::loadFixture('cache.json'));
+        self::$fixtureData = Json::decode(self::loadSample('cache.json'));
 
         self::$cache = new Cache(
             self::$tempCacheFolder,
@@ -239,7 +239,7 @@ class CacheTest extends TestCase
         $this->assertFileExists(self::$tempCacheFolder . DIRECTORY_SEPARATOR . 'testing');
         $this->assertJsonFileEqualsJsonFile(
             self::$tempCacheFolder . DIRECTORY_SEPARATOR . 'testing',
-            $this->getFixturePath('cache-default.json')
+            $this->getSamplePath('cache-default.json')
         );
 
         unlink(self::$tempCacheFolder . DIRECTORY_SEPARATOR . 'testing');
@@ -259,6 +259,6 @@ class CacheTest extends TestCase
     {
         $file = self::$tempCacheFolder . DIRECTORY_SEPARATOR . self::$tempCacheFileName;
 
-        file_put_contents($file, self::loadFixture('cache.json'));
+        file_put_contents($file, self::loadSample('cache.json'));
     }
 }
