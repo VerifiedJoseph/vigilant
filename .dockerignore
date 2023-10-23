@@ -1,8 +1,0 @@
-# Ignore everything
-*
-
-# Allow files and directories
-!/src
-!/composer.json
-!/composer.lock
-!/daemon.php
