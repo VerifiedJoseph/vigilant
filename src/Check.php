@@ -180,18 +180,18 @@ final class Check
         $config['message'] = $message;
         $config['url'] = $url;
 
-        switch ($this->config->get('NOTIFICATION_SERVICE')) {
+        switch ($this->config->getNotificationService()) {
             case 'ntfy':
                 $notification = new Ntfy();
 
-                $config['server'] = $this->config->get('NOTIFICATION_NTFY_URL');
-                $config['topic'] = $this->config->get('NOTIFICATION_NTFY_TOPIC');
-                $config['priority'] = $this->config->get('NOTIFICATION_NTFY_PRIORITY');
+                $config['server'] = $this->config->getNtfyUrl();
+                $config['topic'] = $this->config->getNtfyTopic();
+                $config['priority'] = $this->config->getNtfyPriority();
 
                 if ($this->config->get('NOTIFICATION_NTFY_AUTH') === true) {
                     $config['auth'] = [
-                        'username' => $this->config->get('NOTIFICATION_NTFY_USERNAME'),
-                        'password' => $this->config->get('NOTIFICATION_NTFY_PASSWORD')
+                        'username' => $this->config->getNtfyUsername(),
+                        'password' => $this->config->getNtfyPassword()
                     ];
                 }
 

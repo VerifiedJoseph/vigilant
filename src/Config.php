@@ -104,6 +104,76 @@ class Config
     }
 
     /**
+     * Returns enabled notification service
+     *
+     * @return string
+     */
+    public function getNotificationService(): string
+    {
+        return $this->config['NOTIFICATION_SERVICE'];
+    }
+
+    /**
+     * Returns URL for ntfy.sh notification service
+     *
+     * @return string
+     */
+    public function getNtfyUrl(): string
+    {
+        return $this->config['NOTIFICATION_NTFY_URL'];
+    }
+
+    /**
+     * Returns topic for ntfy.sh notification service
+     *
+     * @return string
+     */
+    public function getNtfyTopic(): string
+    {
+        return $this->config['NOTIFICATION_NTFY_TOPIC'];
+    }
+
+    /**
+     * Returns priority for ntfy.sh notification service
+     *
+     * @return int
+     */
+    public function getNtfyPriority(): int
+    {
+        return $this->config['NOTIFICATION_NTFY_PRIORITY'];
+    }
+
+    /**
+     * Returns auth status for ntfy.sh notification service
+     *
+     * @return bool
+     */
+    public function getNtfyAuth(): bool
+    {
+        return $this->config['NOTIFICATION_NTFY_AUTH'];
+    }
+
+    /**
+     * Returns username for ntfy.sh notification service
+     *
+     * @return string
+     */
+    public function getNtfyUsername(): string
+    {
+        return $this->config['NOTIFICATION_NTFY_USERNAME'];
+    }
+
+    /**
+     * Returns password for ntfy.sh notification service
+     *
+     * @return string
+     */
+    public function getNtfyPassword(): string
+    {
+        return $this->config['NOTIFICATION_NTFY_PASSWORD'];
+    }
+
+    /**
      * Returns config value
      *
      * @param string $key Config key
