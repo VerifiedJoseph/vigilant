@@ -195,11 +195,11 @@ final class Check
                     ];
                 }
 
-                if (is_null($this->details->getNtfyTopic()) === false) {
+                if ($this->details->hasNtfyTopic() === true) {
                     $config['topic'] = $this->details->getNtfyTopic();
                 }
 
-                if (is_null($this->details->getNtfyPriority()) === false) {
+                if ($this->details->hasNtfyPriority() === true) {
                     $config['priority'] = $this->details->getNtfyPriority();
                 }
                 break;
@@ -210,11 +210,11 @@ final class Check
                 $config['priority'] = $this->config->getGotifyPriority();
                 $config['token'] = $this->config->getGotifyToken();
 
-                if (is_null($this->details->getGotifyToken()) === false) {
+                if ($this->details->hasGotifyToken() === true) {
                     $config['token'] = $this->details->getGotifyToken();
                 }
 
-                if (is_null($this->details->getGotifyPriority()) === false) {
+                if ($this->details->hasGotifyPriority() === true) {
                     $config['priority'] = $this->details->getGotifyPriority();
                 }
         }
