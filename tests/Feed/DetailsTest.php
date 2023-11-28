@@ -114,4 +114,44 @@ class DetailsTest extends TestCase
             self::$details[1]->getNtfyPriority()
         );
     }
+
+    /**
+     * Test hasGotifyToken()
+     */
+    public function testHasGotifyToken(): void
+    {
+        $this->assertTrue(
+            self::$details[0]->hasGotifyToken()
+        );
+    }
+
+    /**
+     * Test hasGotifyPriority()
+     */
+    public function testHasGotifyPriority(): void
+    {
+        $this->assertTrue(
+            self::$details[0]->hasGotifyPriority()
+        );
+    }
+
+    /**
+     * Test hasNtfyTopic()
+     */
+    public function testHasNtfyTopic(): void
+    {
+        $this->assertTrue(
+            self::$details[1]->hasNtfyTopic()
+        );
+    }
+
+    /**
+     * Test hasNtfyPriority()
+     */
+    public function testHasNtfyPriority(): void
+    {
+        $this->assertTrue(
+            self::$details[1]->hasNtfyPriority()
+        );
+    }
 }
