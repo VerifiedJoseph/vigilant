@@ -97,26 +97,110 @@ class Config
 
         $envs = new CheckEnvs(
             $this->config,
-            $this->getNotificationServices()
+            $this->notificationServices
         );
 
         $this->config = $envs->getConfig();
     }
 
     /**
-     * Returns config value
+     * Returns enabled notification service
      *
-     * @param string $key Config key
-     * @return mixed
-     * @throws ConfigException if config key is invalid
+     * @return string
      */
-    public function get(string $key): mixed
+    public function getNotificationService(): string
     {
-        if (array_key_exists($key, $this->config) === false) {
-            throw new ConfigException('Invalid config key given: ' . $key);
-        }
+        return $this->config['NOTIFICATION_SERVICE'];
+    }
 
-        return $this->config[$key];
+    /**
+     * Returns URL for ntfy.sh notification service
+     *
+     * @return string
+     */
+    public function getNtfyUrl(): string
+    {
+        return $this->config['NOTIFICATION_NTFY_URL'];
+    }
+
+    /**
+     * Returns topic for ntfy.sh notification service
+     *
+     * @return string
+     */
+    public function getNtfyTopic(): string
+    {
+        return $this->config['NOTIFICATION_NTFY_TOPIC'];
+    }
+
+    /**
+     * Returns priority for ntfy.sh notification service
+     *
+     * @return int
+     */
+    public function getNtfyPriority(): int
+    {
+        return $this->config['NOTIFICATION_NTFY_PRIORITY'];
+    }
+
+    /**
+     * Returns auth status for ntfy.sh notification service
+     *
+     * @return bool
+     */
+    public function getNtfyAuth(): bool
+    {
+        return $this->config['NOTIFICATION_NTFY_AUTH'];
+    }
+
+    /**
+     * Returns username for ntfy.sh notification service
+     *
+     * @return string
+     */
+    public function getNtfyUsername(): string
+    {
+        return $this->config['NOTIFICATION_NTFY_USERNAME'];
+    }
+
+    /**
+     * Returns password for ntfy.sh notification service
+     *
+     * @return string
+     */
+    public function getNtfyPassword(): string
+    {
+        return $this->config['NOTIFICATION_NTFY_PASSWORD'];
+    }
+
+    /**
+     * Returns URL for Gotify notification service
+     *
+     * @return string
+     */
+    public function getGotifyUrl(): string
+    {
+        return $this->config['NOTIFICATION_GOTIFY_URL'];
+    }
+
+    /**
+     * Returns priority for Gotify notification service
+     *
+     * @return int
+     */
+    public function getGotifyPriority(): int
+    {
+        return $this->config['NOTIFICATION_GOTIFY_PRIORITY'];
+    }
+
+    /**
+     * Returns token for Gotify notification service
+     *
+     * @return string
+     */
+    public function getGotifyToken(): string
+    {
+        return $this->config['NOTIFICATION_GOTIFY_TOKEN'];
     }
 
     /**
@@ -127,16 +211,6 @@ class Config
     public function getMinPhpVersion(): string
     {
         return $this->minPhpVersion;
-    }
-
-    /**
-     * Get notification services
-     *
-     * @return array<int, string>
-     */
-    public function getNotificationServices(): array
-    {
-        return $this->notificationServices;
     }
 
     /**
