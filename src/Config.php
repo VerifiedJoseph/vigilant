@@ -97,7 +97,7 @@ class Config
 
         $envs = new CheckEnvs(
             $this->config,
-            $this->getNotificationServices()
+            $this->notificationServices
         );
 
         $this->config = $envs->getConfig();
@@ -127,16 +127,6 @@ class Config
     public function getMinPhpVersion(): string
     {
         return $this->minPhpVersion;
-    }
-
-    /**
-     * Get notification services
-     *
-     * @return array<int, string>
-     */
-    public function getNotificationServices(): array
-    {
-        return $this->notificationServices;
     }
 
     /**
