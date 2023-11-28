@@ -188,7 +188,7 @@ final class Check
                 $config['topic'] = $this->config->getNtfyTopic();
                 $config['priority'] = $this->config->getNtfyPriority();
 
-                if ($this->config->get('NOTIFICATION_NTFY_AUTH') === true) {
+                if ($this->config->getNtfyAuth() === true) {
                     $config['auth'] = [
                         'username' => $this->config->getNtfyUsername(),
                         'password' => $this->config->getNtfyPassword()
@@ -206,8 +206,8 @@ final class Check
             default:
                 $notification = new Gotify();
 
-                $config['server'] = $this->config->get('NOTIFICATION_GOTIFY_URL');
-                $config['priority'] = $this->config->get('NOTIFICATION_GOTIFY_PRIORITY');
+                $config['server'] = $this->config->getGotifyUrl();
+                $config['priority'] = $this->config->getGotifyPriority();
 
                 if (is_null($this->details->getGotifyToken()) === false) {
                     $config['token'] = $this->details->getGotifyToken();

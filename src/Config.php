@@ -174,6 +174,36 @@ class Config
     }
 
     /**
+     * Returns URL for Gotify notification service
+     *
+     * @return string
+     */
+    public function getGotifyUrl(): string
+    {
+        return $this->config['NOTIFICATION_GOTIFY_URL'];
+    }
+
+    /**
+     * Returns priority for Gotify notification service
+     *
+     * @return int
+     */
+    public function getGotifyPriority(): int
+    {
+        return $this->config['NOTIFICATION_GOTIFY_PRIORITY'];
+    }
+
+    /**
+     * Returns token for Gotify notification service
+     *
+     * @return string
+     */
+    public function getGotifyToken(): string
+    {
+        return $this->config['NOTIFICATION_GOTIFY_TOKEN'];
+    }
+
+    /**
      * Returns config value
      *
      * @param string $key Config key
