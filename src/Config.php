@@ -204,22 +204,6 @@ class Config
     }
 
     /**
-     * Returns config value
-     *
-     * @param string $key Config key
-     * @return mixed
-     * @throws ConfigException if config key is invalid
-     */
-    public function get(string $key): mixed
-    {
-        if (array_key_exists($key, $this->config) === false) {
-            throw new ConfigException('Invalid config key given: ' . $key);
-        }
-
-        return $this->config[$key];
-    }
-
-    /**
      * Get minimum PHP version
      *
      * @return string
