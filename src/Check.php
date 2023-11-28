@@ -208,6 +208,7 @@ final class Check
 
                 $config['server'] = $this->config->getGotifyUrl();
                 $config['priority'] = $this->config->getGotifyPriority();
+                $config['token'] = $this->config->getGotifyToken();
 
                 if (is_null($this->details->getGotifyToken()) === false) {
                     $config['token'] = $this->details->getGotifyToken();
