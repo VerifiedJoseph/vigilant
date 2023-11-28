@@ -62,74 +62,94 @@ final class Details
     /**
      * Get gotify applications token
      *
-     * Returns token from global config if not found in feed.yaml
-     *
      * @return ?string
      */
     public function getGotifyToken(): ?string
     {
-        if (array_key_exists('gotify_token', $this->details) === true && $this->details['gotify_token'] !== '') {
-            return $this->details['gotify_token'];
-        }
-
-        return null;
+        return $this->details['gotify_token'] ?? null;
     }
 
     /**
      * Get gotify priority
      *
-     * Returns priority from global config if not found in feed.yaml
-     *
      * @return ?int
      */
     public function getGotifyPriority(): ?int
     {
-        if ($this->has('gotify_priority') === true) {
-            return $this->details['gotify_priority'];
-        }
-
-        return null;
+        return $this->details['gotify_priority'] ?? null;
     }
 
     /**
      * Get Ntfy topic
      *
-     * Returns topic from global config if not found in feed.yaml
-     *
      * @return ?string
      */
     public function getNtfyTopic(): ?string
     {
-        if ($this->has('ntfy_topic') === true) {
-            return $this->details['ntfy_topic'];
-        }
-
-        return null;
+        return $this->details['ntfy_topic'] ?? null;
     }
 
     /**
      * Get Ntfy priority
      *
-     * Returns priority from global config if not found in feed.yaml
-     *
      * @return ?int
      */
     public function getNtfyPriority(): ?int
     {
-        if ($this->has('ntfy_priority') === true) {
-            return $this->details['ntfy_priority'];
-        }
-
-        return null;
+        return $this->details['ntfy_priority'] ?? null;
     }
 
     /**
-     * Has the entry got a value
+     * Has entry got a ntfy topic
+     *
+     * @return bool
+     */
+    public function hasNtfyTopic(): bool
+    {
+        return $this->has('ntfy_topic');
+    }
+
+    /**
+     * Has entry got a ntfy priority
+     *
+     * @return bool
+     */
+    public function hasNtfyPriority(): bool
+    {
+        return $this->has('ntfy_priority');
+    }
+
+    /**
+     * Has entry got Gotify token
+     *
+     * @return bool
+     */
+    public function hasGotifyToken(): bool
+    {
+        return $this->has('gotify_token');
+    }
+
+    /**
+     * Has entry got Gotify priority
+     *
+     * @return bool
+     */
+    public function hasGotifyPriority(): bool
+    {
+        return $this->has('gotify_priority');
+    }
+
+    /**
+     * Has entry got a value
      *
      * @return bool
      */
     private function has(string $name): bool
     {
-        return array_key_exists($name, $this->details);
+        if (array_key_exists($name, $this->details) === true && $this->details[$name] !== '') {
+            return true;
+        }
+
+        return false;
     }
 }
