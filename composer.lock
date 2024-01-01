@@ -1202,16 +1202,16 @@
         },
         {
             "name": "verifiedjoseph/ntfy-php-library",
-            "version": "v4.5.0",
+            "version": "v4.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/VerifiedJoseph/ntfy-php-library.git",
-                "reference": "a26103dfd92425ae71b5e080f91493c6efd4108e"
+                "reference": "1d7afeb027ee4c083097ae9205b9c5d2d894b6e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/VerifiedJoseph/ntfy-php-library/zipball/a26103dfd92425ae71b5e080f91493c6efd4108e",
-                "reference": "a26103dfd92425ae71b5e080f91493c6efd4108e",
+                "url": "https://api.github.com/repos/VerifiedJoseph/ntfy-php-library/zipball/1d7afeb027ee4c083097ae9205b9c5d2d894b6e1",
+                "reference": "1d7afeb027ee4c083097ae9205b9c5d2d894b6e1",
                 "shasum": ""
             },
             "require": {
@@ -1248,9 +1248,9 @@
             ],
             "support": {
                 "issues": "https://github.com/VerifiedJoseph/ntfy-php-library/issues",
-                "source": "https://github.com/VerifiedJoseph/ntfy-php-library/tree/v4.5.0"
+                "source": "https://github.com/VerifiedJoseph/ntfy-php-library/tree/v4.5.1"
             },
-            "time": "2023-11-20T13:45:21+00:00"
+            "time": "2023-12-04T12:50:53+00:00"
         }
     ],
     "packages-dev": [
