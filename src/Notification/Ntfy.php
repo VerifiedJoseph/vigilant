@@ -32,14 +32,14 @@ final class Ntfy extends Notification
             $message->clickAction($this->config['url']);
 
             $auth = null;
-            if ($this->config['auth']['type'] === 'password') {
+            if ($this->config['auth']['method'] === 'password') {
                 $auth = new Auth\User(
                     $this->config['auth']['username'],
                     $this->config['auth']['password']
                 );
             }
 
-            if ($this->config['auth']['type'] === 'token') {
+            if ($this->config['auth']['method'] === 'token') {
                 $auth = new Auth\Token($this->config['auth']['token']);
             }
 
