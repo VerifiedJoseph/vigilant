@@ -166,9 +166,9 @@ final class Envs
                             'No ntfy authentication password given [VIGILANT_NOTIFICATION_NTFY_PASSWORD]'
                         );
                     }
-    
+
                     $this->config['NOTIFICATION_NTFY_PASSWORD'] = $this->getEnv('NOTIFICATION_NTFY_PASSWORD');
-                } 
+                }
 
                 if ($this->getEnv('NOTIFICATION_NTFY_AUTH') === 'token') {
                     if ($this->isEnvSet('NOTIFICATION_NTFY_TOKEN') === false) {
