@@ -12,12 +12,13 @@ use Ntfy\Message;
 use Ntfy\Exception\NtfyException;
 use Ntfy\Exception\EndpointException;
 
+/**
+ * Send notifications using `VerifiedJoseph/ntfy-php-library`
+ */
 final class Ntfy extends Notification
 {
-    /**
-     * Send notification using `VerifiedJoseph/ntfy-php-library`
-     */
-    public function send(): void
+    /** @inheritdoc */
+    public function send(string $title, string $body, string $url): void
     {
         try {
             // Set server
@@ -26,10 +27,10 @@ final class Ntfy extends Notification
             // Create a new message
             $message = new Message();
             $message->topic($this->config['topic']);
-            $message->title($this->config['title']);
-            $message->body($this->config['message']);
+            $message->title($title);
+            $message->body($body);
             $message->priority($this->config['priority']);
-            $message->clickAction($this->config['url']);
+            $message->clickAction($url);
 
             $auth = null;
             if ($this->config['auth']['method'] === 'password') {
