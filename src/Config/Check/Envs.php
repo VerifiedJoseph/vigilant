@@ -144,9 +144,9 @@ final class Envs
             $this->config['NOTIFICATION_NTFY_TOPIC'] = $this->getEnv('NOTIFICATION_NTFY_TOPIC');
 
             if ($this->isEnvSet('NOTIFICATION_NTFY_AUTH') === true) {
-                if (in_array($this->isEnvSet('NOTIFICATION_NTFY_AUTH'), ['password', 'token']) === false) {
+                if (in_array($this->getEnv('NOTIFICATION_NTFY_AUTH'), ['password', 'token']) === false) {
                     throw new ConfigException(
-                        'Unknown ntfy authentication type given [VIGILANT_NOTIFICATION_NTFY_USERNAME]'
+                        'Unknown ntfy authentication method given [VIGILANT_NOTIFICATION_NTFY_USERNAME]'
                     );
                 }
 
