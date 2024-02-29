@@ -43,7 +43,7 @@ class Config
         'FEEDS_FILE' => 'feeds.yaml',
         'NOTIFICATION_GOTIFY_PRIORITY' => 4,
         'NOTIFICATION_NTFY_PRIORITY' => 3,
-        'NOTIFICATION_NTFY_AUTH' => false
+        'NOTIFICATION_NTFY_AUTH' => ''
     ];
 
     /**
@@ -144,11 +144,11 @@ class Config
     }
 
     /**
-     * Returns auth status for ntfy.sh notification service
+     * Returns auth type for ntfy.sh notification service
      *
-     * @return bool
+     * @return string
      */
-    public function getNtfyAuth(): bool
+    public function getNtfyAuth(): string
     {
         return $this->config['NOTIFICATION_NTFY_AUTH'];
     }
