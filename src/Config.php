@@ -43,7 +43,7 @@ class Config
         'FEEDS_FILE' => 'feeds.yaml',
         'NOTIFICATION_GOTIFY_PRIORITY' => 4,
         'NOTIFICATION_NTFY_PRIORITY' => 3,
-        'NOTIFICATION_NTFY_AUTH' => ''
+        'NOTIFICATION_NTFY_AUTH' => 'none'
     ];
 
     /**
@@ -150,7 +150,7 @@ class Config
      */
     public function getNtfyAuthMethod(): string
     {
-        return $this->config['NOTIFICATION_NTFY_AUTH'] ?? 'none';
+        return $this->config['NOTIFICATION_NTFY_AUTH'];
     }
 
     /**
