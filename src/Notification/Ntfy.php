@@ -17,10 +17,14 @@ use Ntfy\Exception\EndpointException;
  */
 final class Ntfy extends Notification
 {
+    /** @var Server $server */
     private Server $server;
 
+    /** @var Client $client */
+    private Client $client;
+
     /** @inheritdoc */
-    public function send(string $title, string $body, string $url): void
+    public function send(string $title, string $body, string $url = ''): void
     {
         try {
             // Create a new message
@@ -31,20 +35,7 @@ final class Ntfy extends Notification
             $message->priority($this->config['priority']);
             $message->clickAction($url);
 
-            $auth = null;
-            if ($this->config['auth']['method'] === 'password') {
-                $auth = new Auth\User(
-                    $this->config['auth']['username'],
-                    $this->config['auth']['password']
-                );
-            }
-
-            if ($this->config['auth']['method'] === 'token') {
-                $auth = new Auth\Token($this->config['auth']['token']);
-            }
-
-            $client = new Client($this->server, $auth);
-            $client->send($message);
+            $this->client->send($message);
 
             Output::text('Sent notification using Ntfy');
         } catch (EndpointException | NtfyException $err) {
@@ -56,5 +47,19 @@ final class Ntfy extends Notification
     protected function setup(): void
     {
         $this->server = new Server($this->config['server']);
+
+        $auth = null;
+        if ($this->config['auth']['method'] === 'password') {
+            $auth = new Auth\User(
+                $this->config['auth']['username'],
+                $this->config['auth']['password']
+            );
+        }
+
+        if ($this->config['auth']['method'] === 'token') {
+            $auth = new Auth\Token($this->config['auth']['token']);
+        }
+
+        $this->client = new Client($this->server, $auth);
     }
 }
