@@ -17,7 +17,7 @@ class EnvsTest extends TestCase
     /** @var array<int, string> $notificationServices */
     private array $notificationServices = ['gotify', 'ntfy'];
 
-    public function SetUp(): void
+    public function setUp(): void
     {
         // Unset environment variables before each test
         putenv('VIGILANT_FEEDS_FILE');
