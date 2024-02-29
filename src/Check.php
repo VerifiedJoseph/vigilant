@@ -3,8 +3,6 @@
 namespace Vigilant;
 
 use Vigilant\Config;
-use Vigilant\Notification\Gotify;
-use Vigilant\Notification\Ntfy;
 use Vigilant\Exception\CheckException;
 use Vigilant\Exception\NotificationException;
 
