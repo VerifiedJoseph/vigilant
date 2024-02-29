@@ -21,6 +21,11 @@ final class Check
     private Feed\Details $details;
 
     /**
+     * @var Notify $notify Notify class object
+     */
+    private Notify $notify;
+
+    /**
      * @var Cache $cache Cache class object
      */
     private Cache $cache;
@@ -34,12 +39,14 @@ final class Check
      * Constructor
      *
      * @param Feed\Details $details Feed details
-     * @param Config $config
+     * @param Config $config Script config
      */
     public function __construct(Feed\Details $details, Config $config)
     {
         $this->details = $details;
         $this->config = $config;
+
+        $this->notify = new Notify($details, $config);
 
         $this->cache = new Cache(
             $this->config->getCachePath(),
@@ -148,9 +155,9 @@ final class Check
                 Output::text('Found...' . html_entity_decode($item->getTitle()) . ' (' . $hash . ')');
 
                 if ($this->cache->isFirstCheck() === false) {
-                    $this->notify(
+                    $this->notify->send(
                         title: html_entity_decode($item->getTitle()),
-                        message: strip_tags(html_entity_decode($item->getContent())),
+                        body: strip_tags(html_entity_decode($item->getContent())),
                         url: $item->getLink()
                     );
                 }
@@ -167,72 +174,7 @@ final class Check
     }
 
     /**
-     * Send a notification
-     *
-     * @param string $title Notification title
-     * @param string $message Notification message
-     * @param string $url Notification URL
-     */
-    private function notify(string $title, string $message, string $url): void
-    {
-        $config = [];
-        $config['title'] = $title;
-        $config['message'] = $message;
-        $config['url'] = $url;
-
-        switch ($this->config->getNotificationService()) {
-            case 'ntfy':
-                $notification = new Ntfy();
-
-                $config['server'] = $this->config->getNtfyUrl();
-                $config['topic'] = $this->config->getNtfyTopic();
-                $config['priority'] = $this->config->getNtfyPriority();
-                $config['auth']['method'] = $this->config->getNtfyAuthMethod();
-
-                if ($this->config->getNtfyAuthMethod() === 'password') {
-                    $config['auth']['username'] = $this->config->getNtfyUsername();
-                    $config['auth']['password'] = $this->config->getNtfyPassword();
-                } elseif ($this->config->getNtfyAuthMethod() === 'token') {
-                    $config['auth']['token'] = $this->config->getNtfyToken();
-                }
-
-                if ($this->details->hasNtfyToken() === true) {
-                    $config['auth'] = [
-                        'method' => 'token',
-                        'token' => $this->details->getNtfyToken()
-                    ];
-                }
-
-                if ($this->details->hasNtfyTopic() === true) {
-                    $config['topic'] = $this->details->getNtfyTopic();
-                }
-
-                if ($this->details->hasNtfyPriority() === true) {
-                    $config['priority'] = $this->details->getNtfyPriority();
-                }
-                break;
-            default:
-                $notification = new Gotify();
-
-                $config['server'] = $this->config->getGotifyUrl();
-                $config['priority'] = $this->config->getGotifyPriority();
-                $config['token'] = $this->config->getGotifyToken();
-
-                if ($this->details->hasGotifyToken() === true) {
-                    $config['token'] = $this->details->getGotifyToken();
-                }
-
-                if ($this->details->hasGotifyPriority() === true) {
-                    $config['priority'] = $this->details->getGotifyPriority();
-                }
-        }
-
-        $notification->config($config);
-        $notification->send();
-    }
-
-    /**
-     * Send a error notification
+     * Send an error notification
      *
      * @param string $title Notification title
      * @param string $message Notification message
@@ -240,10 +182,9 @@ final class Check
     private function errorNotify(string $title, string $message): void
     {
         try {
-            $this->notify(
+            $this->notify->send(
                 title: $title,
-                message: $message,
-                url: ''
+                body: $message
             );
         } catch (NotificationException $err) {
             Output::text($err->getMessage());
