@@ -194,9 +194,7 @@ final class Check
                         'password' => $this->config->getNtfyPassword()
                     ];
                 } elseif ($this->config->getNtfyAuth() === 'token') {
-                    $config['auth'] = [
-                        'token' => $this->config->getNtfyToken()
-                    ];
+                    $config['auth'] = ['token' => $this->config->getNtfyToken()];
                 }
 
                 if ($this->details->hasNtfyToken() === true) {
