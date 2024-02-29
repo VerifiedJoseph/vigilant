@@ -49,3 +49,10 @@ feeds:
     url: https://www.example.com/feed.rss
     interval: 300
     ntfy_priority:
+
+  emptyNtfyToken:
+    name: Example.com Feed
+    url: https://www.example.com/feed.rss
+    interval: 300
+    ntfy_priority: 1
+    ntfy_token:
