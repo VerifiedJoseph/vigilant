@@ -1,10 +1,10 @@
 <?php
 
-namespace Vigilant\Config\Check;
+namespace Vigilant\Config;
 
 use Vigilant\Exception\ConfigException;
 
-final class Envs
+final class CheckEnvs
 {
     /**
      * @var array<string, int|string|boolean> $config

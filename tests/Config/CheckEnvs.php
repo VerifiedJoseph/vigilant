@@ -1,9 +1,9 @@
 <?php
 
-use Vigilant\Config\Check\Envs;
+use Vigilant\Config\CheckEnvs;
 use Vigilant\Exception\ConfigException;
 
-class EnvsTest extends TestCase
+class CheckEnvsTest extends TestCase
 {
     /** @var array<string, mixed> $configDefaults */
     private array $configDefaults = [
@@ -46,7 +46,7 @@ class EnvsTest extends TestCase
         putenv('VIGILANT_NOTIFICATION_GOTIFY_URL=https://gotify.example.com/');
         putenv('VIGILANT_NOTIFICATION_GOTIFY_TOKEN=fake_token');
 
-        $envs = new Envs($this->configDefaults, $this->notificationServices);
+        $envs = new CheckEnvs($this->configDefaults, $this->notificationServices);
         $config = $envs->getConfig();
 
         $this->assertEquals('feeds.example.yaml', $config['FEEDS_FILE']);
@@ -65,7 +65,7 @@ class EnvsTest extends TestCase
         putenv('VIGILANT_NOTIFICATION_NTFY_URL=https://ntfy.example.com/');
         putenv('VIGILANT_NOTIFICATION_NTFY_TOPIC=hello-world');
 
-        $envs = new Envs($this->configDefaults, $this->notificationServices);
+        $envs = new CheckEnvs($this->configDefaults, $this->notificationServices);
         $config = $envs->getConfig();
 
         $this->assertEquals('ntfy', $config['NOTIFICATION_SERVICE']);
@@ -86,7 +86,7 @@ class EnvsTest extends TestCase
         putenv('VIGILANT_NOTIFICATION_NTFY_USERNAME=bob');
         putenv('VIGILANT_NOTIFICATION_NTFY_PASSWORD=qwerty');
 
-        $envs = new Envs($this->configDefaults, $this->notificationServices);
+        $envs = new CheckEnvs($this->configDefaults, $this->notificationServices);
         $config = $envs->getConfig();
 
         $this->assertEquals('password', $config['NOTIFICATION_NTFY_AUTH']);
@@ -107,7 +107,7 @@ class EnvsTest extends TestCase
         putenv('VIGILANT_NOTIFICATION_NTFY_TOKEN=fake-token');
         putenv('VIGILANT_NOTIFICATION_NTFY_PASSWORD=qwerty');
 
-        $envs = new Envs($this->configDefaults, $this->notificationServices);
+        $envs = new CheckEnvs($this->configDefaults, $this->notificationServices);
         $config = $envs->getConfig();
 
         $this->assertEquals('token', $config['NOTIFICATION_NTFY_AUTH']);
@@ -124,7 +124,7 @@ class EnvsTest extends TestCase
 
         putenv('VIGILANT_FEEDS_FILE=not-found-feeds.yml');
 
-        new Envs($this->configDefaults, $this->notificationServices);
+        new CheckEnvs($this->configDefaults, $this->notificationServices);
     }
 
     /**
@@ -135,7 +135,7 @@ class EnvsTest extends TestCase
         $this->expectException(ConfigException::class);
         $this->expectExceptionMessage('No notification service given');
 
-        new Envs($this->configDefaults, $this->notificationServices);
+        new CheckEnvs($this->configDefaults, $this->notificationServices);
     }
 
     /**
@@ -148,7 +148,7 @@ class EnvsTest extends TestCase
 
         putenv('VIGILANT_NOTIFICATION_SERVICE=email');
 
-        new Envs($this->configDefaults, $this->notificationServices);
+        new CheckEnvs($this->configDefaults, $this->notificationServices);
     }
 
     /**
@@ -161,7 +161,7 @@ class EnvsTest extends TestCase
 
         putenv('VIGILANT_NOTIFICATION_SERVICE=gotify');
 
-        new Envs($this->configDefaults, $this->notificationServices);
+        new CheckEnvs($this->configDefaults, $this->notificationServices);
     }
 
     /**
@@ -175,7 +175,7 @@ class EnvsTest extends TestCase
         putenv('VIGILANT_NOTIFICATION_SERVICE=gotify');
         putenv('VIGILANT_NOTIFICATION_GOTIFY_URL=https://gotify.example.com/');
 
-        new Envs($this->configDefaults, $this->notificationServices);
+        new CheckEnvs($this->configDefaults, $this->notificationServices);
     }
 
     /**
@@ -188,7 +188,7 @@ class EnvsTest extends TestCase
 
         putenv('VIGILANT_NOTIFICATION_SERVICE=ntfy');
 
-        new Envs($this->configDefaults, $this->notificationServices);
+        new CheckEnvs($this->configDefaults, $this->notificationServices);
     }
 
     /**
@@ -202,7 +202,7 @@ class EnvsTest extends TestCase
         putenv('VIGILANT_NOTIFICATION_SERVICE=ntfy');
         putenv('VIGILANT_NOTIFICATION_NTFY_URL=https://ntfy.example.com/');
 
-        new Envs($this->configDefaults, $this->notificationServices);
+        new CheckEnvs($this->configDefaults, $this->notificationServices);
     }
 
     /**
@@ -218,7 +218,7 @@ class EnvsTest extends TestCase
         putenv('VIGILANT_NOTIFICATION_NTFY_TOPIC=hello-world');
         putenv('VIGILANT_NOTIFICATION_NTFY_AUTH=passkey');
 
-        new Envs($this->configDefaults, $this->notificationServices);
+        new CheckEnvs($this->configDefaults, $this->notificationServices);
     }
 
     /**
@@ -234,7 +234,7 @@ class EnvsTest extends TestCase
         putenv('VIGILANT_NOTIFICATION_NTFY_TOPIC=hello-world');
         putenv('VIGILANT_NOTIFICATION_NTFY_AUTH=password');
 
-        new Envs($this->configDefaults, $this->notificationServices);
+        new CheckEnvs($this->configDefaults, $this->notificationServices);
     }
 
     /**
@@ -251,7 +251,7 @@ class EnvsTest extends TestCase
         putenv('VIGILANT_NOTIFICATION_NTFY_AUTH=password');
         putenv('VIGILANT_NOTIFICATION_NTFY_USERNAME=bob');
 
-        new Envs($this->configDefaults, $this->notificationServices);
+        new CheckEnvs($this->configDefaults, $this->notificationServices);
     }
 
     /**
@@ -267,6 +267,6 @@ class EnvsTest extends TestCase
         putenv('VIGILANT_NOTIFICATION_NTFY_TOPIC=hello-world');
         putenv('VIGILANT_NOTIFICATION_NTFY_AUTH=token');
 
-        new Envs($this->configDefaults, $this->notificationServices);
+        new CheckEnvs($this->configDefaults, $this->notificationServices);
     }
 }

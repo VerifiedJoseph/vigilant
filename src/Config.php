@@ -3,9 +3,9 @@
 namespace Vigilant;
 
 use Vigilant\Output;
-use Vigilant\Config\Check\Install as CheckInstall;
-use Vigilant\Config\Check\Paths as CheckPaths;
-use Vigilant\Config\Check\Envs as checkEnvs;
+use Vigilant\Config\CheckInstall;
+use Vigilant\Config\CheckPaths;
+use Vigilant\Config\CheckEnvs;
 use Vigilant\Exception\ConfigException;
 
 class Config
