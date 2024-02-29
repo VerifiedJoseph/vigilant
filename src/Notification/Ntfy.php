@@ -2,10 +2,10 @@
 
 namespace Vigilant\Notification;
 
-use Vigilant\Config;
+use Vigilant\Output;
 use Vigilant\Notification\Notification;
 use Vigilant\Exception\NotificationException;
-use Ntfy\Auth\User as Auth;
+use Ntfy\Auth;
 use Ntfy\Client;
 use Ntfy\Server;
 use Ntfy\Message;
@@ -32,15 +32,21 @@ final class Ntfy extends Notification
             $message->clickAction($this->config['url']);
 
             $auth = null;
-            if (isset($this->config['auth']) === true) {
-                $auth = new Auth(
+            if ($this->config['auth']['method'] === 'password') {
+                $auth = new Auth\User(
                     $this->config['auth']['username'],
                     $this->config['auth']['password']
                 );
             }
 
+            if ($this->config['auth']['method'] === 'token') {
+                $auth = new Auth\Token($this->config['auth']['token']);
+            }
+
             $client = new Client($server, $auth);
             $client->send($message);
+
+            Output::text('Sent notification using Ntfy');
         } catch (EndpointException | NtfyException $err) {
             throw new NotificationException('[Ntfy] ' . $err->getMessage());
         }

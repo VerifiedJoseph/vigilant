@@ -11,4 +11,5 @@ feeds:
      interval: 300
      ntfy_topic: GitHub_status
      ntfy_priority: 1
+     ntfy_token: HQKPyHCODeoMFuN
 

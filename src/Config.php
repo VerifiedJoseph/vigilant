@@ -43,7 +43,7 @@ class Config
         'FEEDS_FILE' => 'feeds.yaml',
         'NOTIFICATION_GOTIFY_PRIORITY' => 4,
         'NOTIFICATION_NTFY_PRIORITY' => 3,
-        'NOTIFICATION_NTFY_AUTH' => false
+        'NOTIFICATION_NTFY_AUTH' => 'none'
     ];
 
     /**
@@ -144,11 +144,11 @@ class Config
     }
 
     /**
-     * Returns auth status for ntfy.sh notification service
+     * Returns auth method for ntfy.sh notification service
      *
-     * @return bool
+     * @return string
      */
-    public function getNtfyAuth(): bool
+    public function getNtfyAuthMethod(): string
     {
         return $this->config['NOTIFICATION_NTFY_AUTH'];
     }
@@ -171,6 +171,16 @@ class Config
     public function getNtfyPassword(): string
     {
         return $this->config['NOTIFICATION_NTFY_PASSWORD'];
+    }
+
+    /**
+     * Returns token for ntfy.sh notification service
+     *
+     * @return string
+     */
+    public function getNtfyToken(): string
+    {
+        return $this->config['NOTIFICATION_NTFY_TOKEN'];
     }
 
     /**
