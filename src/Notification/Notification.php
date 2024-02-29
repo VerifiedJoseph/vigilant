@@ -25,7 +25,7 @@ abstract class Notification
      * @param string $body Message body
      * @param string $url Message url
      */
-    abstract public function send(string $title, string $body, string $url): void;
+    abstract public function send(string $title, string $body, string $url = ''): void;
 
     /**
      * Setup
