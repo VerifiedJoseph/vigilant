@@ -29,6 +29,7 @@ final class Validate
         $this->gotifyPriority();
 
         $this->ntfyTopic();
+        $this->ntfyToken();
         $this->ntfyPriority();
     }
 
@@ -101,6 +102,16 @@ final class Validate
     {
         if (array_key_exists('ntfy_topic', $this->details) === true && $this->details['ntfy_topic'] === null) {
             throw new FeedsException('Empty Ntfy topic given for feed: ' . $this->details['name']);
+        }
+    }
+
+    /**
+     * Validate entry gotify token
+     */
+    private function ntfyToken(): void
+    {
+        if (array_key_exists('ntfy_token', $this->details) === true && $this->details['ntfy_token'] === null) {
+            throw new FeedsException('Empty Ntfy token given for feed: ' . $this->details['name']);
         }
     }
 
