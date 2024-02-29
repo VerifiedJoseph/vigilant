@@ -2,7 +2,7 @@
 
 namespace Vigilant\Notification;
 
-use Vigilant\Config;
+use Vigilant\Output;
 use Vigilant\Notification\Notification;
 use Vigilant\Exception\NotificationException;
 use Gotify\Server;
@@ -39,6 +39,8 @@ final class Gotify extends Notification
                     ]
                 ]
             );
+
+            Output::text('Sent notification using Gotify');
         } catch (EndpointException | GotifyException $err) {
             throw new NotificationException('[Gotify] ' . $err->getMessage());
         }
