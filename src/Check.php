@@ -187,19 +187,13 @@ final class Check
                 $config['server'] = $this->config->getNtfyUrl();
                 $config['topic'] = $this->config->getNtfyTopic();
                 $config['priority'] = $this->config->getNtfyPriority();
-                $config['auth']['method'] = 'none';
+                $config['auth']['method'] = $this->config->getNtfyAuthMethod();
 
                 if ($this->config->getNtfyAuthMethod() === 'password') {
-                    $config['auth'] = [
-                        'method' => 'password',
-                        'username' => $this->config->getNtfyUsername(),
-                        'password' => $this->config->getNtfyPassword()
-                    ];
+                    $config['auth']['username'] = $this->config->getNtfyUsername();
+                    $config['auth']['password'] = $this->config->getNtfyPassword();
                 } elseif ($this->config->getNtfyAuthMethod() === 'token') {
-                    $config['auth'] = [
-                        'method' => 'token',
-                        'token' => $this->config->getNtfyToken()
-                    ];
+                    $config['auth']['token'] = $this->config->getNtfyToken();
                 }
 
                 if ($this->details->hasNtfyToken() === true) {
