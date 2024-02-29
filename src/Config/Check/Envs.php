@@ -150,9 +150,9 @@ final class Envs
                     );
                 }
 
-                if ($this->getEnv('NOTIFICATION_NTFY_AUTH') === 'password') {
-                    $this->config['NOTIFICATION_NTFY_AUTH'] = $this->getEnv('NOTIFICATION_NTFY_AUTH');
+                $this->config['NOTIFICATION_NTFY_AUTH'] = $this->getEnv('NOTIFICATION_NTFY_AUTH');
 
+                if ($this->getEnv('NOTIFICATION_NTFY_AUTH') === 'password') {
                     if ($this->isEnvSet('NOTIFICATION_NTFY_USERNAME') === false) {
                         throw new ConfigException(
                             'No ntfy authentication username given [VIGILANT_NOTIFICATION_NTFY_USERNAME]'
@@ -171,8 +171,6 @@ final class Envs
                 }
 
                 if ($this->getEnv('NOTIFICATION_NTFY_AUTH') === 'token') {
-                    $this->config['NOTIFICATION_NTFY_AUTH'] = $this->getEnv('NOTIFICATION_NTFY_AUTH');
-
                     if ($this->isEnvSet('NOTIFICATION_NTFY_TOKEN') === false) {
                         throw new ConfigException(
                             'No ntfy authentication token given [VIGILANT_NOTIFICATION_NTFY_TOKEN]'
