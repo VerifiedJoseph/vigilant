@@ -222,7 +222,7 @@ class EnvsTest extends TestCase
     }
 
     /**
-     * Test with no ntfy auth username given
+     * Test with no ntfy auth username
      */
     public function testWithNoNtfyAuthUsername(): void
     {
@@ -238,7 +238,7 @@ class EnvsTest extends TestCase
     }
 
     /**
-     * Test with no ntfy auth password given
+     * Test with no ntfy auth password
      */
     public function testWithNoNtfyAuthPassword(): void
     {
@@ -255,7 +255,7 @@ class EnvsTest extends TestCase
     }
 
     /**
-     * Test with no ntfy auth token given
+     * Test with no ntfy auth token
      */
     public function testWithNoNtfyAuthToken(): void
     {
