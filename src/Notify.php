@@ -2,11 +2,17 @@
 
 namespace Vigilant;
 
+use Vigilant\Notification\Notification;
+use Vigilant\Notification\Gotify;
+use Vigilant\Notification\Ntfy;
+
 class Notify
 {
-    private Notification\Notification $class;
+    private Notification $class;
 
     /**
+     * Create and config Notification class
+     *
      * @param Feed\Details $details Feed details
      * @param Config $config Script config
      */
@@ -20,15 +26,11 @@ class Notify
     }
 
     /**
-     * Send notification
-     *
-     * @param string $title Message title
-     * @param string $body Message body
-     * @param string $url Message url
+     * Returns Notification class instance
      */
-    public function send(string $title, string $body, string $url = ''): void
+    public function getClass(): Notification
     {
-        $this->class->send($title, $body, $url);
+        return $this->class;
     }
 
     /**
@@ -37,7 +39,7 @@ class Notify
      * @param Feed\Details $details Feed details
      * @param Config $config Script config
      */
-    private function createGotify(Feed\Details $details, Config $config): Notification\Gotify
+    private function createGotify(Feed\Details $details, Config $config): Gotify
     {
         $gotifyConfig = [
             'server' => $config->getGotifyUrl(),
@@ -53,7 +55,7 @@ class Notify
             $gotifyConfig['token'] = $details->getGotifyToken();
         }
 
-        return new Notification\Gotify($gotifyConfig);
+        return new Gotify($gotifyConfig);
     }
 
     /**
@@ -62,7 +64,7 @@ class Notify
      * @param Feed\Details $details Feed details
      * @param Config $config Script config
      */
-    private function createNtfy(Feed\Details $details, Config $config): Notification\Ntfy
+    private function createNtfy(Feed\Details $details, Config $config): Ntfy
     {
         $ntfyConfig = [
             'server' => $config->getNtfyUrl(),
@@ -95,6 +97,6 @@ class Notify
             $ntfyConfig['priority'] = $details->getNtfyPriority();
         }
 
-        return new Notification\Ntfy($ntfyConfig);
+        return new Ntfy($ntfyConfig);
     }
 }
