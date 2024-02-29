@@ -5,6 +5,7 @@ namespace Vigilant;
 use Vigilant\Config;
 use Vigilant\Exception\CheckException;
 use Vigilant\Exception\NotificationException;
+use Vigilant\Notification\Notification;
 
 final class Check
 {
@@ -19,12 +20,12 @@ final class Check
     private Feed\Details $details;
 
     /**
-     * @var Notify $notify Notify class object
+     * @var Notification $notification Notification class instance
      */
-    private Notify $notify;
+    private Notification $notification;
 
     /**
-     * @var Cache $cache Cache class object
+     * @var Cache $cache Cache class instance
      */
     private Cache $cache;
 
@@ -44,7 +45,8 @@ final class Check
         $this->details = $details;
         $this->config = $config;
 
-        $this->notify = new Notify($details, $config);
+        $notify = new Notify($details, $config);
+        $this->notification = $notify->getClass();
 
         $this->cache = new Cache(
             $this->config->getCachePath(),
@@ -74,8 +76,8 @@ final class Check
 
                 if ($this->cache->getErrorCount() >= 4) {
                     $this->errorNotify(
-                        title: '[Vigilant] Error when fetching ' . $this->details->getName(),
-                        message: $err->getMessage()
+                        '[Vigilant] Error when fetching ' . $this->details->getName(),
+                        $err->getMessage()
                     );
 
                     $this->cache->resetErrorCount();
@@ -153,7 +155,7 @@ final class Check
                 Output::text('Found...' . html_entity_decode($item->getTitle()) . ' (' . $hash . ')');
 
                 if ($this->cache->isFirstCheck() === false) {
-                    $this->notify->send(
+                    $this->notification->send(
                         title: html_entity_decode($item->getTitle()),
                         body: strip_tags(html_entity_decode($item->getContent())),
                         url: $item->getLink()
@@ -175,15 +177,12 @@ final class Check
      * Send an error notification
      *
      * @param string $title Notification title
-     * @param string $message Notification message
+     * @param string $body Notification body
      */
-    private function errorNotify(string $title, string $message): void
+    private function errorNotify(string $title, string $body): void
     {
         try {
-            $this->notify->send(
-                title: $title,
-                body: $message
-            );
+            $this->notification->send($title, $body);
         } catch (NotificationException $err) {
             Output::text($err->getMessage());
         }
