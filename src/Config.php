@@ -144,13 +144,13 @@ class Config
     }
 
     /**
-     * Returns auth type for ntfy.sh notification service
+     * Returns auth method for ntfy.sh notification service
      *
      * @return string
      */
-    public function getNtfyAuth(): string
+    public function getNtfyAuthMethod(): string
     {
-        return $this->config['NOTIFICATION_NTFY_AUTH'];
+        return $this->config['NOTIFICATION_NTFY_AUTH'] ?? 'none';
     }
 
     /**
