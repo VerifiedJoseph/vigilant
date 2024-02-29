@@ -17,13 +17,12 @@ use Ntfy\Exception\EndpointException;
  */
 final class Ntfy extends Notification
 {
+    private Server $server;
+
     /** @inheritdoc */
     public function send(string $title, string $body, string $url): void
     {
         try {
-            // Set server
-            $server = new Server($this->config['server']);
-
             // Create a new message
             $message = new Message();
             $message->topic($this->config['topic']);
@@ -44,12 +43,18 @@ final class Ntfy extends Notification
                 $auth = new Auth\Token($this->config['auth']['token']);
             }
 
-            $client = new Client($server, $auth);
+            $client = new Client($this->server, $auth);
             $client->send($message);
 
             Output::text('Sent notification using Ntfy');
         } catch (EndpointException | NtfyException $err) {
             throw new NotificationException('[Ntfy] ' . $err->getMessage());
         }
+    }
+
+    /** @inheritdoc */
+    protected function setup(): void
+    {
+        $this->server = new Server($this->config['server']);
     }
 }
