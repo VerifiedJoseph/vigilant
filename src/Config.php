@@ -174,6 +174,16 @@ class Config
     }
 
     /**
+     * Returns token for ntfy.sh notification service
+     *
+     * @return string
+     */
+    public function getNtfyToken(): string
+    {
+        return $this->config['NOTIFICATION_NTFY_TOKEN'];
+    }
+
+    /**
      * Returns URL for Gotify notification service
      *
      * @return string
