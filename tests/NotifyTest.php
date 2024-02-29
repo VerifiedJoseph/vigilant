@@ -8,6 +8,7 @@ use Vigilant\Notification\Ntfy;
 
 class NotifyTest extends TestCase
 {
+    /** @var array<string, mixed> $feed */
     private array $feed = [
         'name' => 'GitHub status',
         'url' => 'https://www.githubstatus.com/history.rss',
