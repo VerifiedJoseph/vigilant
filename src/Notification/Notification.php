@@ -21,6 +21,10 @@ abstract class Notification
 
     /**
      * Send notification
+     *
+     * @param string $title Message title
+     * @param string $body Message body
+     * @param string $url Message url
      */
-    abstract public function send(): void;
+    abstract public function send(string $title, string $body, string $url): void;
 }
