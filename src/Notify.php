@@ -12,7 +12,7 @@ class Notify
      */
     public function __construct(Feed\Details $details, Config $config)
     {
-        if ($config->getNotificationService() == 'gGotify') {
+        if ($config->getNotificationService() === 'gotify') {
             $this->class = $this->createGotify($details, $config);
         } else {
             $this->class = $this->createNtfy($details, $config);
