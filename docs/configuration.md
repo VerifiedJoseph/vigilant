@@ -43,6 +43,6 @@ Vigilant can be used a with ntfy server that has password or [access token](http
 | Name                         | Description                                           |
 | ---------------------------- | ----------------------------------------------------- |
 | `NOTIFICATION_NTFY_AUTH`     | Authentication method. Values: `password` or `token`. |
-| `NOTIFICATION_NTFY_USERNAME` | Ntfy username.                                        |
-| `NOTIFICATION_NTFY_PASSWORD` | Ntfy password.                                        |
+| `NOTIFICATION_NTFY_USERNAME` | Ntfy authentication username.                         |
+| `NOTIFICATION_NTFY_PASSWORD` | Ntfy authentication password.                         |
 | `NOTIFICATION_NTFY_TOKEN`    | Ntfy access token.                                    |
