@@ -11,12 +11,13 @@ use Gotify\Endpoint\Message;
 use Gotify\Exception\GotifyException;
 use Gotify\Exception\EndpointException;
 
+/**
+ * Send notifications using `verifiedjoseph/gotify-api-php`
+ */
 final class Gotify extends Notification
 {
-    /**
-     * Send notification using `verifiedjoseph/gotify-api-php`
-     */
-    public function send(): void
+    /** @inheritdoc */
+    public function send(string $title, string $body, string $url): void
     {
         try {
             // Set server
@@ -30,12 +31,12 @@ final class Gotify extends Notification
 
             // Send message
             $message->create(
-                title: $this->config['title'],
-                message: $this->config['message'],
+                title: $title,
+                message: $body,
                 priority: $this->config['priority'],
                 extras: [
                     'client::notification' => [
-                        'click' => ['url' => $this->config['url']]
+                        'click' => ['url' => $url]
                     ]
                 ]
             );
