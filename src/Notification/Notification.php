@@ -10,17 +10,25 @@ abstract class Notification
     protected array $config = [];
 
     /**
-     * Set notification config
-     *
-     * @param array<string, mixed> $config
+     * @param array<string, mixed> $config Notification config
      */
-    public function config(array $config): void
+    public function __construct(array $config)
     {
         $this->config = $config;
+        $this->setup();
     }
 
     /**
      * Send notification
+     *
+     * @param string $title Message title
+     * @param string $body Message body
+     * @param string $url Message url
      */
-    abstract public function send(): void;
+    abstract public function send(string $title, string $body, string $url = ''): void;
+
+    /**
+     * Setup
+     */
+    abstract protected function setup(): void;
 }
