@@ -105,6 +105,17 @@ class DetailsTest extends TestCase
     }
 
     /**
+     * Test getNtfyToken()
+     */
+    public function testGetNtfyToken(): void
+    {
+        $this->assertEquals(
+            self::$feeds[1]['ntfy_token'],
+            self::$details[1]->getNtfyToken()
+        );
+    }
+
+    /**
      * Test getNtfyPriority()
      */
     public function testGetNtfyPriority(): void
@@ -142,6 +153,16 @@ class DetailsTest extends TestCase
     {
         $this->assertTrue(
             self::$details[1]->hasNtfyTopic()
+        );
+    }
+
+    /**
+     * Test hasNtfyToken)
+     */
+    public function testHasNtfyToken(): void
+    {
+        $this->assertTrue(
+            self::$details[1]->hasNtfyToken()
         );
     }
 
