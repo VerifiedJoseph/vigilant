@@ -1,10 +1,10 @@
 <?php
 
-namespace Vigilant\Config\Check;
+namespace Vigilant\Config;
 
 use Vigilant\Exception\ConfigException;
 
-final class Paths
+final class CheckPaths
 {
     /**
      * Constructor
