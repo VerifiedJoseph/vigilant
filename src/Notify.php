@@ -4,18 +4,18 @@ namespace Vigilant;
 
 class Notify
 {
-    private Notification\Notification $notification;
+    private Notification\Notification $class;
 
     /**
      * @param Feed\Details $details Feed details
      * @param Config $config Script config
      */
-    function __construct(Feed\Details $details, Config $config)
+    public function __construct(Feed\Details $details, Config $config)
     {
         if ($config->getNotificationService() == 'gGotify') {
-            $this->notification = $this->createGotify($details, $config);
+            $this->class = $this->createGotify($details, $config);
         } else {
-            $this->notification = $this->createNtfy($details, $config);
+            $this->class = $this->createNtfy($details, $config);
         }
     }
 
@@ -26,9 +26,9 @@ class Notify
      * @param string $body Message body
      * @param string $url Message url
      */
-    function send(string $title, string $body, string $url = ''): void
+    public function send(string $title, string $body, string $url = ''): void
     {
-        $this->notification->send($title, $body, $url);
+        $this->class->send($title, $body, $url);
     }
 
     /**
@@ -53,10 +53,7 @@ class Notify
             $gotifyConfig['token'] = $details->getGotifyToken();
         }
 
-        $gotify = new Notification\Gotify();
-        $gotify->config($gotifyConfig);
-
-        return $gotify;
+        return new Notification\Gotify($gotifyConfig);
     }
 
     /**
@@ -98,9 +95,6 @@ class Notify
             $ntfyConfig['priority'] = $details->getNtfyPriority();
         }
 
-        $ntfy = new Notification\Ntfy();
-        $ntfy->config($ntfyConfig);
-
-        return $ntfy;
+        return new Notification\Ntfy($ntfyConfig);
     }
 }
