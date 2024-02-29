@@ -190,15 +190,22 @@ final class Check
 
                 if ($this->config->getNtfyAuth() === 'password') {
                     $config['auth'] = [
+                        'type' => 'password',
                         'username' => $this->config->getNtfyUsername(),
                         'password' => $this->config->getNtfyPassword()
                     ];
                 } elseif ($this->config->getNtfyAuth() === 'token') {
-                    $config['auth'] = ['token' => $this->config->getNtfyToken()];
+                    $config['auth'] = [
+                        'type' => 'token',
+                        'token' => $this->config->getNtfyToken()
+                    ];
                 }
 
                 if ($this->details->hasNtfyToken() === true) {
-                    $config['auth']['token'] = $this->details->getNtfyToken();
+                    $config['auth'] = [
+                        'type' => 'token',
+                        'token' => $this->details->getNtfyToken()
+                    ];
                 }
 
                 if ($this->details->hasNtfyTopic() === true) {
