@@ -5,6 +5,7 @@ use Vigilant\Exception\ConfigException;
 
 class EnvsTest extends TestCase
 {
+    /** @var array<string, mixed> $configDefaults */
     private array $configDefaults = [
         'QUIET' => false,
         'FEEDS_FILE' => 'feeds.yaml',
@@ -13,6 +14,7 @@ class EnvsTest extends TestCase
         'NOTIFICATION_NTFY_AUTH' => 'none'
     ];
 
+    /** @var array<int, string> $notificationServices */
     private array $notificationServices = ['gotify', 'ntfy'];
 
     public function SetUp(): void
