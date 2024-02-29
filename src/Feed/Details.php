@@ -80,6 +80,16 @@ final class Details
     }
 
     /**
+     * Get Ntfy auth token
+     *
+     * @return ?string
+     */
+    public function getNtfyToken(): ?string
+    {
+        return $this->details['ntfy_token'] ?? null;
+    }
+
+    /**
      * Get Ntfy topic
      *
      * @return ?string
@@ -97,6 +107,16 @@ final class Details
     public function getNtfyPriority(): ?int
     {
         return $this->details['ntfy_priority'] ?? null;
+    }
+
+    /**
+     * Has entry got a ntfy token
+     *
+     * @return bool
+     */
+    public function hasNtfyToken(): bool
+    {
+        return $this->has('ntfy_token');
     }
 
     /**
