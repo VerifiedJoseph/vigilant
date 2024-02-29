@@ -27,11 +27,11 @@ class ValidateTest extends TestCase
      */
     public function testValidateWithValidEntry(): void
     {
+        $this->expectNotToPerformAssertions();
+
         $feeds = Yaml::parse(self::loadSample('feeds.yaml'));
 
         new Validate($feeds['feeds'][0], self::$minCheckInterval);
-
-        $this->assertTrue(true);
     }
 
     /**
@@ -142,5 +142,16 @@ class ValidateTest extends TestCase
         $this->expectExceptionMessage('Empty Ntfy priority given');
 
         new Validate(self::$feedsInvalid['emptyNtfyPriority'], self::$minCheckInterval);
+    }
+
+    /**
+     * Test validator with feed entry with an empty ntfy token value
+     */
+    public function testValidateWithEmptyNtfyTokenEntry(): void
+    {
+        $this->expectException(FeedsException::class);
+        $this->expectExceptionMessage('Empty Ntfy token given');
+
+        new Validate(self::$feedsInvalid['emptyNtfyToken'], self::$minCheckInterval);
     }
 }
