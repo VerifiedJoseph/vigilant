@@ -31,17 +31,15 @@ final class Ntfy extends Notification
             $message->clickAction($this->config['url']);
 
             $auth = null;
-            if ($this->config['auth'] === 'password') {
+            if ($this->config['auth']['type'] === 'password') {
                 $auth = new Auth\User(
                     $this->config['auth']['username'],
                     $this->config['auth']['password']
                 );
             }
 
-            if ($this->config['auth'] === 'token') {
-                $auth = new Auth\Token(
-                    $this->config['auth']['token']
-                );
+            if ($this->config['auth']['type'] === 'token') {
+                $auth = new Auth\Token($this->config['auth']['token']);
             }
 
             $client = new Client($server, $auth);
