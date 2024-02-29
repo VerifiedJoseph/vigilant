@@ -2,6 +2,7 @@
 
 namespace Vigilant\Notification;
 
+use Vigilant\Output;
 use Vigilant\Notification\Notification;
 use Vigilant\Exception\NotificationException;
 use Ntfy\Auth;
@@ -44,6 +45,8 @@ final class Ntfy extends Notification
 
             $client = new Client($server, $auth);
             $client->send($message);
+
+            Output::text('Sent notification using Ntfy');
         } catch (EndpointException | NtfyException $err) {
             throw new NotificationException('[Ntfy] ' . $err->getMessage());
         }
