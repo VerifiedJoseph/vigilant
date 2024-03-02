@@ -121,13 +121,21 @@ final class Check
         } catch (\FeedIo\Reader\ReadErrorException $err) {
             $this->checkError = true;
 
+            /** @var \FeedIo\Adapter\ServerErrorException $serverErr */
+            $serverErr = $err->getPrevious();
+
             switch ($err->getMessage()) {
                 case 'not found':
                 case 'internal server error':
-                    $message = 'Failed to fetch: ' . $url . ' (returned ' . $err->getMessage() . ')';
+                    $message = sprintf(
+                        'Failed to fetch: %s (%s %s)',
+                        $url,
+                        $serverErr->getResponse()->getStatusCode(),
+                        $serverErr->getResponse()->getReasonPhrase()
+                    );
                     break;
                 default:
-                    $message = 'Failed to parse feed (' . $err->getMessage() . ')';
+                    $message = sprintf('Failed to parse feed (%s)', $err->getMessage());
                     break;
             }
 
