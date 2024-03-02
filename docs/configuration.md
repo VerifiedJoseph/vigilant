@@ -40,9 +40,9 @@ To use Ntfy, a URL and topic must be given, all other environment variable are o
 
 Vigilant can be used a with ntfy server that has password or [access token](https://docs.ntfy.sh/config/#access-tokens) authentication enabled.
 
-| Name                         | Description                                           |
-| ---------------------------- | ----------------------------------------------------- |
-| `NOTIFICATION_NTFY_AUTH`     | Authentication method. Values: `password` or `token`. |
-| `NOTIFICATION_NTFY_USERNAME` | Ntfy authentication username.                         |
-| `NOTIFICATION_NTFY_PASSWORD` | Ntfy authentication password.                         |
-| `NOTIFICATION_NTFY_TOKEN`    | Ntfy access token.                                    |
+| Name                                  | Description                                           |
+| ------------------------------------- | ----------------------------------------------------- |
+| `VIGILANT_NOTIFICATION_NTFY_AUTH`     | Authentication method. Values: `password` or `token`. |
+| `VIGILANT_NOTIFICATION_NTFY_USERNAME` | Ntfy authentication username.                         |
+| `VIGILANT_NOTIFICATION_NTFY_PASSWORD` | Ntfy authentication password.                         |
+| `VIGILANT_NOTIFICATION_NTFY_TOKEN`    | Ntfy access token.                                    |
