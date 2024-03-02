@@ -121,8 +121,8 @@ final class Check
         } catch (\FeedIo\Reader\ReadErrorException $err) {
             $this->checkError = true;
 
-            /** @var \FeedIo\Adapter\ServerErrorException $previous */
-            $previous = $err->getPrevious();
+            /** @var \FeedIo\Adapter\ServerErrorException $serverErr */
+            $serverErr = $err->getPrevious();
 
             switch ($err->getMessage()) {
                 case 'not found':
@@ -130,8 +130,8 @@ final class Check
                     $message = sprintf(
                         'Failed to fetch: %s (%s %s)',
                         $url,
-                        $previous->getResponse()->getStatusCode(),
-                        $previous->getResponse()->getReasonPhrase()
+                        $serverErr->getResponse()->getStatusCode(),
+                        $serverErr->getResponse()->getReasonPhrase()
                     );
                     break;
                 default:
