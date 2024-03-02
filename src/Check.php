@@ -114,10 +114,14 @@ final class Check
     private function fetch(string $url): \FeedIo\Reader\Result
     {
         try {
-            $client = new \FeedIo\Adapter\Http\Client(new \GuzzleHttp\Client());
-            $feedIo = new \FeedIo\FeedIo($client);
+            $client = new \FeedIo\Adapter\Http\Client(new \GuzzleHttp\Client([
+                'headers' => [
+                    'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; rv:123.0) Gecko/20100101 Firefox/123.0',
+                    'Accept' => '*/*'
+                ]]));
+             $feedIo = new \FeedIo\FeedIo($client);
 
-            return $feedIo->read($url);
+             return $feedIo->read($url);
         } catch (\FeedIo\Reader\ReadErrorException $err) {
             $this->checkError = true;
 
