@@ -1,0 +1,34 @@
+name: Build
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  zip:
+    name: Zip archive
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@a4e22b60bbb9c1021113f2860347b0759f66fe5d # v2.30.0
+        with:
+          php-version: '8.1'
+
+      - name: Run composer
+        run: composer install --no-dev --optimize-autoloader
+
+      - name: Run build
+        run: bash ./build/build.sh
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 # v4.3.1
+        with:
+          name: vigilant-${{ github.REF_NAME }}
+          path: dist/
