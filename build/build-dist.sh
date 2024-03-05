@@ -12,7 +12,7 @@ cp ./composer.json ./dist/composer.json
 cp ./composer.lock ./dist/composer.lock
 cp ./config.example.php ./dist/pconfig.example.php
 cp ./feeds.example.yaml ./dist/feeds.example.yaml
-cp ./vigilant.php./dist/vigilant.php
+cp ./vigilant.php ./dist/vigilant.php
 cp ./daemon.php ./dist/daemon.php
 cp ./README.md ./dist/README.md
 cp ./LICENSE ./dist/LICENSE
