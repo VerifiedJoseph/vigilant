@@ -1,6 +1,6 @@
 # Vigilant
 
-[![Latest Version](https://img.shields.io/github/release/VerifiedJoseph/vigilant.svg?style=flat-square)](https://github.com/VerifiedJoseph/gotify-api-php/releases)
+[![Latest Version](https://img.shields.io/github/release/VerifiedJoseph/vigilant.svg?style=flat-square)](https://github.com/VerifiedJoseph/vigilant/releases/latest)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
 Vigilant is a PHP script for monitoring RSS/ATOM and JSON feeds, and sending push notifications on new entries.
