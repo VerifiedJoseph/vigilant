@@ -15,4 +15,5 @@ cp ./feeds.example.yaml ./dist/feeds.example.yaml
 cp ./vigilant.php ./dist/vigilant.php
 cp ./daemon.php ./dist/daemon.php
 cp ./README.md ./dist/README.md
+cp ./CHANGELOG.md ./dist/CHANGELOG.md
 cp ./LICENSE ./dist/LICENSE

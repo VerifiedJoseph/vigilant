@@ -32,6 +32,10 @@ Vigilant supports sending push notifications with [Gotify](https://gotify.net) o
 - [`debril/feed-io`](https://github.com/alexdebril/feed-io)
 - [`symfony/yaml`](https://github.com/symfony/yaml)
 
+## Changelog
+
+All notable changes to this project are documented in the [CHANGELOG](CHANGELOG.md).
+
 ## License
 
 MIT License. Please see [LICENSE](LICENSE) for more information.
