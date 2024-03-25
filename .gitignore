@@ -9,7 +9,7 @@
 /config.php
 
 # phpunit
-.phpunit.result.cache
+.phpunit.cache/
 
 # Windows thumbnail cache files
 Thumbs.db
