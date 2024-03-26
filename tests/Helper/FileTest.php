@@ -6,8 +6,6 @@ use Vigilant\Exception\AppException;
 
 class FileTest extends TestCase
 {
-    private static string $tempFilePath;
-
     public function setup(): void
     {
         mockfs::create();
@@ -26,9 +24,34 @@ class FileTest extends TestCase
         );
     }
 
-    public static function setUpBeforeClass(): void
+    /**
+     * Test `open()`
+     */
+    public function testOpen(): void
     {
-        self::$tempFilePath = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'feeds.yaml';
+        $file = mockfs::getUrl('/test.file');
+        file_put_contents($file, uniqid());
+
+        $handler = File::open($file, 'r');
+        $contents = fread($handler, (int) filesize($file));
+
+        $this->assertIsString($contents);
+    }
+
+    /**
+     * Test `open()` not opened failure
+     */
+    public function testOpenFailure(): void
+    {
+        $this->expectException(AppException::class);
+        $this->expectExceptionMessage('File not opened');
+
+        $file = mockfs::getUrl('/test.file');
+        file_put_contents($file, uniqid());
+
+        $this->setStreamContext(['fopen_fail' => true]);
+
+        File::open($file, 'r');
     }
 
     /**
@@ -36,8 +59,10 @@ class FileTest extends TestCase
      */
     public function testExists(): void
     {
-        $path = self::getSamplePath('feeds.yaml');
-        self::assertEquals(true, File::exists($path));
+        $file = mockfs::getUrl('/test.file');
+        file_put_contents($file, uniqid());
+
+        self::assertEquals(true, File::exists($file));
     }
 
     /**
@@ -45,8 +70,8 @@ class FileTest extends TestCase
      */
     public function testExistsFalse(): void
     {
-        $path = mockfs::getUrl('/test.file');
-        self::assertEquals(false, File::exists($path));
+        $file = mockfs::getUrl('/test.file');
+        self::assertEquals(false, File::exists($file));
     }
 
     /**
@@ -54,10 +79,10 @@ class FileTest extends TestCase
      */
     public function testRead(): void
     {
-        $path = self::getSamplePath('feeds.yaml');
-        $data = self::loadSample('feeds.yaml');
+        $file = mockfs::getUrl('/test.file');
+        file_put_contents($file, 'Hello World');
 
-        self::assertEquals($data, File::read($path));
+        self::assertEquals('Hello World', File::read($file));
     }
 
     /**
@@ -74,19 +99,8 @@ class FileTest extends TestCase
         $this->setStreamContext(['fread_fail' => true]);
 
         File::read($file);
-    }
 
-    /**
-     * Test read() file not opened exception.
-     *
-     * '@' is used suppress notices and errors from fopen()
-     */
-    public function testReadNotOpenedException(): void
-    {
-        $this->expectException(AppException::class);
-        $this->expectExceptionMessage('File not opened');
-
-        @File::read('no-file-exists.yaml');
+        echo 45;
     }
 
     /**
@@ -94,12 +108,12 @@ class FileTest extends TestCase
      */
     public function testWrite(): void
     {
-        $data = self::loadSample('feeds.yaml');
+        $data = 'Hello Word from PHP Unit';
+        $file = mockfs::getUrl('/test.file');
 
-        File::write(self::$tempFilePath, $data);
+        File::write($file, $data);
 
-        self::assertEquals($data, File::exists(self::$tempFilePath));
-        self::assertEquals($data, File::read(self::$tempFilePath));
+        $this->assertEquals($data, file_get_contents($file));
     }
 
     /**
@@ -116,11 +130,6 @@ class FileTest extends TestCase
         $this->setStreamContext(['fwrite_fail' => true]);
 
         File::write($file, 'hello');
-    }
-
-    public static function tearDownAfterClass(): void
-    {
-        unlink(self::$tempFilePath);
     }
 
     /**
