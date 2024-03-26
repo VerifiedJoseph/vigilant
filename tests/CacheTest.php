@@ -1,5 +1,6 @@
 <?php
 
+use MockFileSystem\MockFileSystem as mockfs;
 use Vigilant\Cache;
 use Vigilant\Helper\Json;
 
@@ -9,11 +10,6 @@ class CacheTest extends TestCase
      * @var string $tempCacheFolder Temp cache folder path
      */
     private static string $tempCacheFolder = '';
-
-    /**
-     * @var string $tempCacheFileName Temp cache filename
-     */
-    private static string $tempCacheFileName = '';
 
     /**
      * @var array<string, mixed> fixtureData Data from fixture cache.json
@@ -27,21 +23,23 @@ class CacheTest extends TestCase
 
     public static function setUpBeforeClass(): void
     {
-        self::$tempCacheFolder = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'vigilant-caching-tests';
+        mockfs::create();
+        mkdir(mockfs::getUrl('/cache'));
 
-        mkdir(self::$tempCacheFolder);
+        self::$tempCacheFolder = mockfs::getUrl('/cache');
     }
 
     public function setUp(): void
     {
-        self::$tempCacheFileName = bin2hex(random_bytes(5));
-        $this->createTempCacheFile();
+        mockfs::create();
+        mkdir(mockfs::getUrl('/cache'));
+        file_put_contents(mockfs::getUrl('/cache/file'), self::loadSample('cache.json'));
 
         self::$fixtureData = Json::decode(self::loadSample('cache.json'));
 
         self::$cache = new Cache(
-            self::$tempCacheFolder,
-            self::$tempCacheFileName
+            mockfs::getUrl('/cache'),
+            'file'
         );
     }
 
@@ -73,32 +71,35 @@ class CacheTest extends TestCase
         );
     }
 
+    public function testIsFirstCheck(): void
+    {
+        $cache = new Cache(self::$tempCacheFolder, 'testing');
+        $this->assertTrue($cache->isFirstCheck());
+    }
+
+    /**
+     * Test isFirstCheck() returns value false
+     */
+    public function testIsFirstCheckFalse(): void
+    {
+        $this->assertFalse(self::$cache->isFirstCheck());
+    }
+
     /**
      * Test getIsExpired()
      */
     public function testIsExpired(): void
     {
-        $expired = self::$cache->isExpired();
-
-        $this->assertIsBool($expired);
-        $this->assertEquals(
-            true,
-            $expired
-        );
+        $this->assertTrue(self::$cache->isExpired());
     }
 
     /**
-     * Test isFirstCheck()
+     * Test getIsExpired() returns value false
      */
-    public function testIsFirstCheck(): void
+    public function testIsExpiredFalse(): void
     {
-        $status = self::$cache->isFirstCheck();
-
-        $this->assertIsBool($status);
-        $this->assertEquals(
-            false,
-            $status
-        );
+        self::$cache->updateNextCheck(300);
+        $this->assertFalse(self::$cache->isExpired());
     }
 
     /**
@@ -160,7 +161,7 @@ class CacheTest extends TestCase
     /**
      * Test resetErrorCount()
      */
-    public function resetErrorCount(): void
+    public function testResetErrorCount(): void
     {
         self::$cache->resetErrorCount();
         $count = self::$cache->getErrorCount();
@@ -236,29 +237,10 @@ class CacheTest extends TestCase
         $cache = new Cache(self::$tempCacheFolder, 'testing');
         $cache->save();
 
-        $this->assertFileExists(self::$tempCacheFolder . DIRECTORY_SEPARATOR . 'testing');
+        $this->assertFileExists(mockfs::getUrl('/cache/testing'));
         $this->assertJsonFileEqualsJsonFile(
-            self::$tempCacheFolder . DIRECTORY_SEPARATOR . 'testing',
+            mockfs::getUrl('/cache/testing'),
             $this->getSamplePath('cache-default.json')
         );
-
-        unlink(self::$tempCacheFolder . DIRECTORY_SEPARATOR . 'testing');
-    }
-
-    public function tearDown(): void
-    {
-        unlink(self::$tempCacheFolder . DIRECTORY_SEPARATOR . self::$tempCacheFileName);
-    }
-
-    public static function tearDownAfterClass(): void
-    {
-        rmdir(self::$tempCacheFolder);
-    }
-
-    private function createTempCacheFile(): void
-    {
-        $file = self::$tempCacheFolder . DIRECTORY_SEPARATOR . self::$tempCacheFileName;
-
-        file_put_contents($file, self::loadSample('cache.json'));
     }
 }
