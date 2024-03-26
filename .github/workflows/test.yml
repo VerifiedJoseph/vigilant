@@ -23,6 +23,7 @@ jobs:
       uses: shivammathur/setup-php@73963f5001e335723c998e4a0125ce060083985c # v2.30.1
       with:
         php-version: '8.1'
+        coverage: xdebug
         extensions: mbstring
     
     - name: Setup problem matchers for PHP
