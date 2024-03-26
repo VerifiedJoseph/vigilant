@@ -12,3 +12,12 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
+
+  # dev container
+  - package-ecosystem: "docker"
+    directory: "/.devcontainer/workspace/"
+    schedule:
+      interval: "monthly"
+    ignore:
+      - dependency-name: "php"
+        update-types: ["version-update:semver-minor"]
