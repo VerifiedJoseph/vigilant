@@ -73,32 +73,26 @@ class CacheTest extends TestCase
         );
     }
 
+    public function testIsFirstCheck(): void
+    {
+        $cache = new Cache(self::$tempCacheFolder, 'testing');
+        $this->assertTrue($cache->isFirstCheck());
+    }
+
     /**
      * Test getIsExpired()
      */
     public function testIsExpired(): void
     {
-        $expired = self::$cache->isExpired();
-
-        $this->assertIsBool($expired);
-        $this->assertEquals(
-            true,
-            $expired
-        );
+        $this->assertTrue(self::$cache->isExpired());
     }
 
     /**
-     * Test isFirstCheck()
+     * Test isFirstCheck() with returned value false
      */
-    public function testIsFirstCheck(): void
+    public function testIsFirstCheckFalse(): void
     {
-        $status = self::$cache->isFirstCheck();
-
-        $this->assertIsBool($status);
-        $this->assertEquals(
-            false,
-            $status
-        );
+        $this->assertFalse(self::$cache->isFirstCheck());
     }
 
     /**
