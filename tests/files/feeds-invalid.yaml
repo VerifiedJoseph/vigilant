@@ -26,6 +26,11 @@ feeds:
     url: https://www.example.com/feed.rss
     interval:
 
+  tooLowInterval:
+    name: Example.com Feed
+    url: https://www.example.com/feed.rss
+    interval: 100
+
   emptyGotifyToken:
     name: Example.com Feed
     url: https://www.example.com/feed.rss
