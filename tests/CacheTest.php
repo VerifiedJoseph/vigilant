@@ -160,7 +160,7 @@ class CacheTest extends TestCase
     /**
      * Test resetErrorCount()
      */
-    public function resetErrorCount(): void
+    public function testResetErrorCount(): void
     {
         self::$cache->resetErrorCount();
         $count = self::$cache->getErrorCount();
