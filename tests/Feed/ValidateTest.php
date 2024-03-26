@@ -101,6 +101,17 @@ class ValidateTest extends TestCase
     }
 
     /**
+     * Test validator with feed entry with an interval value lower than minimum allowed
+     */
+    public function testValidateWithIntervalEntryLowerThanMin(): void
+    {
+        $this->expectException(FeedsException::class);
+        $this->expectExceptionMessage('Interval is less than 300 seconds for feed');
+
+        new Validate(self::$feedsInvalid['tooLowInterval'], self::$minCheckInterval);
+    }
+
+    /**
      * Test validator with feed entry with an empty gotify token value
      */
     public function testValidateWithEmptyGotifyTokenEntry(): void
