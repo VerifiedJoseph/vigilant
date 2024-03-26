@@ -1,15 +1,57 @@
 <?php
 
+use MockFileSystem\MockFileSystem as mockfs;
 use Vigilant\Helper\File;
 use Vigilant\Exception\AppException;
 
 class FileTest extends TestCase
 {
-    private static string $tempFilePath;
-
-    public static function setUpBeforeClass(): void
+    public function setup(): void
     {
-        self::$tempFilePath = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'feeds.yaml';
+        mockfs::create();
+    }
+
+    public function tearDown(): void
+    {
+        stream_context_set_default(
+            [
+                'mfs' => [
+                    'fread_fail' => false,
+                    'fwrite_fail' => false,
+                    'fopen_fail' => false
+                ]
+            ]
+        );
+    }
+
+    /**
+     * Test `open()`
+     */
+    public function testOpen(): void
+    {
+        $file = mockfs::getUrl('/test.file');
+        file_put_contents($file, uniqid());
+
+        $handler = File::open($file, 'r');
+        $contents = fread($handler, (int) filesize($file));
+
+        $this->assertIsString($contents);
+    }
+
+    /**
+     * Test `open()` not opened failure
+     */
+    public function testOpenFailure(): void
+    {
+        $this->expectException(AppException::class);
+        $this->expectExceptionMessage('File not opened');
+
+        $file = mockfs::getUrl('/test.file');
+        file_put_contents($file, uniqid());
+
+        $this->setStreamContext(['fopen_fail' => true]);
+
+        File::open($file, 'r');
     }
 
     /**
@@ -17,9 +59,10 @@ class FileTest extends TestCase
      */
     public function testExists(): void
     {
-        $path = self::getSamplePath('feeds.yaml');
+        $file = mockfs::getUrl('/test.file');
+        file_put_contents($file, uniqid());
 
-        self::assertEquals(true, File::exists($path));
+        self::assertEquals(true, File::exists($file));
     }
 
     /**
@@ -27,7 +70,8 @@ class FileTest extends TestCase
      */
     public function testExistsFalse(): void
     {
-        self::assertEquals(false, File::exists('no-file-exists.yaml'));
+        $file = mockfs::getUrl('/test.file');
+        self::assertEquals(false, File::exists($file));
     }
 
     /**
@@ -35,23 +79,28 @@ class FileTest extends TestCase
      */
     public function testRead(): void
     {
-        $path = self::getSamplePath('feeds.yaml');
-        $data = self::loadSample('feeds.yaml');
+        $file = mockfs::getUrl('/test.file');
+        file_put_contents($file, 'Hello World');
 
-        self::assertEquals($data, File::read($path));
+        self::assertEquals('Hello World', File::read($file));
     }
 
     /**
-     * Test read() file not opened exception.
-     *
-     * '@' is used suppress notices and errors from fopen()
+     * Test `read()` file not read exception.
      */
-    public function testReadNotOpenedException(): void
+    public function testReadNotReadException(): void
     {
         $this->expectException(AppException::class);
-        $this->expectExceptionMessage('File not opened');
+        $this->expectExceptionMessage('File not read');
 
-        @File::read('no-file-exists.yaml');
+        $file = mockfs::getUrl('/test.file');
+        file_put_contents($file, uniqid());
+
+        $this->setStreamContext(['fread_fail' => true]);
+
+        File::read($file);
+
+        echo 45;
     }
 
     /**
@@ -59,16 +108,39 @@ class FileTest extends TestCase
      */
     public function testWrite(): void
     {
-        $data = self::loadSample('feeds.yaml');
+        $data = 'Hello Word from PHP Unit';
+        $file = mockfs::getUrl('/test.file');
 
-        File::write(self::$tempFilePath, $data);
+        File::write($file, $data);
 
-        self::assertEquals($data, File::exists(self::$tempFilePath));
-        self::assertEquals($data, File::read(self::$tempFilePath));
+        $this->assertEquals($data, file_get_contents($file));
     }
 
-    public static function tearDownAfterClass(): void
+    /**
+     * Test `write()` file not written exception.
+     */
+    public function testWriteNotWrittenException(): void
     {
-        unlink(self::$tempFilePath);
+        $this->expectException(AppException::class);
+        $this->expectExceptionMessage('File not written');
+
+        $file = mockfs::getUrl('/test1.file');
+        file_put_contents($file, uniqid());
+
+        $this->setStreamContext(['fwrite_fail' => true]);
+
+        File::write($file, 'hello');
+    }
+
+    /**
+     * Set stream context defaults for `MockFileSystem\MockFileSystem`
+     *
+     * @param array<string, boolean> $options
+     */
+    private function setStreamContext(array $options): void
+    {
+        stream_context_set_default([
+            'mfs' => $options
+        ]);
     }
 }
