@@ -78,6 +78,14 @@ class CacheTest extends TestCase
     }
 
     /**
+     * Test isFirstCheck() returns value false
+     */
+    public function testIsFirstCheckFalse(): void
+    {
+        $this->assertFalse(self::$cache->isFirstCheck());
+    }
+
+    /**
      * Test getIsExpired()
      */
     public function testIsExpired(): void
@@ -92,16 +100,6 @@ class CacheTest extends TestCase
     {
         self::$cache->updateNextCheck(300);
         $this->assertFalse(self::$cache->isExpired());
-    }
-
-
-    /**
-     * Test isFirstCheck() returns value false
-     */
-    public function testIsFirstCheckFalse(): void
-    {
-        self::$cache->updateNextCheck(300);
-        $this->assertFalse(self::$cache->isFirstCheck());
     }
 
     /**
