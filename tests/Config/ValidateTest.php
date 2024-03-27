@@ -233,7 +233,7 @@ class ValidateTest extends \TestCase
     }
 
     /**
-     * Test ntfy password auth 
+     * Test ntfy password auth
      */
     public function testNtfyAuthPassword(): void
     {
@@ -289,7 +289,7 @@ class ValidateTest extends \TestCase
     }
 
     /**
-     * Test ntfy token auth 
+     * Test ntfy token auth
      */
     public function testNtfyAuthToken(): void
     {
