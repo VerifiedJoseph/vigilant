@@ -113,7 +113,7 @@ class Validate extends Base
             throw new ConfigException('Unknown notification service given. [VIGILANT_NOTIFICATION_SERVICE]');
         }
 
-        $this->config['NOTIFICATION_SERVICE'] = $service;
+        $this->config['notification_service'] = $service;
 
         if ($service === 'gotify') {
             $this->notificationGotify();
@@ -136,13 +136,13 @@ class Validate extends Base
             throw new ConfigException('No Gotify URL given [VIGILANT_NOTIFICATION_GOTIFY_URL]');
         }
 
-        $this->config['NOTIFICATION_GOTIFY_URL'] = $this->getEnv('NOTIFICATION_GOTIFY_URL');
+        $this->config['notification_gotify_url'] = $this->getEnv('NOTIFICATION_GOTIFY_URL');
 
         if ($this->hasEnv('NOTIFICATION_GOTIFY_TOKEN') === false) {
             throw new ConfigException('No Gotify app token given [VIGILANT_NOTIFICATION_GOTIFY_TOKEN]');
         }
 
-        $this->config['NOTIFICATION_GOTIFY_TOKEN'] = $this->getEnv('NOTIFICATION_GOTIFY_TOKEN');
+        $this->config['notification_gotify_token'] = $this->getEnv('NOTIFICATION_GOTIFY_TOKEN');
     }
 
     /**
