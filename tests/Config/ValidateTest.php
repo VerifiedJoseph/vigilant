@@ -12,6 +12,7 @@ class ValidateTest extends \TestCase
     /** @var array<string, mixed> $defaults */
     private static array $defaults = [];
 
+    /** @var array<int, string> $notificationServices */
     private static array $notificationServices = [];
 
     public static function setupBeforeClass(): void
@@ -180,6 +181,144 @@ class ValidateTest extends \TestCase
 
         putenv('VIGILANT_NOTIFICATION_SERVICE=gotify');
         putenv('VIGILANT_NOTIFICATION_GOTIFY_URL=https://gotify.example.com/');
+
+        $validate = new Validate(self::$defaults);
+        $validate->notificationService(self::$notificationServices);
+    }
+
+    /**
+     * Test with no Ntfy URL
+     */
+    public function testNoNtfyUrl(): void
+    {
+        $this->expectException(ConfigException::class);
+        $this->expectExceptionMessage('No ntfy URL given');
+
+        putenv('VIGILANT_NOTIFICATION_SERVICE=ntfy');
+
+        $validate = new Validate(self::$defaults);
+        $validate->notificationService(self::$notificationServices);
+    }
+
+    /**
+     * Test with no Ntfy topic
+     */
+    public function testNoNtfyTopic(): void
+    {
+        $this->expectException(ConfigException::class);
+        $this->expectExceptionMessage('No ntfy topic given');
+
+        putenv('VIGILANT_NOTIFICATION_SERVICE=ntfy');
+        putenv('VIGILANT_NOTIFICATION_NTFY_URL=https://ntfy.example.com/');
+
+        $validate = new Validate(self::$defaults);
+        $validate->notificationService(self::$notificationServices);
+    }
+
+    /**
+     * Test with unknown ntfy auth method
+     */
+    public function testUnknownNtfyAuthMethod(): void
+    {
+        $this->expectException(ConfigException::class);
+        $this->expectExceptionMessage('Unknown ntfy authentication method given');
+
+        putenv('VIGILANT_NOTIFICATION_SERVICE=ntfy');
+        putenv('VIGILANT_NOTIFICATION_NTFY_URL=https://ntfy.example.com/');
+        putenv('VIGILANT_NOTIFICATION_NTFY_TOPIC=hello-world');
+        putenv('VIGILANT_NOTIFICATION_NTFY_AUTH=passkey');
+
+        $validate = new Validate(self::$defaults);
+        $validate->notificationService(self::$notificationServices);
+    }
+
+    /**
+     * Test ntfy password auth 
+     */
+    public function testNtfyAuthPassword(): void
+    {
+        putenv('VIGILANT_NOTIFICATION_SERVICE=ntfy');
+        putenv('VIGILANT_NOTIFICATION_NTFY_URL=https://ntfy.example.com/');
+        putenv('VIGILANT_NOTIFICATION_NTFY_TOPIC=hello-world');
+        putenv('VIGILANT_NOTIFICATION_NTFY_AUTH=password');
+        putenv('VIGILANT_NOTIFICATION_NTFY_USERNAME=bob');
+        putenv('VIGILANT_NOTIFICATION_NTFY_PASSWORD=qwerty');
+
+        $validate = new Validate(self::$defaults);
+        $validate->notificationService(self::$notificationServices);
+        $config = $validate->getConfig();
+
+        $this->assertEquals('password', $config['notification_ntfy_auth']);
+        $this->assertEquals('bob', $config['notification_ntfy_username']);
+        $this->assertEquals('qwerty', $config['notification_ntfy_password']);
+    }
+
+    /**
+     * Test no ntfy auth username
+     */
+    public function testNoNtfyAuthUsername(): void
+    {
+        $this->expectException(ConfigException::class);
+        $this->expectExceptionMessage('No ntfy authentication username given');
+
+        putenv('VIGILANT_NOTIFICATION_SERVICE=ntfy');
+        putenv('VIGILANT_NOTIFICATION_NTFY_URL=https://ntfy.example.com/');
+        putenv('VIGILANT_NOTIFICATION_NTFY_TOPIC=hello-world');
+        putenv('VIGILANT_NOTIFICATION_NTFY_AUTH=password');
+
+        $validate = new Validate(self::$defaults);
+        $validate->notificationService(self::$notificationServices);
+    }
+
+    /**
+     * Test no ntfy auth password
+     */
+    public function testNoNtfyAuthPassword(): void
+    {
+        $this->expectException(ConfigException::class);
+        $this->expectExceptionMessage('No ntfy authentication password given');
+
+        putenv('VIGILANT_NOTIFICATION_SERVICE=ntfy');
+        putenv('VIGILANT_NOTIFICATION_NTFY_URL=https://ntfy.example.com/');
+        putenv('VIGILANT_NOTIFICATION_NTFY_TOPIC=hello-world');
+        putenv('VIGILANT_NOTIFICATION_NTFY_AUTH=password');
+        putenv('VIGILANT_NOTIFICATION_NTFY_USERNAME=bob');
+
+        $validate = new Validate(self::$defaults);
+        $validate->notificationService(self::$notificationServices);
+    }
+
+    /**
+     * Test ntfy token auth 
+     */
+    public function testNtfyAuthToken(): void
+    {
+        putenv('VIGILANT_NOTIFICATION_SERVICE=ntfy');
+        putenv('VIGILANT_NOTIFICATION_NTFY_URL=https://ntfy.example.com/');
+        putenv('VIGILANT_NOTIFICATION_NTFY_TOPIC=hello-world');
+        putenv('VIGILANT_NOTIFICATION_NTFY_AUTH=token');
+        putenv('VIGILANT_NOTIFICATION_NTFY_TOKEN=qwerty');
+
+        $validate = new Validate(self::$defaults);
+        $validate->notificationService(self::$notificationServices);
+        $config = $validate->getConfig();
+
+        $this->assertEquals('token', $config['notification_ntfy_auth']);
+        $this->assertEquals('qwerty', $config['notification_ntfy_token']);
+    }
+
+    /**
+     * Test no ntfy auth token
+     */
+    public function testNoNtfyAuthToken(): void
+    {
+        $this->expectException(ConfigException::class);
+        $this->expectExceptionMessage('No ntfy authentication token given');
+
+        putenv('VIGILANT_NOTIFICATION_SERVICE=ntfy');
+        putenv('VIGILANT_NOTIFICATION_NTFY_URL=https://ntfy.example.com/');
+        putenv('VIGILANT_NOTIFICATION_NTFY_TOPIC=hello-world');
+        putenv('VIGILANT_NOTIFICATION_NTFY_AUTH=token');
 
         $validate = new Validate(self::$defaults);
         $validate->notificationService(self::$notificationServices);
