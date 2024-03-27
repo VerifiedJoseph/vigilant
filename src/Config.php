@@ -27,7 +27,7 @@ class Config
     private array $defaults = [
         'QUIET' => false,
         'feeds_file' => 'feeds.yaml',
-        'NOTIFICATION_GOTIFY_PRIORITY' => 4,
+        'notification_gotify_priority' => 4,
         'NOTIFICATION_NTFY_PRIORITY' => 3,
         'NOTIFICATION_NTFY_AUTH' => 'none'
     ];
@@ -65,7 +65,7 @@ class Config
      */
     public function getNotificationService(): string
     {
-        return $this->config['NOTIFICATION_SERVICE'];
+        return $this->config['notification_service'];
     }
 
     /**
@@ -145,7 +145,7 @@ class Config
      */
     public function getGotifyUrl(): string
     {
-        return $this->config['NOTIFICATION_GOTIFY_URL'];
+        return $this->config['notification_gotify_url'];
     }
 
     /**
@@ -155,7 +155,7 @@ class Config
      */
     public function getGotifyPriority(): int
     {
-        return $this->config['NOTIFICATION_GOTIFY_PRIORITY'];
+        return $this->config['notification_gotify_priority'];
     }
 
     /**
@@ -165,7 +165,7 @@ class Config
      */
     public function getGotifyToken(): string
     {
-        return $this->config['NOTIFICATION_GOTIFY_TOKEN'];
+        return $this->config['notification_gotify_token'];
     }
 
     /**
