@@ -16,6 +16,23 @@ class ConfigTest extends TestCase
     }
 
     /**
+     * Test `validate()`
+     */
+    public function testValidate(): void
+    {
+        putenv('VIGILANT_NOTIFICATION_SERVICE=ntfy');
+        putenv('VIGILANT_NOTIFICATION_NTFY_URL=https://ntfy.example.com/');
+        putenv('VIGILANT_NOTIFICATION_NTFY_TOPIC=hello');
+
+        $config = new Config();
+        $config->validate();
+    
+        $this->assertEquals('ntfy', $config->getNotificationService());
+        $this->assertEquals('https://ntfy.example.com/', $config->getNtfyUrl());
+        $this->assertEquals('hello', $config->getNtfyTopic());
+    }
+
+    /**
      * Test `getNotificationService()`
      */
     public function testGetNotificationService(): void
