@@ -81,19 +81,15 @@ class Validate extends Base
     public function feedsFile(): void
     {
         if ($this->hasEnv('FEEDS_FILE') === true) {
-            if (file_exists($this->getEnv('FEEDS_FILE')) === false) {
+            $file = $this->getEnv('FEEDS_FILE');
+
+            if (file_exists($file) === false || is_readable($file) === false) {
                 throw new ConfigException(
-                    'Feeds file not found: ' . $this->getEnv('FEEDS_FILE') . ' [VIGILANT_FEEDS_FILE]'
+                    sprintf('Feeds file does not exist or not readable: %s [VIGILANT_FEEDS_FILE]', $file)
                 );
             }
 
-            if (is_readable(self::getEnv('FEEDS_FILE')) === false) {
-                throw new ConfigException(
-                    'Feeds file is readable: ' . $this->getEnv('FEEDS_FILE') . ' [VIGILANT_FEEDS_FILE]'
-                );
-            }
-
-            $this->config['FEEDS_FILE'] = $this->getEnv('FEEDS_FILE');
+            $this->config['feeds_file'] = $this->getEnv('FEEDS_FILE');
         }
     }
 
