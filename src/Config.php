@@ -75,7 +75,7 @@ class Config
      */
     public function getNtfyUrl(): string
     {
-        return $this->config['NOTIFICATION_NTFY_URL'];
+        return $this->config['notification_ntfy_url'];
     }
 
     /**
@@ -85,7 +85,7 @@ class Config
      */
     public function getNtfyTopic(): string
     {
-        return $this->config['NOTIFICATION_NTFY_TOPIC'];
+        return $this->config['notification_ntfy_topic'];
     }
 
     /**
