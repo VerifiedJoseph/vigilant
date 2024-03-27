@@ -200,6 +200,8 @@ class Config
 
     /**
      * Include (require) config file
+     * 
+     * @codeCoverageIgnore
      */
     private function requireConfigFile(): void
     {
