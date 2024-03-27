@@ -160,13 +160,13 @@ class Validate extends Base
             throw new ConfigException('No ntfy URL given [VIGILANT_NOTIFICATION_NTFY_URL]');
         }
 
-        $this->config['NOTIFICATION_NTFY_URL'] = $this->getEnv('NOTIFICATION_NTFY_URL');
+        $this->config['notification_ntfy_url'] = $this->getEnv('NOTIFICATION_NTFY_URL');
 
         if ($this->hasEnv('NOTIFICATION_NTFY_TOPIC') === false) {
             throw new ConfigException('No ntfy topic given [VIGILANT_NOTIFICATION_NTFY_TOPIC]');
         }
 
-        $this->config['NOTIFICATION_NTFY_TOPIC'] = $this->getEnv('NOTIFICATION_NTFY_TOPIC');
+        $this->config['notification_ntfy_topic'] = $this->getEnv('NOTIFICATION_NTFY_TOPIC');
 
         if ($this->hasEnv('NOTIFICATION_NTFY_AUTH') === true) {
             if (in_array($this->getEnv('NOTIFICATION_NTFY_AUTH'), ['password', 'token']) === false) {
@@ -175,7 +175,7 @@ class Validate extends Base
                 );
             }
 
-            $this->config['NOTIFICATION_NTFY_AUTH'] = $this->getEnv('NOTIFICATION_NTFY_AUTH');
+            $this->config['notification_ntfy_auth'] = $this->getEnv('NOTIFICATION_NTFY_AUTH');
 
             if ($this->getEnv('NOTIFICATION_NTFY_AUTH') === 'password') {
                 if ($this->hasEnv('NOTIFICATION_NTFY_USERNAME') === false) {
@@ -184,7 +184,7 @@ class Validate extends Base
                     );
                 }
 
-                $this->config['NOTIFICATION_NTFY_USERNAME'] = $this->getEnv('NOTIFICATION_NTFY_USERNAME');
+                $this->config['notification_ntfy_username'] = $this->getEnv('NOTIFICATION_NTFY_USERNAME');
 
                 if ($this->hasEnv('NOTIFICATION_NTFY_PASSWORD') === false) {
                     throw new ConfigException(
@@ -192,7 +192,7 @@ class Validate extends Base
                     );
                 }
 
-                $this->config['NOTIFICATION_NTFY_PASSWORD'] = $this->getEnv('NOTIFICATION_NTFY_PASSWORD');
+                $this->config['notification_ntfy_password'] = $this->getEnv('NOTIFICATION_NTFY_PASSWORD');
             }
 
             if ($this->getEnv('NOTIFICATION_NTFY_AUTH') === 'token') {
@@ -202,7 +202,7 @@ class Validate extends Base
                     );
                 }
 
-                $this->config['NOTIFICATION_NTFY_TOKEN'] = $this->getEnv('NOTIFICATION_NTFY_TOKEN');
+                $this->config['notification_ntfy_token'] = $this->getEnv('NOTIFICATION_NTFY_TOKEN');
             }
         }
     }
