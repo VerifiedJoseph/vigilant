@@ -28,8 +28,8 @@ class Config
         'QUIET' => false,
         'feeds_file' => 'feeds.yaml',
         'notification_gotify_priority' => 4,
-        'NOTIFICATION_NTFY_PRIORITY' => 3,
-        'NOTIFICATION_NTFY_AUTH' => 'none'
+        'notification_ntfy_priority' => 3,
+        'notification_ntfy_auth' => 'none'
     ];
 
     /** @var array<string, mixed> $config Loaded config parameters */
@@ -95,7 +95,7 @@ class Config
      */
     public function getNtfyPriority(): int
     {
-        return $this->config['NOTIFICATION_NTFY_PRIORITY'];
+        return $this->config['notification_ntfy_priority'];
     }
 
     /**
@@ -105,7 +105,7 @@ class Config
      */
     public function getNtfyAuthMethod(): string
     {
-        return $this->config['NOTIFICATION_NTFY_AUTH'];
+        return $this->config['notification_ntfy_auth'];
     }
 
     /**
@@ -115,7 +115,7 @@ class Config
      */
     public function getNtfyUsername(): string
     {
-        return $this->config['NOTIFICATION_NTFY_USERNAME'];
+        return $this->config['notification_ntfy_username'];
     }
 
     /**
@@ -125,7 +125,7 @@ class Config
      */
     public function getNtfyPassword(): string
     {
-        return $this->config['NOTIFICATION_NTFY_PASSWORD'];
+        return $this->config['notification_ntfy_password'];
     }
 
     /**
@@ -135,7 +135,7 @@ class Config
      */
     public function getNtfyToken(): string
     {
-        return $this->config['NOTIFICATION_NTFY_TOKEN'];
+        return $this->config['notification_ntfy_token'];
     }
 
     /**
