@@ -12,10 +12,13 @@ class ValidateTest extends \TestCase
     /** @var array<string, mixed> $defaults */
     private static array $defaults = [];
 
+    private static array $notificationServices = [];
+
     public static function setupBeforeClass(): void
     {
         $reflection = new \ReflectionClass(new Config());
         self::$defaults = $reflection->getProperty('defaults')->getValue(new Config());
+        self::$notificationServices = $reflection->getProperty('notificationServices')->getValue(new Config());
     }
 
     public function setUp(): void
@@ -107,6 +110,32 @@ class ValidateTest extends \TestCase
 
         $validate = new Validate(self::$defaults);
         $validate->feedsFile();
+    }
+
+    /**
+     * Test with no notification service
+     */
+    public function testNoNotificationService(): void
+    {
+        $this->expectException(ConfigException::class);
+        $this->expectExceptionMessage('No notification service given');
+
+        $validate = new Validate(self::$defaults);
+        $validate->notificationService(self::$notificationServices);
+    }
+
+    /**
+     * Test with unknown notification service
+     */
+    public function testUnknownNotificationService(): void
+    {
+        $this->expectException(ConfigException::class);
+        $this->expectExceptionMessage('Unknown notification service given');
+
+        putenv('VIGILANT_NOTIFICATION_SERVICE=email');
+
+        $validate = new Validate(self::$defaults);
+        $validate->notificationService(self::$notificationServices);
     }
 
     /**
