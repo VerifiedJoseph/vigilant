@@ -10,7 +10,7 @@ require('vendor/autoload.php');
 
 try {
     $config = new Config();
-    $config->load();
+    $config->validate();
 
     $feeds = new Feeds($config);
 

@@ -2,105 +2,60 @@
 
 namespace Vigilant;
 
-use Vigilant\Output;
-use Vigilant\Config\CheckInstall;
-use Vigilant\Config\CheckPaths;
-use Vigilant\Config\CheckEnvs;
-use Vigilant\Exception\ConfigException;
+use Vigilant\Config\Validate;
 
 class Config
 {
-    /**
-     * @var string $minPhpVersion Minimum PHP version
-     */
+    private Validate $validate;
+
+    /** @var string $minPhpVersion Minimum PHP version */
     private string $minPhpVersion = '8.1.0';
 
-    /**
-     * @var array<int, string> $requiredPhpExtensions Required PHP extensions
-     */
-    private array $requiredPhpExtensions = ['xml', 'xmlreader', 'ctype'];
+    /** @var array<int, string> $extensions Required PHP extensions */
+    private array $extensions = ['xml', 'xmlreader', 'ctype'];
 
-    /**
-     * @var int $minCheckInterval Minimum feed check interval in seconds
-     */
+    /** @var int $minCheckInterval Minimum feed check interval in seconds */
     private int $minCheckInterval = 300;
 
-    /**
-     * @var string $cachePath Cache folder path
-     */
+    /** @var string $cachePath Cache folder path */
     private string $cachePath = 'cache';
 
-    /**
-     * @var array<int, string> $notificationServices Supported notification services
-     */
+    /** @var array<int, string> $notificationServices Supported notification services */
     private array $notificationServices = ['gotify', 'ntfy'];
 
-    /**
-     * @var array<string, int|string|false> $defaults Default values for config parameters
-     */
+    /** @var array<string, int|string|false> $defaults Default values for config parameters */
     private array $defaults = [
         'QUIET' => false,
-        'FEEDS_FILE' => 'feeds.yaml',
-        'NOTIFICATION_GOTIFY_PRIORITY' => 4,
-        'NOTIFICATION_NTFY_PRIORITY' => 3,
-        'NOTIFICATION_NTFY_AUTH' => 'none'
+        'feeds_file' => 'feeds.yaml',
+        'notification_gotify_priority' => 4,
+        'notification_ntfy_priority' => 3,
+        'notification_ntfy_auth' => 'none'
     ];
 
-    /**
-     * @var array<string, mixed> $config Loaded config parameters
-     */
+    /** @var array<string, mixed> $config Loaded config parameters */
     private array $config = [];
 
-    /**
-     * Check install and load config
-     */
-    public function load(): void
+    public function __construct()
     {
-        $this->checkInstall();
-        $this->checkPaths();
-        $this->checkEnvs();
+        $this->validate = new Validate($this->defaults);
+        $this->validate->version(PHP_VERSION, $this->minPhpVersion);
+        $this->validate->extensions($this->extensions);
 
-        if ($this->config['QUIET'] === true) {
-            Output::quiet();
-        }
+        $this->config = $this->defaults;
+        $this->config['feeds_file'] = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'feeds.yaml';
     }
 
     /**
-     * Check PHP version and loaded extensions
-     *
-     * @throws ConfigException if PHP version is not supported
-     * @throws ConfigException if a PHP extension is not loaded
+     * Validate environment variables
      */
-    public function checkInstall(): void
-    {
-        new CheckInstall(
-            $this->getMinPhpVersion(),
-            $this->getRequiredPhpExtensions()
-        );
-    }
-
-    /**
-     * Check cache paths
-     */
-    public function checkPaths(): void
-    {
-        new CheckPaths($this->getCachePath());
-    }
-
-    /**
-     * Check environment variables
-     */
-    public function checkEnvs(): void
+    public function validate(): void
     {
         $this->requireConfigFile();
-        $this->setDefaults();
 
-        $envs = new CheckEnvs(
-            $this->config,
-            $this->notificationServices
-        );
-
-        $this->config = $envs->getConfig();
+        $this->validate->folder($this->getCachePath());
+        $this->validate->feedsFile();
+        $this->validate->notificationService($this->notificationServices);
+        $this->config = $this->validate->getConfig();
     }
 
     /**
@@ -110,7 +65,7 @@ class Config
      */
     public function getNotificationService(): string
     {
-        return $this->config['NOTIFICATION_SERVICE'];
+        return $this->config['notification_service'];
     }
 
     /**
@@ -140,7 +95,7 @@ class Config
      */
     public function getNtfyPriority(): int
     {
-        return $this->config['NOTIFICATION_NTFY_PRIORITY'];
+        return $this->config['notification_ntfy_priority'];
     }
 
     /**
@@ -150,7 +105,7 @@ class Config
      */
     public function getNtfyAuthMethod(): string
     {
-        return $this->config['NOTIFICATION_NTFY_AUTH'];
+        return $this->config['notification_ntfy_auth'];
     }
 
     /**
@@ -160,7 +115,7 @@ class Config
      */
     public function getNtfyUsername(): string
     {
-        return $this->config['NOTIFICATION_NTFY_USERNAME'];
+        return $this->config['notification_ntfy_username'];
     }
 
     /**
@@ -170,7 +125,7 @@ class Config
      */
     public function getNtfyPassword(): string
     {
-        return $this->config['NOTIFICATION_NTFY_PASSWORD'];
+        return $this->config['notification_ntfy_password'];
     }
 
     /**
@@ -180,7 +135,7 @@ class Config
      */
     public function getNtfyToken(): string
     {
-        return $this->config['NOTIFICATION_NTFY_TOKEN'];
+        return $this->config['notification_ntfy_token'];
     }
 
     /**
@@ -190,7 +145,7 @@ class Config
      */
     public function getGotifyUrl(): string
     {
-        return $this->config['NOTIFICATION_GOTIFY_URL'];
+        return $this->config['notification_gotify_url'];
     }
 
     /**
@@ -200,7 +155,7 @@ class Config
      */
     public function getGotifyPriority(): int
     {
-        return $this->config['NOTIFICATION_GOTIFY_PRIORITY'];
+        return $this->config['notification_gotify_priority'];
     }
 
     /**
@@ -210,27 +165,7 @@ class Config
      */
     public function getGotifyToken(): string
     {
-        return $this->config['NOTIFICATION_GOTIFY_TOKEN'];
-    }
-
-    /**
-     * Get minimum PHP version
-     *
-     * @return string
-     */
-    public function getMinPhpVersion(): string
-    {
-        return $this->minPhpVersion;
-    }
-
-    /**
-     * Get required PHP extensions
-     *
-     * @return array<int, string>
-     */
-    public function getRequiredPhpExtensions(): array
-    {
-        return $this->requiredPhpExtensions;
+        return $this->config['notification_gotify_token'];
     }
 
     /**
@@ -260,7 +195,7 @@ class Config
      */
     public function getFeedsPath(): string
     {
-        return $this->config['FEEDS_FILE'];
+        return $this->config['feeds_file'];
     }
 
     /**
@@ -271,14 +206,5 @@ class Config
         if (file_exists('config.php') === true) {
             require('config.php');
         }
-    }
-
-    /**
-     * Set defaults as config values
-     */
-    private function setDefaults(): void
-    {
-        $this->config = $this->defaults;
-        $this->config['FEEDS_FILE'] = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'feeds.yaml';
     }
 }
