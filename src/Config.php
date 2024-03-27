@@ -26,7 +26,7 @@ class Config
     /** @var array<string, int|string|false> $defaults Default values for config parameters */
     private array $defaults = [
         'QUIET' => false,
-        'FEEDS_FILE' => 'feeds.yaml',
+        'feeds_file' => 'feeds.yaml',
         'NOTIFICATION_GOTIFY_PRIORITY' => 4,
         'NOTIFICATION_NTFY_PRIORITY' => 3,
         'NOTIFICATION_NTFY_AUTH' => 'none'
@@ -42,7 +42,7 @@ class Config
         $this->validate->extensions($this->extensions);
 
         $this->config = $this->defaults;
-        $this->config['FEEDS_FILE'] = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'feeds.yaml';
+        $this->config['feeds_file'] = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'feeds.yaml';
     }
 
     /**
@@ -195,7 +195,7 @@ class Config
      */
     public function getFeedsPath(): string
     {
-        return $this->config['FEEDS_FILE'];
+        return $this->config['feeds_file'];
     }
 
     /**
