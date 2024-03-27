@@ -26,7 +26,7 @@ class ConfigTest extends TestCase
 
         $config = new Config();
         $config->validate();
-    
+
         $this->assertEquals('ntfy', $config->getNotificationService());
         $this->assertEquals('https://ntfy.example.com/', $config->getNtfyUrl());
         $this->assertEquals('hello', $config->getNtfyTopic());
