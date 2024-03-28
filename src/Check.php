@@ -3,7 +3,6 @@
 namespace Vigilant;
 
 use Vigilant\Config;
-use Vigilant\Exception\CheckException;
 use Vigilant\Exception\FetchException;
 use Vigilant\Exception\NotificationException;
 use Vigilant\Notification\Notification;
@@ -92,50 +91,6 @@ final class Check
                 $when = date('Y-m-d H:i:s', $this->cache->getNextCheck());
                 Output::text('Next check in ' . $this->details->getInterval() . ' seconds at ' . $when);
             }
-        }
-    }
-
-    /**
-     * Fetch feed
-     *
-     * @param string $url Feed URL
-     * @return \FeedIo\Reader\Result
-     *
-     * @throws CheckException
-     */
-    private function fetch(string $url): \FeedIo\Reader\Result
-    {
-        try {
-            $client = new \FeedIo\Adapter\Http\Client(new \GuzzleHttp\Client([
-                'headers' => [
-                    'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; rv:123.0) Gecko/20100101 Firefox/123.0',
-                    'Accept' => '*/*'
-                ]]));
-             $feedIo = new \FeedIo\FeedIo($client);
-
-             return $feedIo->read($url);
-        } catch (\FeedIo\Reader\ReadErrorException $err) {
-            $this->checkError = true;
-
-            /** @var \FeedIo\Adapter\ServerErrorException $serverErr */
-            $serverErr = $err->getPrevious();
-
-            switch ($err->getMessage()) {
-                case 'not found':
-                case 'internal server error':
-                    $message = sprintf(
-                        'Failed to fetch: %s (%s %s)',
-                        $url,
-                        $serverErr->getResponse()->getStatusCode(),
-                        $serverErr->getResponse()->getReasonPhrase()
-                    );
-                    break;
-                default:
-                    $message = sprintf('Failed to parse feed (%s)', $err->getMessage());
-                    break;
-            }
-
-            throw new CheckException($message);
         }
     }
 
