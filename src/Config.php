@@ -25,7 +25,6 @@ class Config
 
     /** @var array<string, int|string|false> $defaults Default values for config parameters */
     private array $defaults = [
-        'QUIET' => false,
         'feeds_file' => 'feeds.yaml',
         'notification_gotify_priority' => 4,
         'notification_ntfy_priority' => 3,
