@@ -4,46 +4,40 @@ namespace Vigilant;
 
 use Vigilant\Config;
 use Vigilant\Exception\CheckException;
+use Vigilant\Exception\FetchException;
 use Vigilant\Exception\NotificationException;
 use Vigilant\Notification\Notification;
 
 final class Check
 {
-    /**
-     * @var Config
-     */
+    /** @var Config */
     private Config $config;
 
-    /**
-     * @var Feed\Details $details Feed details (name, url, interval and hash)
-     */
+    /** @var Fetch */
+    private Fetch $fetch;
+
+    /** @var Feed\Details $details Feed details (name, url, interval and hash) */
     private Feed\Details $details;
 
-    /**
-     * @var Notification $notification Notification class instance
-     */
+    /** @var Notification $notification Notification class instance */
     private Notification $notification;
 
-    /**
-     * @var Cache $cache Cache class instance
-     */
+    /** @var Cache $cache Cache class instance */
     private Cache $cache;
 
-    /**
-     * @var bool $checkError Check error status
-     */
+    /** @var bool $checkError Check error status */
     private bool $checkError = false;
 
     /**
-     * Constructor
-     *
      * @param Feed\Details $details Feed details
      * @param Config $config Script config
+     * @param Fetch $fetch Fetch class instance
      */
-    public function __construct(Feed\Details $details, Config $config)
+    public function __construct(Feed\Details $details, Config $config, Fetch $fetch)
     {
         $this->details = $details;
         $this->config = $config;
+        $this->fetch = $fetch;
 
         $notify = new Notify($details, $config);
         $this->notification = $notify->getClass();
@@ -63,13 +57,11 @@ final class Check
             try {
                 Output::text('Checking...' . $this->details->getName() . ' (' . $this->details->getUrl() . ')');
 
-                $result = $this->fetch(
-                    $this->details->getUrl()
-                );
+                $result = $this->fetch->get($this->details->getUrl());
 
                 $this->process($result);
                 $this->cache->resetErrorCount();
-            } catch (CheckException $err) {
+            } catch (FetchException $err) {
                 Output::text($err->getMessage());
 
                 $this->cache->increaseErrorCount();
