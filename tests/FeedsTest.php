@@ -2,7 +2,6 @@
 
 use Vigilant\Config;
 use Vigilant\Feeds;
-use Vigilant\Output;
 use Vigilant\Exception\AppException;
 
 class FeedsTest extends TestCase
