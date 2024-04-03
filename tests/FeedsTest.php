@@ -48,4 +48,20 @@ class FeedsTest extends TestCase
 
         new Feeds($config);
     }
+
+    /**
+     * Test Feeds class with file containing invalid YAML
+     */
+    public function testInvalidYamlFile(): void
+    {
+        /** @var PHPUnit\Framework\MockObject\Stub&Config */
+        $config = $this->createStub(Config::class);
+        $config->method('getFeedsPath')->willReturn(self::getSamplePath('invalid-file.yaml'));
+
+        $this->expectException(AppException::class);
+        $this->expectExceptionMessage('A colon cannot be used in an unquoted mapping value');
+        $this->expectOutputRegex('/Loading feeds.yaml/');
+
+        new Feeds($config);
+    }
 }
