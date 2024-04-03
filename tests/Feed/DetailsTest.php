@@ -1,8 +1,10 @@
 <?php
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use Vigilant\Feed\Details;
 use Symfony\Component\Yaml\Yaml;
 
+#[CoversClass(Details::class)]
 class DetailsTest extends TestCase
 {
     /**
@@ -173,6 +175,16 @@ class DetailsTest extends TestCase
     {
         $this->assertTrue(
             self::$details[1]->hasNtfyPriority()
+        );
+    }
+
+    /**
+     * Test `hasNtfyPriority()` with feed that does not
+     */
+    public function testDoesNotHaveNtfyPriority(): void
+    {
+        $this->assertFalse(
+            self::$details[0]->hasNtfyPriority()
         );
     }
 }
