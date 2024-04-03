@@ -1,8 +1,12 @@
 <?php
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use Vigilant\Fetch;
 use Vigilant\Exception\FetchException;
 
+#[CoversClass(Fetch::class)]
+#[UsesClass(FetchException::class)]
 class FetchTest extends TestCase
 {
     /**
