@@ -31,14 +31,13 @@ final class Check
      * @param Feed\Details $details Feed details
      * @param Config $config Script config
      * @param Fetch $fetch Fetch class instance
+     * @param Notify $notify Notify class instance
      */
-    public function __construct(Feed\Details $details, Config $config, Fetch $fetch)
+    public function __construct(Feed\Details $details, Config $config, Fetch $fetch, Notify $notify)
     {
         $this->details = $details;
         $this->config = $config;
         $this->fetch = $fetch;
-
-        $notify = new Notify($details, $config);
         $this->notification = $notify->getClass();
 
         $this->cache = new Cache(
