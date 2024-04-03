@@ -17,7 +17,7 @@ try {
     $feeds = new Feeds($config);
     Output::newline();
 
-    foreach($feeds->get() as $feed) {
+    foreach ($feeds->get() as $feed) {
         $check = new Check($feed, $config, new Fetch());
         $check->run();
     }
