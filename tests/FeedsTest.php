@@ -1,9 +1,19 @@
 <?php
 
-use Vigilant\Config;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use Vigilant\Feeds;
+use Vigilant\Config;
 use Vigilant\Exception\AppException;
 
+#[CoversClass(Feeds::class)]
+#[UsesClass(Config::class)]
+#[UsesClass(AppException::class)]
+#[UsesClass(Vigilant\Output::class)]
+#[UsesClass(Vigilant\Feed\Feed::class)]
+#[UsesClass(Vigilant\Feed\Details::class)]
+#[UsesClass(Vigilant\Feed\Validate::class)]
+#[UsesClass(Vigilant\Exception\FeedsException::class)]
 class FeedsTest extends TestCase
 {
     /**
