@@ -4,7 +4,6 @@ namespace Vigilant;
 
 use Vigilant\Config;
 use Vigilant\Exception\FetchException;
-use Vigilant\Exception\NotificationException;
 use Vigilant\Notification\Notification;
 
 final class Check
@@ -18,16 +17,13 @@ final class Check
     /** @var Feed\Details $details Feed details (name, url, interval and hash) */
     private Feed\Details $details;
 
-    /** @var Notification $notification Notification class instance */
-    private Notification $notification;
-
     /** @var Cache $cache Cache class instance */
     private Cache $cache;
 
     /** @var bool $checkError Check error status */
     private bool $checkError = false;
 
-    /** @var array<int, Messages> $messages */
+    /** @var array<int, Message> $messages */
     private array $messages = [];
 
     /**
