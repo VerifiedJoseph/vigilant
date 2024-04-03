@@ -5,10 +5,11 @@ namespace Vigilant;
 use Vigilant\Notification\Notification;
 use Vigilant\Notification\Gotify;
 use Vigilant\Notification\Ntfy;
+use Vigilant\Exception\NotificationException;
 
 class Notify
 {
-    private Notification $class;
+    private Notification $service;
 
     /**
      * Create and config Notification class
@@ -19,18 +20,29 @@ class Notify
     public function __construct(Feed\Details $details, Config $config)
     {
         if ($config->getNotificationService() === 'gotify') {
-            $this->class = $this->createGotify($details, $config);
+            $this->service = $this->createGotify($details, $config);
         } else {
-            $this->class = $this->createNtfy($details, $config);
+            $this->service = $this->createNtfy($details, $config);
         }
     }
 
     /**
-     * Returns Notification class instance
+     * Send messages
+     * @param array<int, Message> $messages
      */
-    public function getClass(): Notification
+    public function send(array $messages): void
     {
-        return $this->class;
+        foreach ($messages as $message) {
+            try {
+                $this->service->send(
+                    $message->getTitle(),
+                    $message->getBody(),
+                    $message->getUrl()
+                );
+            } catch (NotificationException $err) {
+                Output::text($err->getMessage());
+            }
+        }
     }
 
     /**
