@@ -4,7 +4,6 @@ namespace Vigilant;
 
 use Vigilant\Config;
 use Vigilant\Exception\FetchException;
-use Vigilant\Notification\Notification;
 
 final class Check
 {
