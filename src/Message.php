@@ -2,7 +2,7 @@
 
 namespace Vigilant;
 
-class message
+class Message
 {
     private string $title;
     private string $body;
