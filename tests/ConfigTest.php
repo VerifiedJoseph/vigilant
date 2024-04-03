@@ -1,8 +1,12 @@
 <?php
 
-use MockFileSystem\MockFileSystem as mockfs;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use Vigilant\Config;
 
+#[CoversClass(Config::class)]
+#[UsesClass(Vigilant\Config\Base::class)]
+#[UsesClass(Vigilant\Config\Validate::class)]
 class ConfigTest extends TestCase
 {
     /** @var array<string, mixed> $defaults */
