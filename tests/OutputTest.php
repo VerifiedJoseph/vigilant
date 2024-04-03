@@ -1,7 +1,9 @@
 <?php
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use Vigilant\Output;
 
+#[CoversClass(Output::class)]
 class OutputTest extends TestCase
 {
     /**
