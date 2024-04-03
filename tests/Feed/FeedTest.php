@@ -1,9 +1,16 @@
 <?php
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use Vigilant\Config;
 use Vigilant\Feed\Feed;
 use Symfony\Component\Yaml\Yaml;
 
+#[CoversClass(Feed::class)]
+#[UsesClass(Config::class)]
+#[UsesClass(Vigilant\Config\Validate::class)]
+#[UsesClass(Vigilant\Feed\Details::class)]
+#[UsesClass(Vigilant\Feed\Validate::class)]
 class FeedTest extends TestCase
 {
     /**
