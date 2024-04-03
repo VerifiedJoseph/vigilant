@@ -15,7 +15,7 @@ class DetailsTest extends TestCase
     public static function setUpBeforeClass(): void
     {
         $feeds = Yaml::parse(self::loadSample('feeds.yaml'));
-        self::$feeds = $feeds['feeds']; 
+        self::$feeds = $feeds['feeds'];
     }
 
     /**
