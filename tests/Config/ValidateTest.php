@@ -2,11 +2,17 @@
 
 namespace tests\Config\Validate;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use MockFileSystem\MockFileSystem as mockfs;
 use Vigilant\Config;
 use Vigilant\Config\Validate;
 use Vigilant\Exception\ConfigException;
 
+#[CoversClass(Validate::class)]
+#[UsesClass(Config::class)]
+#[UsesClass(ConfigException::class)]
+#[UsesClass(\Vigilant\Config\Base::class)]
 class ValidateTest extends \TestCase
 {
     /** @var array<string, mixed> $defaults */
