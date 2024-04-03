@@ -1,9 +1,13 @@
 <?php
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use Vigilant\Feed\Validate;
 use Vigilant\Exception\FeedsException;
 use Symfony\Component\Yaml\Yaml;
 
+#[CoversClass(Validate::class)]
+#[UsesClass(FeedsException::class)]
 class ValidateTest extends TestCase
 {
     /**
