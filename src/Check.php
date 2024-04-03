@@ -27,18 +27,19 @@ final class Check
     /** @var bool $checkError Check error status */
     private bool $checkError = false;
 
+    /** @var array<int, Messages> $messages */
+    private array $messages = [];
+
     /**
      * @param Feed\Details $details Feed details
      * @param Config $config Script config
      * @param Fetch $fetch Fetch class instance
-     * @param Notify $notify Notify class instance
      */
-    public function __construct(Feed\Details $details, Config $config, Fetch $fetch, Notify $notify)
+    public function __construct(Feed\Details $details, Config $config, Fetch $fetch)
     {
         $this->details = $details;
         $this->config = $config;
         $this->fetch = $fetch;
-        $this->notification = $notify->getClass();
 
         $this->cache = new Cache(
             $this->config->getCachePath(),
@@ -47,49 +48,66 @@ final class Check
     }
 
     /**
-     * Run check
+     * Returns boolean indicating if a check is due
+     * @return bool
      */
-    public function run(): void
+    public function isDue(): bool
     {
-        if ($this->cache->isExpired() === true) {
-            try {
-                Output::text('Checking...' . $this->details->getName() . ' (' . $this->details->getUrl() . ')');
+        return $this->cache->isExpired();
+    }
 
-                $result = $this->fetch->get($this->details->getUrl());
+    /**
+     * Returns messages created when checking feeds
+     * @return array<int, Message>
+     */
+    public function getMessages(): array
+    {
+        return $this->messages;
+    }
 
-                $this->process($result);
+    /**
+     * Returns next check date in readable format (`Y-m-d H:i:s`)
+     * @return string
+     */
+    public function getNextCheckDate(): string
+    {
+        return date('Y-m-d H:i:s', $this->cache->getNextCheck());
+    }
+
+    public function check(): void
+    {
+        try {
+            Output::text('Checking...' . $this->details->getName() . ' (' . $this->details->getUrl() . ')');
+
+            $result = $this->fetch->get($this->details->getUrl());
+
+            $this->process($result);
+            $this->cache->resetErrorCount();
+        } catch (FetchException $err) {
+            Output::text($err->getMessage());
+
+            $this->cache->increaseErrorCount();
+
+            if ($this->cache->getErrorCount() >= 4) {
+                $this->messages[] = new Message(
+                    '[Vigilant] Error when fetching ' . $this->details->getName(),
+                    $err->getMessage()
+                );
+
                 $this->cache->resetErrorCount();
-            } catch (FetchException $err) {
-                Output::text($err->getMessage());
-
-                $this->cache->increaseErrorCount();
-
-                if ($this->cache->getErrorCount() >= 4) {
-                    $this->errorNotify(
-                        '[Vigilant] Error when fetching ' . $this->details->getName(),
-                        $err->getMessage()
-                    );
-
-                    $this->cache->resetErrorCount();
-                }
-            } catch (NotificationException $err) {
-                Output::text($err->getMessage());
-            } finally {
-                if ($this->checkError === false) {
-                    $this->cache->resetErrorCount();
-
-                    if ($this->cache->isFirstCheck() === true) {
-                        $this->cache->setFirstCheck();
-                        $this->cache->setFeedUrl($this->details->getUrl());
-                    }
-                }
-
-                $this->cache->updateNextCheck($this->details->getInterval());
-                $this->cache->save();
-
-                $when = date('Y-m-d H:i:s', $this->cache->getNextCheck());
-                Output::text('Next check in ' . $this->details->getInterval() . ' seconds at ' . $when);
             }
+        } finally {
+            if ($this->checkError === false) {
+                $this->cache->resetErrorCount();
+
+                if ($this->cache->isFirstCheck() === true) {
+                    $this->cache->setFirstCheck();
+                    $this->cache->setFeedUrl($this->details->getUrl());
+                }
+            }
+
+            $this->cache->updateNextCheck($this->details->getInterval());
+            $this->cache->save();
         }
     }
 
@@ -113,7 +131,7 @@ final class Check
                 Output::text('Found...' . html_entity_decode($item->getTitle()) . ' (' . $hash . ')');
 
                 if ($this->cache->isFirstCheck() === false) {
-                    $this->notification->send(
+                    $this->messages[] = new Message(
                         title: html_entity_decode($item->getTitle()),
                         body: strip_tags(html_entity_decode($item->getContent())),
                         url: $item->getLink()
@@ -128,21 +146,6 @@ final class Check
 
         if ($newItems > 0 && $this->cache->isFirstCheck() === true) {
             Output::text('First feed check, not sending notifications for found items.');
-        }
-    }
-
-    /**
-     * Send an error notification
-     *
-     * @param string $title Notification title
-     * @param string $body Notification body
-     */
-    private function errorNotify(string $title, string $body): void
-    {
-        try {
-            $this->notification->send($title, $body);
-        } catch (NotificationException $err) {
-            Output::text($err->getMessage());
         }
     }
 }
