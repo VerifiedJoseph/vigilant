@@ -40,19 +40,6 @@ final class Feeds
     }
 
     /**
-     * Check each feed for new items
-     */
-    public function check(): void
-    {
-        $fetch = new Fetch();
-
-        foreach ($this->feeds as $feed) {
-            $check = new Check($feed, $this->config, $fetch);
-            $check->run();
-        }
-    }
-
-    /**
      * Get details of each feed in the YAML file.
      *
      * @return array<int, Details>
