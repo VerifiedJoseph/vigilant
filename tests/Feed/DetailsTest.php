@@ -12,19 +12,10 @@ class DetailsTest extends TestCase
      */
     private static array $feeds = [];
 
-    /**
-     * @var array<int, Details> $details
-     */
-    private static array $details = [];
-
     public static function setUpBeforeClass(): void
     {
         $feeds = Yaml::parse(self::loadSample('feeds.yaml'));
-
-        foreach ($feeds['feeds'] as $feed) {
-            self::$feeds[] = $feed;
-            self::$details[] = new Details($feed);
-        }
+        self::$feeds = $feeds['feeds']; 
     }
 
     /**
