@@ -1,8 +1,12 @@
 <?php
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use Vigilant\Helper\Json;
 use Vigilant\Exception\AppException;
 
+#[CoversClass(Json::class)]
+#[UsesClass(AppException::class)]
 class JsonTest extends TestCase
 {
     public function testEncodeValid(): void

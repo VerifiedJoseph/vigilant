@@ -1,9 +1,13 @@
 <?php
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use MockFileSystem\MockFileSystem as mockfs;
 use Vigilant\Helper\File;
 use Vigilant\Exception\AppException;
 
+#[CoversClass(File::class)]
+#[UsesClass(AppException::class)]
 class FileTest extends TestCase
 {
     public function setup(): void
