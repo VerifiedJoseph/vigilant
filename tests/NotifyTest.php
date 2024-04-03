@@ -1,11 +1,19 @@
 <?php
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use Vigilant\Notify;
 use Vigilant\Feed\Details;
 use Vigilant\Config;
 use Vigilant\Notification\Gotify;
 use Vigilant\Notification\Ntfy;
 
+#[CoversClass(Notify::class)]
+#[UsesClass(Details::class)]
+#[UsesClass(Config::class)]
+#[UsesClass(Gotify::class)]
+#[UsesClass(Ntfy::class)]
+#[UsesClass(Vigilant\Notification\Notification::class)]
 class NotifyTest extends TestCase
 {
     /** @var array<string, mixed> $feed */
