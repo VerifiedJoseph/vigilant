@@ -1,5 +1,6 @@
 <?php
 
+use MockFileSystem\Exception\RuntimeException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 use MockFileSystem\MockFileSystem as mockfs;
@@ -28,6 +29,7 @@ class CheckTest extends TestCase
         'interval' => 300
     ];
 
+    /** @var array<string, mixed> $cache */
     private array $cache = [
         'feed_url' => 'https://www.example.com/feed.rss',
         'first_check' => 1666292400,
@@ -41,8 +43,9 @@ class CheckTest extends TestCase
         mockfs::create();
 
         /** @var PHPUnit\Framework\MockObject\Stub&Config */
-        self::$config = self::createStub(Config::class);
-        self::$config->method('getCachePath')->willReturn(mockfs::getUrl('/'));
+        $config = self::createStub(Config::class);
+        $config->method('getCachePath')->willReturn(mockfs::getUrl('/'));
+        self::$config = $config;
     }
 
     public function setup(): void
@@ -77,8 +80,9 @@ class CheckTest extends TestCase
     public function testCheckFirstTime(): void
     {
         $mock = new GuzzleHttp\Handler\MockHandler([
-            new GuzzleHttp\Psr7\Response(200, body: 'Hello, World'), // this shouldn't be needed but without it a mock queue empty exception is thrown.
-            new GuzzleHttp\Psr7\Response(200, body: file_get_contents('tests/files/rss-feed.xml'))
+            // First response shouldn't be needed but without it a mock queue empty exception is thrown.
+            new GuzzleHttp\Psr7\Response(200, body: 'Hello, World'),
+            new GuzzleHttp\Psr7\Response(200, body: (string) file_get_contents('tests/files/rss-feed.xml'))
         ]);
         $handlerStack = GuzzleHttp\HandlerStack::create($mock);
 
@@ -92,15 +96,16 @@ class CheckTest extends TestCase
     }
 
     /**
-     * test `check()` with a cache file for feed
+     * Test `check()` with a cache file for feed
      */
     public function testCheckWithCache(): void
     {
         $this->createCacheFIle(sha1($this->feed['url']), $this->cache);
 
         $mock = new GuzzleHttp\Handler\MockHandler([
-            new GuzzleHttp\Psr7\Response(200, body: 'Hello, World'), // this shouldn't be needed but without it a mock queue empty exception is thrown.
-            new GuzzleHttp\Psr7\Response(200, body: file_get_contents('tests/files/rss-feed.xml'))
+            // First response shouldn't be needed but without it a mock queue empty exception is thrown.
+            new GuzzleHttp\Psr7\Response(200, body: 'Hello, World'),
+            new GuzzleHttp\Psr7\Response(200, body: (string) file_get_contents('tests/files/rss-feed.xml'))
         ]);
         $handlerStack = GuzzleHttp\HandlerStack::create($mock);
 
@@ -143,10 +148,18 @@ class CheckTest extends TestCase
 
         $this->assertCount(1, $messages);
         $this->assertEquals('[Vigilant] Error when fetching Example', $messages[0]->getTitle());
-        $this->assertEquals('Failed to fetch: https://www.example.com/feed.rss (404 Not Found)', $messages[0]->getBody());
+        $this->assertEquals(
+            'Failed to fetch: https://www.example.com/feed.rss (404 Not Found)',
+            $messages[0]->getBody()
+        );
     }
 
-    private function createCacheFIle($filename, $data): void
+    /**
+     * Create cache file in mock file system
+     * @param string $filename
+     * @param array<string, mixed> $data
+     */
+    private function createCacheFIle(string $filename, array $data): void
     {
         file_put_contents(mockfs::getUrl('/' . $filename), json_encode($data));
     }
