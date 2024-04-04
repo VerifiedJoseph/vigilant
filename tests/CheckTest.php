@@ -124,7 +124,7 @@ class CheckTest extends TestCase
     }
 
     /**
-     * Test `check()` with a fetch error
+     * Test `check()` when fetch return a error and cache `error_count` is 3
      */
     public function testCheckFetchErrorMessage(): void
     {
