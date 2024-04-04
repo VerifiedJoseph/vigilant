@@ -11,6 +11,7 @@ use Vigilant\Exception\NotificationException;
 #[UsesClass(NotificationException::class)]
 class GotifyTest extends TestCase
 {
+    /** @var array<string, mixed> $config */
     private array $config = [
         'server' => 'https://gotify.example.invalid',
         'token' => 'qwerty',

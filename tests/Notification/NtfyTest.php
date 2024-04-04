@@ -11,6 +11,7 @@ use Vigilant\Exception\NotificationException;
 #[UsesClass(NotificationException::class)]
 class NtfyTest extends TestCase
 {
+    /** @var array<string, mixed> $config */
     private array $config = [
         'server' => 'https://ntfy.example.invalid',
         'topic' => 'testing',
