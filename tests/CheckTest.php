@@ -93,6 +93,7 @@ class CheckTest extends TestCase
         $this->expectOutputRegex('/First feed check, not sending notifications for found items/');
 
         $check->check();
+        $this->assertNotEquals('1970-01-01 00:00:00', $check->getNextCheckDate());
     }
 
     /**
