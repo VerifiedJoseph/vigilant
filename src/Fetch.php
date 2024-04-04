@@ -4,6 +4,7 @@ namespace Vigilant;
 
 use FeedIo\FeedIo;
 use FeedIo\Reader\Result;
+use GuzzleHttp\Client;
 use Vigilant\Exception\FetchException;
 
 class Fetch
@@ -16,12 +17,16 @@ class Fetch
         'Accept' => '*/*'
     ];
 
-    public function __construct()
+    /**
+     * @param null|Client $httpClient Custom GuzzleHttp client
+     */
+    public function __construct(?\GuzzleHttp\Client $httpClient = null)
     {
-        $client = new \FeedIo\Adapter\Http\Client(
-            new \GuzzleHttp\Client(['headers' => $this->headers])
-        );
+        if (is_null($httpClient) === true) {
+            $httpClient = new \GuzzleHttp\Client(['headers' => $this->headers]);
+        }
 
+        $client = new \FeedIo\Adapter\Http\Client($httpClient);
         $this->feedIo = new \FeedIo\FeedIo($client);
     }
 
@@ -38,12 +43,17 @@ class Fetch
         try {
             return $this->feedIo->read($url);
         } catch (\FeedIo\Reader\ReadErrorException $err) {
-            /** @var \FeedIo\Adapter\ServerErrorException $serverErr */
-            $serverErr = $err->getPrevious();
-
             switch ($err->getMessage()) {
                 case 'not found':
+                    $message = sprintf(
+                        'Failed to fetch: %s (404 Not Found)',
+                        $url,
+                    );
+                    break;
                 case 'internal server error':
+                    /** @var \FeedIo\Adapter\ServerErrorException $serverErr */
+                    $serverErr = $err->getPrevious();
+
                     $message = sprintf(
                         'Failed to fetch: %s (%s %s)',
                         $url,
