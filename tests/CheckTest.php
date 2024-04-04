@@ -80,6 +80,7 @@ class CheckTest extends TestCase
     public function testCheckFirstTime(): void
     {
         $mock = new GuzzleHttp\Handler\MockHandler([
+            // First response is needed as feedio makes HEAD request.
             new GuzzleHttp\Psr7\Response(200),
             new GuzzleHttp\Psr7\Response(200, body: (string) file_get_contents('tests/files/rss-feed.xml'))
         ]);
@@ -102,6 +103,7 @@ class CheckTest extends TestCase
         $this->createCacheFIle(sha1($this->feed['url']), $this->cache);
 
         $mock = new GuzzleHttp\Handler\MockHandler([
+            // First response is needed as feedio makes HEAD request.
             new GuzzleHttp\Psr7\Response(200),
             new GuzzleHttp\Psr7\Response(200, body: (string) file_get_contents('tests/files/rss-feed.xml'))
         ]);
