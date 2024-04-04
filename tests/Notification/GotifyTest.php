@@ -53,7 +53,7 @@ class GotifyTest extends TestCase
         $this->expectException(NotificationException::class);
         $this->expectExceptionMessage('[Notification error] [Gotify]');
 
-        $$gotify = new Gotify($this->config);
-        $$gotify->send('Hello World', 'Hello from phpunit');
+        $gotify = new Gotify($this->config);
+        $gotify->send('Hello World', 'Hello from phpunit');
     }
 }
