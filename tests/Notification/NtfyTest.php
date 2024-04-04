@@ -9,6 +9,7 @@ use Vigilant\Exception\NotificationException;
 #[CoversClass(Ntfy::class)]
 #[CoversClass(Vigilant\Notification\Notification::class)]
 #[UsesClass(NotificationException::class)]
+#[UsesClass(Vigilant\Output::class)]
 class NtfyTest extends TestCase
 {
     /** @var array<string, mixed> $config */
@@ -21,14 +22,20 @@ class NtfyTest extends TestCase
         ]
     ];
 
+    /**
+     * Test `setup()` with no auth
+     */
     #[DoesNotPerformAssertions]
     public function testSetupWithNoAuth(): void
     {
         new Ntfy($this->config);
     }
 
+    /**
+     * Test `setup()` with password auth
+     */
     #[DoesNotPerformAssertions]
-    public function testSetupWithUserAuth(): void
+    public function testSetupWithPasswordAuth(): void
     {
         $config = $this->config;
         $config['auth']['method'] = 'password';
@@ -37,6 +44,9 @@ class NtfyTest extends TestCase
         new Ntfy($config);
     }
 
+    /**
+     * Test `setup()` with token auth
+     */
     #[DoesNotPerformAssertions]
     public function testSetupWithTokenAuth(): void
     {
@@ -44,6 +54,26 @@ class NtfyTest extends TestCase
         $config['auth']['method'] = 'token';
         $config['auth']['token'] = 'qwerty';
         new Ntfy($config);
+    }
+
+    /**
+     * Test `send()`
+     */
+    public function testSend(): void
+    {
+        $client = self::createStub(\Ntfy\Client::class);
+        $client->method('send')->willReturn(new stdClass());
+
+        $ntfy = new Ntfy($this->config);
+
+        $reflection = new ReflectionClass($ntfy);
+        $property = $reflection->getProperty('client');
+        $property->setAccessible(true);
+        $property->setValue($ntfy, $client);
+
+        $this->expectOutputRegex('/Sent notification using Ntfy/');
+
+        $ntfy->send('Hello World', 'Hello from phpunit');
     }
 
     public function testSendNotificationException(): void

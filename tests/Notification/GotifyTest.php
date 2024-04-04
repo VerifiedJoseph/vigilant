@@ -9,6 +9,7 @@ use Vigilant\Exception\NotificationException;
 #[CoversClass(Gotify::class)]
 #[CoversClass(Vigilant\Notification\Notification::class)]
 #[UsesClass(NotificationException::class)]
+#[UsesClass(Vigilant\Output::class)]
 class GotifyTest extends TestCase
 {
     /** @var array<string, mixed> $config */
@@ -18,10 +19,33 @@ class GotifyTest extends TestCase
         'priority' => 0,
     ];
 
+    /**
+     * Test `setup()`
+     */
     #[DoesNotPerformAssertions]
-    public function testSetupWithNoAuth(): void
+    public function testSetup(): void
     {
         new Gotify($this->config);
+    }
+
+    /**
+     * Test `send()`
+     */
+    public function testSend(): void
+    {
+        $client = self::createStub(\Gotify\Endpoint\Message::class);
+        $client->method('create')->willReturn(new stdClass());
+
+        $gotify = new Gotify($this->config);
+
+        $reflection = new ReflectionClass($gotify);
+        $property = $reflection->getProperty('message');
+        $property->setAccessible(true);
+        $property->setValue($gotify, $client);
+
+        $this->expectOutputRegex('/Sent notification using Gotify/');
+
+        $gotify->send('Hello World', 'Hello from phpunit');
     }
 
     public function testSendNotificationException(): void
@@ -29,7 +53,7 @@ class GotifyTest extends TestCase
         $this->expectException(NotificationException::class);
         $this->expectExceptionMessage('[Notification error] [Gotify]');
 
-        $ntfy = new Gotify($this->config);
-        $ntfy->send('Hello World', 'Hello from phpunit');
+        $$gotify = new Gotify($this->config);
+        $$gotify->send('Hello World', 'Hello from phpunit');
     }
 }
