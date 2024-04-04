@@ -80,8 +80,7 @@ class CheckTest extends TestCase
     public function testCheckFirstTime(): void
     {
         $mock = new GuzzleHttp\Handler\MockHandler([
-            // First response shouldn't be needed but without it a mock queue empty exception is thrown.
-            new GuzzleHttp\Psr7\Response(200, body: 'Hello, World'),
+            new GuzzleHttp\Psr7\Response(200),
             new GuzzleHttp\Psr7\Response(200, body: (string) file_get_contents('tests/files/rss-feed.xml'))
         ]);
         $handlerStack = GuzzleHttp\HandlerStack::create($mock);
@@ -103,8 +102,7 @@ class CheckTest extends TestCase
         $this->createCacheFIle(sha1($this->feed['url']), $this->cache);
 
         $mock = new GuzzleHttp\Handler\MockHandler([
-            // First response shouldn't be needed but without it a mock queue empty exception is thrown.
-            new GuzzleHttp\Psr7\Response(200, body: 'Hello, World'),
+            new GuzzleHttp\Psr7\Response(200),
             new GuzzleHttp\Psr7\Response(200, body: (string) file_get_contents('tests/files/rss-feed.xml'))
         ]);
         $handlerStack = GuzzleHttp\HandlerStack::create($mock);
@@ -124,7 +122,7 @@ class CheckTest extends TestCase
     }
 
     /**
-     * Test `check()` when fetch return a error and cache `error_count` is 3
+     * Test `check()` when `Fetch` class returns an error and cache `error_count` is 3
      */
     public function testCheckFetchErrorMessage(): void
     {
