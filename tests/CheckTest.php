@@ -1,6 +1,5 @@
 <?php
 
-use MockFileSystem\Exception\RuntimeException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 use MockFileSystem\MockFileSystem as mockfs;
@@ -134,7 +133,7 @@ class CheckTest extends TestCase
         $this->createCacheFIle(sha1($this->feed['url']), $cache);
 
         $mock = new GuzzleHttp\Handler\MockHandler([
-            new GuzzleHttp\Psr7\Response(404, body: 'not found'),
+            new GuzzleHttp\Psr7\Response(404),
         ]);
         $handlerStack = GuzzleHttp\HandlerStack::create($mock);
 
