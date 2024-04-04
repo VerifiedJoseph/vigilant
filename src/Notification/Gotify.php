@@ -16,21 +16,15 @@ use Gotify\Exception\EndpointException;
  */
 final class Gotify extends Notification
 {
-    /** @var Server $server; */
-    private Server $server;
-
-    /** @var Token $auth */
-    private Token $auth;
+    /** @var Message $message */
+    private Message $message;
 
     /** @inheritdoc */
     public function send(string $title, string $body, string $url = ''): void
     {
         try {
-            // Create Message class instance
-            $message = new Message($this->server, $this->auth);
-
             // Send message
-            $message->create(
+            $this->message->create(
                 title: $title,
                 message: $body,
                 priority: $this->config['priority'],
@@ -50,7 +44,9 @@ final class Gotify extends Notification
     /** @inheritdoc */
     protected function setup(): void
     {
-        $this->server = new Server($this->config['server']);
-        $this->auth = new Token($this->config['token']);
+        $this->message = new Message(
+            new Server($this->config['server']),
+            new Token($this->config['token'])
+        );
     }
 }
