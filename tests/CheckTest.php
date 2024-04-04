@@ -79,19 +79,20 @@ class CheckTest extends TestCase
     public function testCheckFirstTime(): void
     {
         $mock = new GuzzleHttp\Handler\MockHandler([
-            // First response is needed as feedio makes HEAD request.
-            new GuzzleHttp\Psr7\Response(200),
+            new GuzzleHttp\Psr7\Response(200), // First response is needed as feedio makes HEAD request.
             new GuzzleHttp\Psr7\Response(200, body: (string) file_get_contents('tests/files/rss-feed.xml'))
         ]);
-        $handlerStack = GuzzleHttp\HandlerStack::create($mock);
+        $fetch = new Fetch(new \GuzzleHttp\Client([
+            'handler' => GuzzleHttp\HandlerStack::create($mock)
+        ]));
 
-        $fetch = new Fetch(new \GuzzleHttp\Client(['handler' => $handlerStack]));
         $details = new Details($this->feed);
         $check = new check($details, self::$config, $fetch);
 
         $this->expectOutputRegex('/First feed check, not sending notifications for found items/');
 
         $check->check();
+        $this->assertCount(0, $check->getMessages());
         $this->assertNotEquals('1970-01-01 00:00:00', $check->getNextCheckDate());
     }
 
@@ -103,13 +104,13 @@ class CheckTest extends TestCase
         $this->createCacheFIle(sha1($this->feed['url']), $this->cache);
 
         $mock = new GuzzleHttp\Handler\MockHandler([
-            // First response is needed as feedio makes HEAD request.
-            new GuzzleHttp\Psr7\Response(200),
+            new GuzzleHttp\Psr7\Response(200), // First response is needed as feedio makes HEAD request.
             new GuzzleHttp\Psr7\Response(200, body: (string) file_get_contents('tests/files/rss-feed.xml'))
         ]);
-        $handlerStack = GuzzleHttp\HandlerStack::create($mock);
+        $fetch = new Fetch(new \GuzzleHttp\Client([
+            'handler' => GuzzleHttp\HandlerStack::create($mock)
+        ]));
 
-        $fetch = new Fetch(new \GuzzleHttp\Client(['handler' => $handlerStack]));
         $details = new Details($this->feed);
         $check = new check($details, self::$config, $fetch);
 
@@ -124,7 +125,9 @@ class CheckTest extends TestCase
     }
 
     /**
-     * Test `check()` when `Fetch` class returns an error and cache `error_count` is 3
+     * Test `check()` when `Fetch` class returns an error and
+     * cache `error_count` value is one below the max to trigger a message
+     * telling the user that fetching the feed has repeatedly failed.
      */
     public function testCheckFetchErrorMessage(): void
     {
@@ -135,9 +138,9 @@ class CheckTest extends TestCase
         $mock = new GuzzleHttp\Handler\MockHandler([
             new GuzzleHttp\Psr7\Response(404),
         ]);
-        $handlerStack = GuzzleHttp\HandlerStack::create($mock);
-
-        $fetch = new Fetch(new \GuzzleHttp\Client(['handler' => $handlerStack]));
+        $fetch = new Fetch(new \GuzzleHttp\Client([
+            'handler' => GuzzleHttp\HandlerStack::create($mock)
+        ]));
         $details = new Details($this->feed);
         $check = new check($details, self::$config, $fetch);
 
