@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>phpunit</title>
+        <link>https://example.com/feed.rss</link>
+        <atom:link href="https://example.com" rel="self"/>
+        <description>Feed for phpunit</description>
+        <pubDate>1970-01-01 00:00:00</pubDate>
+        <image>
+            <url>https://example.com/inage.png</url>
+        </image>
+		<item>
+			<title>Item 1</title>
+			<pubDate>Mon, 16 Oct 2023 16:00:09 +0100</pubDate>
+			<link>https://example.com/item-1/</link>
+			<guid isPermaLink="true">https://example.com/item-1/</guid>
+			<author>
+				<name>Example author</name>
+			</author>
+			<description>This is item 1</description>
+		</item>
+		<item>
+			<title>Item 2</title>
+			<pubDate>Mon, 16 Oct 2023 16:00:09 +0100</pubDate>
+			<link>https://example.com/item-2/</link>
+			<guid isPermaLink="true">https://example.com/item-2/</guid>
+			<author>
+				<name>Example author</name>
+			</author>
+			<description>This is item 2</description>
+		</item>
+    </channel>
+</rss>

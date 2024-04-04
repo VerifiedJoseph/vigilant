@@ -8,6 +8,7 @@ use Vigilant\Notify;
 use Vigilant\Output;
 use Vigilant\Exception\ConfigException;
 use Vigilant\Exception\AppException;
+use Vigilant\Exception\NotificationException;
 
 require('vendor/autoload.php');
 
@@ -24,10 +25,19 @@ try {
         $check = new Check(
             $details,
             $config,
-            $fetch,
-            $notify
+            $fetch
         );
-        $check->run();
+
+        if ($check->isDue() === true) {
+            $check->check();
+            $notify->send($check->getMessages());
+        }
+
+        Output::text(sprintf(
+            'Next check in %s seconds at %s',
+            $details->getInterval(),
+            $check->getNextCheckDate()
+        ));
     }
 } catch (ConfigException | AppException $err) {
     Output::text($err->getMessage());
