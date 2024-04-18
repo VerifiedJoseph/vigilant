@@ -8,7 +8,6 @@ use Vigilant\Notify;
 use Vigilant\Output;
 use Vigilant\Exception\ConfigException;
 use Vigilant\Exception\AppException;
-use Vigilant\Exception\NotificationException;
 
 require('vendor/autoload.php');
 
