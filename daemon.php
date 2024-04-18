@@ -28,7 +28,7 @@ try {
                 $config,
                 $fetch
             );
-    
+
             if ($check->isDue() === true) {
                 $check->check();
                 $notify->send($check->getMessages());
