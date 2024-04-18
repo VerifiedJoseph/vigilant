@@ -51,6 +51,7 @@ class Config
     {
         $this->requireConfigFile();
 
+        $this->validate->timezone();
         $this->validate->folder($this->getCachePath());
         $this->validate->feedsFile();
         $this->validate->notificationService($this->notificationServices);
