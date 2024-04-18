@@ -11,7 +11,7 @@ permissions:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-  DESCRIPTION: Incident dashboard for Fail2ban.
+  DESCRIPTION: Vigilant is a PHP script for monitoring RSS/ATOM/JSON feeds and sending push notifications on new entries.
 
 jobs:
   docker:
