@@ -44,6 +44,7 @@ class CheckTest extends TestCase
         /** @var PHPUnit\Framework\MockObject\Stub&Config */
         $config = self::createStub(Config::class);
         $config->method('getCachePath')->willReturn(mockfs::getUrl('/'));
+        $config->method('getTimezone')->willReturn('UTC');
         self::$config = $config;
     }
 

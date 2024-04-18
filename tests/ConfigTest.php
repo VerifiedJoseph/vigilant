@@ -37,6 +37,18 @@ class ConfigTest extends TestCase
     }
 
     /**
+     * Test `getTimezone()`
+     */
+    public function testGetTimezone(): void
+    {
+        $config = new Config();
+        $this->assertEquals(
+            self::$defaults['timezone'],
+            $config->getTimezone()
+        );
+    }
+
+    /**
      * Test `getNotificationService()`
      */
     public function testGetNotificationService(): void
