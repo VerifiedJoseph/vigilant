@@ -4,3 +4,4 @@ parameters:
 		- src
 		- tests
 		- vigilant.php
+		- daemon.php
