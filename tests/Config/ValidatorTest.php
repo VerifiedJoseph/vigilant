@@ -32,19 +32,7 @@ class ValidatorTest extends \TestCase
 
     public function setUp(): void
     {
-        // Unset environment variables before each test
-        putenv('VIGILANT_TIMEZONE');
-        putenv('VIGILANT_FEEDS_FILE');
-        putenv('VIGILANT_NOTIFICATION_SERVICE');
-
-        // Gotify
-        putenv('VIGILANT_NOTIFICATION_GOTIFY_URL');
-        putenv('VIGILANT_NOTIFICATION_GOTIFY_TOKEN');
-
-        // Ntfy
-        putenv('VIGILANT_NOTIFICATION_NTFY_URL');
-        putenv('VIGILANT_NOTIFICATION_NTFY_TOPIC');
-        putenv('VIGILANT_NOTIFICATION_NTFY_AUTH');
+        $this->resetEnvs();
     }
 
     public function tearDown(): void

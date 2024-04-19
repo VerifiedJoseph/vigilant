@@ -20,13 +20,7 @@ class NtfyTest extends \TestCase
 
     public function setUp(): void
     {
-        // Unset environment variables before each test
-        putenv('VIGILANT_NOTIFICATION_NTFY_URL');
-        putenv('VIGILANT_NOTIFICATION_NTFY_TOPIC');
-        putenv('VIGILANT_NOTIFICATION_NTFY_AUTH');
-        putenv('VIGILANT_NOTIFICATION_NTFY_USERNAME');
-        putenv('VIGILANT_NOTIFICATION_NTFY_PASSWORD');
-        putenv('VIGILANT_NOTIFICATION_NTFY_TOKEN');
+        $this->resetEnvs();
     }
 
     /**

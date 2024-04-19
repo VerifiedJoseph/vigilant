@@ -20,10 +20,7 @@ class GotifyTest extends \TestCase
 
     public function setUp(): void
     {
-        // Unset environment variables before each test
-        putenv('VIGILANT_NOTIFICATION_GOTIFY_URL');
-        putenv('VIGILANT_NOTIFICATION_GOTIFY_TOPIC');
-        putenv('VIGILANT_NOTIFICATION_GOTIFY_TOKEN');
+        $this->resetEnvs();
     }
 
     /**
