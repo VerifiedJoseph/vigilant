@@ -117,10 +117,11 @@ class Validator extends AbstractValidator
         $this->config['notification_service'] = $service;
 
         if ($service === 'gotify') {
-            $ntfy = new Validate\Gotify($this->config);
-            $ntfy->url();
-            $ntfy->token();
-            $this->config = $ntfy->getConfig();
+            $gotify = new Validate\Gotify($this->config);
+            $gotify->url();
+            $gotify->priority();
+            $gotify->token();
+            $this->config = $gotify->getConfig();
         }
 
         if ($service === 'ntfy') {
