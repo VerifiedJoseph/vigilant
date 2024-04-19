@@ -6,6 +6,27 @@ abstract class Base
 {
     protected string $envPrefix = 'VIGILANT_';
 
+    /** @var array<string, mixed> $config Config */
+    protected array $config = [];
+
+    /**
+     * @param array<string, mixed> $defaults Config defaults
+     */
+    public function __construct(array $defaults)
+    {
+        $this->config = $defaults;
+    }
+
+    /**
+     * Returns config
+     *
+     * @return array<string, mixed>
+     */
+    public function getConfig(): array
+    {
+        return $this->config;
+    }
+
     /**
      * Check for an environment variable
      *
