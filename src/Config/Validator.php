@@ -117,7 +117,10 @@ class Validator extends AbstractValidator
         $this->config['notification_service'] = $service;
 
         if ($service === 'gotify') {
-            $this->notificationGotify();
+            $ntfy = new Validate\Gotify($this->config);
+            $ntfy->url();
+            $ntfy->token();
+            $this->config = $ntfy->getConfig();
         }
 
         if ($service === 'ntfy') {
@@ -127,26 +130,5 @@ class Validator extends AbstractValidator
             $ntfy->auth();
             $this->config = $ntfy->getConfig();
         }
-    }
-
-    /**
-     * Check `VIGILANT_NOTIFICATION_GOTIFY_*`
-     *
-     * @throws ConfigException if no Gotify URL is given
-     * @throws ConfigException if no Gotify app token is given
-     */
-    public function notificationGotify(): void
-    {
-        if ($this->hasEnv('NOTIFICATION_GOTIFY_URL') === false) {
-            throw new ConfigException('No Gotify URL given [VIGILANT_NOTIFICATION_GOTIFY_URL]');
-        }
-
-        $this->config['notification_gotify_url'] = $this->getEnv('NOTIFICATION_GOTIFY_URL');
-
-        if ($this->hasEnv('NOTIFICATION_GOTIFY_TOKEN') === false) {
-            throw new ConfigException('No Gotify app token given [VIGILANT_NOTIFICATION_GOTIFY_TOKEN]');
-        }
-
-        $this->config['notification_gotify_token'] = $this->getEnv('NOTIFICATION_GOTIFY_TOKEN');
     }
 }
