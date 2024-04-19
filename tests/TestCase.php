@@ -29,4 +29,27 @@ abstract class TestCase extends BaseTestCase
     {
         return __DIR__ . '/files/' . $name;
     }
+
+    /**
+     * Reset environment variables
+     */
+    protected function resetEnvs(): void
+    {
+        // Unset environment variables before each test
+        putenv('VIGILANT_TIMEZONE');
+        putenv('VIGILANT_FEEDS_FILE');
+        putenv('VIGILANT_NOTIFICATION_SERVICE');
+
+        // Gotify
+        putenv('VIGILANT_NOTIFICATION_GOTIFY_URL');
+        putenv('VIGILANT_NOTIFICATION_GOTIFY_TOKEN');
+
+        // Ntfy
+        putenv('VIGILANT_NOTIFICATION_NTFY_URL');
+        putenv('VIGILANT_NOTIFICATION_NTFY_TOPIC');
+        putenv('VIGILANT_NOTIFICATION_NTFY_AUTH');
+        putenv('VIGILANT_NOTIFICATION_NTFY_TOKEN');
+        putenv('VIGILANT_NOTIFICATION_NTFY_USERNAME');
+        putenv('VIGILANT_NOTIFICATION_NTFY_PASSWORD');
+    }
 }

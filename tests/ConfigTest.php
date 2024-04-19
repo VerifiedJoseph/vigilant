@@ -5,8 +5,9 @@ use PHPUnit\Framework\Attributes\UsesClass;
 use Vigilant\Config;
 
 #[CoversClass(Config::class)]
-#[UsesClass(Vigilant\Config\Base::class)]
-#[UsesClass(Vigilant\Config\Validate::class)]
+#[UsesClass(Vigilant\Config\Validator::class)]
+#[UsesClass(Vigilant\Config\Validate\Ntfy::class)]
+#[UsesClass(Vigilant\Config\AbstractValidator::class)]
 class ConfigTest extends TestCase
 {
     /** @var array<string, mixed> $defaults */
@@ -17,6 +18,11 @@ class ConfigTest extends TestCase
         $config = new Config();
         $reflection = new ReflectionClass($config);
         self::$defaults = $reflection->getProperty('config')->getValue(new Config());
+    }
+
+    public function setUp(): void
+    {
+        $this->resetEnvs();
     }
 
     /**

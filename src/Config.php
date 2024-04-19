@@ -2,11 +2,11 @@
 
 namespace Vigilant;
 
-use Vigilant\Config\Validate;
+use Vigilant\Config\Validator;
 
 class Config
 {
-    private Validate $validate;
+    private Validator $validate;
 
     /** @var string $minPhpVersion Minimum PHP version */
     private string $minPhpVersion = '8.1.0';
@@ -28,7 +28,6 @@ class Config
         'feeds_file' => 'feeds.yaml',
         'notification_gotify_priority' => 4,
         'notification_ntfy_priority' => 3,
-        'notification_ntfy_auth' => 'none'
     ];
 
     /** @var array<string, mixed> $config Loaded config parameters */
@@ -36,7 +35,7 @@ class Config
 
     public function __construct()
     {
-        $this->validate = new Validate($this->defaults);
+        $this->validate = new Validator($this->defaults);
         $this->validate->version(PHP_VERSION, $this->minPhpVersion);
         $this->validate->extensions($this->extensions);
 
