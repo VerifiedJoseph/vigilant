@@ -46,6 +46,7 @@ abstract class TestCase extends BaseTestCase
 
         // Ntfy
         putenv('VIGILANT_NOTIFICATION_NTFY_URL');
+        putenv('VIGILANT_NOTIFICATION_NTFY_PRIORITY');
         putenv('VIGILANT_NOTIFICATION_NTFY_TOPIC');
         putenv('VIGILANT_NOTIFICATION_NTFY_AUTH');
         putenv('VIGILANT_NOTIFICATION_NTFY_TOKEN');

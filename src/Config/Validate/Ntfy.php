@@ -22,6 +22,22 @@ class Ntfy extends AbstractValidator
     }
 
     /**
+     * Validate `VIGILANT_NOTIFICATION_NTFY_PRIORITY`
+     *
+     * @throws ConfigException if priority is not a number
+     */
+    public function priority(): void
+    {
+        if ($this->hasEnv('NOTIFICATION_NTFY_PRIORITY') === true) {
+            if (is_numeric($this->getEnv('NOTIFICATION_NTFY_PRIORITY')) === false) {
+                throw new ConfigException('Ntfy priority value is not a number [VIGILANT_NOTIFICATION_NTFY_TOPIC]');
+            }
+
+            $this->config['notification_ntfy_priority'] = (int) $this->getEnv('NOTIFICATION_NTFY_PRIORITY');
+        }
+    }
+
+    /**
      * Validate `VIGILANT_NOTIFICATION_NTFY_TOPIC`
      *
      * @throws ConfigException if no ntfy topic is given

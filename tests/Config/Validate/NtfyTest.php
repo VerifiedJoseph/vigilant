@@ -50,6 +50,34 @@ class NtfyTest extends \TestCase
     }
 
     /**
+     * Test priority
+     */
+    public function testPriority(): void
+    {
+        putenv('VIGILANT_NOTIFICATION_NTFY_PRIORITY=1');
+
+        $validate = new Validate(self::$defaults);
+        $validate->priority();
+        $config = $validate->getConfig();
+
+        $this->assertEquals(1, $config['notification_ntfy_priority']);
+    }
+
+    /**
+     * Test priority is not a number
+     */
+    public function testPriorityNotNumber(): void
+    {
+        $this->expectException(ConfigException::class);
+        $this->expectExceptionMessage('Ntfy priority value is not a number');
+
+        putenv('VIGILANT_NOTIFICATION_NTFY_PRIORITY=hello');
+
+        $validate = new Validate(self::$defaults);
+        $validate->priority();
+    }
+
+    /**
      * Test topic
      */
     public function testTopic(): void

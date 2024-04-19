@@ -41,10 +41,11 @@ To use Gotify, a URL and application token must be given.
 
 To use Ntfy, a URL and topic must be given, all other environment variable are optional.
 
-| Name                                 | Description            |
-| ------------------------------------ | ---------------------- |
-| `VIGILANT_NOTIFICATION_NTFY_URL`   | URL used to access Ntfy. |
-| `VIGILANT_NOTIFICATION_NTFY_TOPIC` | Ntfy topic.              |
+| Name                                  | Description                                                                             |
+| ------------------------------------- | --------------------------------------------------------------------------------------- |
+| `VIGILANT_NOTIFICATION_NTFY_URL`      | URL used to access Ntfy.                                                                |
+| `VIGILANT_NOTIFICATION_NTFY_TOPIC`    | Ntfy topic.                                                                             |
+| `VIGILANT_NOTIFICATION_NTFY_PRIORITY` | Ntfy [message priority](https://docs.ntfy.sh/publish/#message-priority). Defaults to 3. |
 
 Vigilant can be used a with ntfy server that has password or [access token](https://docs.ntfy.sh/config/#access-tokens) authentication enabled.
 
