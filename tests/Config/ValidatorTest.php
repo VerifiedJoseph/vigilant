@@ -12,6 +12,7 @@ use Vigilant\Exception\ConfigException;
 #[CoversClass(Validator::class)]
 #[UsesClass(Config::class)]
 #[UsesClass(ConfigException::class)]
+#[UsesClass(\Vigilant\Config\Validate\Gotify::class)]
 #[UsesClass(\Vigilant\Config\AbstractValidator::class)]
 class ValidatorTest extends \TestCase
 {
@@ -189,7 +190,7 @@ class ValidatorTest extends \TestCase
     /**
      * Test notification service gotify
      */
-    public function testGotifyUrl(): void
+    public function testGotify(): void
     {
         putenv('VIGILANT_NOTIFICATION_SERVICE=gotify');
         putenv('VIGILANT_NOTIFICATION_GOTIFY_URL=https://gotify.example.com/');
@@ -202,35 +203,6 @@ class ValidatorTest extends \TestCase
         $this->assertEquals('gotify', $config['notification_service']);
         $this->assertEquals('https://gotify.example.com/', $config['notification_gotify_url']);
         $this->assertEquals('qwerty', $config['notification_gotify_token']);
-    }
-
-    /**
-     * Test notification service gotify with no URL
-     */
-    public function testNoGotifyUrl(): void
-    {
-        $this->expectException(ConfigException::class);
-        $this->expectExceptionMessage('No Gotify URL given');
-
-        putenv('VIGILANT_NOTIFICATION_SERVICE=gotify');
-
-        $validate = new Validator(self::$defaults);
-        $validate->notificationService(self::$notificationServices);
-    }
-
-    /**
-     * Test with no gotify app token
-     */
-    public function testNoGotifyToken(): void
-    {
-        $this->expectException(ConfigException::class);
-        $this->expectExceptionMessage('No Gotify app token given');
-
-        putenv('VIGILANT_NOTIFICATION_SERVICE=gotify');
-        putenv('VIGILANT_NOTIFICATION_GOTIFY_URL=https://gotify.example.com/');
-
-        $validate = new Validator(self::$defaults);
-        $validate->notificationService(self::$notificationServices);
     }
 
     /**
