@@ -41,6 +41,7 @@ class Config
         $this->validate->extensions($this->extensions);
 
         $this->config = $this->defaults;
+        $this->config['timezone'] = date_default_timezone_get();
         $this->config['feeds_file'] = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'feeds.yaml';
     }
 
@@ -51,10 +52,21 @@ class Config
     {
         $this->requireConfigFile();
 
+        $this->validate->timezone();
         $this->validate->folder($this->getCachePath());
         $this->validate->feedsFile();
         $this->validate->notificationService($this->notificationServices);
         $this->config = $this->validate->getConfig();
+    }
+
+    /**
+     * Returns timezone
+     *
+     * @return string
+     */
+    public function getTimezone(): string
+    {
+        return $this->config['timezone'];
     }
 
     /**

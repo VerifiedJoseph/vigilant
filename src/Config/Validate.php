@@ -2,6 +2,7 @@
 
 namespace Vigilant\Config;
 
+use DateTimeZone;
 use Vigilant\Exception\ConfigException;
 
 class Validate extends Base
@@ -69,6 +70,26 @@ class Validate extends Base
             if (mkdir($path) === false) {
                 throw new ConfigException('Failed to create folder: ' . $path);
             }
+        }
+    }
+
+    /**
+     * Validate `VIGILANT_TIMEZONE`
+     * @throws ConfigException if invalid timezone is given
+     */
+    public function timezone(): void
+    {
+        if ($this->hasEnv('TIMEZONE') === true && $this->getEnv('TIMEZONE') !== '') {
+            if (in_array($this->getEnv('TIMEZONE'), DateTimeZone::listIdentifiers(DateTimeZone::ALL)) === false) {
+                throw new ConfigException(sprintf(
+                    'Invalid timezone: (%s). See: https://www.php.net/manual/en/timezones.php [VIGILANT_TIMEZONE]',
+                    $this->getEnv('TIMEZONE')
+                ));
+            }
+
+            $this->config['timezone'] = $this->getEnv('TIMEZONE');
+        } else {
+            $this->config['timezone'] = date_default_timezone_get();
         }
     }
 

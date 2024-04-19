@@ -4,6 +4,14 @@ The preferred method to adjust the configuration of Vigilant is with environment
 
 Alternatively, you can use `config.php` (copied from [`config.example.php`](../config.example.php)) to set the variables.
 
+## Timezone
+
+By default Vigilant uses the timezone of the host system or UTC when running in docker, this behavior can be overridden by setting the environment variable `VIGILANT_TIMEZONE`.
+
+| Name                | Description                                                         |
+| ------------------- | ------------------------------------------------------------------- |
+| `VIGILANT_TIMEZONE` | Timezone ([php docs](https://www.php.net/manual/en/timezones.php)). |
+
 ## Feeds File
 
 By default Vigilant looks for a `feeds.yaml` file in the project's main folder, this behavior can be overridden by setting the environment variable `VIGILANT_FEEDS_FILE`.

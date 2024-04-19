@@ -2,6 +2,8 @@
 
 namespace Vigilant;
 
+use DateTime;
+use DateTimeZone;
 use Vigilant\Config;
 use Vigilant\Exception\FetchException;
 
@@ -66,7 +68,11 @@ final class Check
      */
     public function getNextCheckDate(): string
     {
-        return date('Y-m-d H:i:s', $this->cache->getNextCheck());
+        $date = new DateTime();
+        $date->setTimestamp($this->cache->getNextCheck());
+        $date->setTimezone(new DateTimeZone($this->config->getTimezone()));
+
+        return $date->format('Y-m-d H:i:s');
     }
 
     public function check(): void

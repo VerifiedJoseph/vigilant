@@ -31,6 +31,7 @@ class ValidateTest extends \TestCase
     public function setUp(): void
     {
         // Unset environment variables before each test
+        putenv('VIGILANT_TIMEZONE');
         putenv('VIGILANT_FEEDS_FILE');
         putenv('VIGILANT_NOTIFICATION_SERVICE');
 
@@ -89,6 +90,46 @@ class ValidateTest extends \TestCase
 
         $validate = new Validate(self::$defaults);
         $validate->extensions(['pgp']);
+    }
+
+    /**
+     * Test `timezone()`
+     */
+    public function testTimezone(): void
+    {
+        putenv('VIGILANT_TIMEZONE=Europe/London');
+
+        $validate = new Validate(self::$defaults);
+        $validate->timezone();
+        $config = $validate->getConfig();
+
+        $this->assertEquals('Europe/London', $config['timezone']);
+    }
+
+    /**
+     * Test `timezone()` with `VIGILANT_TIMEZONE` not set
+     */
+    public function testNotSettingTimezone(): void
+    {
+        $validate = new Validate(self::$defaults);
+        $validate->timezone();
+        $config = $validate->getConfig();
+
+        $this->assertEquals('UTC', $config['timezone']);
+    }
+
+    /**
+     * Test `timezone()` with invalid timezone
+     */
+    public function testInvalidTimezone(): void
+    {
+        $this->expectException(ConfigException::class);
+        $this->expectExceptionMessage('Invalid timezone');
+
+        putenv('VIGILANT_TIMEZONE=Europe/Coventry');
+
+        $validate = new Validate(self::$defaults);
+        $validate->timezone();
     }
 
     /**
