@@ -43,6 +43,7 @@ abstract class TestCase extends BaseTestCase
         // Gotify
         putenv('VIGILANT_NOTIFICATION_GOTIFY_URL');
         putenv('VIGILANT_NOTIFICATION_GOTIFY_TOKEN');
+        putenv('VIGILANT_NOTIFICATION_GOTIFY_PRIORITY');
 
         // Ntfy
         putenv('VIGILANT_NOTIFICATION_NTFY_URL');
