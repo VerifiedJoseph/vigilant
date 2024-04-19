@@ -20,6 +20,19 @@ class ConfigTest extends TestCase
         self::$defaults = $reflection->getProperty('config')->getValue(new Config());
     }
 
+    public function setUp(): void
+    {
+        // Unset environment variables before each test
+        putenv('VIGILANT_NOTIFICATION_SERVICE');
+        putenv('VIGILANT_NOTIFICATION_NTFY_URL');
+        putenv('VIGILANT_NOTIFICATION_NTFY_TOPIC');
+        putenv('VIGILANT_NOTIFICATION_NTFY_AUTH');
+
+        putenv('VIGILANT_NOTIFICATION_GOTIFY_URL');
+        putenv('VIGILANT_NOTIFICATION_GOTIFY_TOPIC');
+        putenv('VIGILANT_NOTIFICATION_GOTIFY_TOKEN');
+    }
+
     /**
      * Test `validate()`
      */
