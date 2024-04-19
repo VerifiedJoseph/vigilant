@@ -6,7 +6,7 @@
 version: '3'
 services:
   vigilant:
-    image: ghcr.io/verifiedjoseph/vigilant:1.2.0
+    image: ghcr.io/verifiedjoseph/vigilant:1.1.0
     environment:
       - VIGILANT_NOTIFICATION_SERVICE=ntfy
       - VIGILANT_NOTIFICATION_NTFY_URL=https://ntfy.sh/
