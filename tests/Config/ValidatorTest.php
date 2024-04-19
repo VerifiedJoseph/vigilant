@@ -195,7 +195,7 @@ class ValidatorTest extends \TestCase
         putenv('VIGILANT_NOTIFICATION_GOTIFY_URL=https://gotify.example.com/');
         putenv('VIGILANT_NOTIFICATION_GOTIFY_TOKEN=qwerty');
 
-        $validate = new Validate(self::$defaults);
+        $validate = new Validator(self::$defaults);
         $validate->notificationService(self::$notificationServices);
         $config = $validate->getConfig();
 
@@ -214,7 +214,7 @@ class ValidatorTest extends \TestCase
 
         putenv('VIGILANT_NOTIFICATION_SERVICE=gotify');
 
-        $validate = new Validate(self::$defaults);
+        $validate = new Validator(self::$defaults);
         $validate->notificationService(self::$notificationServices);
     }
 
@@ -229,7 +229,7 @@ class ValidatorTest extends \TestCase
         putenv('VIGILANT_NOTIFICATION_SERVICE=gotify');
         putenv('VIGILANT_NOTIFICATION_GOTIFY_URL=https://gotify.example.com/');
 
-        $validate = new Validate(self::$defaults);
+        $validate = new Validator(self::$defaults);
         $validate->notificationService(self::$notificationServices);
     }
 
@@ -243,7 +243,7 @@ class ValidatorTest extends \TestCase
 
         putenv('VIGILANT_NOTIFICATION_SERVICE=ntfy');
 
-        $validate = new Validate(self::$defaults);
+        $validate = new Validator(self::$defaults);
         $validate->notificationService(self::$notificationServices);
     }
 
@@ -258,7 +258,7 @@ class ValidatorTest extends \TestCase
         putenv('VIGILANT_NOTIFICATION_SERVICE=ntfy');
         putenv('VIGILANT_NOTIFICATION_NTFY_URL=https://ntfy.example.com/');
 
-        $validate = new Validate(self::$defaults);
+        $validate = new Validator(self::$defaults);
         $validate->notificationService(self::$notificationServices);
     }
 
@@ -275,7 +275,7 @@ class ValidatorTest extends \TestCase
         putenv('VIGILANT_NOTIFICATION_NTFY_TOPIC=hello-world');
         putenv('VIGILANT_NOTIFICATION_NTFY_AUTH=passkey');
 
-        $validate = new Validate(self::$defaults);
+        $validate = new Validator(self::$defaults);
         $validate->notificationService(self::$notificationServices);
     }
 
@@ -291,7 +291,7 @@ class ValidatorTest extends \TestCase
         putenv('VIGILANT_NOTIFICATION_NTFY_USERNAME=bob');
         putenv('VIGILANT_NOTIFICATION_NTFY_PASSWORD=qwerty');
 
-        $validate = new Validate(self::$defaults);
+        $validate = new Validator(self::$defaults);
         $validate->notificationService(self::$notificationServices);
         $config = $validate->getConfig();
 
@@ -313,7 +313,7 @@ class ValidatorTest extends \TestCase
         putenv('VIGILANT_NOTIFICATION_NTFY_TOPIC=hello-world');
         putenv('VIGILANT_NOTIFICATION_NTFY_AUTH=password');
 
-        $validate = new Validate(self::$defaults);
+        $validate = new Validator(self::$defaults);
         $validate->notificationService(self::$notificationServices);
     }
 
@@ -331,7 +331,7 @@ class ValidatorTest extends \TestCase
         putenv('VIGILANT_NOTIFICATION_NTFY_AUTH=password');
         putenv('VIGILANT_NOTIFICATION_NTFY_USERNAME=bob');
 
-        $validate = new Validate(self::$defaults);
+        $validate = new Validator(self::$defaults);
         $validate->notificationService(self::$notificationServices);
     }
 
@@ -346,7 +346,7 @@ class ValidatorTest extends \TestCase
         putenv('VIGILANT_NOTIFICATION_NTFY_AUTH=token');
         putenv('VIGILANT_NOTIFICATION_NTFY_TOKEN=qwerty');
 
-        $validate = new Validate(self::$defaults);
+        $validate = new Validator(self::$defaults);
         $validate->notificationService(self::$notificationServices);
         $config = $validate->getConfig();
 
@@ -367,7 +367,7 @@ class ValidatorTest extends \TestCase
         putenv('VIGILANT_NOTIFICATION_NTFY_TOPIC=hello-world');
         putenv('VIGILANT_NOTIFICATION_NTFY_AUTH=token');
 
-        $validate = new Validate(self::$defaults);
+        $validate = new Validator(self::$defaults);
         $validate->notificationService(self::$notificationServices);
     }
 
@@ -390,7 +390,7 @@ class ValidatorTest extends \TestCase
             ]
         );
 
-        $validate = new Validate(self::$defaults);
+        $validate = new Validator(self::$defaults);
         $validate->folder($folder);
     }
 }
