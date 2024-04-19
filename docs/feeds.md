@@ -29,4 +29,4 @@ feeds:
 | `gotify_priority` | No       | Gotify message priority.                                                      |
 | `ntfy_topic`      | No       | Ntfy topic. Overrides topic set with an environment variable.                 |
 | `ntfy_token`      | No       | Ntfy access token. Overrides token set with an environment variable.          |
-| `ntfy_priority`   | No       | Ntfy message priority.                                                        |
+| `ntfy_priority`   | No       | Ntfy message priority. Overrides default value and/or environment variable.   |
