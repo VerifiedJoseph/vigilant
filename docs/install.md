@@ -1,25 +1,38 @@
 # Installation
 
+## docker-compose
+
+```yaml
+version: '3'
+services:
+  vigilant:
+    image: ghcr.io/verifiedjoseph/vigilant:1.2.0
+    environment:
+      - VIGILANT_NOTIFICATION_SERVICE=ntfy
+      - VIGILANT_NOTIFICATION_NTFY_URL=https://ntfy.sh/
+      - VIGILANT_NOTIFICATION_NTFY_TOPIC=testingtesting
+    volumes:
+      - "./feeds.yaml:/app/feeds.yaml"
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+```
+
 ## Manually
 
-Clone the repository.
+1) Download the [latest release](https://github.com/VerifiedJoseph/vigilant/releases/latest) to your server and extract the zip archive.
 
-```
-git clone https://github.com/VerifiedJoseph/vigilant.git
-```
+2) Setup the feeds to monitor using a [feeds file](feeds.md).
 
-Install dependencies with composer.
+3) Set the configuration using [environment variables](configuration.md) with `config.php` copied from [`config.example.php`](../config.example.php).
 
-```
-composer install --no-dev
-```
+	```
+	cp config.example.php config.php
+	```
 
-There are two scripts that can be used to run Vigilant: `vigilant.php` and `daemon.php`.
+4) Create a scheduled task with cron (below) or similar that runs `vigilant.php` at least every 5 minutes.
 
-`vigilant.php` is designed to be used with a task scheduler like cron, whilst `daemon.php` is designed to used as a daemon process.
+	```
+	1 * * * * php path/to/vigilant/vigilant.php
+	```
 
-Cron example:
-```
-5 * * * * php vigilant.php
-```
-When Vigilant running via a task scheduler, the script should ran at a minimum of every 5 minutes.
