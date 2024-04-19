@@ -31,13 +31,13 @@ class GotifyTest extends \TestCase
      */
     public function testUrl(): void
     {
-        putenv('VIGILANT_NOTIFICATION_GOTIFY_URL=https://ntfy.example.com/');
+        putenv('VIGILANT_NOTIFICATION_GOTIFY_URL=https://gotify.example.com/');
 
         $validate = new Validate(self::$defaults);
         $validate->url();
         $config = $validate->getConfig();
 
-        $this->assertEquals('https://ntfy.example.com/', $config['notification_ntfy_url']);
+        $this->assertEquals('https://gotify.example.com/', $config['notification_gotify_url']);
     }
 
     /**
@@ -46,7 +46,7 @@ class GotifyTest extends \TestCase
     public function testNoUrl(): void
     {
         $this->expectException(ConfigException::class);
-        $this->expectExceptionMessage('No ntfy URL given');
+        $this->expectExceptionMessage('No gotify URL given');
 
         $validate = new Validate(self::$defaults);
         $validate->url();
@@ -63,7 +63,7 @@ class GotifyTest extends \TestCase
         $validate->token();
         $config = $validate->getConfig();
 
-        $this->assertEquals('qwerty', $config['notification_ntfy_token']);
+        $this->assertEquals('qwerty', $config['notification_gotify_token']);
     }
 
     /**
@@ -72,7 +72,7 @@ class GotifyTest extends \TestCase
     public function testNoToken(): void
     {
         $this->expectException(ConfigException::class);
-        $this->expectExceptionMessage('No gotify authentication token given');
+        $this->expectExceptionMessage('No Gotify app token given');
 
         $validate = new Validate(self::$defaults);
         $validate->token();
