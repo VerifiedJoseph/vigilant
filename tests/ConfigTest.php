@@ -5,8 +5,9 @@ use PHPUnit\Framework\Attributes\UsesClass;
 use Vigilant\Config;
 
 #[CoversClass(Config::class)]
-#[UsesClass(Vigilant\Config\Base::class)]
-#[UsesClass(Vigilant\Config\Validate::class)]
+#[UsesClass(Vigilant\Config\Validator::class)]
+#[UsesClass(Vigilant\Config\Validate\Ntfy::class)]
+#[UsesClass(Vigilant\Config\AbstractValidator::class)]
 class ConfigTest extends TestCase
 {
     /** @var array<string, mixed> $defaults */
