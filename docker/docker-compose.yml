@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  app:
+    build: ../
+    container_name: vigilant
+    environment:
+      - VIGILANT_TIMEZONE=Europe/London
+      - VIGILANT_NOTIFICATION_SERVICE=ntfy
+      - VIGILANT_NOTIFICATION_NTFY_URL=https://ntfy.sh/
+      - VIGILANT_NOTIFICATION_NTFY_TOPIC=testingtesting
+    volumes:
+      - "../feeds.yaml:/app/feeds.yaml"
+    security_opt:
+      - no-new-privileges:true
