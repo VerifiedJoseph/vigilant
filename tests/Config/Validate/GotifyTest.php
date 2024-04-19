@@ -72,7 +72,7 @@ class GotifyTest extends \TestCase
     public function testNoToken(): void
     {
         $this->expectException(ConfigException::class);
-        $this->expectExceptionMessage('No Gotify app token given');
+        $this->expectExceptionMessage('No gotify app token given');
 
         $validate = new Validate(self::$defaults);
         $validate->token();

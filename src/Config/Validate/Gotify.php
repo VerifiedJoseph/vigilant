@@ -29,7 +29,7 @@ class Gotify extends AbstractValidator
     public function token(): void
     {
         if ($this->hasEnv('NOTIFICATION_GOTIFY_TOKEN') === false) {
-            throw new ConfigException('No gotify authentication token given [VIGILANT_NOTIFICATION_GOTIFY_TOKEN]');
+            throw new ConfigException('No gotify app token given [VIGILANT_NOTIFICATION_GOTIFY_TOKEN]');
         }
 
         $this->config['notification_gotify_token'] = $this->getEnv('NOTIFICATION_GOTIFY_TOKEN');
