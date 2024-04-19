@@ -6,14 +6,14 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 use MockFileSystem\MockFileSystem as mockfs;
 use Vigilant\Config;
-use Vigilant\Config\Validate;
+use Vigilant\Config\Validator;
 use Vigilant\Exception\ConfigException;
 
-#[CoversClass(Validate::class)]
+#[CoversClass(Validator::class)]
 #[UsesClass(Config::class)]
 #[UsesClass(ConfigException::class)]
 #[UsesClass(\Vigilant\Config\Base::class)]
-class ValidateTest extends \TestCase
+class ValidatorTest extends \TestCase
 {
     /** @var array<string, mixed> $defaults */
     private static array $defaults = [];
@@ -64,7 +64,7 @@ class ValidateTest extends \TestCase
      */
     public function testGetConfig(): void
     {
-        $validate = new Validate(self::$defaults);
+        $validate = new Validator(self::$defaults);
         $this->assertEquals(self::$defaults, $validate->getConfig());
     }
 
@@ -76,7 +76,7 @@ class ValidateTest extends \TestCase
         $this->expectException(ConfigException::class);
         $this->expectExceptionMessage('Vigilant requires at least PHP version 8.1.0');
 
-        $validate = new Validate(self::$defaults);
+        $validate = new Validator(self::$defaults);
         $validate->version('8.0.0', '8.1.0');
     }
 
@@ -88,7 +88,7 @@ class ValidateTest extends \TestCase
         $this->expectException(ConfigException::class);
         $this->expectExceptionMessage('PHP extension error: pgp extension not loaded');
 
-        $validate = new Validate(self::$defaults);
+        $validate = new Validator(self::$defaults);
         $validate->extensions(['pgp']);
     }
 
@@ -99,7 +99,7 @@ class ValidateTest extends \TestCase
     {
         putenv('VIGILANT_TIMEZONE=Europe/London');
 
-        $validate = new Validate(self::$defaults);
+        $validate = new Validator(self::$defaults);
         $validate->timezone();
         $config = $validate->getConfig();
 
@@ -111,7 +111,7 @@ class ValidateTest extends \TestCase
      */
     public function testNotSettingTimezone(): void
     {
-        $validate = new Validate(self::$defaults);
+        $validate = new Validator(self::$defaults);
         $validate->timezone();
         $config = $validate->getConfig();
 
@@ -128,7 +128,7 @@ class ValidateTest extends \TestCase
 
         putenv('VIGILANT_TIMEZONE=Europe/Coventry');
 
-        $validate = new Validate(self::$defaults);
+        $validate = new Validator(self::$defaults);
         $validate->timezone();
     }
 
@@ -139,7 +139,7 @@ class ValidateTest extends \TestCase
     {
         putenv('VIGILANT_FEEDS_FILE=feeds.example.yaml');
 
-        $validate = new Validate(self::$defaults);
+        $validate = new Validator(self::$defaults);
         $validate->feedsFile();
         $config = $validate->getConfig();
 
@@ -156,7 +156,7 @@ class ValidateTest extends \TestCase
 
         putenv('VIGILANT_FEEDS_FILE=feeds-not-found.yaml');
 
-        $validate = new Validate(self::$defaults);
+        $validate = new Validator(self::$defaults);
         $validate->feedsFile();
     }
 
@@ -168,7 +168,7 @@ class ValidateTest extends \TestCase
         $this->expectException(ConfigException::class);
         $this->expectExceptionMessage('No notification service given');
 
-        $validate = new Validate(self::$defaults);
+        $validate = new Validator(self::$defaults);
         $validate->notificationService(self::$notificationServices);
     }
 
@@ -182,7 +182,7 @@ class ValidateTest extends \TestCase
 
         putenv('VIGILANT_NOTIFICATION_SERVICE=email');
 
-        $validate = new Validate(self::$defaults);
+        $validate = new Validator(self::$defaults);
         $validate->notificationService(self::$notificationServices);
     }
 
