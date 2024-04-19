@@ -33,7 +33,7 @@ class Ntfy extends AbstractValidator
                 throw new ConfigException('Ntfy priority value is not a number [VIGILANT_NOTIFICATION_NTFY_TOPIC]');
             }
 
-            $this->config['notification_ntfy_priority'] = $this->getEnv('NOTIFICATION_NTFY_TOPIC');
+            $this->config['notification_ntfy_priority'] = (int) $this->getEnv('NOTIFICATION_NTFY_PRIORITY');
         }
     }
 
