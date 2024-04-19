@@ -3,7 +3,7 @@
 namespace Vigilant\Notification;
 
 use Vigilant\Output;
-use Vigilant\Notification\Notification;
+use Vigilant\Notification\AbstractNotification;
 use Vigilant\Exception\NotificationException;
 use Gotify\Server;
 use Gotify\Auth\Token;
@@ -14,7 +14,7 @@ use Gotify\Exception\EndpointException;
 /**
  * Send notifications using `verifiedjoseph/gotify-api-php`
  */
-final class Gotify extends Notification
+final class Gotify extends AbstractNotification
 {
     /** @var Message $message */
     private Message $message;

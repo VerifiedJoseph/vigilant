@@ -3,7 +3,7 @@
 namespace Vigilant\Notification;
 
 use Vigilant\Output;
-use Vigilant\Notification\Notification;
+use Vigilant\Notification\AbstractNotification;
 use Vigilant\Exception\NotificationException;
 use Ntfy\Auth;
 use Ntfy\Client;
@@ -15,7 +15,7 @@ use Ntfy\Exception\EndpointException;
 /**
  * Send notifications using `VerifiedJoseph/ntfy-php-library`
  */
-final class Ntfy extends Notification
+final class Ntfy extends AbstractNotification
 {
     /** @var Server $server */
     private Server $server;
