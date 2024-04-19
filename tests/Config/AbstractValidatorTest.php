@@ -9,11 +9,13 @@ class AbstractValidatorTest extends TestCase
     /**
      * Test `getConfig()`
      */
-    public function testFetConfig(): void
+    public function testGetConfig(): void
     {
-        $class = new class (['test' => 'hello']) extends AbstractValidator {
+        $expected = ['test' => 'hello'];
+
+        $class = new class ($expected) extends AbstractValidator {
         };
-        $this->assertEquals('hello', $class->getConfig('test'));
+        $this->assertEquals($expected, $class->getConfig('test'));
     }
 
     /**
