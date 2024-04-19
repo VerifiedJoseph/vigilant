@@ -127,6 +127,7 @@ class Validator extends AbstractValidator
             $ntfy = new Validate\Ntfy($this->config);
             $ntfy->url();
             $ntfy->topic();
+            $ntfy->priority();
             $ntfy->auth();
             $this->config = $ntfy->getConfig();
         }
