@@ -44,6 +44,7 @@ class ValidatorTest extends \TestCase
         // Ntfy
         putenv('VIGILANT_NOTIFICATION_NTFY_URL');
         putenv('VIGILANT_NOTIFICATION_NTFY_TOPIC');
+        putenv('VIGILANT_NOTIFICATION_NTFY_AUTH');
     }
 
     public function tearDown(): void
