@@ -1,11 +1,21 @@
 <?php
 
 use PHPUnit\Framework\Attributes\CoversClass;
-use Vigilant\Config\Base;
+use Vigilant\Config\AbstractValidator;
 
-#[CoversClass(Base::class)]
-class BaseTest extends TestCase
+#[CoversClass(AbstractValidator::class)]
+class AbstractValidatorTest extends TestCase
 {
+    /**
+     * Test `getConfig()`
+     */
+    public function testFetConfig(): void
+    {
+        $class = new class (['test' => 'hello']) extends AbstractValidator {
+        };
+        $this->assertEquals('hello', $class->getConfig('test'));
+    }
+
     /**
      * Test `getEnv()`
      */
@@ -13,7 +23,7 @@ class BaseTest extends TestCase
     {
         putenv('VIGILANT_TEST=hello');
 
-        $class = new class ([]) extends Base {
+        $class = new class ([]) extends AbstractValidator {
         };
         $this->assertEquals('hello', $class->getEnv('TEST'));
     }
@@ -25,7 +35,7 @@ class BaseTest extends TestCase
     {
         putenv('VIGILANT_TEST');
 
-        $class = new class ([]) extends Base {
+        $class = new class ([]) extends AbstractValidator {
         };
         $this->assertEquals('', $class->getEnv('TEST_1'));
     }
