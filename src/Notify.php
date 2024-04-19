@@ -2,14 +2,14 @@
 
 namespace Vigilant;
 
-use Vigilant\Notification\Notification;
 use Vigilant\Notification\Gotify;
 use Vigilant\Notification\Ntfy;
+use Vigilant\Notification\AbstractNotification;
 use Vigilant\Exception\NotificationException;
 
 class Notify
 {
-    private Notification $service;
+    private AbstractNotification $service;
 
     /**
      * Create and config Notification class

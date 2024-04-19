@@ -2,7 +2,7 @@
 
 namespace Vigilant\Notification;
 
-abstract class Notification
+abstract class AbstractNotification
 {
     /**
      * @var array<string, mixed> $config Notification config
