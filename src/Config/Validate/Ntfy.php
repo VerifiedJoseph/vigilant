@@ -44,7 +44,9 @@ class Ntfy extends AbstractValidator
     {
         if ($this->hasEnv('NOTIFICATION_NTFY_AUTH') === true) {
             if (in_array($this->getEnv('NOTIFICATION_NTFY_AUTH'), ['password', 'token']) === false) {
-                throw new ConfigException('Unknown ntfy authentication method given [VIGILANT_NOTIFICATION_NTFY_USERNAME]');
+                throw new ConfigException(
+                    'Unknown ntfy authentication method given [VIGILANT_NOTIFICATION_NTFY_USERNAME]'
+                );
             }
 
             $this->config['notification_ntfy_auth'] = $this->getEnv('NOTIFICATION_NTFY_AUTH');
