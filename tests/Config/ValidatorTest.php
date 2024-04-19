@@ -12,6 +12,7 @@ use Vigilant\Exception\ConfigException;
 #[CoversClass(Validator::class)]
 #[UsesClass(Config::class)]
 #[UsesClass(ConfigException::class)]
+#[UsesClass(\Vigilant\Config\Validate\Ntfy::class)]
 #[UsesClass(\Vigilant\Config\Validate\Gotify::class)]
 #[UsesClass(\Vigilant\Config\AbstractValidator::class)]
 class ValidatorTest extends \TestCase
@@ -43,10 +44,6 @@ class ValidatorTest extends \TestCase
         // Ntfy
         putenv('VIGILANT_NOTIFICATION_NTFY_URL');
         putenv('VIGILANT_NOTIFICATION_NTFY_TOPIC');
-        putenv('VIGILANT_NOTIFICATION_NTFY_AUTH');
-        putenv('VIGILANT_NOTIFICATION_NTFY_USERNAME');
-        putenv('VIGILANT_NOTIFICATION_NTFY_PASSWORD');
-        putenv('VIGILANT_NOTIFICATION_NTFY_TOKEN');
     }
 
     public function tearDown(): void
@@ -203,6 +200,24 @@ class ValidatorTest extends \TestCase
         $this->assertEquals('gotify', $config['notification_service']);
         $this->assertEquals('https://gotify.example.com/', $config['notification_gotify_url']);
         $this->assertEquals('qwerty', $config['notification_gotify_token']);
+    }
+
+    /**
+     * Test notification service ntfy
+     */
+    public function testNtfy(): void
+    {
+        putenv('VIGILANT_NOTIFICATION_SERVICE=ntfy');
+        putenv('VIGILANT_NOTIFICATION_NTFY_URL=https://ntfy.example.com/');
+        putenv('VIGILANT_NOTIFICATION_NTFY_TOPIC=qwerty');
+
+        $validate = new Validator(self::$defaults);
+        $validate->notificationService(self::$notificationServices);
+        $config = $validate->getConfig();
+
+        $this->assertEquals('ntfy', $config['notification_service']);
+        $this->assertEquals('https://ntfy.example.com/', $config['notification_ntfy_url']);
+        $this->assertEquals('qwerty', $config['notification_ntfy_topic']);
     }
 
     /**
