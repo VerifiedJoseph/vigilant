@@ -1,5 +1,5 @@
+# This file is for testing. For the production version see: https://github.com/VerifiedJoseph/vigilant/tree/main/docker-compose.yml
 version: '3'
-
 services:
   app:
     build: ../
