@@ -74,8 +74,6 @@ class GotifyTest extends \TestCase
         $this->expectException(ConfigException::class);
         $this->expectExceptionMessage('No gotify authentication token given');
 
-        putenv('VIGILANT_NOTIFICATION_GOTIFY_AUTH=token');
-
         $validate = new Validate(self::$defaults);
         $validate->token();
     }
