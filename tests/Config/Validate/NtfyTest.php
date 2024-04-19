@@ -78,7 +78,7 @@ class NtfyTest extends \TestCase
         $this->expectExceptionMessage('No ntfy topic given');
 
         $validate = new Validate(self::$defaults);
-        $validate->topic([]);
+        $validate->topic();
     }
 
     /**

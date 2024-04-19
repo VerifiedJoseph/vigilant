@@ -15,7 +15,7 @@ class AbstractValidatorTest extends TestCase
 
         $class = new class ($expected) extends AbstractValidator {
         };
-        $this->assertEquals($expected, $class->getConfig('test'));
+        $this->assertEquals($expected, $class->getConfig());
     }
 
     /**
