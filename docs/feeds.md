@@ -26,7 +26,7 @@ feeds:
 | `url`             | **Yes**  | Feed URL                                                                      |
 | `interval`        | **Yes**  | Interval between feed checks in seconds. Minimum value is `300` (5 minutes).  |
 | `gotify_token`    | No       | Gotify application token. Overrides token set with an environment variable.   |
-| `gotify_priority` | No       | Gotify message priority.                                                      |
+| `gotify_priority` | No       | Gotify message priority. Overrides default value and/or environment variable. |
 | `ntfy_topic`      | No       | Ntfy topic. Overrides topic set with an environment variable.                 |
 | `ntfy_token`      | No       | Ntfy access token. Overrides token set with an environment variable.          |
 | `ntfy_priority`   | No       | Ntfy message priority. Overrides default value and/or environment variable.   |

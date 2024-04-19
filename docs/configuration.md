@@ -32,10 +32,11 @@ To send push notifications, a notification service is required. Vigilant support
 
 To use Gotify, a URL and application token must be given.
 
-| Name                                 | Description                |
-| ------------------------------------ | -------------------------- |
-| `VIGILANT_NOTIFICATION_GOTIFY_URL`   | URL used to access Gotify. |
-| `VIGILANT_NOTIFICATION_GOTIFY_TOKEN` | Gotify application token.  |
+| Name                                    | Description                             |
+| --------------------------------------- | --------------------------------------- |
+| `VIGILANT_NOTIFICATION_GOTIFY_URL`      | URL used to access Gotify.              |
+| `VIGILANT_NOTIFICATION_GOTIFY_TOKEN`    | Gotify application token.               |
+| `VIGILANT_NOTIFICATION_GOTIFY_PRIORITY` | Gotify message priority. Defaults to 4. |
 
 ### Ntfy
 
