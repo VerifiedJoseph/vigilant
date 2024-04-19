@@ -16,7 +16,7 @@ use Vigilant\Notification\Ntfy;
 #[UsesClass(Gotify::class)]
 #[UsesClass(Ntfy::class)]
 #[UsesClass(Vigilant\Output::class)]
-#[UsesClass(Vigilant\Notification\Notification::class)]
+#[UsesClass(Vigilant\Notification\AbstractNotification::class)]
 #[UsesClass(Vigilant\Exception\NotificationException::class)]
 class NotifyTest extends TestCase
 {

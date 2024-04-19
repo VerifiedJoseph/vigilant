@@ -7,7 +7,7 @@ use Vigilant\Notification\Ntfy;
 use Vigilant\Exception\NotificationException;
 
 #[CoversClass(Ntfy::class)]
-#[CoversClass(Vigilant\Notification\Notification::class)]
+#[CoversClass(Vigilant\Notification\AbstractNotification::class)]
 #[UsesClass(NotificationException::class)]
 #[UsesClass(Vigilant\Output::class)]
 class NtfyTest extends TestCase

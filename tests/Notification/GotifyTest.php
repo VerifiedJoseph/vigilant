@@ -7,7 +7,7 @@ use Vigilant\Notification\Gotify;
 use Vigilant\Exception\NotificationException;
 
 #[CoversClass(Gotify::class)]
-#[CoversClass(Vigilant\Notification\Notification::class)]
+#[CoversClass(Vigilant\Notification\AbstractNotification::class)]
 #[UsesClass(NotificationException::class)]
 #[UsesClass(Vigilant\Output::class)]
 class GotifyTest extends TestCase
