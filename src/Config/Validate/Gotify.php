@@ -30,7 +30,9 @@ class Gotify extends AbstractValidator
     {
         if ($this->hasEnv('NOTIFICATION_GOTIFY_PRIORITY') === true) {
             if (is_numeric($this->getEnv('NOTIFICATION_GOTIFY_PRIORITY')) === false) {
-                throw new ConfigException('Gotify priority value is not a number [VIGILANT_NOTIFICATION_GOTIFY_PRIORITY]');
+                throw new ConfigException(
+                    'Gotify priority value is not a number [VIGILANT_NOTIFICATION_GOTIFY_PRIORITY]'
+                );
             }
 
             $this->config['notification_gotify_priority'] = (int) $this->getEnv('NOTIFICATION_GOTIFY_PRIORITY');
