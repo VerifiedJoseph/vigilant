@@ -13,7 +13,7 @@ class BaseTest extends TestCase
     {
         putenv('VIGILANT_TEST=hello');
 
-        $class = new class () extends Base {
+        $class = new class ([]) extends Base {
         };
         $this->assertEquals('hello', $class->getEnv('TEST'));
     }
@@ -25,7 +25,7 @@ class BaseTest extends TestCase
     {
         putenv('VIGILANT_TEST');
 
-        $class = new class () extends Base {
+        $class = new class ([]) extends Base {
         };
         $this->assertEquals('', $class->getEnv('TEST_1'));
     }
