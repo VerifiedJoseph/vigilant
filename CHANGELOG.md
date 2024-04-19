@@ -10,15 +10,11 @@ All notable changes to this project are documented in this file.
 - Added timezone environment variable. ([#155](https://github.com/VerifiedJoseph/vigilant/pull/155), [`708d8fb`](https://github.com/VerifiedJoseph/vigilant/commit/708d8fb640d14717739a5bc2a409680e50351324))
 - Removed undocumented `QUIET` environment variable. ([#138](https://github.com/VerifiedJoseph/vigilant/pull/138), [`9f6d84e`](https://github.com/VerifiedJoseph/vigilant/commit/9f6d84eb4d52b53eb9aff3bbeff1d5934cf60385))
 
----
-
 All changes: https://github.com/VerifiedJoseph/vigilant/compare/v1.0.1...v1.1.0
 
 ## [1.0.1](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.0.1) - 2024-03-25
 
 - Updated dependency `verifiedjoseph/ntfy-php-library` from 4.5.1 to 4.5.2 ([#119](https://github.com/VerifiedJoseph/vigilant/pull/119), [`aec7a3f`](https://github.com/VerifiedJoseph/vigilant/commit/aec7a3fa906996ff99fcfa9318fd6ae0f842c94d))
-
----
 
 All changes: https://github.com/VerifiedJoseph/vigilant/compare/v1.0.0...v1.0.1
 
