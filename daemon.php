@@ -12,14 +12,15 @@ use Vigilant\Exception\AppException;
 require('vendor/autoload.php');
 
 try {
+    Output::text('Starting Vigilant daemon...');
+
     $config = new Config();
     $config->validate();
 
     $fetch = new Fetch();
     $feeds = new Feeds($config);
 
-    Output::text('Running...');
-
+    /** @phpstan-ignore-next-line */
     while (true) {
         foreach ($feeds->get() as $details) {
             $notify = new Notify($details, $config);
@@ -45,4 +46,5 @@ try {
     }
 } catch (ConfigException | AppException $err) {
     Output::text($err->getMessage());
+    exit(1);
 }
