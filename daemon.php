@@ -6,13 +6,14 @@ use Vigilant\Check;
 use Vigilant\Fetch;
 use Vigilant\Notify;
 use Vigilant\Output;
+use Vigilant\Version;
 use Vigilant\Exception\ConfigException;
 use Vigilant\Exception\AppException;
 
 require('vendor/autoload.php');
 
 try {
-    Output::text('Starting Vigilant daemon...');
+    Output::text(sprintf('Starting Vigilant %s daemon...', Version::get()));
 
     $config = new Config();
     $config->validate();

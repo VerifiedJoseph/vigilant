@@ -6,12 +6,15 @@ use Vigilant\Check;
 use Vigilant\Fetch;
 use Vigilant\Notify;
 use Vigilant\Output;
+use Vigilant\Version;
 use Vigilant\Exception\ConfigException;
 use Vigilant\Exception\AppException;
 
 require('vendor/autoload.php');
 
 try {
+    Output::text(sprintf('Vigilant version %s', Version::get()));
+
     $config = new Config();
     $config->validate();
 
