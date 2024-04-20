@@ -1,0 +1,43 @@
+name: Bug report
+description: Report a bug
+labels:
+  - bug
+body:
+  - type: textarea
+    attributes:
+      label: Describe the bug
+      description: Provide a concise description of what the bug is.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Configuration
+      description: >-
+        Provide a complete `docker-compose` and\or `config.php`
+        configuration file.
+  - type: input
+    attributes:
+      label: Version
+      description: What version of Vigilant can you reproduce this bug on?
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: ' Deployment Method'
+      description: How have you deployed vigilant?
+      options:
+        - Docker compose
+        - Manually
+        - Other
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: PHP Version
+      description: What version of php are you using to run Vigilant?
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: Additional context
+      description: Add any other context about the problem here.
