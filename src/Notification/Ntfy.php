@@ -37,7 +37,7 @@ final class Ntfy extends AbstractNotification
 
             $this->client->send($message);
 
-            Output::text('Sent notification using Ntfy');
+            $this->logger->log('Sent notification using Ntfy');
         } catch (EndpointException | NtfyException $err) {
             throw new NotificationException('[Ntfy] ' . $err->getMessage());
         }

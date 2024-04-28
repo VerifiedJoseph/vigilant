@@ -11,18 +11,28 @@ class Notify
 {
     private AbstractNotification $service;
 
+    /** @var Config Config class instance */
+    private Config $config;
+
+    /** @var Logger Logger class instance */
+    private Logger $logger;
+
     /**
      * Create and config Notification class
      *
      * @param Feed\Details $details Feed details
-     * @param Config $config Script config
+     * @param Config $config Config class instance
+     * @param Logger $logger Logger class instance
      */
-    public function __construct(Feed\Details $details, Config $config)
+    public function __construct(Feed\Details $details, Config $config, Logger $logger)
     {
+        $this->config = $config;
+        $this->logger = $logger;
+
         if ($config->getNotificationService() === 'gotify') {
-            $this->service = $this->createGotify($details, $config);
+            $this->service = $this->createGotify($details);
         } else {
-            $this->service = $this->createNtfy($details, $config);
+            $this->service = $this->createNtfy($details);
         }
     }
 
@@ -40,7 +50,7 @@ class Notify
                     $message->getUrl()
                 );
             } catch (NotificationException $err) {
-                Output::text($err->getMessage());
+                $this->logger->log($err->getMessage());
             }
         }
     }
@@ -49,14 +59,13 @@ class Notify
      * Create and config Gotify instance
      *
      * @param Feed\Details $details Feed details
-     * @param Config $config Script config
      */
-    private function createGotify(Feed\Details $details, Config $config): Gotify
+    private function createGotify(Feed\Details $details): Gotify
     {
         $gotifyConfig = [
-            'server' => $config->getGotifyUrl(),
-            'priority' => $config->getGotifyPriority(),
-            'token' => $config->getGotifyToken()
+            'server' => $this->config->getGotifyUrl(),
+            'priority' => $this->config->getGotifyPriority(),
+            'token' => $this->config->getGotifyToken()
         ];
 
         if ($details->hasGotifyPriority() === true) {
@@ -67,31 +76,30 @@ class Notify
             $gotifyConfig['token'] = $details->getGotifyToken();
         }
 
-        return new Gotify($gotifyConfig);
+        return new Gotify($gotifyConfig, $this->logger);
     }
 
     /**
      * Create and config ntfy instance
      *
      * @param Feed\Details $details Feed details
-     * @param Config $config Script config
      */
-    private function createNtfy(Feed\Details $details, Config $config): Ntfy
+    private function createNtfy(Feed\Details $details): Ntfy
     {
         $ntfyConfig = [
-            'server' => $config->getNtfyUrl(),
-            'topic' => $config->getNtfyTopic(),
-            'priority' => $config->getNtfyPriority(),
+            'server' => $this->config->getNtfyUrl(),
+            'topic' => $this->config->getNtfyTopic(),
+            'priority' => $this->config->getNtfyPriority(),
             'auth' => [
-                'method' => $config->getNtfyAuthMethod()
+                'method' => $this->config->getNtfyAuthMethod()
             ]
         ];
 
-        if ($config->getNtfyAuthMethod() === 'password') {
-            $ntfyConfig['auth']['username'] = $config->getNtfyUsername();
-            $ntfyConfig['auth']['password'] = $config->getNtfyPassword();
-        } elseif ($config->getNtfyAuthMethod() === 'token') {
-            $ntfyConfig['auth']['token'] = $config->getNtfyToken();
+        if ($this->config->getNtfyAuthMethod() === 'password') {
+            $ntfyConfig['auth']['username'] = $this->config->getNtfyUsername();
+            $ntfyConfig['auth']['password'] = $this->config->getNtfyPassword();
+        } elseif ($this->config->getNtfyAuthMethod() === 'token') {
+            $ntfyConfig['auth']['token'] = $this->config->getNtfyToken();
         }
 
         if ($details->hasNtfyToken() === true) {
@@ -109,6 +117,6 @@ class Notify
             $ntfyConfig['priority'] = $details->getNtfyPriority();
         }
 
-        return new Ntfy($ntfyConfig);
+        return new Ntfy($ntfyConfig, $this->logger);
     }
 }

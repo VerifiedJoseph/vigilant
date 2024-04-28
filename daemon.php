@@ -6,6 +6,7 @@ use Vigilant\Check;
 use Vigilant\Fetch;
 use Vigilant\Notify;
 use Vigilant\Output;
+use Vigilant\Logger;
 use Vigilant\Version;
 use Vigilant\Exception\ConfigException;
 use Vigilant\Exception\AppException;
@@ -19,23 +20,25 @@ try {
     $config->validate();
 
     $fetch = new Fetch();
-    $feeds = new Feeds($config);
+    $logger = new Logger($config->getTimezone());
+    $feeds = new Feeds($config, $logger);
 
     /** @phpstan-ignore-next-line */
     while (true) {
         foreach ($feeds->get() as $details) {
-            $notify = new Notify($details, $config);
+            $notify = new Notify($details, $config, $logger);
             $check = new Check(
                 $details,
+                $fetch,
                 $config,
-                $fetch
+                $logger
             );
 
             if ($check->isDue() === true) {
                 $check->check();
                 $notify->send($check->getMessages());
 
-                Output::text(sprintf(
+                $logger->log(sprintf(
                     'Next check in %s seconds at %s',
                     $details->getInterval(),
                     $check->getNextCheckDate()
@@ -46,6 +49,6 @@ try {
         sleep(30);
     }
 } catch (ConfigException | AppException $err) {
-    Output::text($err->getMessage());
+    Output::text('[Vigilant] ' . $err->getMessage());
     exit(1);
 }

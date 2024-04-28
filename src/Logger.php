@@ -32,12 +32,4 @@ class Logger
             $text
         );
     }
-
-    /**
-     * Output system newline character in terminal
-     */
-    public function newline(): void
-    {
-        echo PHP_EOL;
-    }
 }
