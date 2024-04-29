@@ -28,6 +28,16 @@ abstract class AbstractValidator
     }
 
     /**
+     * Check if a environment variable is a boolean
+     *
+     * @param string $name Variable name excluding prefix
+     */
+    public function isEnvBoolean(string $name): bool
+    {
+        return in_array($this->getEnv($name), ['true', 'false']);
+    }
+
+    /**
      * Check for an environment variable
      *
      * @param string $name Variable name excluding prefix
