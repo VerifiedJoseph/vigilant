@@ -29,6 +29,7 @@ class Config
         'feeds_file' => 'feeds.yaml',
         'notification_gotify_priority' => 4,
         'notification_ntfy_priority' => 3,
+        'notification_ntfy_auth' => 'none'
     ];
 
     /** @var array<string, mixed> $config Loaded config parameters */
