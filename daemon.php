@@ -19,8 +19,12 @@ try {
     $config = new Config();
     $config->validate();
 
+    $logger = new Logger(
+        $config->getTimezone(),
+        $config->getLoggingLevel()
+    );
+
     $fetch = new Fetch();
-    $logger = new Logger($config->getTimezone());
     $feeds = new Feeds($config, $logger);
 
     /** @phpstan-ignore-next-line */
