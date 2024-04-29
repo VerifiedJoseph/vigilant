@@ -14,15 +14,12 @@ use Vigilant\Exception\AppException;
 require('vendor/autoload.php');
 
 try {
-    Output::text(sprintf('Vigilant version %s', Version::get()));
-
     $config = new Config();
     $config->validate();
 
     $fetch = new Fetch();
     $logger = new Logger($config->getTimezone());
     $feeds = new Feeds($config, $logger);
-    Output::newline();
 
     foreach ($feeds->get() as $details) {
         $notify = new Notify($details, $config, $logger);
@@ -36,13 +33,13 @@ try {
         if ($check->isDue() === true) {
             $check->check();
             $notify->send($check->getMessages());
-        }
 
-        $logger->log(sprintf(
-            'Next check in %s seconds at %s',
-            $details->getInterval(),
-            $check->getNextCheckDate()
-        ));
+            $logger->info(sprintf(
+                'Next check in %s seconds at %s',
+                $details->getInterval(),
+                $check->getNextCheckDate()
+            ));
+        }
     }
 } catch (ConfigException | AppException $err) {
     Output::text($err->getMessage());

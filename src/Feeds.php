@@ -64,7 +64,7 @@ final class Feeds
     private function load(string $path): array
     {
         try {
-            $this->logger->log(sprintf('Loading feeds.yaml (%s)', $path));
+            $this->logger->debug(sprintf('Loading feeds.yaml (%s)', $path));
 
             return Yaml::parseFile($path);
         } catch (ParseException $err) {
@@ -80,7 +80,7 @@ final class Feeds
      */
     private function validate(array $feeds): void
     {
-        $this->logger->log('Validating feeds.yaml');
+        $this->logger->debug('Validating feeds.yaml');
 
         if (array_key_exists('feeds', $feeds) === false || is_array($feeds['feeds']) === false) {
             throw new FeedsException('No feeds in feeds.yaml');

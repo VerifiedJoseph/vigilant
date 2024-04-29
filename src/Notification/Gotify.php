@@ -34,7 +34,7 @@ final class Gotify extends AbstractNotification
                 ]
             );
 
-            $this->logger->log('Sent notification using Gotify');
+            $this->logger->info('Sent notification using Gotify');
         } catch (EndpointException | GotifyException $err) {
             throw new NotificationException('[Gotify] ' . $err->getMessage());
         }

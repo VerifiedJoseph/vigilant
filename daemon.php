@@ -38,7 +38,7 @@ try {
                 $check->check();
                 $notify->send($check->getMessages());
 
-                $logger->log(sprintf(
+                $logger->info(sprintf(
                     'Next check in %s seconds at %s',
                     $details->getInterval(),
                     $check->getNextCheckDate()

@@ -83,7 +83,7 @@ final class Check
     public function check(): void
     {
         try {
-            $this->logger->log(sprintf(
+            $this->logger->info(sprintf(
                 'Checking...%s (%s)',
                 $this->details->getName(),
                 $this->details->getUrl()
@@ -94,7 +94,7 @@ final class Check
             $this->process($result);
             $this->cache->resetErrorCount();
         } catch (FetchException $err) {
-            $this->logger->log($err->getMessage());
+            $this->logger->debug($err->getMessage());
 
             $this->cache->increaseErrorCount();
 
@@ -141,7 +141,7 @@ final class Check
                 $title = html_entity_decode($item->getTitle());
                 $body = strip_tags(html_entity_decode($item->getContent()));
 
-                $this->logger->log(sprintf('Found...%s (%s)', $title, $hash));
+                $this->logger->info(sprintf('Found...%s (%s)', $title, $hash));
 
                 if ($this->cache->isFirstCheck() === false) {
                     $this->messages[] = new Message(
@@ -153,12 +153,12 @@ final class Check
             }
         }
 
-        $this->logger->log(sprintf('Found %s new item(s).', $newItems));
+        $this->logger->info(sprintf('Found %s new item(s).', $newItems));
 
         $this->cache->updateItems($itemHashes);
 
         if ($newItems > 0 && $this->cache->isFirstCheck() === true) {
-            $this->logger->log('First feed check, not sending notifications for found items.');
+            $this->logger->info('First feed check, not sending notifications for found items.');
         }
     }
 }
