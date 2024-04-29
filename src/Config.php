@@ -25,6 +25,7 @@ class Config
 
     /** @var array<string, int|string|false> $defaults Default values for config parameters */
     private array $defaults = [
+        'logging_level' => 1,
         'feeds_file' => 'feeds.yaml',
         'notification_gotify_priority' => 4,
         'notification_ntfy_priority' => 3,
@@ -51,11 +52,21 @@ class Config
     {
         $this->requireConfigFile();
 
+        $this->validate->verbose();
         $this->validate->timezone();
         $this->validate->folder($this->getCachePath());
         $this->validate->feedsFile();
         $this->validate->notificationService($this->notificationServices);
         $this->config = $this->validate->getConfig();
+    }
+
+    /**
+     * Return logging level
+     * @return int
+     */
+    public function getLoggingLevel(): int
+    {
+        return $this->config['logging_level'];
     }
 
     /**

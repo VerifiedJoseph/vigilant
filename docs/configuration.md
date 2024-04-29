@@ -56,3 +56,9 @@ Vigilant can be used a with ntfy server that has password or [access token](http
 | `VIGILANT_NOTIFICATION_NTFY_USERNAME` | Ntfy authentication username.                         |
 | `VIGILANT_NOTIFICATION_NTFY_PASSWORD` | Ntfy authentication password.                         |
 | `VIGILANT_NOTIFICATION_NTFY_TOKEN`    | Ntfy access token.                                    |
+
+## Logging
+
+| Name               | Description                                                     |
+| ------------------ | --------------------------------------------------------------- |
+| `VIGILANT_VERBOSE` | Enable additional logging. Supported values: `true` or `false`. |

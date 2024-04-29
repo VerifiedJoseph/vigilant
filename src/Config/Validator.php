@@ -54,6 +54,23 @@ class Validator extends AbstractValidator
     }
 
     /**
+     * Validate `VIGILANT_VERBOSE`
+     * @throws ConfigException if value is not a boolean
+     */
+    public function verbose(): void
+    {
+        if ($this->hasEnv('VERBOSE') === true) {
+            if ($this->isEnvBoolean('VERBOSE') === false) {
+                throw new ConfigException('Verbose environment variable value must a boolean [VIGILANT_VERBOSE]');
+            }
+
+            if ($this->getEnv('VERBOSE') === 'true') {
+                $this->config['logging_level'] = 2;
+            }
+        }
+    }
+
+    /**
      * Validate `VIGILANT_TIMEZONE`
      * @throws ConfigException if invalid timezone is given
      */
