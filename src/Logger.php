@@ -62,7 +62,7 @@ class Logger
 
         echo sprintf(
             '[%s] %s %s',
-            $date->format('Y-m-d h:i:s'),
+            $date->format('Y-m-d h:i:s P'),
             $text,
             PHP_EOL
         );
