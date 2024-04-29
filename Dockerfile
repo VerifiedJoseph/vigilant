@@ -14,6 +14,7 @@ FROM alpine:3.19.1
 
 # Install packages
 RUN apk add --no-cache \
+  bash \
   curl \
   php82 \
   php82-curl \
@@ -26,6 +27,9 @@ RUN apk add --no-cache \
 
 # Copy app folder from composer build stage
 COPY --from=composer /app /app
-WORKDIR /app
 
-CMD [ "php", "./daemon.php" ]
+# Copy daemon bash script
+COPY /docker/scripts/daemon.sh /app/daemon.sh
+
+WORKDIR /app
+CMD [ "bash", "./daemon.sh" ]
