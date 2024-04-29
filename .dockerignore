@@ -3,6 +3,7 @@
 
 # Allow files and directories
 !/src
-!/daemon.php
+!/vigilant.php
 !/composer.json
 !/composer.lock
+!/docker/scripts/daemon.sh
