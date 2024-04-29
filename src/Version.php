@@ -7,7 +7,7 @@ class Version
     /**
      * @var string $version Vigilant version
      */
-    private static string $version = '1.1.0';
+    private static string $version = '1.2.0';
 
     /**
      * Returns version number
