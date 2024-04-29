@@ -6,7 +6,6 @@ use Vigilant\Logger;
 #[CoversClass(Logger::class)]
 class LoggerTest extends TestCase
 {
-
     /**
      * Test `info()`
      */
@@ -71,6 +70,5 @@ class LoggerTest extends TestCase
         $actual = $reflection->getProperty('logLevel')->getValue($logger);
 
         $this->assertEquals(2, $actual);
-
     }
 }

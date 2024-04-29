@@ -90,7 +90,7 @@ class Logger
     {
         if ($level < 1) {
             $this->logLevel = 1;
-        } else if ($level > 2) {
+        } elseif ($level > 2) {
             $this->logLevel = 2;
         } else {
             $this->logLevel = $level;
