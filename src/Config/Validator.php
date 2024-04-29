@@ -65,7 +65,7 @@ class Validator extends AbstractValidator
             }
 
             if ($this->getEnv('VERBOSE') === 'true') {
-                $this->config['logging_level'] = 2; 
+                $this->config['logging_level'] = 2;
             }
         }
     }
