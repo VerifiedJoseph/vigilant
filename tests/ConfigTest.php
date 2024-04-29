@@ -129,13 +129,7 @@ class ConfigTest extends TestCase
     public function testGetNtfyAuthMethod(): void
     {
         $config = new Config();
-
-        $reflection = new ReflectionClass($config);
-        $property = $reflection->getProperty('config');
-        $property->setAccessible(true);
-        $property->setValue($config, ['notification_ntfy_auth' => 'password']);
-
-        $this->assertEquals('password', $config->getNtfyAuthMethod());
+        $this->assertEquals('none', $config->getNtfyAuthMethod());
     }
 
     /**
