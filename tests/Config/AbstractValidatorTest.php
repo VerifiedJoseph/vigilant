@@ -19,6 +19,18 @@ class AbstractValidatorTest extends TestCase
     }
 
     /**
+     * Test `isEnvBoolean`
+     */
+    public function testIsEnvBoolean(): void
+    {
+        putenv('VIGILANT_TEST=true');
+
+        $class = new class ([]) extends AbstractValidator {
+        };
+        $this->assertTrue($class->isEnvBoolean('TEST'));
+    }
+
+    /**
      * Test `getEnv()`
      */
     public function testGetEnv(): void

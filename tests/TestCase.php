@@ -36,6 +36,7 @@ abstract class TestCase extends BaseTestCase
     protected function resetEnvs(): void
     {
         // Unset environment variables before each test
+        putenv('VIGILANT_VERBOSE');
         putenv('VIGILANT_TIMEZONE');
         putenv('VIGILANT_FEEDS_FILE');
         putenv('VIGILANT_NOTIFICATION_SERVICE');

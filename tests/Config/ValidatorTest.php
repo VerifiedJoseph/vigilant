@@ -80,6 +80,34 @@ class ValidatorTest extends \TestCase
     }
 
     /**
+     * Test `verbose()`
+     */
+    public function testVerbose(): void
+    {
+        putenv('VIGILANT_VERBOSE=true');
+
+        $validate = new Validator(self::$defaults);
+        $validate->verbose();
+        $config = $validate->getConfig();
+
+        $this->assertEquals(2, $config['logging_level']);
+    }
+
+    /**
+     * Test `verbose()` with `VIGILANT_VERBOSE` value not a boolean
+     */
+    public function testVerboseNotBoolean(): void
+    {
+        $this->expectException(ConfigException::class);
+        $this->expectExceptionMessage('Verbose environment variable value must a boolean');
+
+        putenv('VIGILANT_VERBOSE=string');
+
+        $validate = new Validator(self::$defaults);
+        $validate->verbose();
+    }
+
+    /**
      * Test `timezone()`
      */
     public function testTimezone(): void

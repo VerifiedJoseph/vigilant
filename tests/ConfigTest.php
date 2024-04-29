@@ -43,6 +43,18 @@ class ConfigTest extends TestCase
     }
 
     /**
+     * Test `getLoggingLevel()`
+     */
+    public function testGetLoggingLevel(): void
+    {
+        $config = new Config();
+        $this->assertEquals(
+            self::$defaults['logging_level'],
+            $config->getLoggingLevel()
+        );
+    }
+
+    /**
      * Test `getTimezone()`
      */
     public function testGetTimezone(): void
