@@ -17,7 +17,7 @@ class Logger
      *
      * @var int
      */
-    private int $level = 1;
+    public int $logLevel = 1;
 
     /**
      * @param string $timezone Timezone
@@ -56,7 +56,7 @@ class Logger
      */
     public function debug(string $text): void
     {
-        if ($this->level === 2) {
+        if ($this->logLevel === 2) {
             $this->log($text);
         }
     }
@@ -89,13 +89,11 @@ class Logger
     private function setLevel(int $level): void
     {
         if ($level < 1) {
-            $this->level = 1;
+            $this->logLevel = 1;
+        } else if ($level > 2) {
+            $this->logLevel = 2;
+        } else {
+            $this->logLevel = $level;
         }
-
-        if ($level > 2) {
-            $this->level = 2;
-        }
-
-        $this->level = $level;
     }
 }
