@@ -57,7 +57,7 @@ class Validator extends AbstractValidator
      * Validate `VIGILANT_VERBOSE`
      * @throws ConfigException if value is not a boolean
      */
-    public function verbose()
+    public function verbose(): void
     {
         if ($this->hasEnv('VERBOSE') === true) {
             if ($this->isEnvBoolean('VERBOSE') === false) {
