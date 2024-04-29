@@ -27,9 +27,10 @@ class Logger
         $date = new DateTime('now', $this->timezone);
 
         echo sprintf(
-            '[Vigilant][%s] %s',
-            $date->format('Y-m-d h:s:i'),
-            $text
+            '[%s] %s %s',
+            $date->format('Y-m-d h:i:s'),
+            $text,
+            PHP_EOL
         );
     }
 }
