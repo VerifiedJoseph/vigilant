@@ -17,8 +17,10 @@ try {
     $config = new Config();
     $config->validate();
 
-    $fetch = new Fetch();
     $logger = new Logger($config->getTimezone());
+    $logger->debug(sprintf('Vigilant version %s', Version::get()));
+
+    $fetch = new Fetch();
     $feeds = new Feeds($config, $logger);
 
     foreach ($feeds->get() as $details) {
