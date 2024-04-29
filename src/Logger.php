@@ -40,6 +40,16 @@ class Logger
     }
 
     /**
+     * Display error text in terminal
+     *
+     * @param string $text Text string to display
+     */
+    public function error(string $text): void
+    {
+        $this->log($text);
+    }
+
+    /**
      * Display text in terminal when debugging is enabled
      *
      * @param string $text Text string to display

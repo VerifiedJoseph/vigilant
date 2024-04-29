@@ -50,7 +50,7 @@ class Notify
                     $message->getUrl()
                 );
             } catch (NotificationException $err) {
-                $this->logger->info($err->getMessage());
+                $this->logger->error($err->getMessage());
             }
         }
     }

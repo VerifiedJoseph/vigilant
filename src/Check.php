@@ -94,7 +94,7 @@ final class Check
             $this->process($result);
             $this->cache->resetErrorCount();
         } catch (FetchException $err) {
-            $this->logger->debug($err->getMessage());
+            $this->logger->error($err->getMessage());
 
             $this->cache->increaseErrorCount();
 
