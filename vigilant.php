@@ -48,4 +48,5 @@ try {
     }
 } catch (ConfigException | AppException $err) {
     Output::text($err->getMessage());
+    exit(1);
 }
