@@ -4,10 +4,12 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 use Vigilant\Feeds;
 use Vigilant\Config;
+use Vigilant\Logger;
 use Vigilant\Exception\AppException;
 
 #[CoversClass(Feeds::class)]
 #[UsesClass(Config::class)]
+#[UsesClass(Logger::class)]
 #[UsesClass(AppException::class)]
 #[UsesClass(Vigilant\Output::class)]
 #[UsesClass(Vigilant\Feed\Feed::class)]
@@ -16,18 +18,23 @@ use Vigilant\Exception\AppException;
 #[UsesClass(Vigilant\Exception\FeedsException::class)]
 class FeedsTest extends TestCase
 {
+    private static Logger $logger;
+
+    public static function setUpBeforeClass(): void
+    {
+        self::$logger = new Logger('UTC');
+    }
+
     /**
      * Test get()
      */
     public function testGet(): void
     {
-        $this->expectOutputRegex('/Loading feeds.yaml/');
-
         /** @var PHPUnit\Framework\MockObject\Stub&Config */
         $config = $this->createStub(Config::class);
         $config->method('getFeedsPath')->willReturn(self::getSamplePath('feeds.yaml'));
 
-        $feeds = new Feeds($config);
+        $feeds = new Feeds($config, self::$logger);
 
         $this->assertIsArray($feeds->get());
         $this->assertContainsOnlyInstancesOf('Vigilant\Feed\Details', $feeds->get());
@@ -44,9 +51,8 @@ class FeedsTest extends TestCase
 
         $this->expectException(AppException::class);
         $this->expectExceptionMessage('No feeds in feeds.yaml');
-        $this->expectOutputRegex('/Loading feeds.yaml/');
 
-        new Feeds($config);
+        new Feeds($config, self::$logger);
     }
 
     /**
@@ -60,8 +66,7 @@ class FeedsTest extends TestCase
 
         $this->expectException(AppException::class);
         $this->expectExceptionMessage('A colon cannot be used in an unquoted mapping value');
-        $this->expectOutputRegex('/Loading feeds.yaml/');
 
-        new Feeds($config);
+        new Feeds($config, self::$logger);
     }
 }

@@ -13,12 +13,4 @@ final class Output
     {
         echo $text . "\n";
     }
-
-    /**
-     * Output system newline character in terminal
-     */
-    public static function newline(): void
-    {
-        echo PHP_EOL;
-    }
 }

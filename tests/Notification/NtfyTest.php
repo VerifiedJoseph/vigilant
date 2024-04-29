@@ -3,15 +3,19 @@
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
+use Vigilant\Logger;
 use Vigilant\Notification\Ntfy;
 use Vigilant\Exception\NotificationException;
 
 #[CoversClass(Ntfy::class)]
+#[UsesClass(Logger::class)]
 #[CoversClass(Vigilant\Notification\AbstractNotification::class)]
 #[UsesClass(NotificationException::class)]
 #[UsesClass(Vigilant\Output::class)]
 class NtfyTest extends TestCase
 {
+    private static Logger $logger;
+
     /** @var array<string, mixed> $config */
     private array $config = [
         'server' => 'https://ntfy.example.invalid',
@@ -22,13 +26,18 @@ class NtfyTest extends TestCase
         ]
     ];
 
+    public static function setUpBeforeClass(): void
+    {
+        self::$logger = new Logger('UTC');
+    }
+
     /**
      * Test `setup()` with no auth
      */
     #[DoesNotPerformAssertions]
     public function testSetupWithNoAuth(): void
     {
-        new Ntfy($this->config);
+        new Ntfy($this->config, self::$logger);
     }
 
     /**
@@ -41,7 +50,7 @@ class NtfyTest extends TestCase
         $config['auth']['method'] = 'password';
         $config['auth']['username'] = 'bob';
         $config['auth']['password'] = 'qwerty';
-        new Ntfy($config);
+        new Ntfy($config, self::$logger);
     }
 
     /**
@@ -53,7 +62,7 @@ class NtfyTest extends TestCase
         $config = $this->config;
         $config['auth']['method'] = 'token';
         $config['auth']['token'] = 'qwerty';
-        new Ntfy($config);
+        new Ntfy($config, self::$logger);
     }
 
     /**
@@ -64,7 +73,7 @@ class NtfyTest extends TestCase
         $client = self::createStub(\Ntfy\Client::class);
         $client->method('send')->willReturn(new stdClass());
 
-        $ntfy = new Ntfy($this->config);
+        $ntfy = new Ntfy($this->config, self::$logger);
 
         $reflection = new ReflectionClass($ntfy);
         $property = $reflection->getProperty('client');
@@ -81,7 +90,7 @@ class NtfyTest extends TestCase
         $this->expectException(NotificationException::class);
         $this->expectExceptionMessage('[Notification error] [Ntfy]');
 
-        $ntfy = new Ntfy($this->config);
+        $ntfy = new Ntfy($this->config, self::$logger);
         $ntfy->send('Hello World', 'Hello from phpunit');
     }
 }

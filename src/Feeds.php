@@ -2,7 +2,6 @@
 
 namespace Vigilant;
 
-use Vigilant\Check;
 use Vigilant\Feed\Feed;
 use Vigilant\Feed\Details;
 use Vigilant\Exception\AppException;
@@ -18,18 +17,23 @@ final class Feeds
     private Config $config;
 
     /**
+     * @var Logger
+     */
+    private Logger $logger;
+
+    /**
      * @var array<int, Details> $feeds Feed classes for each feeds.yaml entry
      */
     private array $feeds = [];
 
     /**
-     * Constructor
-     *
-     * @param Config $config Feeds filepath
+     * @param Config $config Config class instance
+     * @param Logger $logger Logger class instance
      */
-    public function __construct(Config $config)
+    public function __construct(Config $config, Logger $logger)
     {
         $this->config = $config;
+        $this->logger = $logger;
 
         try {
             $feeds = $this->load($this->config->getFeedsPath());
@@ -60,7 +64,7 @@ final class Feeds
     private function load(string $path): array
     {
         try {
-            Output::text('Loading feeds.yaml (' . $path . ')');
+            $this->logger->debug(sprintf('Loading feeds.yaml (%s)', $path));
 
             return Yaml::parseFile($path);
         } catch (ParseException $err) {
@@ -76,7 +80,7 @@ final class Feeds
      */
     private function validate(array $feeds): void
     {
-        Output::text('Validating feeds.yaml');
+        $this->logger->debug('Validating feeds.yaml');
 
         if (array_key_exists('feeds', $feeds) === false || is_array($feeds['feeds']) === false) {
             throw new FeedsException('No feeds in feeds.yaml');

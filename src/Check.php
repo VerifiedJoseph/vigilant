@@ -9,14 +9,17 @@ use Vigilant\Exception\FetchException;
 
 final class Check
 {
-    /** @var Config */
-    private Config $config;
-
-    /** @var Fetch */
-    private Fetch $fetch;
-
     /** @var Feed\Details $details Feed details (name, url, interval and hash) */
     private Feed\Details $details;
+
+    /** @var Fetch Fetch class instance */
+    private Fetch $fetch;
+
+    /** @var Config Config class instance */
+    private Config $config;
+
+    /** @var Logger Logger class instance */
+    private Logger $logger;
 
     /** @var Cache $cache Cache class instance */
     private Cache $cache;
@@ -29,14 +32,16 @@ final class Check
 
     /**
      * @param Feed\Details $details Feed details
-     * @param Config $config Script config
+     * @param Config $config Config class instance
      * @param Fetch $fetch Fetch class instance
+     * @param Logger $logger Logger class instance
      */
-    public function __construct(Feed\Details $details, Config $config, Fetch $fetch)
+    public function __construct(Feed\Details $details, Fetch $fetch, Config $config, Logger $logger)
     {
         $this->details = $details;
-        $this->config = $config;
         $this->fetch = $fetch;
+        $this->config = $config;
+        $this->logger = $logger;
 
         $this->cache = new Cache(
             $this->config->getCachePath(),
@@ -78,14 +83,18 @@ final class Check
     public function check(): void
     {
         try {
-            Output::text('Checking...' . $this->details->getName() . ' (' . $this->details->getUrl() . ')');
+            $this->logger->info(sprintf(
+                'Checking...%s (%s)',
+                $this->details->getName(),
+                $this->details->getUrl()
+            ));
 
             $result = $this->fetch->get($this->details->getUrl());
 
             $this->process($result);
             $this->cache->resetErrorCount();
         } catch (FetchException $err) {
-            Output::text($err->getMessage());
+            $this->logger->error($err->getMessage());
 
             $this->cache->increaseErrorCount();
 
@@ -129,24 +138,27 @@ final class Check
             if (in_array($hash, $this->cache->getItems()) === false) {
                 $newItems += 1;
 
-                Output::text('Found...' . html_entity_decode($item->getTitle()) . ' (' . $hash . ')');
+                $title = html_entity_decode($item->getTitle());
+                $body = strip_tags(html_entity_decode($item->getContent()));
+
+                $this->logger->info(sprintf('Found...%s (%s)', $title, $hash));
 
                 if ($this->cache->isFirstCheck() === false) {
                     $this->messages[] = new Message(
-                        title: html_entity_decode($item->getTitle()),
-                        body: strip_tags(html_entity_decode($item->getContent())),
+                        title: $title,
+                        body: $body,
                         url: $item->getLink()
                     );
                 }
             }
         }
 
-        Output::text('Found ' . $newItems . ' new item(s).');
+        $this->logger->info(sprintf('Found %s new item(s).', $newItems));
 
         $this->cache->updateItems($itemHashes);
 
         if ($newItems > 0 && $this->cache->isFirstCheck() === true) {
-            Output::text('First feed check, not sending notifications for found items.');
+            $this->logger->info('First feed check, not sending notifications for found items.');
         }
     }
 }

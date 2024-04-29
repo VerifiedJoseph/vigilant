@@ -20,14 +20,4 @@ class OutputTest extends TestCase
 
         Output::text($this->text);
     }
-
-    /**
-     * Test newline()
-     */
-    public function testNewline(): void
-    {
-        $this->expectOutputString(PHP_EOL);
-
-        Output::newline();
-    }
 }
