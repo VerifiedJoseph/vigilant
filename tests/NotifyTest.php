@@ -6,6 +6,7 @@ use Vigilant\Notify;
 use Vigilant\Feed\Details;
 use Vigilant\Config;
 use Vigilant\Message;
+use Vigilant\Logger;
 use Vigilant\Notification\Gotify;
 use Vigilant\Notification\Ntfy;
 
@@ -13,6 +14,7 @@ use Vigilant\Notification\Ntfy;
 #[UsesClass(Details::class)]
 #[UsesClass(Config::class)]
 #[UsesClass(Message::class)]
+#[UsesClass(Logger::class)]
 #[UsesClass(Gotify::class)]
 #[UsesClass(Ntfy::class)]
 #[UsesClass(Vigilant\Output::class)]
@@ -20,12 +22,19 @@ use Vigilant\Notification\Ntfy;
 #[UsesClass(Vigilant\Exception\NotificationException::class)]
 class NotifyTest extends TestCase
 {
+    private static Logger $logger;
+
     /** @var array<string, mixed> $feed */
     private array $feed = [
         'name' => 'GitHub status',
         'url' => 'https://www.githubstatus.com/history.rss',
         'interval' => 900
     ];
+
+    public static function setUpBeforeClass(): void
+    {
+       self::$logger = new Logger('UTC');
+    }
 
     public function testSend(): void
     {
@@ -42,7 +51,7 @@ class NotifyTest extends TestCase
             new Message('Hello World', 'Hello??')
         ];
 
-        $notify = new notify(new Details($this->feed), $config);
+        $notify = new notify(new Details($this->feed), $config, self::$logger);
         $notify->send($messages);
     }
 
@@ -61,7 +70,7 @@ class NotifyTest extends TestCase
             new Message('Hello World', 'Hello??')
         ];
 
-        $notify = new notify(new Details($this->feed), $config);
+        $notify = new notify(new Details($this->feed), $config, self::$logger);
         $notify->send($messages);
     }
 
@@ -79,7 +88,7 @@ class NotifyTest extends TestCase
         $config->method('getGotifyPriority')->willReturn(0);
         $config->method('getGotifyToken')->willReturn('fake-token');
 
-        $notify = new notify(new Details($this->feed), $config);
+        new notify(new Details($this->feed), $config, self::$logger);
     }
 
    /**
@@ -99,7 +108,7 @@ class NotifyTest extends TestCase
         $feed = $this->feed;
         $feed['gotify_priority'] = 5;
 
-        $notify = new notify(new Details($feed), $config);
+        new notify(new Details($feed), $config, self::$logger);
     }
 
    /**
@@ -119,7 +128,7 @@ class NotifyTest extends TestCase
         $feed = $this->feed;
         $feed['gotify_token'] = 'qwerty';
 
-        $notify = new notify(new Details($feed), $config);
+        new notify(new Details($feed), $config, self::$logger);
     }
 
    /**
@@ -135,7 +144,7 @@ class NotifyTest extends TestCase
         $config->method('getNtfyUrl')->willReturn('https://ntfy.example.com/');
         $config->method('getNtfyPriority')->willReturn(0);
 
-        $notify = new notify(new Details($this->feed), $config);
+        new notify(new Details($this->feed), $config, self::$logger);
     }
 
    /**
@@ -154,7 +163,7 @@ class NotifyTest extends TestCase
         $config->method('getNtfyUsername')->willReturn('bob');
         $config->method('getNtfyPassword')->willReturn('qwerty');
 
-        $notify = new notify(new Details($this->feed), $config);
+        new notify(new Details($this->feed), $config, self::$logger);
     }
 
    /**
@@ -172,7 +181,7 @@ class NotifyTest extends TestCase
         $config->method('getNtfyToken')->willReturn('fake-token');
         $config->method('getNtfyAuthMethod')->willReturn('token');
 
-        $notify = new notify(new Details($this->feed), $config);
+        new notify(new Details($this->feed), $config, self::$logger);
     }
 
    /**
@@ -191,7 +200,7 @@ class NotifyTest extends TestCase
         $feed = $this->feed;
         $feed['ntfy_token'] = 'qwerty';
 
-        $notify = new notify(new Details($feed), $config);
+        new notify(new Details($feed), $config, self::$logger);
     }
 
    /**
@@ -210,7 +219,7 @@ class NotifyTest extends TestCase
         $feed = $this->feed;
         $feed['ntfy_topic'] = 'qwerty';
 
-        $notify = new notify(new Details($feed), $config);
+        new notify(new Details($feed), $config, self::$logger);
     }
 
    /**
@@ -229,6 +238,6 @@ class NotifyTest extends TestCase
         $feed = $this->feed;
         $feed['ntfy_priority'] = 5;
 
-        $notify = new notify(new Details($feed), $config);
+        new notify(new Details($feed), $config, self::$logger);
     }
 }

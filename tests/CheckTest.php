@@ -6,12 +6,14 @@ use MockFileSystem\MockFileSystem as mockfs;
 use Vigilant\Check;
 use Vigilant\Feed\Details;
 use Vigilant\Config;
+use Vigilant\Logger;
 use Vigilant\Fetch;
 
 #[CoversClass(Check::class)]
 #[UsesClass(Details::class)]
 #[UsesClass(Fetch::class)]
 #[UsesClass(Config::class)]
+#[UsesClass(Logger::class)]
 #[UsesClass(Vigilant\Cache::class)]
 #[UsesClass(Vigilant\Output::class)]
 #[UsesClass(Vigilant\Message::class)]
@@ -20,6 +22,7 @@ use Vigilant\Fetch;
 class CheckTest extends TestCase
 {
     private static Config $config;
+    private static Logger $logger;
 
     /** @var array<string, mixed> $feed */
     private array $feed = [
@@ -46,6 +49,8 @@ class CheckTest extends TestCase
         $config->method('getCachePath')->willReturn(mockfs::getUrl('/'));
         $config->method('getTimezone')->willReturn('UTC');
         self::$config = $config;
+
+        self::$logger = new Logger('UTC');
     }
 
     public function setup(): void
@@ -59,7 +64,7 @@ class CheckTest extends TestCase
     public function testIsDue(): void
     {
         $details = new Details($this->feed);
-        $check = new check($details, self::$config, new Fetch());
+        $check = new check($details, new Fetch(), self::$config, self::$logger);
         $this->assertIsBool($check->isDue());
     }
 
@@ -69,7 +74,7 @@ class CheckTest extends TestCase
     public function testGetNextCheckDate(): void
     {
         $details = new Details($this->feed);
-        $check = new check($details, self::$config, new Fetch());
+        $check = new check($details, new Fetch(), self::$config, self::$logger);
 
         $this->assertEquals('1970-01-01 00:00:00', $check->getNextCheckDate());
     }
@@ -88,7 +93,7 @@ class CheckTest extends TestCase
         ]));
 
         $details = new Details($this->feed);
-        $check = new check($details, self::$config, $fetch);
+        $check = new check($details, $fetch, self::$config, self::$logger);
 
         $this->expectOutputRegex('/First feed check, not sending notifications for found items/');
 
@@ -113,7 +118,8 @@ class CheckTest extends TestCase
         ]));
 
         $details = new Details($this->feed);
-        $check = new check($details, self::$config, $fetch);
+        $check = new check($details, $fetch, self::$config, self::$logger);
+        $check = new check($details, $fetch, self::$config, self::$logger);
 
         $this->expectOutputRegex('/Found 1 new item\(s\)/');
 
@@ -143,7 +149,7 @@ class CheckTest extends TestCase
             'handler' => GuzzleHttp\HandlerStack::create($mock)
         ]));
         $details = new Details($this->feed);
-        $check = new check($details, self::$config, $fetch);
+        $check = new check($details, $fetch, self::$config, self::$logger);
 
         $this->expectOutputRegex('/Failed to fetch/');
 
