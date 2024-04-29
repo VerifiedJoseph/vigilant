@@ -96,8 +96,10 @@ class Notify
         ];
 
         if ($this->config->getNtfyAuthMethod() === 'password') {
-            $ntfyConfig['auth']['username'] = $this->config->getNtfyUsername();
-            $ntfyConfig['auth']['password'] = $this->config->getNtfyPassword();
+            $ntfyConfig['auth'] = [
+                'username' => $this->config->getNtfyUsername(),
+                'password' => $this->config->getNtfyPassword()
+            ];
         } elseif ($this->config->getNtfyAuthMethod() === 'token') {
             $ntfyConfig['auth']['token'] = $this->config->getNtfyToken();
         }
