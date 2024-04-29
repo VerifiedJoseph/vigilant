@@ -33,7 +33,7 @@ class NotifyTest extends TestCase
 
     public static function setUpBeforeClass(): void
     {
-       self::$logger = new Logger('UTC');
+        self::$logger = new Logger('UTC');
     }
 
     public function testSend(): void

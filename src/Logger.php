@@ -11,7 +11,7 @@ class Logger
 
     /**
      * Logging level
-     * 
+     *
      * - `1` - Normal
      * - `2` - Verbose
      *
