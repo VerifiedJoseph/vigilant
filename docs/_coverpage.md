@@ -1,4 +1,4 @@
-![logo](_media/logo/vigilant.svg)
+![logo](_media/logo/vigilant-icon.svg)
 
 # Vigilant
 
