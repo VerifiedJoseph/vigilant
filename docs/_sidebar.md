@@ -1,6 +1,6 @@
-* [Vigilant](/readme.md)
+* [Vigilant](README.md)
 * [📥Installation](install.md)
 * [⚙️Configuration](configuration.md)
 * [📝Feeds File](feeds.md)
-* [🗓️Changelog](changelog)
+* [🗓️Changelog](CHANGELOG.md)
 * [↗️ GitHub](https://github.com/VerifiedJoseph/vigilant/)

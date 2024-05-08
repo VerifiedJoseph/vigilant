@@ -11,5 +11,5 @@
 - Push notifications with [Gotify](https://gotify.net) or [ntfy.sh](https://ntfy.sh)
 - Deploy as a Docker container
 
-[Get Started](readme.md)
+[Get Started](README.md)
 [↗️ GitHub](https://github.com/VerifiedJoseph/vigilant/)
