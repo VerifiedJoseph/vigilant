@@ -11,16 +11,19 @@
 
 Vigilant is a PHP script for monitoring RSS/ATOM and JSON feeds, and sending push notifications on new entries.
 
-Vigilant supports sending push notifications with [Gotify](https://gotify.net) or [ntfy.sh](https://ntfy.sh).
+Supports sending push notifications with [Gotify](https://gotify.net) or [ntfy.sh](https://ntfy.sh).
+
+Vigilant can either be run manually or in a Docker container, making it quick and easy to deploy.
 
 ## Documentation
 
-- [Installation](docs/install.md)
-- [Configuration](docs/configuration.md)
-- [Feeds File](docs/feeds.md)
+- [📥Installation](docs/install.md)
+- [⚙️Configuration](docs/configuration.md)
+- [📄Feeds File](docs/feeds.md)
 
 ## Requirements
 
+🐳Docker, or for manual setup:
 - PHP >= 8.1
 - Composer
 - PHP Extensions:
