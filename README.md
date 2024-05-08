@@ -1,6 +1,6 @@
 <p align="left">
   <a href="/">
-    <img src="docs/_media/logo/vigilant.png" width="99" alt="Vigilant logo">
+    <img src="https://sirhazza.github.io/vigilant/_media/logo/vigilant.png" width="110px" alt="Vigilant logo">
   </a>
 </p>
 
