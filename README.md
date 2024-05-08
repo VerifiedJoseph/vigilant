@@ -1,3 +1,9 @@
+<p align="left">
+  <a href="/">
+    <img src="logo/vigilant-plain.svg" width="99" alt="Vigilant logo">
+  </a>
+</p>
+
 # Vigilant
 
 [![Latest Version](https://img.shields.io/github/release/VerifiedJoseph/vigilant.svg?style=flat-square)](https://github.com/VerifiedJoseph/vigilant/releases/latest)
