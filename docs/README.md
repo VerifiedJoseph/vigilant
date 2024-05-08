@@ -43,7 +43,7 @@ Vigilant can either be run manually or in a Docker container, making it quick an
 
 ## Changelog
 
-All notable changes to this project are documented in the [CHANGELOG](changelog).
+All notable changes to this project are documented in the [CHANGELOG](changelog.md).
 
 ## License
 
