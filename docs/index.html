@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vigilant</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="PHP script for monitoring RSS/ATOM/JSON feeds and sending push notifications on new entries.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+ <!-- Themes (light + dark) -->
+ <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css">
+ <link rel="stylesheet" media="(prefers-color-scheme: light)" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">
+ <link rel="icon" type="image/x-icon" href="/_media/logo/vigilant.png">
+</head>
+
+<body>
+  <div id="app"></div>
+  <script>
+    window.$docsify = {
+      name: 'Vigilant',
+      nameLink: '/',
+      basePath: '/',
+      logo: '_media/logo/vigilant.svg',
+      coverpage: true,
+      onlyCover: true,
+      loadSidebar: true,
+      auto2top: true,
+      subMaxLevel: 2,
+      alias: {
+        '/docs/(.*)': '$1',
+        '/changelog': 'https://raw.githubusercontent.com/VerifiedJoseph/vigilant/master/CHANGELOG'
+      }
+    }
+  </script>
+  <!-- Docsify v4 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <!-- Required -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/js/docsify-themeable.min.js"></script>
+  <!-- Recommended -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/zoom-image.min.js"></script>
+
+</body>
+
+</html>
