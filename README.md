@@ -1,6 +1,6 @@
 <p align="left">
   <a href="/">
-    <img src="logo/vigilant-plain.svg" width="99" alt="Vigilant logo">
+    <img src="docs/_media/logo/vigilant.png" width="99" alt="Vigilant logo">
   </a>
 </p>
 
@@ -19,7 +19,7 @@ Vigilant can either be run manually or in a Docker container, making it quick an
 
 - [📥Installation](docs/install.md)
 - [⚙️Configuration](docs/configuration.md)
-- [📄Feeds File](docs/feeds.md)
+- [📝Feeds File](docs/feeds.md)
 
 ## Requirements
 
@@ -43,8 +43,8 @@ Vigilant can either be run manually or in a Docker container, making it quick an
 
 ## Changelog
 
-All notable changes to this project are documented in the [CHANGELOG](CHANGELOG.md).
+All notable changes to this project are documented in the [CHANGELOG](changelog).
 
 ## License
 
-MIT License. Please see [LICENSE](LICENSE) for more information.
+MIT License. Please see [LICENSE](https://github.com/VerifiedJoseph/vigilant/blob/main/LICENSE) for more information.
