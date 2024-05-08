@@ -6,6 +6,15 @@
 
 # Documentation powered by Docsify
 
-Follow the Docsify [Quick start](https://docsify.js.org/#/quickstart) guide on how to install and run it locally.
+### Follow the Docsify '[Quick start](https://docsify.js.org/#/quickstart)' guide on how to install and run it locally.
 
-Read the Docsify [Deploy](https://docsify.js.org/#/deploy) guide on how to deploy the documentation to GitHub Pages.
+1. Install Docsify `npm i docsify-cli -g`.
+
+2. At root of the repo `docsify serve docs`.
+
+3. Set `basePath: '/',` in `index.html` for localhost website, revert when finished.
+
+
+### Read the Docsify '[Deploy](https://docsify.js.org/#/deploy)' guide on how to deploy the documentation to GitHub Pages.
+
+- Select `main branch /docs folder` as your GitHub Pages source.
