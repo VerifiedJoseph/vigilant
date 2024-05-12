@@ -17,9 +17,9 @@ Vigilant can either be run manually or in a Docker container, making it quick an
 
 ## Documentation
 
-- [📥Installation](docs/install.md)
-- [⚙️Configuration](docs/configuration.md)
-- [📝Feeds File](docs/feeds.md)
+- 📥[Installation](docs/install.md)
+- ⚙️[Configuration](docs/configuration.md)
+- 📝[Feeds File](docs/feeds.md)
 
 ## Requirements
 
