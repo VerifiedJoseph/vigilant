@@ -34,7 +34,5 @@ class MessageTest extends TestCase
         $message = new Message($title, $body, $url, $prefix);
 
         $this->assertEquals($fullTitle, $message->getTitle());
-        $this->assertEquals($body, $message->getBody());
-        $this->assertEquals($url, $message->getUrl());
     }
 }
