@@ -4,6 +4,7 @@ namespace Vigilant;
 
 class Message
 {
+    private ?string $prefix = null;
     private string $title;
     private string $body;
     private string $url;
@@ -12,12 +13,14 @@ class Message
      * @param string $title Message title
      * @param string $body Message body
      * @param string $url Message URL
+     * @param ?string $prefix Message title prefix
      */
-    public function __construct(string $title, string $body, string $url = '')
+    public function __construct(string $title, string $body, string $url = '', ?string $prefix = null)
     {
         $this->title = $title;
         $this->body = $body;
         $this->url = $url;
+        $this->prefix = $prefix;
     }
 
     /**
@@ -26,6 +29,14 @@ class Message
      */
     public function getTitle(): string
     {
+        if ($this->prefix !== null) {
+            return sprintf(
+                '%s %s',
+                trim($this->prefix),
+                $this->title
+            );
+        }
+
         return $this->title;
     }
 
