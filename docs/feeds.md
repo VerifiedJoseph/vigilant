@@ -24,6 +24,7 @@ feeds:
 | `name`            | **Yes**  | Feed name                                                                     |
 | `url`             | **Yes**  | Feed URL                                                                      |
 | `interval`        | **Yes**  | Interval between feed checks in seconds. Minimum value is `300` (5 minutes).  |
+| `title_prefix`    | No       | Text to append to the front of a message's title.                             |
 | `gotify_token`    | No       | Gotify application token. Overrides token set with an environment variable.   |
 | `gotify_priority` | No       | Gotify message priority. Overrides default value and/or environment variable. |
 | `ntfy_topic`      | No       | Ntfy topic. Overrides topic set with an environment variable.                 |
