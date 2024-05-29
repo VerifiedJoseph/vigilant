@@ -18,12 +18,15 @@ final class Cache
     /**
      * @var array<string, mixed> $data Data from cache file
      */
-    private array $data = [
+    private array $data = [];
+
+    private $default = [
         'feed_url' => null,
         'first_check' => 0,
         'next_check' => 0,
         'error_count' => 0,
-        'items' => []
+        'items' => [],
+        'version' => null,
     ];
 
     /**
@@ -36,6 +39,7 @@ final class Cache
         $this->config = $config;
 
         $this->load();
+        $this->validateVersion();
     }
 
     /**
@@ -188,6 +192,8 @@ final class Cache
      */
     public function save(): void
     {
+        $this->data['version'] = $this->config->getCacheFormatVersion();
+
         $json = Json::encode($this->data);
         File::write($this->getPath(), $json);
     }
@@ -200,5 +206,15 @@ final class Cache
     private function getPath(): string
     {
         return $this->config->getCachePath() . DIRECTORY_SEPARATOR . $this->filename;
+    }
+
+    /**
+     * Checks if format version in cache matches current version. If values not do not match the data array is emptied.
+     */
+    private function validateVersion(): void
+    {
+        if (array_key_exists('version', $this->data) === false || $this->data['version'] !== $this->config->getCacheFormatVersion()) {
+            $this->data = $this->default;
+        }
     }
 }
