@@ -4,9 +4,11 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 use MockFileSystem\MockFileSystem as mockfs;
 use Vigilant\Cache;
+use Vigilant\Config;
 use Vigilant\Helper\Json;
 
 #[CoversClass(Cache::class)]
+#[UsesClass(Config::class)]
 #[UsesClass(Json::class)]
 #[UsesClass(Vigilant\Helper\File::class)]
 class CacheTest extends TestCase
@@ -42,9 +44,13 @@ class CacheTest extends TestCase
 
         self::$fixtureData = Json::decode(self::loadSample('cache.json'));
 
+        $config = self::createStub(Config::class);
+        $config->method('getCachePath')->willReturn(mockfs::getUrl('/cache'));
+        $config->method('getCacheFormatVersion')->willReturn(1);
+
         self::$cache = new Cache(
-            mockfs::getUrl('/cache'),
-            'file'
+            'file',
+            $config
         );
     }
 
@@ -78,7 +84,11 @@ class CacheTest extends TestCase
 
     public function testIsFirstCheck(): void
     {
-        $cache = new Cache(self::$tempCacheFolder, 'testing');
+        $config = self::createStub(Config::class);
+        $config->method('getCachePath')->willReturn(self::$tempCacheFolder);
+        $config->method('getCacheFormatVersion')->willReturn(1);
+
+        $cache = new Cache('testing', $config);
         $this->assertTrue($cache->isFirstCheck());
     }
 
@@ -182,8 +192,12 @@ class CacheTest extends TestCase
      */
     public function testSetFirstCheck(): void
     {
+        $config = self::createStub(Config::class);
+        $config->method('getCachePath')->willReturn(self::$tempCacheFolder);
+        $config->method('getCacheFormatVersion')->willReturn(1);
+
         $time = time();
-        $cache = new Cache(self::$tempCacheFolder, 'testing');
+        $cache = new Cache('testing', $config);
 
         $this->assertEquals(0, $cache->getFirstCheck());
 
@@ -239,7 +253,11 @@ class CacheTest extends TestCase
      */
     public function testSave(): void
     {
-        $cache = new Cache(self::$tempCacheFolder, 'testing');
+        $config = self::createStub(Config::class);
+        $config->method('getCachePath')->willReturn(self::$tempCacheFolder);
+        $config->method('getCacheFormatVersion')->willReturn(1);
+
+        $cache = new Cache('testing', $config);
         $cache->save();
 
         $this->assertFileExists(mockfs::getUrl('/cache/testing'));

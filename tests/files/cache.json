@@ -3,5 +3,6 @@
 	"first_check": 1666292400,
 	"next_check": 1666807200,
 	"error_count":1,
-	"items": ["d79b0d110ddc01b5533bc8f63b2369fc730f9aee", "b466509d2edc63d67a28ecc6c5094eab4a511ada"]
+	"items": ["d79b0d110ddc01b5533bc8f63b2369fc730f9aee", "b466509d2edc63d67a28ecc6c5094eab4a511ada"],
+	"version": 1
 }
