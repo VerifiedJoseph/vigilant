@@ -33,7 +33,7 @@ class Message
             return sprintf(
                 '%s %s',
                 trim($this->prefix),
-                $this->title
+                trim($this->title)
             );
         }
 
