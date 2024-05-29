@@ -20,6 +20,9 @@ final class Cache
      */
     private array $data = [];
 
+    /**
+     * @var array<string, mixed> $default Default cache data
+     */
     private $default = [
         'feed_url' => null,
         'first_check' => 0,

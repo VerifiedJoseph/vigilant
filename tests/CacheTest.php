@@ -266,4 +266,19 @@ class CacheTest extends TestCase
             $this->getSamplePath('cache-default.json')
         );
     }
+
+
+    /**
+     * Test cache version that does not match current cache version
+     */
+    public function testNoVersionMatch(): void
+    {
+        $config = self::createStub(Config::class);
+        $config->method('getCachePath')->willReturn(mockfs::getUrl('/cache'));
+        $config->method('getCacheFormatVersion')->willReturn(2);
+
+        $cache = new Cache('file', $config);
+
+        $this->assertEquals([], $cache->getItems());
+    }
 }
