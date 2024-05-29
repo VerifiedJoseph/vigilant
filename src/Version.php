@@ -10,7 +10,7 @@ class Version
     private static string $version = '1.2.0';
 
     /**
-     * @var string $cacheFormatVersion Cache format version
+     * @var int $cacheFormatVersion Cache format version
      */
     private static int $cacheFormatVersion = 1;
 
