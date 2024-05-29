@@ -7,10 +7,8 @@ use Vigilant\Helper\Json;
 
 final class Cache
 {
-    /**
-     * @var string $path Cache folder path
-     */
-    private string $path = '';
+    /** @var Config Config class instance */
+    private Config $config;
 
     /**
      * @var string $filename Cache filename
@@ -29,15 +27,14 @@ final class Cache
     ];
 
     /**
-     * Constructor
-     *
-     * @param string $path Cache folder path
      * @param string $filename Cache filename
+     * @param Config $config Config class instance
      */
-    public function __construct(string $path, string $filename)
+    public function __construct(string $filename, Config $config)
     {
-        $this->path = $path;
         $this->filename = $filename;
+        $this->config = $config;
+
         $this->load();
     }
 
@@ -202,6 +199,6 @@ final class Cache
      */
     private function getPath(): string
     {
-        return $this->path . DIRECTORY_SEPARATOR . $this->filename;
+        return $this->config->getCachePath() . DIRECTORY_SEPARATOR . $this->filename;
     }
 }
