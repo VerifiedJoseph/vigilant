@@ -82,6 +82,9 @@ class CacheTest extends TestCase
         );
     }
 
+    /**
+     * Test isFirstCheck() returns true
+     */
     public function testIsFirstCheck(): void
     {
         $config = self::createStub(Config::class);
