@@ -2,6 +2,7 @@
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 use Vigilant\Feed\Validate;
 use Vigilant\Exception\FeedsException;
 use Symfony\Component\Yaml\Yaml;
@@ -29,10 +30,9 @@ class ValidateTest extends TestCase
     /**
      * Test validator with valid feed entry
      */
+    #[DoesNotPerformAssertions]
     public function testValidateWithValidEntry(): void
     {
-        $this->expectNotToPerformAssertions();
-
         $feeds = Yaml::parse(self::loadSample('feeds.yaml'));
 
         new Validate($feeds['feeds'][0], self::$minCheckInterval);
