@@ -212,7 +212,7 @@ final class Cache
     }
 
     /**
-     * Checks if format version in cache matches current version. If values not do not match the data array is emptied.
+     * Checks if format version in cache matches current version. If no match, the data array is reset to defaults.
      */
     private function validateVersion(): void
     {
