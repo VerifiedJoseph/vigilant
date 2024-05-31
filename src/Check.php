@@ -44,8 +44,8 @@ final class Check
         $this->logger = $logger;
 
         $this->cache = new Cache(
-            $this->config->getCachePath(),
-            $this->details->getHash()
+            $this->details->getHash(),
+            $this->config
         );
     }
 

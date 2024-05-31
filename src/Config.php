@@ -221,6 +221,15 @@ class Config
     }
 
     /**
+     * Returns cache format version
+     * @return int
+     */
+    public function getCacheFormatVersion(): int
+    {
+        return Version::getCacheFormatVersion();
+    }
+
+    /**
      * Include (require) config file
      *
      * @codeCoverageIgnore
