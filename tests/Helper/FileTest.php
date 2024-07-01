@@ -120,8 +120,6 @@ class FileTest extends TestCase
         $this->setStreamContext(['fread_fail' => true]);
 
         File::read($file);
-
-        echo 45;
     }
 
     /**
