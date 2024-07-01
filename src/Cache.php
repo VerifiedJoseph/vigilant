@@ -184,7 +184,7 @@ final class Cache
      */
     private function load(): void
     {
-        if (File::exists($this->getPath()) === true) {
+        if (File::exists($this->getPath()) === true && filesize($this->getPath()) > 0) {
             $json = File::read($this->getPath());
             $this->data = Json::decode($json);
         }
