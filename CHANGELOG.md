@@ -2,6 +2,21 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.3.0](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.3.0) - 2024-07-02
+
+- Added feeds file option for notification title prefixes. ([#193](https://github.com/VerifiedJoseph/vigilant/pull/193), [`df3690b`](https://github.com/VerifiedJoseph/vigilant/commit/df3690b0caa8d1516cdcf0c911849ddcf1849e20))
+- Added cache format versioning. ([#194](https://github.com/VerifiedJoseph/vigilant/pull/194), [`72034d0`](https://github.com/VerifiedJoseph/vigilant/commit/72034d052d25a191313ff4ed9e8122567b933d69))
+- Updated Firefox version in user agent string from 123 to 127. ([#216](https://github.com/VerifiedJoseph/vigilant/pull/216), [`f2849d3`](https://github.com/VerifiedJoseph/vigilant/commit/f2849d3b40feb3e8f6a4608d0c05ff8a96e6b9dc))
+- Docker: Replaced php daemon script with bash script. ([#185](https://github.com/VerifiedJoseph/vigilant/pull/185), [`577c350`](https://github.com/VerifiedJoseph/vigilant/commit/577c350eb98ecb5510e558825dbc2b8137a420f6))
+- Updated verifiedjoseph/gotify-api-php from 1.8.1 to 1.8.2 ([#206](https://github.com/VerifiedJoseph/vigilant/pull/206), [`aae4acd`](https://github.com/VerifiedJoseph/vigilant/commit/aae4acd962cc0ab7e193d6aa0a68bcfdb053d027))
+- Updated symfony/yaml from 6.4.7 to 6.4.8 ([#204](https://github.com/VerifiedJoseph/vigilant/pull/204), [`9714b36`](https://github.com/VerifiedJoseph/vigilant/commit/9714b3604096df69b508e76da5d9945db3edbc7e))
+- Dockerfile: Updated composer from 2.7.4 to 2.7.6 ([#186](https://github.com/VerifiedJoseph/vigilant/pull/186), [`eaff081`](https://github.com/VerifiedJoseph/vigilant/commit/eaff081adedffa9931741feae7f5a10b40cbc7f2))
+- Dockerfile: Updated composer from 2.7.6 to 2.7.7 ([#208](https://github.com/VerifiedJoseph/vigilant/pull/208), [`1be7493`](https://github.com/VerifiedJoseph/vigilant/commit/1be749315cbd6633494ea5db03a1a691e64dfec2))
+- Dockerfile: Updated alpine from 3.19.1 to 3.20.0 ([#202](https://github.com/VerifiedJoseph/vigilant/pull/202), [`3a8f64f`](https://github.com/VerifiedJoseph/vigilant/commit/3a8f64f69ce6506c10666c4cba162d3ac807f343))
+- Dockerfile: Updated alpine from 3.20.0 to 3.20.1 ([#207](https://github.com/VerifiedJoseph/vigilant/pull/207), [`97c7763`](https://github.com/VerifiedJoseph/vigilant/commit/97c77637b3a08afee6889cb6246e67c5f1b73144))
+
+All changes: https://github.com/VerifiedJoseph/vigilant/compare/v1.2.0...v1.3.0
+
 ## [1.2.0](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.2.0) - 2024-04-29
 
 - Fixed fatal error when calling Config class method `getNtfyAuthMethod()`. ([#183](https://github.com/VerifiedJoseph/vigilant/pull/183), [`3a2db0a`](https://github.com/VerifiedJoseph/vigilant/commit/3a2db0afb1d32e0d8079b181a4f758d32b52d963))
