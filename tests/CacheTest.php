@@ -4,9 +4,11 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 use MockFileSystem\MockFileSystem as mockfs;
 use Vigilant\Cache;
+use Vigilant\Config;
 use Vigilant\Helper\Json;
 
 #[CoversClass(Cache::class)]
+#[UsesClass(Config::class)]
 #[UsesClass(Json::class)]
 #[UsesClass(Vigilant\Helper\File::class)]
 class CacheTest extends TestCase
@@ -42,9 +44,13 @@ class CacheTest extends TestCase
 
         self::$fixtureData = Json::decode(self::loadSample('cache.json'));
 
+        $config = self::createStub(Config::class);
+        $config->method('getCachePath')->willReturn(mockfs::getUrl('/cache'));
+        $config->method('getCacheFormatVersion')->willReturn(1);
+
         self::$cache = new Cache(
-            mockfs::getUrl('/cache'),
-            'file'
+            'file',
+            $config
         );
     }
 
@@ -76,9 +82,16 @@ class CacheTest extends TestCase
         );
     }
 
+    /**
+     * Test isFirstCheck() returns true
+     */
     public function testIsFirstCheck(): void
     {
-        $cache = new Cache(self::$tempCacheFolder, 'testing');
+        $config = self::createStub(Config::class);
+        $config->method('getCachePath')->willReturn(self::$tempCacheFolder);
+        $config->method('getCacheFormatVersion')->willReturn(1);
+
+        $cache = new Cache('testing', $config);
         $this->assertTrue($cache->isFirstCheck());
     }
 
@@ -182,8 +195,12 @@ class CacheTest extends TestCase
      */
     public function testSetFirstCheck(): void
     {
+        $config = self::createStub(Config::class);
+        $config->method('getCachePath')->willReturn(self::$tempCacheFolder);
+        $config->method('getCacheFormatVersion')->willReturn(1);
+
         $time = time();
-        $cache = new Cache(self::$tempCacheFolder, 'testing');
+        $cache = new Cache('testing', $config);
 
         $this->assertEquals(0, $cache->getFirstCheck());
 
@@ -239,7 +256,11 @@ class CacheTest extends TestCase
      */
     public function testSave(): void
     {
-        $cache = new Cache(self::$tempCacheFolder, 'testing');
+        $config = self::createStub(Config::class);
+        $config->method('getCachePath')->willReturn(self::$tempCacheFolder);
+        $config->method('getCacheFormatVersion')->willReturn(1);
+
+        $cache = new Cache('testing', $config);
         $cache->save();
 
         $this->assertFileExists(mockfs::getUrl('/cache/testing'));
@@ -247,5 +268,20 @@ class CacheTest extends TestCase
             mockfs::getUrl('/cache/testing'),
             $this->getSamplePath('cache-default.json')
         );
+    }
+
+
+    /**
+     * Test cache version that does not match current cache version
+     */
+    public function testNoVersionMatch(): void
+    {
+        $config = self::createStub(Config::class);
+        $config->method('getCachePath')->willReturn(mockfs::getUrl('/cache'));
+        $config->method('getCacheFormatVersion')->willReturn(2);
+
+        $cache = new Cache('file', $config);
+
+        $this->assertEquals([], $cache->getItems());
     }
 }

@@ -7,10 +7,8 @@ use Vigilant\Helper\Json;
 
 final class Cache
 {
-    /**
-     * @var string $path Cache folder path
-     */
-    private string $path = '';
+    /** @var Config Config class instance */
+    private Config $config;
 
     /**
      * @var string $filename Cache filename
@@ -20,25 +18,31 @@ final class Cache
     /**
      * @var array<string, mixed> $data Data from cache file
      */
-    private array $data = [
+    private array $data = [];
+
+    /**
+     * @var array<string, mixed> $default Default cache data
+     */
+    private $default = [
         'feed_url' => null,
         'first_check' => 0,
         'next_check' => 0,
         'error_count' => 0,
-        'items' => []
+        'items' => [],
+        'version' => null,
     ];
 
     /**
-     * Constructor
-     *
-     * @param string $path Cache folder path
      * @param string $filename Cache filename
+     * @param Config $config Config class instance
      */
-    public function __construct(string $path, string $filename)
+    public function __construct(string $filename, Config $config)
     {
-        $this->path = $path;
         $this->filename = $filename;
+        $this->config = $config;
+
         $this->load();
+        $this->validateVersion();
     }
 
     /**
@@ -180,7 +184,7 @@ final class Cache
      */
     private function load(): void
     {
-        if (File::exists($this->getPath()) === true) {
+        if (File::exists($this->getPath()) === true && filesize($this->getPath()) > 0) {
             $json = File::read($this->getPath());
             $this->data = Json::decode($json);
         }
@@ -191,6 +195,8 @@ final class Cache
      */
     public function save(): void
     {
+        $this->data['version'] = $this->config->getCacheFormatVersion();
+
         $json = Json::encode($this->data);
         File::write($this->getPath(), $json);
     }
@@ -202,6 +208,16 @@ final class Cache
      */
     private function getPath(): string
     {
-        return $this->path . DIRECTORY_SEPARATOR . $this->filename;
+        return $this->config->getCachePath() . DIRECTORY_SEPARATOR . $this->filename;
+    }
+
+    /**
+     * Checks if format version in cache matches current version. If no match, the data array is reset to defaults.
+     */
+    private function validateVersion(): void
+    {
+        if (array_key_exists('version', $this->data) === false || $this->data['version'] !== $this->config->getCacheFormatVersion()) {
+            $this->data = $this->default;
+        }
     }
 }

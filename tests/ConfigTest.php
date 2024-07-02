@@ -3,8 +3,10 @@
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 use Vigilant\Config;
+use Vigilant\Version;
 
 #[CoversClass(Config::class)]
+#[CoversClass(Version::class)]
 #[UsesClass(Vigilant\Config\Validator::class)]
 #[UsesClass(Vigilant\Config\Validate\Ntfy::class)]
 #[UsesClass(Vigilant\Config\AbstractValidator::class)]
@@ -243,5 +245,14 @@ class ConfigTest extends TestCase
     {
         $config = new Config();
         $this->assertEquals(self::$defaults['feeds_file'], $config->getFeedsPath());
+    }
+
+    /**
+     * Test `getCacheFormatVersion()`
+     */
+    public function testGetCacheFormatVersion(): void
+    {
+        $config = new Config();
+        $this->assertEquals(Version::getCacheFormatVersion(), $config->getCacheFormatVersion());
     }
 }

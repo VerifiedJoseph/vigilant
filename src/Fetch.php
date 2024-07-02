@@ -13,7 +13,7 @@ class Fetch
 
     /** @var array<string, string> $headers HTTP headers */
     private array $headers = [
-        'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; rv:123.0) Gecko/20100101 Firefox/123.0',
+        'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; rv:127.0) Gecko/20100101 Firefox/127.0',
         'Accept' => '*/*'
     ];
 

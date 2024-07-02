@@ -11,7 +11,7 @@ class LoggerTest extends TestCase
      */
     public function testInfo(): void
     {
-        $date = (new DateTime('now', new DateTimeZone('UTC')))->format('Y-m-d h:i:s P');
+        $date = (new DateTime('now', new DateTimeZone('UTC')))->format('Y-m-d H:i:s P');
 
         $this->expectOutputString(sprintf(
             '[%s] %s %s',

@@ -2,6 +2,7 @@
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 use Vigilant\Notify;
 use Vigilant\Feed\Details;
 use Vigilant\Config;
@@ -40,7 +41,6 @@ class NotifyTest extends TestCase
     {
         $this->expectOutputRegex('/Sent notification using Ntfy/');
 
-        /** @var PHPUnit\Framework\MockObject\Stub&Config */
         $config = self::createStub(Config::class);
         $config->method('getNotificationService')->willReturn('ntfy');
         $config->method('getNtfyUrl')->willReturn('https://ntfy.sh');
@@ -59,7 +59,6 @@ class NotifyTest extends TestCase
     {
         $this->expectOutputRegex('/[Notification error]/');
 
-        /** @var PHPUnit\Framework\MockObject\Stub&Config */
         $config = self::createStub(Config::class);
         $config->method('getNotificationService')->willReturn('gotify');
         $config->method('getGotifyUrl')->willReturn('https://gotify.example.com/');
@@ -77,11 +76,9 @@ class NotifyTest extends TestCase
    /**
     * Test creating Gotify instance
     */
+    #[DoesNotPerformAssertions]
     public function testCreatingGotify(): void
     {
-        $this->expectNotToPerformAssertions();
-
-        /** @var PHPUnit\Framework\MockObject\Stub&Config */
         $config = self::createStub(Config::class);
         $config->method('getNotificationService')->willReturn('gotify');
         $config->method('getGotifyUrl')->willReturn('https://gotify.example.com/');
@@ -94,11 +91,9 @@ class NotifyTest extends TestCase
    /**
     * Test creating Gotify instance with priority from feed details
     */
+    #[DoesNotPerformAssertions]
     public function testCreatingGotifyWithPriorityFromFeedDetails(): void
     {
-        $this->expectNotToPerformAssertions();
-
-        /** @var PHPUnit\Framework\MockObject\Stub&Config */
         $config = self::createStub(Config::class);
         $config->method('getNotificationService')->willReturn('gotify');
         $config->method('getGotifyUrl')->willReturn('https://gotify.example.com/');
@@ -114,11 +109,9 @@ class NotifyTest extends TestCase
    /**
     * Test creating Gotify instance with token from feed details
     */
+    #[DoesNotPerformAssertions]
     public function testCreatingGotifyWithTokenFromFeedDetails(): void
     {
-        $this->expectNotToPerformAssertions();
-
-        /** @var PHPUnit\Framework\MockObject\Stub&Config */
         $config = self::createStub(Config::class);
         $config->method('getNotificationService')->willReturn('gotify');
         $config->method('getGotifyUrl')->willReturn('https://gotify.example.com/');
@@ -134,11 +127,9 @@ class NotifyTest extends TestCase
    /**
     * Test creating Ntfy instance without auth
     */
+    #[DoesNotPerformAssertions]
     public function testCreatingNtfy(): void
     {
-        $this->expectNotToPerformAssertions();
-
-        /** @var PHPUnit\Framework\MockObject\Stub&Config */
         $config = self::createStub(Config::class);
         $config->method('getNotificationService')->willReturn('ntfy');
         $config->method('getNtfyUrl')->willReturn('https://ntfy.example.com/');
@@ -150,11 +141,9 @@ class NotifyTest extends TestCase
    /**
     * Test creating Ntfy instance with password auth
     */
+    #[DoesNotPerformAssertions]
     public function testCreatingNtfyWithPasswordAuth(): void
     {
-        $this->expectNotToPerformAssertions();
-
-        /** @var PHPUnit\Framework\MockObject\Stub&Config */
         $config = self::createStub(Config::class);
         $config->method('getNotificationService')->willReturn('ntfy');
         $config->method('getNtfyUrl')->willReturn('https://ntfy.example.com/');
@@ -169,11 +158,9 @@ class NotifyTest extends TestCase
    /**
     * Test creating Ntfy instance with token auth
     */
+    #[DoesNotPerformAssertions]
     public function testCreatingNtfyWithTokenAuth(): void
     {
-        $this->expectNotToPerformAssertions();
-
-        /** @var PHPUnit\Framework\MockObject\Stub&Config */
         $config = self::createStub(Config::class);
         $config->method('getNotificationService')->willReturn('ntfy');
         $config->method('getNtfyUrl')->willReturn('https://ntfy.example.com/');
@@ -187,11 +174,9 @@ class NotifyTest extends TestCase
    /**
     * Test creating Ntfy instance with token from feed details
     */
+    #[DoesNotPerformAssertions]
     public function testCreatingNtfyWithTokenFromFeedDetails(): void
     {
-        $this->expectNotToPerformAssertions();
-
-        /** @var PHPUnit\Framework\MockObject\Stub&Config */
         $config = self::createStub(Config::class);
         $config->method('getNotificationService')->willReturn('ntfy');
         $config->method('getNtfyUrl')->willReturn('https://ntfy.example.com/');
@@ -206,11 +191,9 @@ class NotifyTest extends TestCase
    /**
     * Test creating Ntfy instance with topic from feed details
     */
+    #[DoesNotPerformAssertions]
     public function testCreatingNtfyWithTopicFromFeedDetails(): void
     {
-        $this->expectNotToPerformAssertions();
-
-        /** @var PHPUnit\Framework\MockObject\Stub&Config */
         $config = self::createStub(Config::class);
         $config->method('getNotificationService')->willReturn('ntfy');
         $config->method('getNtfyUrl')->willReturn('https://ntfy.example.com/');
@@ -225,11 +208,9 @@ class NotifyTest extends TestCase
    /**
     * Test creating Ntfy instance with priority from feed details
     */
+    #[DoesNotPerformAssertions]
     public function testCreatingNtfyWithPriorityFromFeedDetails(): void
     {
-        $this->expectNotToPerformAssertions();
-
-        /** @var PHPUnit\Framework\MockObject\Stub&Config */
         $config = self::createStub(Config::class);
         $config->method('getNotificationService')->willReturn('ntfy');
         $config->method('getNtfyUrl')->willReturn('https://ntfy.example.com/');

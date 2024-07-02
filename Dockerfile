@@ -1,4 +1,4 @@
-FROM composer:2.7.6 AS composer
+FROM composer:2.7.7 AS composer
 
 COPY ./ /app
 WORKDIR /app
@@ -10,7 +10,7 @@ RUN composer install \
   --no-progress \
   --no-dev
 
-FROM alpine:3.19.1
+FROM alpine:3.20.1
 
 # Install packages
 RUN apk add --no-cache \
