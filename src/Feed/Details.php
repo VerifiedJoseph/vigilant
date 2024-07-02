@@ -60,6 +60,16 @@ final class Details
     }
 
     /**
+     * Get title prefix
+     *
+     * @return ?string
+     */
+    public function getTitlePrefix(): ?string
+    {
+        return $this->details['title_prefix'] ?? null;
+    }
+
+    /**
      * Get gotify applications token
      *
      * @return ?string

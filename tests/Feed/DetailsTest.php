@@ -72,6 +72,19 @@ class DetailsTest extends TestCase
     }
 
     /**
+     * Test getTitlePrefix()
+     */
+    public function testGetTitlePrefix(): void
+    {
+        $details = new Details(self::$feeds[0]);
+
+        $this->assertEquals(
+            self::$feeds[0]['title_prefix'],
+            $details->getTitlePrefix()
+        );
+    }
+
+    /**
      * Test getGotifyToken()
      */
     public function testGetGotifyToken(): void

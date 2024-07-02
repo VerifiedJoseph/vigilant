@@ -24,6 +24,7 @@ final class Validate
         $this->name();
         $this->url();
         $this->interval($minCheckInterval);
+        $this->titlePrefix();
 
         $this->gotifyToken();
         $this->gotifyPriority();
@@ -69,6 +70,16 @@ final class Validate
                 'Interval is less than ' . $minCheckInterval .
                 ' seconds for feed: ' . $this->details['name']
             );
+        }
+    }
+
+    /**
+     * Validate entry title prefix
+     */
+    private function titlePrefix(): void
+    {
+        if (array_key_exists('title_prefix', $this->details) === true && $this->details['title_prefix'] === null) {
+            throw new FeedsException('Empty title prefix given for feed: ' . $this->details['name']);
         }
     }
 

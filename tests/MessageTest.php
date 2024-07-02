@@ -18,4 +18,21 @@ class MessageTest extends TestCase
         $this->assertEquals($body, $message->getBody());
         $this->assertEquals($url, $message->getUrl());
     }
+
+    /**
+     * Test Message class with title prefix
+     */
+    public function testTitlePrefix(): void
+    {
+        $title = 'Hello World';
+        $body = 'Hello World from phpunit';
+        $url = 'https://example.com/';
+        $prefix = 'testing!';
+
+        $fullTitle = $prefix . ' ' . $title;
+
+        $message = new Message($title, $body, $url, $prefix);
+
+        $this->assertEquals($fullTitle, $message->getTitle());
+    }
 }

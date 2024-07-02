@@ -28,10 +28,10 @@ class ValidateTest extends TestCase
     }
 
     /**
-     * Test validator with valid feed entry
+     * Test valid feed entry
      */
     #[DoesNotPerformAssertions]
-    public function testValidateWithValidEntry(): void
+    public function testValidEntry(): void
     {
         $feeds = Yaml::parse(self::loadSample('feeds.yaml'));
 
@@ -39,9 +39,9 @@ class ValidateTest extends TestCase
     }
 
     /**
-     * Test validator with feed entry missing a name value
+     * Test feed entry missing a name value
      */
-    public function testValidateWithNoNameEntry(): void
+    public function testNoNameEntry(): void
     {
         $this->expectException(FeedsException::class);
         $this->expectExceptionMessage('No name given');
@@ -50,9 +50,9 @@ class ValidateTest extends TestCase
     }
 
     /**
-     * Test validator with feed entry with an empty name value
+     * Test feed entry with an empty name value
      */
-    public function testValidateWithEmptyNameEntry(): void
+    public function testEmptyNameEntry(): void
     {
         $this->expectException(FeedsException::class);
         $this->expectExceptionMessage('No name given');
@@ -61,9 +61,9 @@ class ValidateTest extends TestCase
     }
 
     /**
-     * Test validator with feed entry missing a URL value
+     * Test feed entry missing a URL value
      */
-    public function testValidateWithNoUrlEntry(): void
+    public function testNoUrlEntry(): void
     {
         $this->expectException(FeedsException::class);
         $this->expectExceptionMessage('No url given');
@@ -72,9 +72,9 @@ class ValidateTest extends TestCase
     }
 
     /**
-     * Test validator with feed entry with an empty URL value
+     * Test feed entry with an empty URL value
      */
-    public function testValidateWithEmptyUrlEntry(): void
+    public function testEmptyUrlEntry(): void
     {
         $this->expectException(FeedsException::class);
         $this->expectExceptionMessage('No url given');
@@ -83,9 +83,9 @@ class ValidateTest extends TestCase
     }
 
     /**
-     * Test validator with feed entry missing an interval value
+     * Test feed entry missing an interval value
      */
-    public function testValidateWithNoIntervalEntry(): void
+    public function testNoIntervalEntry(): void
     {
         $this->expectException(FeedsException::class);
         $this->expectExceptionMessage('No interval given');
@@ -94,9 +94,9 @@ class ValidateTest extends TestCase
     }
 
     /**
-     * Test validator with feed entry with an empty interval value
+     * Test feed entry with an empty interval value
      */
-    public function testValidateWithEmptyIntervalEntry(): void
+    public function testEmptyIntervalEntry(): void
     {
         $this->expectException(FeedsException::class);
         $this->expectExceptionMessage('No interval given');
@@ -105,9 +105,9 @@ class ValidateTest extends TestCase
     }
 
     /**
-     * Test validator with feed entry with an interval value lower than minimum allowed
+     * Test feed entry with interval value lower than minimum allowed
      */
-    public function testValidateWithIntervalEntryLowerThanMin(): void
+    public function testIntervalEntryLowerThanMin(): void
     {
         $this->expectException(FeedsException::class);
         $this->expectExceptionMessage('Interval is less than 300 seconds for feed');
@@ -116,9 +116,20 @@ class ValidateTest extends TestCase
     }
 
     /**
-     * Test validator with feed entry with an empty gotify token value
+     * Test feed entry with an empty title prefix value
      */
-    public function testValidateWithEmptyGotifyTokenEntry(): void
+    public function testEmptyTitlePrefixEntry(): void
+    {
+        $this->expectException(FeedsException::class);
+        $this->expectExceptionMessage('Empty title prefix given');
+
+        new Validate(self::$feedsInvalid['emptyTitlePrefix'], self::$minCheckInterval);
+    }
+
+    /**
+     * Test feed entry with an empty gotify token value
+     */
+    public function testEmptyGotifyTokenEntry(): void
     {
         $this->expectException(FeedsException::class);
         $this->expectExceptionMessage('Empty Gotify token given');
@@ -127,9 +138,9 @@ class ValidateTest extends TestCase
     }
 
     /**
-     * Test validator with feed entry with an empty gotify priority value
+     * Test feed entry with an empty gotify priority value
      */
-    public function testValidateWithEmptyGotifyPriorityEntry(): void
+    public function testEmptyGotifyPriorityEntry(): void
     {
         $this->expectException(FeedsException::class);
         $this->expectExceptionMessage('Empty Gotify priority given');
@@ -138,9 +149,9 @@ class ValidateTest extends TestCase
     }
 
     /**
-     * Test validator with feed entry with an empty ntfy topic value
+     * Test feed entry with an empty ntfy topic value
      */
-    public function testValidateWithEmptyNtfyTopicEntry(): void
+    public function testEmptyNtfyTopicEntry(): void
     {
         $this->expectException(FeedsException::class);
         $this->expectExceptionMessage('Empty Ntfy topic given');
@@ -149,9 +160,9 @@ class ValidateTest extends TestCase
     }
 
     /**
-     * Test validator with feed entry with an empty ntfy priority value
+     * Test feed entry with an empty ntfy priority value
      */
-    public function testValidateWithEmptyNtfyPriorityEntry(): void
+    public function testEmptyNtfyPriorityEntry(): void
     {
         $this->expectException(FeedsException::class);
         $this->expectExceptionMessage('Empty Ntfy priority given');
@@ -160,9 +171,9 @@ class ValidateTest extends TestCase
     }
 
     /**
-     * Test validator with feed entry with an empty ntfy token value
+     * Test feed entry with an empty ntfy token value
      */
-    public function testValidateWithEmptyNtfyTokenEntry(): void
+    public function testEmptyNtfyTokenEntry(): void
     {
         $this->expectException(FeedsException::class);
         $this->expectExceptionMessage('Empty Ntfy token given');

@@ -31,6 +31,12 @@ feeds:
     url: https://www.example.com/feed.rss
     interval: 100
 
+  emptyTitlePrefix:
+    name: Example.com Feed
+    url: https://www.example.com/feed.rss
+    interval: 300
+    title_prefix:
+
   emptyGotifyToken:
     name: Example.com Feed
     url: https://www.example.com/feed.rss

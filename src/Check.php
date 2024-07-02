@@ -145,9 +145,10 @@ final class Check
 
                 if ($this->cache->isFirstCheck() === false) {
                     $this->messages[] = new Message(
-                        title: $title,
-                        body: $body,
-                        url: $item->getLink()
+                        $title,
+                        $body,
+                        $item->getLink(),
+                        $this->details->getTitlePrefix()
                     );
                 }
             }
