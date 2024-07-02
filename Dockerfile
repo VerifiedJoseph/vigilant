@@ -31,5 +31,8 @@ COPY --from=composer /app /app
 # Copy daemon bash script
 COPY /docker/scripts/daemon.sh /app/daemon.sh
 
+# Create symlink for php
+RUN ln -s /usr/bin/php82 /usr/bin/php
+
 WORKDIR /app
 CMD [ "bash", "./daemon.sh" ]
