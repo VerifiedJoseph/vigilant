@@ -121,7 +121,6 @@ class CheckTest extends TestCase
 
         $details = new Details($this->feed);
         $check = new check($details, $fetch, self::$config, self::$logger);
-        $check = new check($details, $fetch, self::$config, self::$logger);
 
         $this->expectOutputRegex('/Found 1 new item\(s\)/');
 
