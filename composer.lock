@@ -722,20 +722,20 @@
         },
         {
             "name": "psr/http-factory",
-            "version": "1.0.2",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/http-factory.git",
-                "reference": "e616d01114759c4c489f93b099585439f795fe35"
+                "reference": "2b4765fddfe3b508ac62f829e852b1501d3f6e8a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/http-factory/zipball/e616d01114759c4c489f93b099585439f795fe35",
-                "reference": "e616d01114759c4c489f93b099585439f795fe35",
+                "url": "https://api.github.com/repos/php-fig/http-factory/zipball/2b4765fddfe3b508ac62f829e852b1501d3f6e8a",
+                "reference": "2b4765fddfe3b508ac62f829e852b1501d3f6e8a",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.0.0",
+                "php": ">=7.1",
                 "psr/http-message": "^1.0 || ^2.0"
             },
             "type": "library",
@@ -759,7 +759,7 @@
                     "homepage": "https://www.php-fig.org/"
                 }
             ],
-            "description": "Common interfaces for PSR-7 HTTP message factories",
+            "description": "PSR-17: Common interfaces for PSR-7 HTTP message factories",
             "keywords": [
                 "factory",
                 "http",
@@ -771,9 +771,9 @@
                 "response"
             ],
             "support": {
-                "source": "https://github.com/php-fig/http-factory/tree/1.0.2"
+                "source": "https://github.com/php-fig/http-factory"
             },
-            "time": "2023-04-10T20:10:41+00:00"
+            "time": "2024-04-15T12:06:14+00:00"
         },
         {
             "name": "psr/http-message",
@@ -1142,16 +1142,16 @@
         },
         {
             "name": "verifiedjoseph/gotify-api-php",
-            "version": "v1.8.1",
+            "version": "v1.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/VerifiedJoseph/gotify-api-php.git",
-                "reference": "484650737a4a0d80b9c15ca7ea661a3e3dd82286"
+                "reference": "712b4ee86350c7f6623b37fa2bc315805df61e24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/VerifiedJoseph/gotify-api-php/zipball/484650737a4a0d80b9c15ca7ea661a3e3dd82286",
-                "reference": "484650737a4a0d80b9c15ca7ea661a3e3dd82286",
+                "url": "https://api.github.com/repos/VerifiedJoseph/gotify-api-php/zipball/712b4ee86350c7f6623b37fa2bc315805df61e24",
+                "reference": "712b4ee86350c7f6623b37fa2bc315805df61e24",
                 "shasum": ""
             },
             "require": {
@@ -1162,7 +1162,7 @@
             },
             "require-dev": {
                 "phpstan/phpstan": "^1.0",
-                "phpunit/phpunit": "^9.5",
+                "phpunit/phpunit": "^10.5",
                 "squizlabs/php_codesniffer": "^3.7"
             },
             "type": "library",
@@ -1188,9 +1188,9 @@
             ],
             "support": {
                 "issues": "https://github.com/VerifiedJoseph/gotify-api-php/issues",
-                "source": "https://github.com/VerifiedJoseph/gotify-api-php/tree/v1.8.1"
+                "source": "https://github.com/VerifiedJoseph/gotify-api-php/tree/v1.8.2"
             },
-            "time": "2023-12-04T14:15:06+00:00"
+            "time": "2024-06-24T08:17:45+00:00"
         },
         {
             "name": "verifiedjoseph/ntfy-php-library",
