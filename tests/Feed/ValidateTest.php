@@ -9,6 +9,7 @@ use Symfony\Component\Yaml\Yaml;
 
 #[CoversClass(Validate::class)]
 #[UsesClass(FeedsException::class)]
+#[UsesClass(Vigilant\Helper\Time::class)]
 class ValidateTest extends TestCase
 {
     /**
@@ -179,5 +180,82 @@ class ValidateTest extends TestCase
         $this->expectExceptionMessage('Empty Ntfy token given');
 
         new Validate(self::$feedsInvalid['emptyNtfyToken'], self::$minCheckInterval);
+    }
+
+    /**
+     * Test feed entry with no options for do not disturb
+     */
+    public function testNoDoNotDisturbOptions(): void
+    {
+        $this->expectException(FeedsException::class);
+        $this->expectExceptionMessage('Required do not disturb options not given');
+
+        new Validate(self::$feedsInvalid['noDoNotDisturbOptions'], self::$minCheckInterval);
+    }
+
+    /**
+     * Test feed entry with no start_time for do not disturb
+     */
+    public function testNoDoNotDisturbStartTime(): void
+    {
+        $this->expectException(FeedsException::class);
+        $this->expectExceptionMessage('No do not disturb start time given');
+
+        new Validate(self::$feedsInvalid['noDoNotDisturbStartTime'], self::$minCheckInterval);
+    }
+
+    /**
+     * Test feed entry with no end_time for do not disturb
+     */
+    public function testNoDoNotDisturbEndTime(): void
+    {
+        $this->expectException(FeedsException::class);
+        $this->expectExceptionMessage('No do not disturb end time given');
+
+        new Validate(self::$feedsInvalid['noDoNotDisturbEndTime'], self::$minCheckInterval);
+    }
+
+    /**
+     * Test feed entry with empty start_time for do not disturb
+     */
+    public function testEmptyDoNotDisturbStartTime(): void
+    {
+        $this->expectException(FeedsException::class);
+        $this->expectExceptionMessage('Empty do not disturb start time given');
+
+        new Validate(self::$feedsInvalid['emptyDoNotDisturbStartTime'], self::$minCheckInterval);
+    }
+
+    /**
+     * Test feed entry with empty end_time for do not disturb
+     */
+    public function testEmptyDoNotDisturbEndTime(): void
+    {
+        $this->expectException(FeedsException::class);
+        $this->expectExceptionMessage('Empty do not disturb end time given');
+
+        new Validate(self::$feedsInvalid['emptyDoNotDisturbEndTime'], self::$minCheckInterval);
+    }
+
+    /**
+     * Test feed entry with invalid start_time for do not disturb
+     */
+    public function testInvalidDoNotDisturbStartTime(): void
+    {
+        $this->expectException(FeedsException::class);
+        $this->expectExceptionMessage('Invalid do not disturb start time given');
+
+        new Validate(self::$feedsInvalid['invalidDoNotDisturbStartTime'], self::$minCheckInterval);
+    }
+
+    /**
+     * Test feed entry with invalid end_time for do not disturb
+     */
+    public function testInvalidDoNotDisturbEndTime(): void
+    {
+        $this->expectException(FeedsException::class);
+        $this->expectExceptionMessage('Invalid do not disturb end time given');
+
+        new Validate(self::$feedsInvalid['invalidDoNotDisturbEndTime'], self::$minCheckInterval);
     }
 }

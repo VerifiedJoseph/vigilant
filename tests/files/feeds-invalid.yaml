@@ -67,3 +67,62 @@ feeds:
     interval: 300
     ntfy_priority: 1
     ntfy_token:
+
+  noDoNotDisturbOptions:
+    name: Example.com Feed
+    url: https://www.example.com/feed.rss
+    interval: 300
+    ntfy_token: token
+    do_not_disturb:
+
+  noDoNotDisturbStartTime:
+    name: Example.com Feed
+    url: https://www.example.com/feed.rss
+    interval: 300
+    ntfy_token: token
+    do_not_disturb:
+      test: Hello World
+
+  noDoNotDisturbEndTime:
+    name: Example.com Feed
+    url: https://www.example.com/feed.rss
+    interval: 300
+    ntfy_token: token
+    do_not_disturb:
+      start_time: 22:00
+
+  emptyDoNotDisturbStartTime:
+    name: Example.com Feed
+    url: https://www.example.com/feed.rss
+    interval: 300
+    ntfy_token: token
+    do_not_disturb:
+      start_time:
+      end_time: 06:00
+
+  emptyDoNotDisturbEndTime:
+    name: Example.com Feed
+    url: https://www.example.com/feed.rss
+    interval: 300
+    ntfy_token: token
+    do_not_disturb:
+      start_time: 22:00
+      end_time:
+
+  invalidDoNotDisturbStartTime:
+    name: Example.com Feed
+    url: https://www.example.com/feed.rss
+    interval: 300
+    ntfy_token: token
+    do_not_disturb:
+      start_time: 22:00:12
+      end_time: 06:00
+
+  invalidDoNotDisturbEndTime:
+    name: Example.com Feed
+    url: https://www.example.com/feed.rss
+    interval: 300
+    ntfy_token: token
+    do_not_disturb:
+      start_time: 22:00
+      end_time: 06:00:00

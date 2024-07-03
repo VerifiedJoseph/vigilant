@@ -2,6 +2,7 @@
 
 namespace Vigilant\Feed;
 
+use Vigilant\Helper\Time;
 use Vigilant\Exception\FeedsException;
 
 final class Validate
@@ -32,6 +33,7 @@ final class Validate
         $this->ntfyTopic();
         $this->ntfyToken();
         $this->ntfyPriority();
+        $this->doNotDisturb();
     }
 
     /**
@@ -136,6 +138,48 @@ final class Validate
              $this->details['ntfy_priority'] === null
         ) {
             throw new FeedsException('Empty Ntfy priority given for feed: ' . $this->details['name']);
+        }
+    }
+
+    /**
+     * Validate do not disturb options in entries
+     * @throws FeedsException if no start_time is given
+     * @throws FeedsException if no end_time is given
+     * @throws FeedsException if start_time is empty
+     * @throws FeedsException if end_time is empty
+     * @throws FeedsException if start_time format is invalid
+     * @throws FeedsException if end_time format is invalid
+     */
+    private function doNotDisturb(): void
+    {
+        if (array_key_exists('do_not_disturb', $this->details) === true) {
+            if ($this->details['do_not_disturb'] === null) {
+                throw new FeedsException('Required do not disturb options not given for feed: ' . $this->details['name']);
+            }
+
+            if (array_key_exists('start_time', $this->details['do_not_disturb']) === false) {
+                throw new FeedsException('No do not disturb start time given for feed: ' . $this->details['name']);
+            }
+
+            if (array_key_exists('end_time', $this->details['do_not_disturb']) === false) {
+                throw new FeedsException('No do not disturb end time given for feed: ' . $this->details['name']);
+            }
+
+            if ($this->details['do_not_disturb']['start_time'] === null) {
+                throw new FeedsException('Empty do not disturb start time given for feed: ' . $this->details['name']);
+            }
+
+            if ($this->details['do_not_disturb']['end_time'] === null) {
+                throw new FeedsException('Empty do not disturb end time given for feed: ' . $this->details['name']);
+            }
+
+            if (Time::isValid($this->details['do_not_disturb']['start_time']) === false) {
+                throw new FeedsException('Invalid do not disturb start time given for feed: ' . $this->details['name']);
+            }
+
+            if (Time::isValid($this->details['do_not_disturb']['end_time']) === false) {
+                throw new FeedsException('Invalid do not disturb end time given for feed: ' . $this->details['name']);
+            }
         }
     }
 }
