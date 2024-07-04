@@ -120,6 +120,26 @@ final class Details
     }
 
     /**
+     * Returns do not disturb start time
+     *
+     * @return ?string
+     */
+    public function getDoNotDisturbStartTime(): ?string
+    {
+        return $this->details['do_not_disturb']['start_time'] ?? null;
+    }
+
+    /**
+     * Returns do not disturb end time
+     *
+     * @return ?string
+     */
+    public function getDoNotDisturbEndTime(): ?string
+    {
+        return $this->details['do_not_disturb']['end_time'] ?? null;
+    }
+
+    /**
      * Has entry got a ntfy token
      *
      * @return bool
