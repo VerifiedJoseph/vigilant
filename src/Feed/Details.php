@@ -120,7 +120,27 @@ final class Details
     }
 
     /**
-     * Has entry got a ntfy token
+     * Returns active hours start time
+     *
+     * @return ?string
+     */
+    public function getActiveHoursStartTime(): ?string
+    {
+        return $this->details['active_hours']['start_time'] ?? null;
+    }
+
+    /**
+     * Returns active hours end time
+     *
+     * @return ?string
+     */
+    public function getActiveHoursEndTime(): ?string
+    {
+        return $this->details['active_hours']['end_time'] ?? null;
+    }
+
+    /**
+     * Check if entry has a ntfy token parameter
      *
      * @return bool
      */
@@ -130,7 +150,7 @@ final class Details
     }
 
     /**
-     * Has entry got a ntfy topic
+     * Check if entry has a ntfy topic parameter
      *
      * @return bool
      */
@@ -140,7 +160,7 @@ final class Details
     }
 
     /**
-     * Has entry got a ntfy priority
+     * Check if entry has a ntfy priority parameter
      *
      * @return bool
      */
@@ -150,7 +170,7 @@ final class Details
     }
 
     /**
-     * Has entry got Gotify token
+     * Check if entry has a Gotify token parameter
      *
      * @return bool
      */
@@ -160,7 +180,7 @@ final class Details
     }
 
     /**
-     * Has entry got Gotify priority
+     * Check if entry has a Gotify priority parameter
      *
      * @return bool
      */
@@ -170,7 +190,7 @@ final class Details
     }
 
     /**
-     * Has entry got a value
+     * heck if entry has a parameter
      *
      * @return bool
      */
