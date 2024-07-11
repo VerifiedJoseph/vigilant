@@ -13,4 +13,6 @@ feeds:
      ntfy_topic: GitHub_status
      ntfy_priority: 1
      ntfy_token: HQKPyHCODeoMFuN
-
+     active_hours:
+       start_time: 6am
+       end_time: 9pm
