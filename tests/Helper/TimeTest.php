@@ -22,6 +22,7 @@ class TimeTest extends TestCase
     #[TestWith(['01am', true])]
     #[TestWith(['05', true])]
 	#[TestWith(['15', true])]
+    #[TestWith(['15:00', false])]
     public function testIsValid(string $time, bool $expected): void
     {
         $this->assertEquals($expected, Time::isValid($time));
