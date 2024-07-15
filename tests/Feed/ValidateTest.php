@@ -258,4 +258,15 @@ class ValidateTest extends TestCase
 
         new Validate(self::$feedsInvalid['invalidActiveHoursEndTime'], self::$minCheckInterval);
     }
+
+    /**
+     * Test feed entry with active hours end time that is before start time
+     */
+    public function testActiveHoursEndTimeBeforeStartTime(): void
+    {
+        $this->expectException(FeedsException::class);
+        $this->expectExceptionMessage('Active hours end time is before the start time');
+
+        new Validate(self::$feedsInvalid['activeHoursEndTimeBeforeStartTime'], self::$minCheckInterval);
+    }
 }

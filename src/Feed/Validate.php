@@ -2,6 +2,7 @@
 
 namespace Vigilant\Feed;
 
+use DateTime;
 use Vigilant\Helper\Time;
 use Vigilant\Exception\FeedsException;
 
@@ -167,6 +168,7 @@ final class Validate
      * @throws FeedsException if no end time is given  or is empty
      * @throws FeedsException if start time format is invalid
      * @throws FeedsException if end time format is invalid
+     * @throws FeedsException if end time is before the start emd 
      */
     private function activeHours(): void
     {
@@ -197,6 +199,13 @@ final class Validate
 
             if (Time::isValid($this->details['active_hours']['end_time']) === false) {
                 throw new FeedsException('Invalid active hours end time given for feed: ' . $this->details['name']);
+            }
+
+            $start = new DateTime($this->details['active_hours']['start_time']);
+            $end = new DateTime($this->details['active_hours']['end_time']);
+
+            if ($end->getTimestamp() < $start->getTimestamp()) {
+                throw new FeedsException('Active hours end time is before the start time for ' . $this->details['name']);
             }
         }
     }

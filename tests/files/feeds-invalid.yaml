@@ -126,3 +126,11 @@ feeds:
     active_hours:
       start_time: 06:00
       end_time: 10pm
+
+  activeHoursEndTimeBeforeStartTime:
+    name: Example.com Feed
+    url: https://www.example.com/feed.rss
+    interval: 300
+    active_hours:
+      start_time: 06:00
+      end_time: 05:00
