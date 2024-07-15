@@ -2,6 +2,7 @@
 
 namespace Vigilant\Feed;
 
+use Vigilant\Helper\Time;
 use Vigilant\Exception\FeedsException;
 
 final class Validate
@@ -32,10 +33,14 @@ final class Validate
         $this->ntfyTopic();
         $this->ntfyToken();
         $this->ntfyPriority();
+
+        $this->activeHours();
     }
 
     /**
      * Validate entry name
+     *
+     * @throws FeedsException if name is not given
      */
     private function name(): void
     {
@@ -46,6 +51,8 @@ final class Validate
 
     /**
      * Validate entry URL
+     *
+     * @throws FeedsException if url is not given
      */
     private function url(): void
     {
@@ -58,6 +65,8 @@ final class Validate
      * Validate entry interval
      *
      * @param int $minCheckInterval Minimum feed check interval
+     * @throws FeedsException if interval is not given
+     * @throws FeedsException if interval is less than minimum allowed interval
      */
     private function interval(int $minCheckInterval): void
     {
@@ -75,6 +84,8 @@ final class Validate
 
     /**
      * Validate entry title prefix
+     *
+     * @throws FeedsException if title prefix is empty
      */
     private function titlePrefix(): void
     {
@@ -85,6 +96,8 @@ final class Validate
 
     /**
      * Validate entry gotify token
+     *
+     * @throws FeedsException if gotify token is empty
      */
     private function gotifyToken(): void
     {
@@ -95,6 +108,8 @@ final class Validate
 
     /**
      * Validate entry gotify priority
+     *
+     * @throws FeedsException if gotify priority is empty
      */
     private function gotifyPriority(): void
     {
@@ -108,6 +123,8 @@ final class Validate
 
     /**
      * Validate entry ntfy topic
+     *
+     * @throws FeedsException if ntfy topic is empty
      */
     private function ntfyTopic(): void
     {
@@ -118,6 +135,8 @@ final class Validate
 
     /**
      * Validate entry gotify token
+     *
+     * @throws FeedsException if ntfy token is empty
      */
     private function ntfyToken(): void
     {
@@ -128,6 +147,8 @@ final class Validate
 
     /**
      * Validate entry ntfy priority
+     *
+     * @throws FeedsException if ntfy priority is empty
      */
     private function ntfyPriority(): void
     {
@@ -136,6 +157,47 @@ final class Validate
              $this->details['ntfy_priority'] === null
         ) {
             throw new FeedsException('Empty Ntfy priority given for feed: ' . $this->details['name']);
+        }
+    }
+
+    /**
+     * Validate active hours options in entries
+     * 
+     * @throws FeedsException if no start time is given or is empty
+     * @throws FeedsException if no end time is given  or is empty
+     * @throws FeedsException if start time format is invalid
+     * @throws FeedsException if end time format is invalid
+     */
+    private function activeHours(): void
+    {
+        if (array_key_exists('active_hours', $this->details) === true) {
+            if ($this->details['active_hours'] === null) {
+                throw new FeedsException('Required active hours options not given for feed: ' . $this->details['name']);
+            }
+
+            if (array_key_exists('start_time', $this->details['active_hours']) === false) {
+                throw new FeedsException('No active hours start time given for feed: ' . $this->details['name']);
+            }
+
+            if (array_key_exists('end_time', $this->details['active_hours']) === false) {
+                throw new FeedsException('No active hours end time given for feed: ' . $this->details['name']);
+            }
+
+            if ($this->details['active_hours']['start_time'] === null) {
+                throw new FeedsException('Empty active hours start time given for feed: ' . $this->details['name']);
+            }
+
+            if ($this->details['active_hours']['end_time'] === null) {
+                throw new FeedsException('Empty active hours end time given for feed: ' . $this->details['name']);
+            }
+
+            if (Time::isValid($this->details['active_hours']['start_time']) === false) {
+                throw new FeedsException('Invalid active hours start time given for feed: ' . $this->details['name']);
+            }
+
+            if (Time::isValid($this->details['active_hours']['end_time']) === false) {
+                throw new FeedsException('Invalid active hours end time given for feed: ' . $this->details['name']);
+            }
         }
     }
 }

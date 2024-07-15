@@ -9,6 +9,7 @@ use Symfony\Component\Yaml\Yaml;
 
 #[CoversClass(Validate::class)]
 #[UsesClass(FeedsException::class)]
+#[UsesClass(Vigilant\Helper\Time::class)]
 class ValidateTest extends TestCase
 {
     /**
@@ -179,5 +180,82 @@ class ValidateTest extends TestCase
         $this->expectExceptionMessage('Empty Ntfy token given');
 
         new Validate(self::$feedsInvalid['emptyNtfyToken'], self::$minCheckInterval);
+    }
+
+    /**
+     * Test feed entry with no options for active hours
+     */
+    public function testNoActiveHoursOptions(): void
+    {
+        $this->expectException(FeedsException::class);
+        $this->expectExceptionMessage('Required active hours options not given');
+
+        new Validate(self::$feedsInvalid['noActiveHoursOptions'], self::$minCheckInterval);
+    }
+
+    /**
+     * Test feed entry with no start_time for active hours
+     */
+    public function testNoActiveHoursStartTime(): void
+    {
+        $this->expectException(FeedsException::class);
+        $this->expectExceptionMessage('No active hours start time given');
+
+        new Validate(self::$feedsInvalid['noActiveHoursStartTime'], self::$minCheckInterval);
+    }
+
+    /**
+     * Test feed entry with no end_time for active hours
+     */
+    public function testNoActiveHoursEndTime(): void
+    {
+        $this->expectException(FeedsException::class);
+        $this->expectExceptionMessage('No active hours end time given');
+
+        new Validate(self::$feedsInvalid['noActiveHoursEndTime'], self::$minCheckInterval);
+    }
+
+    /**
+     * Test feed entry with empty start_time for active hours
+     */
+    public function testEmptyActiveHoursStartTime(): void
+    {
+        $this->expectException(FeedsException::class);
+        $this->expectExceptionMessage('Empty active hours start time given');
+
+        new Validate(self::$feedsInvalid['emptyActiveHoursStartTime'], self::$minCheckInterval);
+    }
+
+    /**
+     * Test feed entry with empty end_time for active hours
+     */
+    public function testEmptyActiveHoursEndTime(): void
+    {
+        $this->expectException(FeedsException::class);
+        $this->expectExceptionMessage('Empty active hours end time given');
+
+        new Validate(self::$feedsInvalid['emptyActiveHoursEndTime'], self::$minCheckInterval);
+    }
+
+    /**
+     * Test feed entry with invalid start_time for active hours
+     */
+    public function testInvalidActiveHoursStartTime(): void
+    {
+        $this->expectException(FeedsException::class);
+        $this->expectExceptionMessage('Invalid active hours start time given');
+
+        new Validate(self::$feedsInvalid['invalidActiveHoursStartTime'], self::$minCheckInterval);
+    }
+
+    /**
+     * Test feed entry with invalid end_time for active hours
+     */
+    public function testInvalidActiveHoursEndTime(): void
+    {
+        $this->expectException(FeedsException::class);
+        $this->expectExceptionMessage('Invalid active hours end time given');
+
+        new Validate(self::$feedsInvalid['invalidActiveHoursEndTime'], self::$minCheckInterval);
     }
 }
