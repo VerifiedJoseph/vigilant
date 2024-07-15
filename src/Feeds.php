@@ -22,7 +22,7 @@ final class Feeds
     private Logger $logger;
 
     /**
-     * @var array<int, Details> $feeds Feed classes for each feeds.yaml entry
+     * @var array<int, Details> $feeds Feed class for each feeds.yaml entry
      */
     private array $feeds = [];
 
