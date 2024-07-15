@@ -14,7 +14,7 @@ class Time
         'H',   // 05    - 24-hour with leading zero
         'G',   // 15    - 24-hour without leading zero
         'H:i', // 05:10 - 24-hour with leading zero and minutes
-        'G:i', // 5:15 - 24-hour without leading zero and minutes
+        'G:i', // 5:15  - 24-hour without leading zero and minutes
     ];
 
     /**
