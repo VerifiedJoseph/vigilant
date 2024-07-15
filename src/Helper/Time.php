@@ -29,7 +29,7 @@ class Time
         $d = new DateTime();
         $time = $d->format('Y-m-d ') . strtolower($time);
 
-        foreach(self::$timeFormats as $format) {
+        foreach (self::$timeFormats as $format) {
             $date = DateTime::createFromFormat('Y-m-d ' . $format, $time);
 
             if ($date !== false) {

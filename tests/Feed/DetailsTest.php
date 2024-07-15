@@ -179,7 +179,7 @@ class DetailsTest extends TestCase
         );
     }
 
-    /** 
+    /**
      * Test getActiveHoursStartTime()
      */
     public function testGetActiveHoursStartTime(): void
@@ -194,7 +194,7 @@ class DetailsTest extends TestCase
         );
     }
 
-    /** 
+    /**
      * Test getActiveHoursEndTime()
      */
     public function testGetActiveHoursEndTime(): void

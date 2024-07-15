@@ -162,7 +162,7 @@ final class Validate
 
     /**
      * Validate active hours options in entries
-     * 
+     *
      * @throws FeedsException if no start time is given or is empty
      * @throws FeedsException if no end time is given  or is empty
      * @throws FeedsException if start time format is invalid
