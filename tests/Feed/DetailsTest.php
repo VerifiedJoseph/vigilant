@@ -210,6 +210,15 @@ class DetailsTest extends TestCase
     }
 
     /**
+     * Test hasActiveHours()
+     */
+    public function testHasActiveHours(): void
+    {
+        $this->assertTrue(self::$details[1]->hasActiveHours());
+        $this->assertFalse(self::$details[0]->hasActiveHours());
+    }
+
+    /**
      * Test hasGotifyToken()
      */
     public function testHasGotifyToken(): void
