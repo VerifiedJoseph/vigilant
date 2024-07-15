@@ -15,6 +15,7 @@ use Vigilant\Exception\AppException;
 #[UsesClass(Vigilant\Feed\Feed::class)]
 #[UsesClass(Vigilant\Feed\Details::class)]
 #[UsesClass(Vigilant\Feed\Validate::class)]
+#[UsesClass(Vigilant\Helper\Time::class)]
 #[UsesClass(Vigilant\Exception\FeedsException::class)]
 class FeedsTest extends TestCase
 {
