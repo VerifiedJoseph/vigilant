@@ -14,5 +14,5 @@ feeds:
      ntfy_priority: 1
      ntfy_token: HQKPyHCODeoMFuN
      active_hours:
-       start_time: 6am
-       end_time: 9pm
+       start_time: 06:00
+       end_time: 21:00

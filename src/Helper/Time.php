@@ -11,12 +11,10 @@ class Time
      * @var array<int, string>
      */
     private static array $timeFormats = [
-        'g a', // 1 am  - 12-hour without leading zeros and lowercase am/pm
-        'h a', // 01 am - 12-hour with leading zeros and lowercase am/pm
-        'ga',  // 1am   - 12-hour without leading zeros, lowercase am/pm and no space
-        'ha',  // 01am  - 12-hour with leading zeros, lowercase am/pm and no space
-        'H',   // 05    - 24-hour with leading zeros
-        'G',   // 15    - 24-hour without leading zeros
+        'H',   // 05    - 24-hour with leading zero
+        'G',   // 15    - 24-hour without leading zero
+        'H:i', // 05:10 - 24-hour with leading zero and minutes
+        'G:i', // 5:15 - 24-hour without leading zero and minutes
     ];
 
     /**

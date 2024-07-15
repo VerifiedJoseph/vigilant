@@ -106,7 +106,7 @@ feeds:
     interval: 300
     ntfy_token: token
     active_hours:
-      start_time: 6am
+      start_time: 06:00
       end_time:
 
   invalidActiveHoursStartTime:
@@ -115,8 +115,8 @@ feeds:
     interval: 300
     ntfy_token: token
     active_hours:
-      start_time: 06:00:12
-      end_time: 10pm
+      start_time: 06am
+      end_time: 21:00
 
   invalidActiveHoursEndTime:
     name: Example.com Feed
@@ -124,5 +124,5 @@ feeds:
     interval: 300
     ntfy_token: token
     active_hours:
-      start_time: 6am
-      end_time: 10:01:12
+      start_time: 06:00
+      end_time: 10pm
