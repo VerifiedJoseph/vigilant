@@ -71,7 +71,7 @@ class ActiveHours
         if ($startTime !== null && $endTime !== null) {
             $this->start = new DateTime($startTime, $this->timezone);
             $this->end = new DateTime($endTime, $this->timezone);
-            
+
             if ($this->now >= $this->start && $this->now <= $this->end) {
                 $this->enabled = true;
             }

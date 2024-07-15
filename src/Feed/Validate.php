@@ -168,7 +168,7 @@ final class Validate
      * @throws FeedsException if no end time is given  or is empty
      * @throws FeedsException if start time format is invalid
      * @throws FeedsException if end time format is invalid
-     * @throws FeedsException if end time is before the start emd 
+     * @throws FeedsException if end time is before the start emd
      */
     private function activeHours(): void
     {

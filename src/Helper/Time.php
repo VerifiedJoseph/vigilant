@@ -28,7 +28,7 @@ class Time
                     'Y-m-d ' . $format,
                     (new DateTime())->format('Y-m-d ') . strtolower($time)
                 );
-    
+
                 if ($date !== false) {
                     new DateTime($time);
                     return true;
