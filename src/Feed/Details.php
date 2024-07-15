@@ -10,8 +10,6 @@ final class Details
     private array $details = [];
 
     /**
-     * Constructor
-     *
      * @param array<string, mixed> $feed
      */
     public function __construct(array $feed)
@@ -137,6 +135,19 @@ final class Details
     public function getActiveHoursEndTime(): ?string
     {
         return $this->details['active_hours']['end_time'] ?? null;
+    }
+
+    /**
+     * Returns boolean indicating if active hours are configured for the feed
+     * @return bool
+     */
+    public function hasActiveHours(): bool
+    {
+        if ($this->getActiveHoursStartTime() !== null && $this->getActiveHoursEndTime() !== null) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
