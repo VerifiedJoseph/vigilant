@@ -57,7 +57,7 @@ class ActiveHoursTest extends TestCase
     /**
      * Test date and time formats returned by getStartTime() and getEndTime() with a regex
      */
-    public function testGetMethodsDateAndTimeFormats()
+    public function testGetMethodsDateAndTimeFormats(): void
     {
         $now = new DateTime('07:00', new DateTimeZone(self::$timezone));
 
