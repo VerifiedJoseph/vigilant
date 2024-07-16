@@ -14,34 +14,22 @@ use Vigilant\Feed\Details;
 
 final class Feed
 {
-    /**
-     * @var Details
-     */
+    /** @var Details Feed details class instance */
     public Details $details;
 
-    /**
-     * @var ActiveHours
-     */
+    /** @var ActiveHours ActiveHours class instance */
     public ActiveHours $activeHours;
 
-    /**
-     * @var Check
-     */
+    /** @var Check Check class instance */
     public Check $check;
 
-    /**
-     * @var Config
-     */
+    /** @var Config Config class instance */
     private Config $config;
 
-    /**
-     * @var Logger
-     */
+    /** @var Logger Logger class instance */
     private Logger $logger;
 
-    /**
-     * @var array<string, mixed> $feed Feed entry from feeds.yaml
-     */
+    /** @var array<string, mixed> $feed Feed entry from feeds.yaml */
     private array $feed = [];
 
     /**

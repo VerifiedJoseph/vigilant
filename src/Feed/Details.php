@@ -4,9 +4,7 @@ namespace Vigilant\Feed;
 
 final class Details
 {
-    /**
-     * @var array<string, mixed> $details Feed details from feeds.yaml
-     */
+    /** @var array<string, mixed> $details Feed details from feeds.yaml */
     private array $details = [];
 
     /**
