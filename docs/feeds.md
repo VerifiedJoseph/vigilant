@@ -43,14 +43,14 @@ feeds:
 
 ### Active hours
 
-Use to restrict feed monitoring to a specific window of time.
+Use active hours to restrict feed monitoring to a specific window of time.
 
 Both parameters are required when configuring an active hours window.
 
-| Name                     | Description                                                         |
-| ------------------------ | ------------------------------------------------------------------- |
-| `active_hours.start_time`| Start time for active hours window in 24-hour format. e.g: `09:00`  |
-| `active_hours.end_time`  | End time for active hours window in 24-hour format. e.g: `16:30`    |
+| Name                     | Description                                                  |
+| ------------------------ | ------------------------------------------------------------ |
+| `active_hours.start_time`| Start time for active hours in 24-hour format. e.g: `09:00`  |
+| `active_hours.end_time`  | End time for active hours in 24-hour format. e.g: `16:30`    |
 
 #### Limitations
 
