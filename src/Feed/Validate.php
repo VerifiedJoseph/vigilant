@@ -205,7 +205,9 @@ final class Validate
             $end = new DateTime($this->details['active_hours']['end_time']);
 
             if ($end->getTimestamp() < $start->getTimestamp()) {
-                throw new FeedsException('Active hours end time is before the start time for ' . $this->details['name']);
+                throw new FeedsException(
+                    'Active hours end time is before the start time for ' . $this->details['name']
+                );
             }
         }
     }
