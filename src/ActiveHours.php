@@ -16,8 +16,6 @@ class ActiveHours
     private DateTimeZone $timezone;
     private bool $enabled = false;
 
-    private string $format = 'Y-m-d H:i:s e';
-
     /**
      * @param DateTime $now Current time and date
      * @param ?string $startTime Start time
@@ -45,21 +43,23 @@ class ActiveHours
     }
 
     /**
-     * Returns start time as a readable string
+     * Returns start time
+     * @param string $format Format accepted by date()
      * @return string
      */
-    public function getStartTime(): string
+    public function getStartTime(string $format = 'Y-m-d H:i:s e'): string
     {
-        return $this->start->format($this->format);
+        return $this->start->format($format);
     }
 
     /**
-     * Returns end time as a readable string
+     * Returns end time
+     * @param string $format Format accepted by date()
      * @return string
      */
-    public function getEndTime(): string
+    public function getEndTime(string $format = 'Y-m-d H:i:s e'): string
     {
-        return $this->end->format($this->format);
+        return $this->end->format($format);
     }
 
     /**

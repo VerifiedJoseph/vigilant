@@ -2,13 +2,10 @@
 
 use Vigilant\Config;
 use Vigilant\Feeds;
-use Vigilant\Check;
-use Vigilant\Fetch;
 use Vigilant\Notify;
 use Vigilant\Output;
 use Vigilant\Logger;
 use Vigilant\Version;
-use Vigilant\ActiveHours;
 use Vigilant\Exception\ConfigException;
 use Vigilant\Exception\AppException;
 
@@ -24,37 +21,31 @@ try {
     );
     $logger->debug(sprintf('Vigilant v%s', Version::get()));
 
-    $fetch = new Fetch();
     $feeds = new Feeds($config, $logger);
 
-    foreach ($feeds->get() as $details) {
-        $notify = new Notify($details, $config, $logger);
-        $check = new Check(
-            $details,
-            $fetch,
-            $config,
-            $logger
-        );
+    foreach ($feeds->get() as $feed) {
+        $notify = new Notify($feed->details, $config, $logger);
 
-        $now = new DateTime('now', new DateTimeZone($config->getTimezone()));
-        $activeHours = new ActiveHours(
-            $now,
-            $details->getActiveHoursStartTime(),
-            $details->getActiveHoursEndTime(),
-            $config->getTimezone(),
-            $logger
-        );
+        if ($feed->details->hasActiveHours() === false || $feed->activeHours->isEnabled() === true) {
+            if ($feed->check->isDue() === true) {
+                $feed->check->check();
+                $notify->send($feed->check->getMessages());
 
-        if ($details->hasActiveHours() === false || $activeHours->isEnabled() === true) {
-            if ($check->isDue() === true) {
-                $check->check();
-                $notify->send($check->getMessages());
-
-                $logger->info(sprintf(
-                    'Next check in %s seconds at %s',
-                    $details->getInterval(),
-                    $check->getNextCheckDate()
-                ));
+                if (
+                    $feed->details->hasActiveHours() === true &&
+                    $feed->check->getNextCheckDate('U') >= $feed->activeHours->getEndTime('U')
+                ) {
+                    $logger->info(sprintf(
+                        'Next check during active hours starting at %s',
+                        $feed->details->getActiveHoursStartTime()
+                    ));
+                } else {
+                    $logger->info(sprintf(
+                        'Next check in %s seconds at %s',
+                        $feed->details->getInterval(),
+                        $feed->check->getNextCheckDate()
+                    ));
+                }
             }
         }
     }

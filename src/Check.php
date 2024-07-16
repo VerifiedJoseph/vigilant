@@ -68,16 +68,17 @@ final class Check
     }
 
     /**
-     * Returns next check date in readable format (`Y-m-d H:i:s`)
+     * Returns next check date
+     * @param string $format Format accepted by date()
      * @return string
      */
-    public function getNextCheckDate(): string
+    public function getNextCheckDate(string $format = 'Y-m-d H:i:s'): string
     {
         $date = new DateTime();
         $date->setTimestamp($this->cache->getNextCheck());
         $date->setTimezone(new DateTimeZone($this->config->getTimezone()));
 
-        return $date->format('Y-m-d H:i:s');
+        return $date->format($format);
     }
 
     public function check(): void

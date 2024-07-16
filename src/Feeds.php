@@ -22,7 +22,7 @@ final class Feeds
     private Logger $logger;
 
     /**
-     * @var array<int, Details> $feeds Feed class for each feeds.yaml entry
+     * @var array<int, Feed> $feeds Feed class for each feeds.yaml entry
      */
     private array $feeds = [];
 
@@ -44,9 +44,9 @@ final class Feeds
     }
 
     /**
-     * Get details of each feed in the YAML file.
+     * Get Feed class of each feed in the YAML file.
      *
-     * @return array<int, Details>
+     * @return array<int, Feed>
      */
     public function get(): array
     {
@@ -87,8 +87,7 @@ final class Feeds
         }
 
         foreach ($feeds['feeds'] as $entry) {
-            $feed = new Feed($entry, $this->config);
-            $this->feeds[] = $feed->getDetails();
+            $this->feeds[] = new Feed($entry, $this->config, $this->logger);
         }
     }
 }
