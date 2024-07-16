@@ -8,6 +8,7 @@ use Vigilant\Notify;
 use Vigilant\Output;
 use Vigilant\Logger;
 use Vigilant\Version;
+use Vigilant\ActiveHours;
 use Vigilant\Exception\ConfigException;
 use Vigilant\Exception\AppException;
 
@@ -35,15 +36,26 @@ try {
             $logger
         );
 
-        if ($check->isDue() === true) {
-            $check->check();
-            $notify->send($check->getMessages());
+        $now = new DateTime('now', new DateTimeZone($config->getTimezone()));
+        $activeHours = new ActiveHours(
+            $now,
+            $details->getActiveHoursStartTime(),
+            $details->getActiveHoursEndTime(),
+            $config->getTimezone(),
+            $logger
+        );
 
-            $logger->info(sprintf(
-                'Next check in %s seconds at %s',
-                $details->getInterval(),
-                $check->getNextCheckDate()
-            ));
+        if ($details->hasActiveHours() === false || $activeHours->isEnabled() === true) {
+            if ($check->isDue() === true) {
+                $check->check();
+                $notify->send($check->getMessages());
+
+                $logger->info(sprintf(
+                    'Next check in %s seconds at %s',
+                    $details->getInterval(),
+                    $check->getNextCheckDate()
+                ));
+            }
         }
     }
 } catch (ConfigException | AppException $err) {
