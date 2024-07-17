@@ -12,10 +12,37 @@ class DetailsTest extends TestCase
      */
     private static array $feeds = [];
 
+    /**
+     * @var array<int, Details>
+     */
+    private static array $details = [];
+
     public static function setUpBeforeClass(): void
     {
         $feeds = Yaml::parse(self::loadSample('feeds.yaml'));
         self::$feeds = $feeds['feeds'];
+
+        self::$details = [
+            new Details(self::$feeds[0]),
+            new Details(self::$feeds[1])
+        ];
+    }
+
+    /**
+     * Test __construct
+     */
+    public function testConstruct(): void
+    {
+        $details = new Details(self::$feeds[0]);
+
+        $reflection = new ReflectionClass($details);
+        $property = $reflection->getProperty('details');
+        $property->setAccessible(true);
+
+        $this->assertEquals(
+            self::$feeds[0],
+            $property->getValue($details)
+        );
     }
 
     /**
@@ -23,12 +50,9 @@ class DetailsTest extends TestCase
      */
     public function testGetHash(): void
     {
-        $hashed = sha1(self::$feeds[0]['url']);
-        $details = new Details(self::$feeds[0]);
-
         $this->assertEquals(
-            $hashed,
-            $details->getHash()
+            sha1(self::$feeds[0]['url']),
+            self::$details[0]->getHash()
         );
     }
 
@@ -37,11 +61,9 @@ class DetailsTest extends TestCase
      */
     public function testGetName(): void
     {
-        $details = new Details(self::$feeds[0]);
-
         $this->assertEquals(
             self::$feeds[0]['name'],
-            $details->getName()
+            self::$details[0]->getName()
         );
     }
 
@@ -50,11 +72,9 @@ class DetailsTest extends TestCase
      */
     public function testGetUrl(): void
     {
-        $details = new Details(self::$feeds[0]);
-
         $this->assertEquals(
             self::$feeds[0]['url'],
-            $details->getUrl()
+            self::$details[0]->getUrl()
         );
     }
 
@@ -63,11 +83,9 @@ class DetailsTest extends TestCase
      */
     public function testGetInterval(): void
     {
-        $details = new Details(self::$feeds[0]);
-
         $this->assertEquals(
             self::$feeds[0]['interval'],
-            $details->getInterval()
+            self::$details[0]->getInterval()
         );
     }
 
@@ -76,11 +94,13 @@ class DetailsTest extends TestCase
      */
     public function testGetTitlePrefix(): void
     {
-        $details = new Details(self::$feeds[0]);
-
         $this->assertEquals(
             self::$feeds[0]['title_prefix'],
-            $details->getTitlePrefix()
+            self::$details[0]->getTitlePrefix()
+        );
+
+        $this->assertNull(
+            self::$details[1]->getTitlePrefix()
         );
     }
 
@@ -89,11 +109,13 @@ class DetailsTest extends TestCase
      */
     public function testGetGotifyToken(): void
     {
-        $details = new Details(self::$feeds[0]);
-
         $this->assertEquals(
             self::$feeds[0]['gotify_token'],
-            $details->getGotifyToken()
+            self::$details[0]->getGotifyToken()
+        );
+
+        $this->assertNull(
+            self::$details[1]->getGotifyToken()
         );
     }
 
@@ -102,11 +124,13 @@ class DetailsTest extends TestCase
      */
     public function testGetGotifyPriority(): void
     {
-        $details = new Details(self::$feeds[0]);
-
         $this->assertEquals(
             self::$feeds[0]['gotify_priority'],
-            $details->getGotifyPriority()
+            self::$details[0]->getGotifyPriority()
+        );
+
+        $this->assertNull(
+            self::$details[1]->getGotifyPriority()
         );
     }
 
@@ -115,11 +139,13 @@ class DetailsTest extends TestCase
      */
     public function testGetNtfyTopic(): void
     {
-        $details = new Details(self::$feeds[1]);
-
         $this->assertEquals(
             self::$feeds[1]['ntfy_topic'],
-            $details->getNtfyTopic()
+            self::$details[1]->getNtfyTopic()
+        );
+
+        $this->assertNull(
+            self::$details[0]->getNtfyTopic()
         );
     }
 
@@ -128,11 +154,13 @@ class DetailsTest extends TestCase
      */
     public function testGetNtfyToken(): void
     {
-        $details = new Details(self::$feeds[1]);
-
         $this->assertEquals(
             self::$feeds[1]['ntfy_token'],
-            $details->getNtfyToken()
+            self::$details[1]->getNtfyToken()
+        );
+
+        $this->assertNull(
+            self::$details[0]->getNtfyToken()
         );
     }
 
@@ -141,12 +169,53 @@ class DetailsTest extends TestCase
      */
     public function testGetNtfyPriority(): void
     {
-        $details = new Details(self::$feeds[1]);
-
         $this->assertEquals(
             self::$feeds[1]['ntfy_priority'],
-            $details->getNtfyPriority()
+            self::$details[1]->getNtfyPriority()
         );
+
+        $this->assertNull(
+            self::$details[0]->getNtfyPriority()
+        );
+    }
+
+    /**
+     * Test getActiveHoursStartTime()
+     */
+    public function testGetActiveHoursStartTime(): void
+    {
+        $this->assertEquals(
+            self::$feeds[1]['active_hours']['start_time'],
+            self::$details[1]->getActiveHoursStartTime()
+        );
+
+        $this->assertNull(
+            self::$details[0]->getActiveHoursStartTime()
+        );
+    }
+
+    /**
+     * Test getActiveHoursEndTime()
+     */
+    public function testGetActiveHoursEndTime(): void
+    {
+        $this->assertEquals(
+            self::$feeds[1]['active_hours']['end_time'],
+            self::$details[1]->getActiveHoursEndTime()
+        );
+
+        $this->assertNull(
+            self::$details[0]->getActiveHoursEndTime()
+        );
+    }
+
+    /**
+     * Test hasActiveHours()
+     */
+    public function testHasActiveHours(): void
+    {
+        $this->assertTrue(self::$details[1]->hasActiveHours());
+        $this->assertFalse(self::$details[0]->hasActiveHours());
     }
 
     /**
@@ -154,8 +223,8 @@ class DetailsTest extends TestCase
      */
     public function testHasGotifyToken(): void
     {
-        $details = new Details(self::$feeds[0]);
-        $this->assertTrue($details->hasGotifyToken());
+        $this->assertTrue(self::$details[0]->hasGotifyToken());
+        $this->assertFalse(self::$details[1]->hasGotifyToken());
     }
 
     /**
@@ -163,8 +232,8 @@ class DetailsTest extends TestCase
      */
     public function testHasGotifyPriority(): void
     {
-        $details = new Details(self::$feeds[0]);
-        $this->assertTrue($details->hasGotifyPriority());
+        $this->assertTrue(self::$details[0]->hasGotifyPriority());
+        $this->assertFalse(self::$details[1]->hasGotifyPriority());
     }
 
     /**
@@ -172,17 +241,17 @@ class DetailsTest extends TestCase
      */
     public function testHasNtfyTopic(): void
     {
-        $details = new Details(self::$feeds[1]);
-        $this->assertTrue($details->hasNtfyTopic());
+        $this->assertTrue(self::$details[1]->hasNtfyTopic());
+        $this->assertFalse(self::$details[0]->hasNtfyTopic());
     }
 
     /**
-     * Test hasNtfyToken)
+     * Test hasNtfyToken()
      */
     public function testHasNtfyToken(): void
     {
-        $details = new Details(self::$feeds[1]);
-        $this->assertTrue($details->hasNtfyToken());
+        $this->assertTrue(self::$details[1]->hasNtfyToken());
+        $this->assertFalse(self::$details[0]->hasNtfyToken());
     }
 
     /**
@@ -190,16 +259,7 @@ class DetailsTest extends TestCase
      */
     public function testHasNtfyPriority(): void
     {
-        $details = new Details(self::$feeds[1]);
-        $this->assertTrue($details->hasNtfyPriority());
-    }
-
-    /**
-     * Test `hasNtfyPriority()` returning false
-     */
-    public function testHasNtfyPriorityNtfyPriorityFalse(): void
-    {
-        $details = new Details(self::$feeds[0]);
-        $this->assertFalse($details->hasNtfyPriority());
+        $this->assertTrue(self::$details[1]->hasNtfyPriority());
+        $this->assertFalse(self::$details[0]->hasNtfyPriority());
     }
 }

@@ -2,7 +2,6 @@
 
 namespace Vigilant\Notification;
 
-use Vigilant\Output;
 use Vigilant\Notification\AbstractNotification;
 use Vigilant\Exception\NotificationException;
 use Ntfy\Auth;

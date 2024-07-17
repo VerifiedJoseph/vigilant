@@ -4,14 +4,10 @@ namespace Vigilant\Feed;
 
 final class Details
 {
-    /**
-     * @var array<string, mixed> $details Feed details from feeds.yaml
-     */
+    /** @var array<string, mixed> $details Feed details from feeds.yaml */
     private array $details = [];
 
     /**
-     * Constructor
-     *
      * @param array<string, mixed> $feed
      */
     public function __construct(array $feed)
@@ -120,7 +116,40 @@ final class Details
     }
 
     /**
-     * Has entry got a ntfy token
+     * Returns active hours start time
+     *
+     * @return ?string
+     */
+    public function getActiveHoursStartTime(): ?string
+    {
+        return $this->details['active_hours']['start_time'] ?? null;
+    }
+
+    /**
+     * Returns active hours end time
+     *
+     * @return ?string
+     */
+    public function getActiveHoursEndTime(): ?string
+    {
+        return $this->details['active_hours']['end_time'] ?? null;
+    }
+
+    /**
+     * Returns boolean indicating if active hours are configured for the feed
+     * @return bool
+     */
+    public function hasActiveHours(): bool
+    {
+        if ($this->getActiveHoursStartTime() !== null && $this->getActiveHoursEndTime() !== null) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Check if entry has a ntfy token parameter
      *
      * @return bool
      */
@@ -130,7 +159,7 @@ final class Details
     }
 
     /**
-     * Has entry got a ntfy topic
+     * Check if entry has a ntfy topic parameter
      *
      * @return bool
      */
@@ -140,7 +169,7 @@ final class Details
     }
 
     /**
-     * Has entry got a ntfy priority
+     * Check if entry has a ntfy priority parameter
      *
      * @return bool
      */
@@ -150,7 +179,7 @@ final class Details
     }
 
     /**
-     * Has entry got Gotify token
+     * Check if entry has a Gotify token parameter
      *
      * @return bool
      */
@@ -160,7 +189,7 @@ final class Details
     }
 
     /**
-     * Has entry got Gotify priority
+     * Check if entry has a Gotify priority parameter
      *
      * @return bool
      */
@@ -170,7 +199,7 @@ final class Details
     }
 
     /**
-     * Has entry got a value
+     * heck if entry has a parameter
      *
      * @return bool
      */

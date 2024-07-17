@@ -2,3 +2,10 @@ feeds:
     - name: Met Office weather warnings
       url: http://www.metoffice.gov.uk/public/data/PWSCache/WarningsRSS/Region/UK
       interval: 1900
+
+    - name: GitHub status
+      url: https://www.githubstatus.com/history.rss
+      interval: 600
+      active_hours:
+        start_time: 09:30
+        end_time: 17:00
