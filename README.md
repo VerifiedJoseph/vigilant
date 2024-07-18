@@ -15,7 +15,7 @@ Vigilant supports sending push notifications with [Gotify](https://gotify.net) o
 
 ## Requirements
 
-- PHP >= 8.1
+- PHP >= 8.2
 - Composer
 - PHP Extensions:
   - [`JSON`](https://www.php.net/manual/en/book.json.php)
