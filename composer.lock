@@ -1141,16 +1141,16 @@
         },
         {
             "name": "verifiedjoseph/gotify-api-php",
-            "version": "v1.8.2",
+            "version": "v1.8.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/VerifiedJoseph/gotify-api-php.git",
-                "reference": "712b4ee86350c7f6623b37fa2bc315805df61e24"
+                "reference": "b55023831fb064b9b6974aa9918804fc75dd1e5d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/VerifiedJoseph/gotify-api-php/zipball/712b4ee86350c7f6623b37fa2bc315805df61e24",
-                "reference": "712b4ee86350c7f6623b37fa2bc315805df61e24",
+                "url": "https://api.github.com/repos/VerifiedJoseph/gotify-api-php/zipball/b55023831fb064b9b6974aa9918804fc75dd1e5d",
+                "reference": "b55023831fb064b9b6974aa9918804fc75dd1e5d",
                 "shasum": ""
             },
             "require": {
@@ -1187,9 +1187,9 @@
             ],
             "support": {
                 "issues": "https://github.com/VerifiedJoseph/gotify-api-php/issues",
-                "source": "https://github.com/VerifiedJoseph/gotify-api-php/tree/v1.8.2"
+                "source": "https://github.com/VerifiedJoseph/gotify-api-php/tree/v1.8.3"
             },
-            "time": "2024-06-24T08:17:45+00:00"
+            "time": "2024-07-18T15:48:58+00:00"
         },
         {
             "name": "verifiedjoseph/ntfy-php-library",
