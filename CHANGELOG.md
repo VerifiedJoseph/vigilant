@@ -2,17 +2,6 @@
 
 All notable changes to this project are documented in this file.
 
-## [1.4.0](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.4.0) - 2024-08-21
-
-- Added active hours. ([#220](https://github.com/VerifiedJoseph/vigilant/pull/220), [`57b76d4`](https://github.com/VerifiedJoseph/vigilant/commit/57b76d4bdc7eff11a7236d579a33f0facb712e33))
-- Dropped support for php 8.1 ([#230](https://github.com/VerifiedJoseph/vigilant/pull/230), [`8cb208b`](https://github.com/VerifiedJoseph/vigilant/commit/8cb208bc6a139685b71c1c72b2fc3f2fbb0fe55c))
-- Updated symfony/yaml from 6.4.8 to 7.1.1 ([#222](https://github.com/VerifiedJoseph/vigilant/pull/222), [`c038e1e`](https://github.com/VerifiedJoseph/vigilant/commit/c038e1e82e557943884439ea5e51d06946197661))
-- Updated guzzlehttp/guzzle from 7.8.1 to 7.9.0 ([#223](https://github.com/VerifiedJoseph/vigilant/pull/223), [`25cc8ea`](https://github.com/VerifiedJoseph/vigilant/commit/25cc8ea9ed53f07b860b03d68a16a9a9abdc0f49))
-- Updated verifiedjoseph/ntfy-php-library from 4.5.2 to 4.6.0 ([#226](https://github.com/VerifiedJoseph/vigilant/pull/226), [`e88b1f3`](https://github.com/VerifiedJoseph/vigilant/commit/e88b1f333387037cc0c945861bd3d5369ab25bc5))
-- Updated verifiedjoseph/gotify-api-php from 1.8.2 to 1.8.3 ([#227](https://github.com/VerifiedJoseph/vigilant/pull/227), [`a53bf80`](https://github.com/VerifiedJoseph/vigilant/commit/a53bf80c3fa413a5d60585baedeb81833eed69ea))
-
-All changes: https://github.com/VerifiedJoseph/vigilant/compare/v1.3.0...v1.4.0
-
 ## [1.3.0](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.3.0) - 2024-07-02
 
 - Added feeds file option for notification title prefixes. ([#193](https://github.com/VerifiedJoseph/vigilant/pull/193), [`df3690b`](https://github.com/VerifiedJoseph/vigilant/commit/df3690b0caa8d1516cdcf0c911849ddcf1849e20))
