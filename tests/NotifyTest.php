@@ -18,7 +18,6 @@ use Vigilant\Notification\Ntfy;
 #[UsesClass(Logger::class)]
 #[UsesClass(Gotify::class)]
 #[UsesClass(Ntfy::class)]
-#[UsesClass(Vigilant\Output::class)]
 #[UsesClass(Vigilant\Notification\AbstractNotification::class)]
 #[UsesClass(Vigilant\Exception\NotificationException::class)]
 class NotifyTest extends TestCase

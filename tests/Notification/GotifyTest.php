@@ -11,7 +11,6 @@ use Vigilant\Exception\NotificationException;
 #[UsesClass(Logger::class)]
 #[CoversClass(Vigilant\Notification\AbstractNotification::class)]
 #[UsesClass(NotificationException::class)]
-#[UsesClass(Vigilant\Output::class)]
 class GotifyTest extends TestCase
 {
     private static Logger $logger;

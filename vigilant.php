@@ -3,7 +3,6 @@
 use Vigilant\Config;
 use Vigilant\Feeds;
 use Vigilant\Notify;
-use Vigilant\Output;
 use Vigilant\Logger;
 use Vigilant\Version;
 use Vigilant\Exception\ConfigException;
@@ -50,6 +49,6 @@ try {
         }
     }
 } catch (ConfigException | AppException $err) {
-    Output::text($err->getMessage());
+    (new Logger(date_default_timezone_get()))->info($err->getMessage());
     exit(1);
 }
