@@ -2,7 +2,7 @@
 
 All notable changes to this project are documented in this file.
 
-## [1.4.0](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.4.0) - 2024-08-21
+## [1.4.0](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.4.0) - 2024-07-21
 
 - Added active hours. ([#220](https://github.com/VerifiedJoseph/vigilant/pull/220), [`57b76d4`](https://github.com/VerifiedJoseph/vigilant/commit/57b76d4bdc7eff11a7236d579a33f0facb712e33))
 - Dropped support for php 8.1 ([#230](https://github.com/VerifiedJoseph/vigilant/pull/230), [`8cb208b`](https://github.com/VerifiedJoseph/vigilant/commit/8cb208bc6a139685b71c1c72b2fc3f2fbb0fe55c))
