@@ -15,7 +15,6 @@ use Vigilant\Fetch;
 #[UsesClass(Config::class)]
 #[UsesClass(Logger::class)]
 #[UsesClass(Vigilant\Cache::class)]
-#[UsesClass(Vigilant\Output::class)]
 #[UsesClass(Vigilant\Message::class)]
 #[UsesClass(Vigilant\Helper\File::class)]
 #[UsesClass(Vigilant\Helper\Json::class)]
