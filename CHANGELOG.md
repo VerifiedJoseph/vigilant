@@ -2,6 +2,13 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.4.1](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.4.0) - 2024-07-23
+
+- Updated guzzlehttp/guzzle from 7.9.0 to 7.9.1 ([#237](https://github.com/VerifiedJoseph/vigilant/pull/237), [`3a0ce77`](https://github.com/VerifiedJoseph/vigilant/commit/3a0ce77ee0440dac46a34e18a01add71cdbac642))
+- Updated verifiedjoseph/ntfy-php-library from 4.6.0 to 4.6.1 ([#236](https://github.com/VerifiedJoseph/vigilant/pull/236), [`3215c6f`](https://github.com/VerifiedJoseph/vigilant/commit/3215c6f81be2cf02df7e5f2e01615797c01b1614))
+- Updated verifiedjoseph/gotify-api-php from 1.8.3 to 1.8.4 ([#235](https://github.com/VerifiedJoseph/vigilant/pull/235), [`e01501d`](https://github.com/VerifiedJoseph/vigilant/commit/e01501da97b8c0cedab59e760cf7a9ec69a3f8af))
+- Dockerfile: Updated alpine from 3.20.1 to 3.20.2 ([#238](https://github.com/VerifiedJoseph/vigilant/pull/238), [`59201ad`](https://github.com/VerifiedJoseph/vigilant/commit/59201ad3c02fa8554c1b09d2333a1ebbc40a1dad))
+
 ## [1.4.0](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.4.0) - 2024-07-21
 
 - Added active hours. ([#220](https://github.com/VerifiedJoseph/vigilant/pull/220), [`57b76d4`](https://github.com/VerifiedJoseph/vigilant/commit/57b76d4bdc7eff11a7236d579a33f0facb712e33))
