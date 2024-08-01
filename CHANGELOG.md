@@ -2,7 +2,13 @@
 
 All notable changes to this project are documented in this file.
 
-## [1.4.1](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.4.0) - 2024-07-23
+## [1.4.2](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.4.2) - 2024-08-01
+
+- Updated guzzlehttp/guzzle from 7.9.1 to 7.9.2 ([#245](https://github.com/VerifiedJoseph/vigilant/pull/245), [`91d531e`](https://github.com/VerifiedJoseph/vigilant/commit/91d531e68882e7875f9540fdd376d366635bacd8))
+- Updated verifiedjoseph/ntfy-php-library from 4.6.1 to 4.6.2 ([#252](https://github.com/VerifiedJoseph/vigilant/pull/252), [`224f341`](https://github.com/VerifiedJoseph/vigilant/commit/224f341c59e8cd98aea23b11f7736a4a800df39f))
+- Updated verifiedjoseph/gotify-api-php from 1.8.4 to 1.9.0 ([#251](https://github.com/VerifiedJoseph/vigilant/pull/251), [`2ceb62f`](https://github.com/VerifiedJoseph/vigilant/commit/2ceb62f5d1b2263d3a0febd77d5d73d9d9474dc7))
+
+## [1.4.1](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.4.1) - 2024-07-23
 
 - Updated guzzlehttp/guzzle from 7.9.0 to 7.9.1 ([#237](https://github.com/VerifiedJoseph/vigilant/pull/237), [`3a0ce77`](https://github.com/VerifiedJoseph/vigilant/commit/3a0ce77ee0440dac46a34e18a01add71cdbac642))
 - Updated verifiedjoseph/ntfy-php-library from 4.6.0 to 4.6.1 ([#236](https://github.com/VerifiedJoseph/vigilant/pull/236), [`3215c6f`](https://github.com/VerifiedJoseph/vigilant/commit/3215c6f81be2cf02df7e5f2e01615797c01b1614))
