@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.4.3](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.4.3) - 2024-09-01
+
+- Updated symfony/yaml from 7.1.1 to 7.1.4 ([#259](https://github.com/VerifiedJoseph/vigilant/pull/259), [`15a806b`](https://github.com/VerifiedJoseph/vigilant/commit/15a806bfea6e875f881221c4f9e080c677f33914))
+- Dockerfile: Updated composer from 2.7.7 to 2.7.8 ([#257](https://github.com/VerifiedJoseph/vigilant/pull/257), [`d9f0196`](https://github.com/VerifiedJoseph/vigilant/commit/d9f019670d10b8d6e69704bef6381b5c301747b3))
+
 ## [1.4.2](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.4.2) - 2024-08-01
 
 - Updated guzzlehttp/guzzle from 7.9.1 to 7.9.2 ([#245](https://github.com/VerifiedJoseph/vigilant/pull/245), [`91d531e`](https://github.com/VerifiedJoseph/vigilant/commit/91d531e68882e7875f9540fdd376d366635bacd8))
