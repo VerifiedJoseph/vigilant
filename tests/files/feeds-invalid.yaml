@@ -31,6 +31,12 @@ feeds:
     url: https://www.example.com/feed.rss
     interval: 100
 
+  emptyTitlePrefix:
+    name: Example.com Feed
+    url: https://www.example.com/feed.rss
+    interval: 300
+    title_prefix:
+
   emptyGotifyToken:
     name: Example.com Feed
     url: https://www.example.com/feed.rss
@@ -61,3 +67,70 @@ feeds:
     interval: 300
     ntfy_priority: 1
     ntfy_token:
+
+  noActiveHoursOptions:
+    name: Example.com Feed
+    url: https://www.example.com/feed.rss
+    interval: 300
+    ntfy_token: token
+    active_hours:
+
+  noActiveHoursStartTime:
+    name: Example.com Feed
+    url: https://www.example.com/feed.rss
+    interval: 300
+    ntfy_token: token
+    active_hours:
+      test: Hello World
+
+  noActiveHoursEndTime:
+    name: Example.com Feed
+    url: https://www.example.com/feed.rss
+    interval: 300
+    ntfy_token: token
+    active_hours:
+      start_time: 22:00
+
+  emptyActiveHoursStartTime:
+    name: Example.com Feed
+    url: https://www.example.com/feed.rss
+    interval: 300
+    ntfy_token: token
+    active_hours:
+      start_time:
+      end_time: 22:00
+
+  emptyActiveHoursEndTime:
+    name: Example.com Feed
+    url: https://www.example.com/feed.rss
+    interval: 300
+    ntfy_token: token
+    active_hours:
+      start_time: 06:00
+      end_time:
+
+  invalidActiveHoursStartTime:
+    name: Example.com Feed
+    url: https://www.example.com/feed.rss
+    interval: 300
+    ntfy_token: token
+    active_hours:
+      start_time: 06am
+      end_time: 21:00
+
+  invalidActiveHoursEndTime:
+    name: Example.com Feed
+    url: https://www.example.com/feed.rss
+    interval: 300
+    ntfy_token: token
+    active_hours:
+      start_time: 06:00
+      end_time: 10pm
+
+  activeHoursEndTimeBeforeStartTime:
+    name: Example.com Feed
+    url: https://www.example.com/feed.rss
+    interval: 300
+    active_hours:
+      start_time: 06:00
+      end_time: 05:00

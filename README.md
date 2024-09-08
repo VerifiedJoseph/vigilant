@@ -23,8 +23,10 @@ Vigilant can either be run manually or in a Docker container, making it quick an
 
 ## Requirements
 
-🐳Docker, or for manual setup:
-- PHP >= 8.1
+🐳Docker
+
+Or for manual setup:
+- PHP >= 8.2
 - Composer
 - PHP Extensions:
   - [`JSON`](https://www.php.net/manual/en/book.json.php)

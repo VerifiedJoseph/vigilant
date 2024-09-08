@@ -9,7 +9,7 @@ class Config
     private Validator $validate;
 
     /** @var string $minPhpVersion Minimum PHP version */
-    private string $minPhpVersion = '8.1.0';
+    private string $minPhpVersion = '8.2.0';
 
     /** @var array<int, string> $extensions Required PHP extensions */
     private array $extensions = ['xml', 'xmlreader', 'ctype'];
@@ -218,6 +218,15 @@ class Config
     public function getFeedsPath(): string
     {
         return $this->config['feeds_file'];
+    }
+
+    /**
+     * Returns cache format version
+     * @return int
+     */
+    public function getCacheFormatVersion(): int
+    {
+        return Version::getCacheFormatVersion();
     }
 
     /**

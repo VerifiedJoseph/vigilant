@@ -15,7 +15,6 @@ use Vigilant\Fetch;
 #[UsesClass(Config::class)]
 #[UsesClass(Logger::class)]
 #[UsesClass(Vigilant\Cache::class)]
-#[UsesClass(Vigilant\Output::class)]
 #[UsesClass(Vigilant\Message::class)]
 #[UsesClass(Vigilant\Helper\File::class)]
 #[UsesClass(Vigilant\Helper\Json::class)]
@@ -37,7 +36,8 @@ class CheckTest extends TestCase
         'first_check' => 1666292400,
         'next_check' => 0,
         'error_count' => 3,
-        'items' => ['4a12f90c6959a0b0cc134ea2a0564ade5d779c50']
+        'items' => ['4a12f90c6959a0b0cc134ea2a0564ade5d779c50'],
+        'version' => 1
     ];
 
     public static function setUpBeforeClass(): void
@@ -47,6 +47,7 @@ class CheckTest extends TestCase
         /** @var PHPUnit\Framework\MockObject\Stub&Config */
         $config = self::createStub(Config::class);
         $config->method('getCachePath')->willReturn(mockfs::getUrl('/'));
+        $config->method('getCacheFormatVersion')->willReturn(1);
         $config->method('getTimezone')->willReturn('UTC');
         self::$config = $config;
 
@@ -118,7 +119,6 @@ class CheckTest extends TestCase
         ]));
 
         $details = new Details($this->feed);
-        $check = new check($details, $fetch, self::$config, self::$logger);
         $check = new check($details, $fetch, self::$config, self::$logger);
 
         $this->expectOutputRegex('/Found 1 new item\(s\)/');

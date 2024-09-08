@@ -11,10 +11,15 @@ use Vigilant\Exception\AppException;
 #[UsesClass(Config::class)]
 #[UsesClass(Logger::class)]
 #[UsesClass(AppException::class)]
-#[UsesClass(Vigilant\Output::class)]
+#[UsesClass(Vigilant\Cache::class)]
+#[UsesClass(Vigilant\Check::class)]
+#[UsesClass(Vigilant\Fetch::class)]
 #[UsesClass(Vigilant\Feed\Feed::class)]
 #[UsesClass(Vigilant\Feed\Details::class)]
 #[UsesClass(Vigilant\Feed\Validate::class)]
+#[UsesClass(Vigilant\ActiveHours::class)]
+#[UsesClass(Vigilant\Helper\Time::class)]
+#[UsesClass(Vigilant\Helper\File::class)]
 #[UsesClass(Vigilant\Exception\FeedsException::class)]
 class FeedsTest extends TestCase
 {
@@ -33,11 +38,12 @@ class FeedsTest extends TestCase
         /** @var PHPUnit\Framework\MockObject\Stub&Config */
         $config = $this->createStub(Config::class);
         $config->method('getFeedsPath')->willReturn(self::getSamplePath('feeds.yaml'));
+        $config->method('getTimezone')->willReturn('UTC');
 
         $feeds = new Feeds($config, self::$logger);
 
         $this->assertIsArray($feeds->get());
-        $this->assertContainsOnlyInstancesOf('Vigilant\Feed\Details', $feeds->get());
+        $this->assertContainsOnlyInstancesOf('Vigilant\Feed\Feed', $feeds->get());
     }
 
     /**
