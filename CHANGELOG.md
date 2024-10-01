@@ -6,7 +6,7 @@ All notable changes to this project are documented in this file.
 
 - Updated symfony/yaml from 7.1.4 to 7.1.5 ([#271](https://github.com/VerifiedJoseph/vigilant/pull/271), [`4f51691`](https://github.com/VerifiedJoseph/vigilant/commit/4f516912188ace9a399a2a4b9cacb3753a8e5e77))
 - Dockerfile: Updated alpine from 3.20.2 to 3.20.3 ([#272](https://github.com/VerifiedJoseph/vigilant/pull/272), [`58c266e`](https://github.com/VerifiedJoseph/vigilant/commit/58c266e0dcf366c02b2d5cf910d41ad0141d60da))
-- Dockerfile: Updated composer from2.7.8 to 2.7.9 ([#273](https://github.com/VerifiedJoseph/vigilant/pull/273), [`0c9b976`](https://github.com/VerifiedJoseph/vigilant/commit/0c9b976d82f51a4832ab0362c47e97fa88d62cdf))
+- Dockerfile: Updated composer from 2.7.8 to 2.7.9 ([#273](https://github.com/VerifiedJoseph/vigilant/pull/273), [`0c9b976`](https://github.com/VerifiedJoseph/vigilant/commit/0c9b976d82f51a4832ab0362c47e97fa88d62cdf))
 
 ## [1.4.3](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.4.3) - 2024-09-01
 
