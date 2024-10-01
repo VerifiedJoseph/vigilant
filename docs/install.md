@@ -1,6 +1,6 @@
 # Installation
 
-## docker-compose
+## Docker compose
 
 ```yaml
 version: '3'
