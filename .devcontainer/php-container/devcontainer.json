@@ -14,5 +14,5 @@
             ]
         }
     },
-    "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder} && composer install && python3 -m venv .venv"
+    "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder} && composer install"
 }
