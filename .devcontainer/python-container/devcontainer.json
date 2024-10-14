@@ -1,0 +1,17 @@
+{
+    "name": "vigilant-mkdocs-dev-container",
+    "dockerComposeFile": [
+        "docker-compose.yml"
+    ],
+    "service": "workspace",
+    "workspaceFolder": "/vigilant",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "EditorConfig.EditorConfig",
+                "streetsidesoftware.code-spell-checker"
+            ]
+        }
+    },
+    "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder} && pipenv install"
+}

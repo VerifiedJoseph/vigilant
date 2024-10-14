@@ -1,0 +1,11 @@
+services:
+  workspace:
+    build:
+      context: ./workspace
+    tty: true
+    expose:
+      - "9000"
+    volumes:
+      - ../../:/vigilant
+    working_dir: /vigilant
+
