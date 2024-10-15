@@ -19,6 +19,7 @@ nav:
       - "Environment variables": configuration.md
       - "Feeds File": feeds.md
   - "Changelog": changelog.md
+  - "Development": development.md
   - "License": license.md
 
 markdown_extensions:
