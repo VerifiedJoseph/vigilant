@@ -28,3 +28,7 @@ Vigilant is RSS/ATOM/JSON feed monitor that sends push notifications on new entr
 - [`guzzlehttp/guzzle`](https://github.com/guzzle/guzzle/)
 - [`debril/feed-io`](https://github.com/alexdebril/feed-io)
 - [`symfony/yaml`](https://github.com/symfony/yaml)
+
+## Credits
+
+Logo designed by [@hazzuk](https://github.com/hazzuk) <small>(licensed under [CC BY 4.0 International](LOGO_LICENSE.txt))</small>
