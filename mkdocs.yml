@@ -6,6 +6,8 @@ theme:
   palette:
     scheme: slate
 
+use_directory_urls: false
+
 plugins:
   - privacy
   - offline
