@@ -43,9 +43,9 @@ feeds:
 
 ### Active hours
 
-Use active hours to restrict feed monitoring to a specific window of time.
+Use active hours to restrict feed monitoring to a specific time window.
 
-Both parameters are required when configuring an active hours window.
+Both parameters are required when configuring active hours.
 
 | Name                     | Description                                                  |
 | ------------------------ | ------------------------------------------------------------ |
