@@ -23,7 +23,9 @@ nav:
       - "Feeds File": feeds.md
   - "Changelog": changelog.md
   - "Development": development.md
-  - "License": license.md
+  - "Licenses":
+      - "Project license": license.md
+      - "Logo license": logo_license.md
 
 markdown_extensions:
   - pymdownx.snippets
