@@ -24,7 +24,7 @@ services:
 
 2) Setup the feeds to monitor using a [feeds file](feeds.md).
 
-3) Set the configuration using [environment variables](configuration.md) with `config.php` copied from [`config.example.php`](../config.example.php).
+3) Set the configuration using [environment variables](configuration.md) with `config.php` copied from [`config.example.php`](https://github.com/VerifiedJoseph/vigilant/blob/main/config.example.php).
 
 	```
 	cp config.example.php config.php
