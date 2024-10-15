@@ -31,4 +31,4 @@ Vigilant is RSS/ATOM/JSON feed monitor that sends push notifications on new entr
 
 ## Credits
 
-Logo designed by [@hazzuk](https://github.com/hazzuk) <small>(licensed under [CC BY 4.0 International](LOGO_LICENSE.txt))</small>
+Logo designed by [@hazzuk](https://github.com/hazzuk) <small>(licensed under [CC BY 4.0 International](logo_license.md))</small>
