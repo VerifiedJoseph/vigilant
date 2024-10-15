@@ -3,9 +3,7 @@
 [![Latest Version](https://img.shields.io/github/release/VerifiedJoseph/vigilant.svg?style=flat-square)](https://github.com/VerifiedJoseph/vigilant/releases/latest)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
-Vigilant is RSS/ATOM/JSON feed monitor that sends push notifications on new entries.
-
-Vigilant supports sending push notifications with [Gotify](https://gotify.net) or [ntfy.sh](https://ntfy.sh).
+Vigilant is RSS/ATOM/JSON feed monitor that sends push notifications on new entries using [Gotify](https://gotify.net/) or [ntfy.sh](https://ntfy.sh).
 
 ## Documentation
 
