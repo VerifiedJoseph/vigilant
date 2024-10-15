@@ -5,6 +5,7 @@ theme:
   name: material
   palette:
     scheme: slate
+  font: false
 
 use_directory_urls: false
 
