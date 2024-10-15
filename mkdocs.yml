@@ -5,6 +5,7 @@ theme:
   name: material
   palette:
     scheme: slate
+    primary: black
   logo: assets/logo.png
   favicon: assets/logo.png
   font: false
