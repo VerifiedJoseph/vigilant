@@ -5,12 +5,6 @@ services:
     tty: true
     expose:
       - "9000"
-    environment:
-      - XDEBUG_MODE=coverage
     volumes:
-      - ../:/vigilant
-      - vendor:/vigilant/vendor
+      - ../../:/vigilant
     working_dir: /vigilant
-
-volumes:
-  vendor:

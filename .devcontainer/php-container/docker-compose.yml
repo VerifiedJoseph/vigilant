@@ -1,0 +1,16 @@
+services:
+  workspace:
+    build:
+      context: ./workspace
+    tty: true
+    expose:
+      - "9000"
+    environment:
+      - XDEBUG_MODE=coverage
+    volumes:
+      - ../../:/vigilant
+      - vendor:/vigilant/vendor
+    working_dir: /vigilant
+
+volumes:
+  vendor:
