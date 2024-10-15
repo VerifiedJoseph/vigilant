@@ -6,7 +6,9 @@ theme:
   palette:
     scheme: slate
 
-plugins: []
+plugins:
+  - privacy
+  - offline
 
 nav:
   - "Overview": index.md
