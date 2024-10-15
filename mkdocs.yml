@@ -6,6 +6,8 @@ theme:
   palette:
     scheme: slate
   font: false
+  logo: img/icon.png
+  favicon: img/favicon.ico
 
 use_directory_urls: false
 
