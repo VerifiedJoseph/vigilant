@@ -1,3 +1,7 @@
+<img src="img/vigilant.png" width="110px" alt="Vigilant logo">
+
+# Vigilant
+
 Vigilant is RSS/ATOM/JSON feed monitor that sends push notifications on new entries using [Gotify](https://gotify.net/) or [ntfy.sh](https://ntfy.sh).
 
 ## Documentation
