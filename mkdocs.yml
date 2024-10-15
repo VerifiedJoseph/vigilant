@@ -14,7 +14,6 @@ plugins:
   - offline
 
 nav:
-  - "Overview": index.md
   - "Installation": install.md
   - "Configuration":
       - "Environment variables": configuration.md
