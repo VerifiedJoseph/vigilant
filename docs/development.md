@@ -4,9 +4,9 @@ The repository includes two [dev containers](https://containers.dev/) to help st
 * `php-container` is used for writing and testing Vigilant.
 * `python-container` is used for writing and building the documentation.
 
-## php-container
+## PHP Container
 
-php-container uses [composer](https://getcomposer.org/) to manage dependencies and run code quality tools.
+`php-container` uses [composer](https://getcomposer.org/) to manage dependencies and run code quality tools.
 
 ### Commands
 
@@ -31,9 +31,9 @@ Test code using PHPUnit
 composer test
 ```
 
-## python-container
+## Python Container
 
-python-container uses [Pipenv](https://pipenv.pypa.io/) to manage dependencies and run MkDocs commands.
+`python-container` uses [Pipenv](https://pipenv.pypa.io/) to manage dependencies and run MkDocs commands.
 
 ### Commands
 
