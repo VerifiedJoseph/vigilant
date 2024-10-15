@@ -1,0 +1,21 @@
+site_name: Vigilant
+repo_name: VerifiedJoseph/vigilant
+repo_url: https://github.com/VerifiedJoseph/vigilant
+theme:
+  name: material
+  palette:
+    scheme: slate
+
+plugins: []
+
+nav:
+  - "Overview": index.md
+  - "Installation": install.md
+  - "Configuration":
+      - "Environment variables": configuration.md
+      - "Feeds File": feeds.md
+  - "Changelog": changelog.md
+  - "License": license.md
+
+markdown_extensions:
+  - pymdownx.snippets
