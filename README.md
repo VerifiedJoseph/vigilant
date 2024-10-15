@@ -1,3 +1,5 @@
+<img src="https://raw.githubusercontent.com/VerifiedJoseph/vigilant/refs/heads/main/docs/img/vigilant.png" width="110px" alt="Vigilant logo">
+
 # Vigilant
 
 [![Latest Version](https://img.shields.io/github/release/VerifiedJoseph/vigilant.svg?style=flat-square)](https://github.com/VerifiedJoseph/vigilant/releases/latest)
