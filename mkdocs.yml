@@ -9,6 +9,8 @@ theme:
   font: false
   logo: img/icon.png
   favicon: img/favicon.ico
+  icon:
+    repo: fontawesome/brands/github
 
 use_directory_urls: false
 
