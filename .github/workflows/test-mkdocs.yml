@@ -1,4 +1,4 @@
-name: Test
+name: Test documentation
 on:
   pull_request:
     paths:
@@ -9,8 +9,8 @@ permissions:
   contents: read
 
 jobs:
-  docker:
-    name: Documentation
+  test:
+    name: MkDocs
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
