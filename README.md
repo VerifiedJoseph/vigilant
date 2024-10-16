@@ -43,4 +43,4 @@ MIT License. Please see [LICENSE](LICENSE) for more information.
 
 ## Credits
 
-- Logo designed by [@hazzuk](https://github.com/hazzuk) <small>(licensed under [CC BY 4.0 International](LOGO_LICENSE.txt))</small>
+Logo designed by [@hazzuk](https://github.com/hazzuk) <small>(licensed under [CC BY 4.0 International](LOGO_LICENSE.txt))</small>
