@@ -1,6 +1,8 @@
 # Vigilant
 
-![Vigilant running in a terminal and a phone receiving a push notification sent by Vigilant using Gotify.](img/readme-header.png)
+<div>
+    <img alt="igilant running in a terminal and a phone receiving a push notification sent by Vigilant using Gotify." src="img/readme-header.png">
+</div>
 
 Vigilant is RSS/ATOM/JSON feed monitor that sends push notifications on new entries using [Gotify](https://gotify.net/) or [ntfy.sh](https://ntfy.sh).
 
