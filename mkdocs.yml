@@ -1,6 +1,4 @@
 site_name: Vigilant
-repo_name: VerifiedJoseph/vigilant
-repo_url: https://github.com/VerifiedJoseph/vigilant
 theme:
   name: material
   palette:
@@ -9,8 +7,6 @@ theme:
   font: false
   logo: img/icon.png
   favicon: img/favicon.ico
-  icon:
-    repo: fontawesome/brands/github
 
 use_directory_urls: false
 
@@ -19,14 +15,15 @@ plugins:
   - offline
 
 nav:
+  - "Home": index.md
   - "Installation": install.md
   - "Configuration":
       - "Environment variables": configuration.md
       - "Feeds File": feeds.md
   - "Changelog": changelog.md
   - "Development": development.md
+  - "Source Code": "https://github.com/VerifiedJoseph/vigilant"
   - "Licenses": licenses.md
-
 
 markdown_extensions:
   - pymdownx.snippets
