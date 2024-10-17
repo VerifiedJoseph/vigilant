@@ -16,6 +16,9 @@ coverage-reports/
 /site
 /.cache
 
+# Builds
+/dist
+
 # Windows thumbnail cache files
 Thumbs.db
 ehthumbs.db
