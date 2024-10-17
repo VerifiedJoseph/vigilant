@@ -18,11 +18,16 @@ updates:
     schedule:
       interval: "monthly"
 
-  # dev container
+  # dev containers
   - package-ecosystem: "docker"
-    directory: "/.devcontainer/workspace/"
+    directory: "/.devcontainer/php-container/workspace/"
     schedule:
       interval: "monthly"
     ignore:
       - dependency-name: "php"
         update-types: ["version-update:semver-minor"]
+
+  - package-ecosystem: "docker"
+    directory: "/.devcontainer/python-container/workspace/"
+    schedule:
+      interval: "monthly"
