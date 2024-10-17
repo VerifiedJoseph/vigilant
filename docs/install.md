@@ -33,6 +33,6 @@ services:
 4) Create a scheduled task with cron (below) or similar that runs `vigilant.php` at least every 5 minutes.
 
 	```
-	*/5 * * * * php path/to/vigilant/vigilant.php
+	*/5 * * * * php path/to/vigilant.php
 	```
 
