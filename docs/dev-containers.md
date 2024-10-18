@@ -1,6 +1,6 @@
-# Development
+# Dev Containers
 
-The repository includes two [dev containers](https://containers.dev/) to help streamline development.
+Two [dev containers](https://containers.dev/) are includes in the repository to streamline development.
 
 * `php-container` is used for writing and testing Vigilant.
 * `python-container` is used for writing and building the documentation.
