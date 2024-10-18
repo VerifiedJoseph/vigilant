@@ -1,8 +1,8 @@
-# Configuration
+# Environment Variables
 
 The preferred method to adjust the configuration of Vigilant is with environment variables.
 
-Alternatively, you can use `config.php` (copied from [`config.example.php`](../config.example.php)) to set the variables.
+Alternatively, you can use `config.php` (copied from [`config.example.php`](https://github.com/VerifiedJoseph/vigilant/blob/main/config.example.php)) to set the variables.
 
 ## Timezone
 

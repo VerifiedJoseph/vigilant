@@ -24,7 +24,7 @@ services:
 
 2) Setup the feeds to monitor using a [feeds file](feeds.md).
 
-3) Set the configuration using [environment variables](configuration.md) with `config.php` copied from [`config.example.php`](../config.example.php).
+3) Set the configuration using [environment variables](environment-variables.md) with `config.php` copied from [`config.example.php`](https://github.com/VerifiedJoseph/vigilant/blob/main/config.example.php).
 
 	```
 	cp config.example.php config.php
@@ -33,6 +33,6 @@ services:
 4) Create a scheduled task with cron (below) or similar that runs `vigilant.php` at least every 5 minutes.
 
 	```
-	1 * * * * php path/to/vigilant/vigilant.php
+	*/5 * * * * php path/to/vigilant.php
 	```
 

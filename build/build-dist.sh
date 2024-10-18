@@ -7,6 +7,10 @@ cp -r ./docs ./dist/docs
 cp -r ./src ./dist/src
 cp -r ./vendor ./dist/vendor
 
+# Remove files used only for documentation site
+rm ./dist/docs/licenses.md
+rm ./dist/docs/changelog.md
+
 # Copy files
 cp ./composer.json ./dist/composer.json
 cp ./composer.lock ./dist/composer.lock
@@ -16,3 +20,4 @@ cp ./vigilant.php ./dist/vigilant.php
 cp ./README.md ./dist/README.md
 cp ./CHANGELOG.md ./dist/CHANGELOG.md
 cp ./LICENSE ./dist/LICENSE.md
+cp ./LOGO_LICENSE.txt ./dist/LOGO_LICENSE.md

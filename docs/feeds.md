@@ -1,8 +1,8 @@
 # Feeds File
 
-A YAML file named `feeds.yaml` is used to configure the RSS, ATOM and JSON feeds that Vigilant should monitor. An [example file](../feeds.example.yaml) is available.
+A YAML file named `feeds.yaml` is used to configure the RSS, ATOM and JSON feeds that Vigilant should monitor. An [example file](https://github.com/VerifiedJoseph/vigilant/blob/main/feeds.example.yaml) is available.
 
-By default Vigilant looks for a `feeds.yaml` file in the project's main folder, this behavior can be overridden with an [environment variable](configuration.md#feeds-file).
+By default Vigilant looks for a `feeds.yaml` file in the project's main folder, this behavior can be overridden with an [environment variable](environment-variables.md#feeds-file).
 
 Each entry in the YAML file must have a name, URL and interval parameter.
 
@@ -43,9 +43,9 @@ feeds:
 
 ### Active hours
 
-Use active hours to restrict feed monitoring to a specific window of time.
+Use active hours to restrict feed monitoring to a specific time window.
 
-Both parameters are required when configuring an active hours window.
+Both parameters are required when configuring active hours.
 
 | Name                     | Description                                                  |
 | ------------------------ | ------------------------------------------------------------ |

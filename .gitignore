@@ -12,6 +12,13 @@
 .phpunit.cache/
 coverage-reports/
 
+# mkdocs
+/site
+/.cache
+
+# Builds
+/dist
+
 # Windows thumbnail cache files
 Thumbs.db
 ehthumbs.db

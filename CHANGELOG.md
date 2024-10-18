@@ -8,10 +8,14 @@ All notable changes to this project are documented in this file.
 - Dockerfile: Updated alpine from 3.20.2 to 3.20.3 ([#272](https://github.com/VerifiedJoseph/vigilant/pull/272), [`58c266e`](https://github.com/VerifiedJoseph/vigilant/commit/58c266e0dcf366c02b2d5cf910d41ad0141d60da))
 - Dockerfile: Updated composer from 2.7.8 to 2.7.9 ([#273](https://github.com/VerifiedJoseph/vigilant/pull/273), [`0c9b976`](https://github.com/VerifiedJoseph/vigilant/commit/0c9b976d82f51a4832ab0362c47e97fa88d62cdf))
 
+All changes: [v1.4.3...v1.4.4](https://github.com/VerifiedJoseph/vigilant/compare/v1.4.3...v1.4.4)
+
 ## [1.4.3](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.4.3) - 2024-09-01
 
 - Updated symfony/yaml from 7.1.1 to 7.1.4 ([#259](https://github.com/VerifiedJoseph/vigilant/pull/259), [`15a806b`](https://github.com/VerifiedJoseph/vigilant/commit/15a806bfea6e875f881221c4f9e080c677f33914))
 - Dockerfile: Updated composer from 2.7.7 to 2.7.8 ([#257](https://github.com/VerifiedJoseph/vigilant/pull/257), [`d9f0196`](https://github.com/VerifiedJoseph/vigilant/commit/d9f019670d10b8d6e69704bef6381b5c301747b3))
+
+All changes: [v1.4.2...v1.4.3](https://github.com/VerifiedJoseph/vigilant/compare/v1.4.2...v1.4.3)
 
 ## [1.4.2](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.4.2) - 2024-08-01
 
@@ -19,12 +23,16 @@ All notable changes to this project are documented in this file.
 - Updated verifiedjoseph/ntfy-php-library from 4.6.1 to 4.6.2 ([#252](https://github.com/VerifiedJoseph/vigilant/pull/252), [`224f341`](https://github.com/VerifiedJoseph/vigilant/commit/224f341c59e8cd98aea23b11f7736a4a800df39f))
 - Updated verifiedjoseph/gotify-api-php from 1.8.4 to 1.9.0 ([#251](https://github.com/VerifiedJoseph/vigilant/pull/251), [`2ceb62f`](https://github.com/VerifiedJoseph/vigilant/commit/2ceb62f5d1b2263d3a0febd77d5d73d9d9474dc7))
 
+All changes: [v1.4.1...v1.4.2](https://github.com/VerifiedJoseph/vigilant/compare/v1.4.1...v1.4.2)
+
 ## [1.4.1](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.4.1) - 2024-07-23
 
 - Updated guzzlehttp/guzzle from 7.9.0 to 7.9.1 ([#237](https://github.com/VerifiedJoseph/vigilant/pull/237), [`3a0ce77`](https://github.com/VerifiedJoseph/vigilant/commit/3a0ce77ee0440dac46a34e18a01add71cdbac642))
 - Updated verifiedjoseph/ntfy-php-library from 4.6.0 to 4.6.1 ([#236](https://github.com/VerifiedJoseph/vigilant/pull/236), [`3215c6f`](https://github.com/VerifiedJoseph/vigilant/commit/3215c6f81be2cf02df7e5f2e01615797c01b1614))
 - Updated verifiedjoseph/gotify-api-php from 1.8.3 to 1.8.4 ([#235](https://github.com/VerifiedJoseph/vigilant/pull/235), [`e01501d`](https://github.com/VerifiedJoseph/vigilant/commit/e01501da97b8c0cedab59e760cf7a9ec69a3f8af))
 - Dockerfile: Updated alpine from 3.20.1 to 3.20.2 ([#238](https://github.com/VerifiedJoseph/vigilant/pull/238), [`59201ad`](https://github.com/VerifiedJoseph/vigilant/commit/59201ad3c02fa8554c1b09d2333a1ebbc40a1dad))
+
+All changes: [v1.4.0...v1.4.1](https://github.com/VerifiedJoseph/vigilant/compare/v1.4.0...v1.4.1)
 
 ## [1.4.0](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.4.0) - 2024-07-21
 
@@ -35,7 +43,7 @@ All notable changes to this project are documented in this file.
 - Updated verifiedjoseph/ntfy-php-library from 4.5.2 to 4.6.0 ([#226](https://github.com/VerifiedJoseph/vigilant/pull/226), [`e88b1f3`](https://github.com/VerifiedJoseph/vigilant/commit/e88b1f333387037cc0c945861bd3d5369ab25bc5))
 - Updated verifiedjoseph/gotify-api-php from 1.8.2 to 1.8.3 ([#227](https://github.com/VerifiedJoseph/vigilant/pull/227), [`a53bf80`](https://github.com/VerifiedJoseph/vigilant/commit/a53bf80c3fa413a5d60585baedeb81833eed69ea))
 
-All changes: https://github.com/VerifiedJoseph/vigilant/compare/v1.3.0...v1.4.0
+All changes: [v1.3.0...v1.4.0](https://github.com/VerifiedJoseph/vigilant/compare/v1.3.0...v1.4.0)
 
 ## [1.3.0](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.3.0) - 2024-07-02
 
@@ -50,7 +58,7 @@ All changes: https://github.com/VerifiedJoseph/vigilant/compare/v1.3.0...v1.4.0
 - Dockerfile: Updated alpine from 3.19.1 to 3.20.0 ([#202](https://github.com/VerifiedJoseph/vigilant/pull/202), [`3a8f64f`](https://github.com/VerifiedJoseph/vigilant/commit/3a8f64f69ce6506c10666c4cba162d3ac807f343))
 - Dockerfile: Updated alpine from 3.20.0 to 3.20.1 ([#207](https://github.com/VerifiedJoseph/vigilant/pull/207), [`97c7763`](https://github.com/VerifiedJoseph/vigilant/commit/97c77637b3a08afee6889cb6246e67c5f1b73144))
 
-All changes: https://github.com/VerifiedJoseph/vigilant/compare/v1.2.0...v1.3.0
+All changes: [v1.2.0...v1.3.0](https://github.com/VerifiedJoseph/vigilant/compare/v1.2.0...v1.3.0)
 
 ## [1.2.0](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.2.0) - 2024-04-29
 
@@ -60,7 +68,7 @@ All changes: https://github.com/VerifiedJoseph/vigilant/compare/v1.2.0...v1.3.0
 - Dockerfile: Updated composer from 2.7.2 to 2.7.4 ([#182](https://github.com/VerifiedJoseph/vigilant/pull/182), [`1432124`](https://github.com/VerifiedJoseph/vigilant/commit/14321247797e584ae56633f3b36cebb7e8c85421))
 - Composer: Updated symfony/yaml from 6.4.3 to 6.4.7 ([#175](https://github.com/VerifiedJoseph/vigilant/pull/175), [`e4b874e`](https://github.com/VerifiedJoseph/vigilant/commit/e4b874e1a383ccb4347964b04074450cd74aebb2))
 
-All changes: https://github.com/VerifiedJoseph/vigilant/compare/v1.1.0...v1.2.0
+All changes: [v1.1.0...v1.2.0](https://github.com/VerifiedJoseph/vigilant/compare/v1.1.0...v1.2.0)
 
 ## [1.1.0](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.1.0) - 2024-04-19
 
@@ -70,13 +78,13 @@ All changes: https://github.com/VerifiedJoseph/vigilant/compare/v1.1.0...v1.2.0
 - Added timezone environment variable. ([#155](https://github.com/VerifiedJoseph/vigilant/pull/155), [`708d8fb`](https://github.com/VerifiedJoseph/vigilant/commit/708d8fb640d14717739a5bc2a409680e50351324))
 - Removed undocumented `QUIET` environment variable. ([#138](https://github.com/VerifiedJoseph/vigilant/pull/138), [`9f6d84e`](https://github.com/VerifiedJoseph/vigilant/commit/9f6d84eb4d52b53eb9aff3bbeff1d5934cf60385))
 
-All changes: https://github.com/VerifiedJoseph/vigilant/compare/v1.0.1...v1.1.0
+All changes: [v1.0.1...v1.1.0](https://github.com/VerifiedJoseph/vigilant/compare/v1.0.1...v1.1.0)
 
 ## [1.0.1](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.0.1) - 2024-03-25
 
 - Updated dependency `verifiedjoseph/ntfy-php-library` from 4.5.1 to 4.5.2 ([#119](https://github.com/VerifiedJoseph/vigilant/pull/119), [`aec7a3f`](https://github.com/VerifiedJoseph/vigilant/commit/aec7a3fa906996ff99fcfa9318fd6ae0f842c94d))
 
-All changes: https://github.com/VerifiedJoseph/vigilant/compare/v1.0.0...v1.0.1
+All changes: [v1.0.0...v1.0.1](https://github.com/VerifiedJoseph/vigilant/compare/v1.0.0...v1.0.1)
 
 ## [1.0.0](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.0.0) - 2024-03-05
 

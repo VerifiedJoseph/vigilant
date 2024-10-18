@@ -1,5 +1,5 @@
 {
-    "name": "vigilant-dev-container",
+    "name": "vigilant-php-dev-container",
     "dockerComposeFile": [
         "docker-compose.yml"
     ],
