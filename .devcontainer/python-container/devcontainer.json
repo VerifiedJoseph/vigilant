@@ -1,5 +1,5 @@
 {
-    "name": "vigilant-mkdocs-dev-container",
+    "name": "vigilant-python-dev-container",
     "dockerComposeFile": [
         "docker-compose.yml"
     ],
