@@ -9,8 +9,8 @@ Vigilant is RSS/ATOM/JSON feed monitor that sends push notifications on new entr
 ## Documentation
 
 - [Installation](install.md)
-- [Configuration](environment-variables.md)
-- [Feeds File](feeds.md)
+- [Environment variables](environment-variables.md)
+- [Feeds file](feeds.md)
 - [Dev Containers](dev-containers.md)
 
 ## Requirements
