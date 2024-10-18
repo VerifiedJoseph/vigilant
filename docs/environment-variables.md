@@ -1,4 +1,4 @@
-# Configuration
+# Environment Variables
 
 The preferred method to adjust the configuration of Vigilant is with environment variables.
 

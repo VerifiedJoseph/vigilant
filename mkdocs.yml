@@ -18,7 +18,7 @@ nav:
   - "Home": index.md
   - "Installation": install.md
   - "Configuration":
-      - "Environment variables": configuration.md
+      - "Environment Variables": environment-variables.md
       - "Feeds File": feeds.md
   - "Changelog": changelog.md
   - "Dev Containers": dev-containers.md
