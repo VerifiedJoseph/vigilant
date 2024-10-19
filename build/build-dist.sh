@@ -1,4 +1,10 @@
 #!/bin/bash
+
+# Remove old folder if exist
+if [ -d "./dist" ]; then
+	rm -r ./dist
+fi
+
 # Create dist folder
 mkdir ./dist
 
@@ -10,6 +16,7 @@ cp -r ./vendor ./dist/vendor
 # Remove files used only for documentation site
 rm ./dist/docs/licenses.md
 rm ./dist/docs/changelog.md
+rm -r ./dist/docs/img/logo
 
 # Copy files
 cp ./composer.json ./dist/composer.json

@@ -5,8 +5,8 @@ theme:
     scheme: slate
     primary: black
   font: false
-  logo: img/icon.png
-  favicon: img/favicon.ico
+  logo: img/logo/icon.png
+  favicon: img/logo/favicon.ico
 
 use_directory_urls: false
 
