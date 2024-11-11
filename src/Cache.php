@@ -16,21 +16,34 @@ final class Cache
     private string $filename = '';
 
     /**
-     * @var array<string, mixed> $data Data from cache file
+     * @var null|string $feedUrl Feed URL
      */
-    private array $data = [];
+    private ?string $feedUrl = null;
 
     /**
-     * @var array<string, mixed> $default Default cache data
+     * @var int $firstCheck Unix timestamp of the first check
      */
-    private $default = [
-        'feed_url' => null,
-        'first_check' => 0,
-        'next_check' => 0,
-        'error_count' => 0,
-        'items' => [],
-        'version' => null,
-    ];
+    private int $firstCheck = 0;
+
+    /**
+     * @var int $firstCheck Unix timestamp of the next check
+     */
+    private int $nextCheck = 0;
+
+    /**
+     * @var int $errorCount Number of feed errors occurred sine last count reset
+     */
+    private int $errorCount = 0;
+
+    /**
+     * @param array<int, string> $items Item hashes
+     */
+    private array $items = [];
+
+    /**
+     * @var int $version Cache format version
+     */
+    private int $version = 0;
 
     /**
      * @param string $filename Cache filename
@@ -42,7 +55,6 @@ final class Cache
         $this->config = $config;
 
         $this->load();
-        $this->validateVersion();
     }
 
     /**
@@ -50,9 +62,9 @@ final class Cache
      *
      * @return string|null
      */
-    public function getFeedUrl(): string|null
+    public function getFeedUrl(): ?string
     {
-        return $this->data['feed_url'];
+        return $this->feedUrl;
     }
 
     /**
@@ -62,7 +74,7 @@ final class Cache
      */
     public function getFirstCheck(): int
     {
-        return $this->data['first_check'];
+        return $this->firstCheck;
     }
 
     /**
@@ -72,7 +84,7 @@ final class Cache
      */
     public function isFirstCheck(): bool
     {
-        if ($this->data['first_check'] === 0) {
+        if ($this->firstCheck === 0) {
             return true;
         }
 
@@ -86,7 +98,7 @@ final class Cache
      */
     public function isExpired(): bool
     {
-        if (time() >= $this->data['next_check']) {
+        if (time() >= $this->nextCheck) {
             return true;
         }
 
@@ -100,7 +112,7 @@ final class Cache
      */
     public function getNextCheck(): int
     {
-        return $this->data['next_check'];
+        return $this->nextCheck;
     }
 
     /**
@@ -110,7 +122,7 @@ final class Cache
      */
     public function getItems(): array
     {
-        return $this->data['items'];
+        return $this->items;
     }
 
     /**
@@ -120,7 +132,7 @@ final class Cache
      */
     public function getErrorCount(): int
     {
-        return $this->data['error_count'];
+        return $this->errorCount;
     }
 
     /**
@@ -128,7 +140,7 @@ final class Cache
      */
     public function increaseErrorCount(): void
     {
-        $this->data['error_count']++;
+        $this->errorCount++;
     }
 
     /**
@@ -138,7 +150,7 @@ final class Cache
      */
     public function setFeedUrl(string $url): void
     {
-        $this->data['feed_url'] = $url;
+        $this->feedUrl = $url;
     }
 
     /**
@@ -148,7 +160,7 @@ final class Cache
      */
     public function updateNextCheck(int $interval): void
     {
-        $this->data['next_check'] = time() + $interval;
+        $this->nextCheck = time() + $interval;
     }
 
     /**
@@ -158,7 +170,7 @@ final class Cache
      */
     public function updateItems(array $items): void
     {
-        $this->data['items'] = $items;
+        $this->items = $items;
     }
 
     /**
@@ -166,7 +178,7 @@ final class Cache
      */
     public function resetErrorCount(): void
     {
-        $this->data['error_count'] = 0;
+        $this->errorCount = 0;
     }
 
     /**
@@ -174,8 +186,8 @@ final class Cache
      */
     public function setFirstCheck(): void
     {
-        if ($this->data['first_check'] === 0) {
-            $this->data['first_check'] = time();
+        if ($this->firstCheck === 0) {
+            $this->firstCheck = time();
         }
     }
 
@@ -186,7 +198,17 @@ final class Cache
     {
         if (File::exists($this->getPath()) === true && filesize($this->getPath()) > 0) {
             $json = File::read($this->getPath());
-            $this->data = Json::decode($json);
+            $data = Json::decode($json);
+            $version = $data['version'] ?? 0;
+
+            if ($this->hasValidVersion($version) === true) {
+                $this->feedUrl = $data['feed_url'];
+                $this->firstCheck = $data['first_check'];
+                $this->nextCheck = $data['next_check'];
+                $this->errorCount = $data['error_count'];
+                $this->items = $data['items'];
+                $this->version = $data['version'];
+            }
         }
     }
 
@@ -195,9 +217,17 @@ final class Cache
      */
     public function save(): void
     {
-        $this->data['version'] = $this->config->getCacheFormatVersion();
+        $this->version = $this->config->getCacheFormatVersion();
 
-        $json = Json::encode($this->data);
+        $json = Json::encode([
+            'feed_url' => $this->feedUrl,
+            'first_check' => $this->firstCheck,
+            'next_check' => $this->nextCheck,
+            'error_count' => $this->errorCount,
+            'items' => $this->items,
+            'version' => $this->version,
+        ]);
+
         File::write($this->getPath(), $json);
     }
 
@@ -212,12 +242,14 @@ final class Cache
     }
 
     /**
-     * Checks if format version in cache matches current version. If no match, the data array is reset to defaults.
+     * Checks if format version in cache matches current version.
      */
-    private function validateVersion(): void
+    private function hasValidVersion(int $version): bool
     {
-        if (array_key_exists('version', $this->data) === false || $this->data['version'] !== $this->config->getCacheFormatVersion()) {
-            $this->data = $this->default;
+        if ($version === $this->config->getCacheFormatVersion()) {
+            return true;
         }
+
+        return false;
     }
 }
