@@ -58,7 +58,7 @@ final class Validate
     private function url(): void
     {
         if (array_key_exists('url', $this->details) === false || $this->details['url'] === null) {
-            throw new FeedsException('No url given for feed: ' . $this->details['name']);
+            throw new FeedsException(sprintf('No url given for feed: %s', $this->details['name']));
         }
     }
 
@@ -72,14 +72,15 @@ final class Validate
     private function interval(int $minCheckInterval): void
     {
         if (array_key_exists('interval', $this->details) === false || $this->details['interval'] === null) {
-            throw new FeedsException('No interval given for feed: ' . $this->details['name']);
+            throw new FeedsException(sprintf('No interval given for feed: %s', $this->details['name']));
         }
 
         if ($this->details['interval'] < $minCheckInterval) {
-            throw new FeedsException(
-                'Interval is less than ' . $minCheckInterval .
-                ' seconds for feed: ' . $this->details['name']
-            );
+            throw new FeedsException(sprintf(
+                'Interval is less than %s seconds for feed: %s',
+                $minCheckInterval,
+                $this->details['name']
+            ));
         }
     }
 
@@ -91,7 +92,7 @@ final class Validate
     private function titlePrefix(): void
     {
         if (array_key_exists('title_prefix', $this->details) === true && $this->details['title_prefix'] === null) {
-            throw new FeedsException('Empty title prefix given for feed: ' . $this->details['name']);
+            throw new FeedsException(sprintf('Empty title prefix given for feed: %s', $this->details['name']));
         }
     }
 
@@ -103,7 +104,7 @@ final class Validate
     private function gotifyToken(): void
     {
         if (array_key_exists('gotify_token', $this->details) === true && $this->details['gotify_token'] === null) {
-            throw new FeedsException('Empty Gotify token given for feed: ' . $this->details['name']);
+            throw new FeedsException(sprintf('Empty Gotify token given for feed: %s', $this->details['name']));
         }
     }
 
@@ -118,7 +119,7 @@ final class Validate
             array_key_exists('gotify_priority', $this->details) === true &&
              $this->details['gotify_priority'] === null
         ) {
-            throw new FeedsException('Empty Gotify priority given for feed: ' . $this->details['name']);
+            throw new FeedsException(sprintf('Empty Gotify priority given for feed: %s', $this->details['name']));
         }
     }
 
@@ -130,7 +131,7 @@ final class Validate
     private function ntfyTopic(): void
     {
         if (array_key_exists('ntfy_topic', $this->details) === true && $this->details['ntfy_topic'] === null) {
-            throw new FeedsException('Empty Ntfy topic given for feed: ' . $this->details['name']);
+            throw new FeedsException(sprintf('Empty Ntfy topic given for feed: %s', $this->details['name']));
         }
     }
 
@@ -142,7 +143,7 @@ final class Validate
     private function ntfyToken(): void
     {
         if (array_key_exists('ntfy_token', $this->details) === true && $this->details['ntfy_token'] === null) {
-            throw new FeedsException('Empty Ntfy token given for feed: ' . $this->details['name']);
+            throw new FeedsException(sprintf('Empty Ntfy token given for feed: %s', $this->details['name']));
         }
     }
 
@@ -157,7 +158,10 @@ final class Validate
             array_key_exists('ntfy_priority', $this->details) === true &&
              $this->details['ntfy_priority'] === null
         ) {
-            throw new FeedsException('Empty Ntfy priority given for feed: ' . $this->details['name']);
+            throw new FeedsException(sprintf(
+                'Empty Ntfy priority given for feed: %s',
+                $this->details['name']
+            ));
         }
     }
 
@@ -174,40 +178,62 @@ final class Validate
     {
         if (array_key_exists('active_hours', $this->details) === true) {
             if ($this->details['active_hours'] === null) {
-                throw new FeedsException('Required active hours options not given for feed: ' . $this->details['name']);
+                throw new FeedsException(sprintf(
+                    'Required active hours options not given for feed: %s',
+                    $this->details['name']
+                ));
             }
 
             if (array_key_exists('start_time', $this->details['active_hours']) === false) {
-                throw new FeedsException('No active hours start time given for feed: ' . $this->details['name']);
+                throw new FeedsException(sprintf(
+                    'No active hours start time given for feed: %s',
+                    $this->details['name']
+                ));
             }
 
             if (array_key_exists('end_time', $this->details['active_hours']) === false) {
-                throw new FeedsException('No active hours end time given for feed: ' . $this->details['name']);
+                throw new FeedsException(sprintf(
+                    'No active hours end time given for feed: %s',
+                    $this->details['name']
+                ));
             }
 
             if ($this->details['active_hours']['start_time'] === null) {
-                throw new FeedsException('Empty active hours start time given for feed: ' . $this->details['name']);
+                throw new FeedsException(sprintf(
+                    'Empty active hours start time given for feed: %s',
+                    $this->details['name']
+                ));
             }
 
             if ($this->details['active_hours']['end_time'] === null) {
-                throw new FeedsException('Empty active hours end time given for feed: ' . $this->details['name']);
+                throw new FeedsException(sprintf(
+                    'Empty active hours end time given for feed: %s',
+                    $this->details['name']
+                ));
             }
 
             if (Time::isValid($this->details['active_hours']['start_time']) === false) {
-                throw new FeedsException('Invalid active hours start time given for feed: ' . $this->details['name']);
+                throw new FeedsException(sprintf(
+                    'Invalid active hours start time given for feed: %s',
+                    $this->details['name']
+                ));
             }
 
             if (Time::isValid($this->details['active_hours']['end_time']) === false) {
-                throw new FeedsException('Invalid active hours end time given for feed: ' . $this->details['name']);
+                throw new FeedsException(sprintf(
+                    'Invalid active hours end time given for feed: %s',
+                    $this->details['name']
+                ));
             }
 
             $start = new DateTime($this->details['active_hours']['start_time']);
             $end = new DateTime($this->details['active_hours']['end_time']);
 
             if ($end->getTimestamp() < $start->getTimestamp()) {
-                throw new FeedsException(
-                    'Active hours end time is before the start time for ' . $this->details['name']
-                );
+                throw new FeedsException(sprintf(
+                    'Active hours end time is before the start time for %s',
+                    $this->details['name']
+                ));
             }
         }
     }
