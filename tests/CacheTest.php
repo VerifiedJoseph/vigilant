@@ -75,7 +75,6 @@ class CacheTest extends TestCase
     {
         $check = self::$cache->getFirstCheck();
 
-        $this->assertIsInt($check);
         $this->assertEquals(
             self::$fixtureData['first_check'],
             $check
@@ -127,7 +126,6 @@ class CacheTest extends TestCase
     {
         $check = self::$cache->getNextCheck();
 
-        $this->assertIsInt($check);
         $this->assertEquals(
             self::$fixtureData['next_check'],
             $check
@@ -141,7 +139,6 @@ class CacheTest extends TestCase
     {
         $items = self::$cache->getItems();
 
-        $this->assertIsArray($items);
         $this->assertEquals(
             self::$fixtureData['items'],
             $items
@@ -155,7 +152,6 @@ class CacheTest extends TestCase
     {
         $count = self::$cache->getErrorCount();
 
-        $this->assertIsInt($count);
         $this->assertEquals(
             self::$fixtureData['error_count'],
             $count

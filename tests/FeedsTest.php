@@ -42,7 +42,6 @@ class FeedsTest extends TestCase
 
         $feeds = new Feeds($config, self::$logger);
 
-        $this->assertIsArray($feeds->get());
         $this->assertContainsOnlyInstancesOf('Vigilant\Feed\Feed', $feeds->get());
     }
 

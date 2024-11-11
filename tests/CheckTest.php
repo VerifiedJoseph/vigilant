@@ -66,7 +66,8 @@ class CheckTest extends TestCase
     {
         $details = new Details($this->feed);
         $check = new check($details, new Fetch(), self::$config, self::$logger);
-        $this->assertIsBool($check->isDue());
+
+        $this->assertTrue($check->isDue());
     }
 
     /**
