@@ -4,4 +4,6 @@ parameters:
 		- src
 		- tests
 		- vigilant.php
-
+	ignoreErrors:
+		- identifier: includeOnce.fileNotFound
+		  path: src/Config.php
