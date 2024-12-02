@@ -2,6 +2,14 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.4.6](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.4.6) - 2024-12-02
+
+- Updated user agent string ([#315](https://github.com/VerifiedJoseph/vigilant/pull/315), [`d9ad5bd`](https://github.com/VerifiedJoseph/vigilant/commit/d9ad5bd2bd2e447cfa805545d42dc67980a11328))
+- Updated symfony/yaml from 7.1.6 to 7.2.0 ([#314](https://github.com/VerifiedJoseph/vigilant/pull/314), [`07b9a26`](https://github.com/VerifiedJoseph/vigilant/commit/07b9a26f053afdac2babf06b6dcd82821b27902a))
+- Dockerfile: Updated composer from 2.8.2 to 2.8.3 ([#304](https://github.com/VerifiedJoseph/vigilant/pull/304), [`399a392`](https://github.com/VerifiedJoseph/vigilant/commit/399a3924f3c9e6b6f6d96dedad03d0bd4944f006))
+
+All changes: [v1.4.5...v1.4.6](https://github.com/VerifiedJoseph/vigilant/compare/v1.4.5...v1.4.6)
+
 ## [1.4.5](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.4.5) - 2024-11-01
 
 - Updated symfony/yaml from 7.1.5 to 7.1.6 ([#290](https://github.com/VerifiedJoseph/vigilant/pull/290), [`6317445`](https://github.com/VerifiedJoseph/vigilant/commit/63174453ec6b818a9ddf56908c1528c815c8018c))
