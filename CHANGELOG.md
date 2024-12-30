@@ -2,6 +2,15 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.4.7](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.4.7) - 2024-12-30
+
+- Updated verifiedjoseph/ntfy-php-library from 4.6.2 to 4.7.0 ([#325](https://github.com/VerifiedJoseph/vigilant/pull/325), [`768e186`](https://github.com/VerifiedJoseph/vigilant/commit/768e18662a08c20e38be7dc7b289755d8b40bb09))
+- Updated verifiedjoseph/gotify-api-php from 1.9.0 to 1.10.0 ([#326](https://github.com/VerifiedJoseph/vigilant/pull/326), [`76ea314`](https://github.com/VerifiedJoseph/vigilant/commit/76ea314773480c3e19c6735ff1a5592b2e831d2d))
+- Dockerfile: Updated alpine from 3.20.3 to 3.21.0 ([#323](https://github.com/VerifiedJoseph/vigilant/pull/323), [`5ba7bf6`](https://github.com/VerifiedJoseph/vigilant/commit/5ba7bf64343f68188f52f1844e96b4dcdf32ee14))
+- Dockerfile: Updated composer from 2.8.3 to 2.8.4 ([#320](https://github.com/VerifiedJoseph/vigilant/pull/320), [`d7ec60a`](https://github.com/VerifiedJoseph/vigilant/commit/d7ec60ae56dc0e5235506621377148621f67cca6))
+
+All changes: [v1.4.5...v1.4.6](https://github.com/VerifiedJoseph/vigilant/compare/v1.4.6...v1.4.7)
+
 ## [1.4.6](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.4.6) - 2024-12-02
 
 - Updated user agent string ([#315](https://github.com/VerifiedJoseph/vigilant/pull/315), [`d9ad5bd`](https://github.com/VerifiedJoseph/vigilant/commit/d9ad5bd2bd2e447cfa805545d42dc67980a11328))
