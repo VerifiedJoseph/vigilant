@@ -9,7 +9,7 @@ All notable changes to this project are documented in this file.
 - Dockerfile: Updated alpine from 3.20.3 to 3.21.0 ([#323](https://github.com/VerifiedJoseph/vigilant/pull/323), [`5ba7bf6`](https://github.com/VerifiedJoseph/vigilant/commit/5ba7bf64343f68188f52f1844e96b4dcdf32ee14))
 - Dockerfile: Updated composer from 2.8.3 to 2.8.4 ([#320](https://github.com/VerifiedJoseph/vigilant/pull/320), [`d7ec60a`](https://github.com/VerifiedJoseph/vigilant/commit/d7ec60ae56dc0e5235506621377148621f67cca6))
 
-All changes: [v1.4.5...v1.4.6](https://github.com/VerifiedJoseph/vigilant/compare/v1.4.6...v1.4.7)
+All changes: [v1.4.6...v1.4.7](https://github.com/VerifiedJoseph/vigilant/compare/v1.4.6...v1.4.7)
 
 ## [1.4.6](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.4.6) - 2024-12-02
 
