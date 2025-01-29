@@ -36,7 +36,7 @@ final class Cache
     private int $errorCount = 0;
 
     /**
-     * @param array<int, string> $items Item hashes
+     * @var array<int, string> $items Item hashes
      */
     private array $items = [];
 
