@@ -19,8 +19,14 @@ class Message
      * @param bool $truncate Truncate message status
      * @param string $truncateLength Number of characters to truncate message to.
      */
-    public function __construct(string $title, string $body, string $url = '', ?string $prefix = null, bool $truncate = false, int $truncateLength = 200)
-    {
+    public function __construct(
+        string $title,
+        string $body,
+        string $url = '',
+        ?string $prefix = null,
+        bool $truncate = false,
+        int $truncateLength = 200
+    ) {
         $this->title = $title;
         $this->body = $body;
         $this->url = $url;
