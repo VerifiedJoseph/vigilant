@@ -50,7 +50,7 @@ class MessageTest extends TestCase
     /**
      * Test message truncation with the default truncation length
      */
-    public function testMessageTruncation(): void
+    public function testTruncation(): void
     {
         $message = new Message(
             title: '',
@@ -64,7 +64,7 @@ class MessageTest extends TestCase
     /**
      * Test message truncation with a custom truncation length
      */
-    public function testMessageTruncationCustomLength(): void
+    public function testCustomLengthTruncation(): void
     {
         $message = new Message(
             title: '',
@@ -74,5 +74,20 @@ class MessageTest extends TestCase
         );
 
         $this->assertEquals(self::$samples['custom']['output'], $message->getBody());
+    }
+
+    /**
+     * Test message truncation with text that is shorter than given truncation length
+     */
+    public function testTruncationWithTextShorterThatTruncationLength(): void
+    {
+        $message = new Message(
+            title: '',
+            body: self::$samples['short']['input'],
+            truncate: true,
+            truncateLength: self::$samples['short']['length']
+        );
+
+        $this->assertEquals(self::$samples['short']['output'], $message->getBody());
     }
 }
