@@ -7,6 +7,9 @@ use Vigilant\Helper\Json;
 #[CoversClass(Message::class)]
 class MessageTest extends TestCase
 {
+    /**
+     * @var array<int, mixed> $samples Test sample
+     */
     private static array $samples = [];
 
     public static function setUpBeforeClass(): void
