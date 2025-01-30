@@ -8,7 +8,7 @@ use Vigilant\Helper\Json;
 class MessageTest extends TestCase
 {
     /**
-     * @var array<int, mixed> $samples Test sample
+     * @var array<string, mixed> $samples Test sample
      */
     private static array $samples = [];
 

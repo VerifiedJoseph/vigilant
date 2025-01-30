@@ -17,7 +17,7 @@ class Message
      * @param string $url Message URL
      * @param ?string $prefix Message title prefix
      * @param bool $truncate Truncate message status
-     * @param string $truncateLength Number of characters to truncate message to.
+     * @param int $truncateLength Number of characters to truncate message to.
      */
     public function __construct(
         string $title,
