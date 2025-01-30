@@ -169,3 +169,27 @@ feeds:
       active_hours:
         start_time: 06:00
         end_time: 05:00
+
+  truncateValueInvalid:
+    exception: Invalid truncate value given
+    data:
+      name: Example.com Feed
+      url: https://www.example.com/feed.rss
+      interval: 300
+      truncate: string
+
+  truncateLengthValueInvalid:
+    exception: Invalid truncate length
+    data:
+      name: Example.com Feed
+      url: https://www.example.com/feed.rss
+      interval: 300
+      truncate_length: string
+
+  truncateLengthLessThanZero:
+    exception: Truncate length less than zero
+    data:
+      name: Example.com Feed
+      url: https://www.example.com/feed.rss
+      interval: 300
+      truncate_length: -1
