@@ -120,7 +120,7 @@ final class Validate
             if ($length === null) {
                 throw new FeedsException(sprintf('Invalid truncate length given for feed: %s', $this->details['name']));
             }
-    
+
             if ($length < 0) {
                 throw new FeedsException(sprintf('Truncate length less than zero given for feed: %s', $this->details['name']));
             }
