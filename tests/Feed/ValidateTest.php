@@ -48,7 +48,7 @@ class ValidateTest extends TestCase
 
     /**
      * Test invalid feed entries
-     * 
+     *
      * @param array<string, mixed> $data Feed entry data
      * @param string $exception Exception message
      */
