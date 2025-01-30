@@ -4,6 +4,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
+use Symfony\Component\Yaml\Exception\ParseException;
 use Vigilant\Feed\Validate;
 use Vigilant\Exception\FeedsException;
 use Symfony\Component\Yaml\Yaml;
@@ -18,6 +19,9 @@ class ValidateTest extends TestCase
      */
     private static int $minCheckInterval = 300;
 
+     /**
+      * @return array<int, mixed>
+      */
     public static function invalidFeedDataProvider(): array
     {
         $data = [];
@@ -45,6 +49,9 @@ class ValidateTest extends TestCase
 
     /**
      * Test invalid feed entries
+     * 
+     * @param array<string, mixed> $data Feed entry data
+     * @param string $exception Exception message
      */
     #[DataProvider('invalidFeedDataProvider')]
     public function testInvalidFeedEntry(array $data, string $exception): void
