@@ -1,136 +1,171 @@
 feeds:
   noName:
-    url: https://www.example.com/feed.rss
-    interval: 300
+    exception: No name given
+    data:
+      url: https://www.example.com/feed.rss
+      interval: 300
     
   emptyName:
-    name:
-    url: https://www.example.com/feed.rss
-    interval: 300
+    exception: No name given
+    data:
+      name:
+      url: https://www.example.com/feed.rss
+      interval: 300
 
   noUrl:
-    name: Example.com Feed
-    interval: 300
+    exception: No url given
+    data:
+      name: Example.com Feed
+      interval: 300
     
   emptyUrl:
-    name: Example.com Feed
-    url:
-    interval: 300
+    exception: No url given
+    data:
+      name: Example.com Feed
+      url:
+      interval: 300
 
   noInterval:
-    name: Example.com Feed
-    url: https://www.example.com/feed.rss
+    exception: No interval given
+    data:
+      name: Example.com Feed
+      url: https://www.example.com/feed.rss
 
   emptyInterval:
-    name: Example.com Feed
-    url: https://www.example.com/feed.rss
-    interval:
+    exception: No interval given
+    data:
+      name: Example.com Feed
+      url: https://www.example.com/feed.rss
+      interval:
 
   tooLowInterval:
-    name: Example.com Feed
-    url: https://www.example.com/feed.rss
-    interval: 100
+    exception: Interval is less than 300 seconds for feed
+    data:
+      name: Example.com Feed
+      url: https://www.example.com/feed.rss
+      interval: 100
 
   emptyTitlePrefix:
-    name: Example.com Feed
-    url: https://www.example.com/feed.rss
-    interval: 300
-    title_prefix:
+    exception: Empty title prefix given
+    data:
+      name: Example.com Feed
+      url: https://www.example.com/feed.rss
+      interval: 300
+      title_prefix:
 
   emptyGotifyToken:
-    name: Example.com Feed
-    url: https://www.example.com/feed.rss
-    interval: 300
-    gotify_token:
+    exception: Empty Gotify token given
+    data:
+      name: Example.com Feed
+      url: https://www.example.com/feed.rss
+      interval: 300
+      gotify_token:
 
   emptyGotifyPriority:
-    name: Example.com Feed
-    url: https://www.example.com/feed.rss
-    interval: 300
-    gotify_priority:
+    exception: Empty Gotify priority given
+    data:
+      name: Example.com Feed
+      url: https://www.example.com/feed.rss
+      interval: 300
+      gotify_priority:
 
   emptyNtfyTopic:
-    name: Example.com Feed
-    url: https://www.example.com/feed.rss
-    interval: 300
-    ntfy_topic:
+    exception: Empty Ntfy topic given
+    data:
+      name: Example.com Feed
+      url: https://www.example.com/feed.rss
+      interval: 300
+      ntfy_topic:
 
   emptyNtfyPriority:
-    name: Example.com Feed
-    url: https://www.example.com/feed.rss
-    interval: 300
-    ntfy_priority:
+    exception: Empty Ntfy priority given
+    data:
+      name: Example.com Feed
+      url: https://www.example.com/feed.rss
+      interval: 300
+      ntfy_priority:
 
   emptyNtfyToken:
-    name: Example.com Feed
-    url: https://www.example.com/feed.rss
-    interval: 300
-    ntfy_priority: 1
-    ntfy_token:
+    exception: Empty Ntfy token given
+    data:
+      name: Example.com Feed
+      url: https://www.example.com/feed.rss
+      interval: 300
+      ntfy_priority: 1
+      ntfy_token:
 
   noActiveHoursOptions:
-    name: Example.com Feed
-    url: https://www.example.com/feed.rss
-    interval: 300
-    ntfy_token: token
-    active_hours:
+    exception: Required active hours options not given
+    data:
+      name: Example.com Feed
+      url: https://www.example.com/feed.rss
+      interval: 300
+      active_hours:
 
   noActiveHoursStartTime:
-    name: Example.com Feed
-    url: https://www.example.com/feed.rss
-    interval: 300
-    ntfy_token: token
-    active_hours:
-      test: Hello World
+    exception: No active hours start time given
+    data:
+      name: Example.com Feed
+      url: https://www.example.com/feed.rss
+      interval: 300
+      active_hours:
+        test: Hello World
 
   noActiveHoursEndTime:
-    name: Example.com Feed
-    url: https://www.example.com/feed.rss
-    interval: 300
-    ntfy_token: token
-    active_hours:
-      start_time: 22:00
+    exception: No active hours end time given
+    data:
+      name: Example.com Feed
+      url: https://www.example.com/feed.rss
+      interval: 300
+      active_hours:
+        start_time: 22:00
 
   emptyActiveHoursStartTime:
-    name: Example.com Feed
-    url: https://www.example.com/feed.rss
-    interval: 300
-    ntfy_token: token
-    active_hours:
-      start_time:
-      end_time: 22:00
+    exception: Empty active hours start time given
+    data:
+      name: Example.com Feed
+      url: https://www.example.com/feed.rss
+      interval: 300
+      active_hours:
+        start_time:
+        end_time: 22:00
 
   emptyActiveHoursEndTime:
-    name: Example.com Feed
-    url: https://www.example.com/feed.rss
-    interval: 300
-    ntfy_token: token
-    active_hours:
-      start_time: 06:00
-      end_time:
+    exception: Empty active hours end time given
+    data:
+      name: Example.com Feed
+      url: https://www.example.com/feed.rss
+      interval: 300
+      active_hours:
+        start_time: 06:00
+        end_time:
 
   invalidActiveHoursStartTime:
-    name: Example.com Feed
-    url: https://www.example.com/feed.rss
-    interval: 300
-    ntfy_token: token
-    active_hours:
-      start_time: 06am
-      end_time: 21:00
+    exception: Invalid active hours start time given
+    data:
+      name: Example.com Feed
+      url: https://www.example.com/feed.rss
+      interval: 300
+      active_hours:
+        start_time: 06am
+        end_time: 21:00
 
   invalidActiveHoursEndTime:
-    name: Example.com Feed
-    url: https://www.example.com/feed.rss
-    interval: 300
-    ntfy_token: token
-    active_hours:
-      start_time: 06:00
-      end_time: 10pm
+    exception: Invalid active hours end time given
+    data:
+      name: Example.com Feed
+      url: https://www.example.com/feed.rss
+      interval: 300
+      active_hours:
+        start_time: 06:00
+        end_time: 10pm
 
   activeHoursEndTimeBeforeStartTime:
-    name: Example.com Feed
-    url: https://www.example.com/feed.rss
-    interval: 300
-    active_hours:
-      start_time: 06:00
-      end_time: 05:00
+    exception: Active hours end time is before the start time
+    data:
+      name: Example.com Feed
+      url: https://www.example.com/feed.rss
+      interval: 300
+      active_hours:
+        start_time: 06:00
+        end_time: 05:00
