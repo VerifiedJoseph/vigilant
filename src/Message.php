@@ -17,7 +17,7 @@ class Message
      * @param string $url Message URL
      * @param ?string $prefix Message title prefix
      * @param bool $truncate Truncate message status
-     * @param int $truncateLength Number of characters to truncate message to.
+     * @param ?int $truncateLength Number of characters to truncate message to.
      */
     public function __construct(
         string $title,
@@ -25,7 +25,7 @@ class Message
         string $url = '',
         ?string $prefix = null,
         bool $truncate = false,
-        int $truncateLength = 200
+        ?int $truncateLength = null
     ) {
         $this->title = $title;
         $this->body = $body;
@@ -33,7 +33,7 @@ class Message
         $this->prefix = $prefix;
         $this->truncate = $truncate;
 
-        if ($truncateLength >= 0) {
+        if (is_null($truncateLength) === false && $truncateLength >= 0) {
             $this->truncateLength = $truncateLength;
         }
     }
