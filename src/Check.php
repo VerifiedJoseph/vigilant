@@ -149,7 +149,9 @@ final class Check
                         $title,
                         $body,
                         $item->getLink(),
-                        $this->details->getTitlePrefix()
+                        $this->details->getTitlePrefix(),
+                        $this->details->getTruncateStatus(),
+                        $this->details->getTruncateLength()
                     );
                 }
             }

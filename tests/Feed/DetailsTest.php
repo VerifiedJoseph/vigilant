@@ -179,6 +179,30 @@ class DetailsTest extends TestCase
         );
     }
 
+    public function testGetTruncateStatus(): void
+    {
+        $this->assertEquals(
+            self::$feeds[1]['truncate'],
+            self::$details[1]->getTruncateStatus()
+        );
+
+        $this->assertFalse(
+            self::$details[0]->getTruncateStatus()
+        );
+    }
+
+    public function testGetTruncateLength(): void
+    {
+        $this->assertEquals(
+            self::$feeds[1]['truncate_length'],
+            self::$details[1]->getTruncateLength()
+        );
+
+        $this->assertNull(
+            self::$details[0]->getTruncateLength()
+        );
+    }
+
     /**
      * Test getActiveHoursStartTime()
      */
