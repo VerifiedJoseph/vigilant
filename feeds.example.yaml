@@ -6,6 +6,8 @@ feeds:
     - name: GitHub status
       url: https://www.githubstatus.com/history.rss
       interval: 600
+      truncate: true
+      truncate_length: 250
       active_hours:
         start_time: 09:30
         end_time: 17:00
