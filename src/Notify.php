@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Vigilant;
 
 use Vigilant\Notification\Gotify;

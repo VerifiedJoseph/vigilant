@@ -1,8 +1,8 @@
 <?php
 
-namespace Vigilant\Exception;
+declare(strict_types=1);
 
-use Throwable;
+namespace Vigilant\Exception;
 
 class CheckException extends \Exception
 {

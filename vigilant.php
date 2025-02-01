@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Vigilant\Config;
 use Vigilant\Feeds;
 use Vigilant\Notify;

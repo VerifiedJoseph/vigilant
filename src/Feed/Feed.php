@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Vigilant\Feed;
 
 use DateTime;

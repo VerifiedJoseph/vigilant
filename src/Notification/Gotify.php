@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Vigilant\Notification;
 
 use Vigilant\Notification\AbstractNotification;
