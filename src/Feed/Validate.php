@@ -27,6 +27,7 @@ final class Validate
         $this->url();
         $this->interval($minCheckInterval);
         $this->titlePrefix();
+        $this->messageTruncation();
 
         $this->gotifyToken();
         $this->gotifyPriority();
@@ -93,6 +94,39 @@ final class Validate
     {
         if (array_key_exists('title_prefix', $this->details) === true && $this->details['title_prefix'] === null) {
             throw new FeedsException(sprintf('Empty title prefix given for feed: %s', $this->details['name']));
+        }
+    }
+
+    /**
+     * Validate entry message truncation
+     *
+     * @throws FeedsException if truncate value is invalid
+     * @throws FeedsException if truncate length value is invalid
+     * @throws FeedsException if truncate length value is less than zeo
+     */
+    private function messageTruncation(): void
+    {
+        if (array_key_exists('truncate', $this->details) === true) {
+            $truncate = filter_var($this->details['truncate'], FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
+
+            if ($truncate === null) {
+                throw new FeedsException(sprintf('Invalid truncate value given for feed: %s', $this->details['name']));
+            }
+        }
+
+        if (array_key_exists('truncate_length', $this->details) === true) {
+            $length = filter_var($this->details['truncate_length'], FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
+
+            if ($length === null) {
+                throw new FeedsException(sprintf('Invalid truncate length given for feed: %s', $this->details['name']));
+            }
+
+            if ($length < 0) {
+                throw new FeedsException(sprintf(
+                    'Truncate length less than zero given for feed: %s',
+                    $this->details['name']
+                ));
+            }
         }
     }
 

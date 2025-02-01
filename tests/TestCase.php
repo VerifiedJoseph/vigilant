@@ -13,7 +13,7 @@ abstract class TestCase extends BaseTestCase
     protected static function loadSample(string $name): string
     {
         $path = __DIR__ . '/files/' . $name;
-        $contents = file_get_contents($path);
+        $contents = @file_get_contents($path);
 
         if ($contents === false) {
             throw new RuntimeException(sprintf('Unable to load sample file: %s', $path));

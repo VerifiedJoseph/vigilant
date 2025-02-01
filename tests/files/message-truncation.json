@@ -1,0 +1,17 @@
+{
+	"default": {
+		"length": 200,
+		"input": "Lorem ipsum odor amet, consectetuer adipiscing elit. Accumsan phasellus hac nascetur torquent aliquet purus lacinia. Curae sagittis commodo lacinia, tortor fermentum condimentum. Finibus ut lacinia vivamus, convallis vestibulum mus nibh rutrum proin.",
+		"output": "Lorem ipsum odor amet, consectetuer adipiscing elit. Accumsan phasellus hac nascetur torquent aliquet purus lacinia. Curae sagittis commodo lacinia, tortor fermentum condimentum..."
+	},
+	"custom": {
+		"length": 50,
+		"input": "Lorem ipsum odor amet, consectetuer adipiscing elit. Accumsan phasellus hac nascetur torquent aliquet purus lacinia. Curae sagittis commodo lacinia, tortor fermentum condimentum. Finibus ut lacinia vivamus, convallis vestibulum mus nibh rutrum proin.",
+		"output": "Lorem ipsum odor amet, consectetuer adipiscing eli..."
+	},
+	"short": {
+		"length": 100,
+		"input": "Lorem ipsum odor amet.",
+		"output": "Lorem ipsum odor amet."
+	}
+}

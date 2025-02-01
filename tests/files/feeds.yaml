@@ -13,6 +13,8 @@ feeds:
      ntfy_topic: GitHub_status
      ntfy_priority: 1
      ntfy_token: HQKPyHCODeoMFuN
+     truncate: true
+     truncate_length: 150
      active_hours:
        start_time: 06:00
        end_time: 21:00

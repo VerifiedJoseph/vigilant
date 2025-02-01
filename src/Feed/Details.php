@@ -116,6 +116,26 @@ final class Details
     }
 
     /**
+     * Returns text truncation status
+     *
+     * @return bool
+     */
+    public function getTruncateStatus(): bool
+    {
+        return $this->details['truncate'] ?? false;
+    }
+
+    /**
+     * Returns text truncation length
+     *
+     * @return ?int
+     */
+    public function getTruncateLength(): ?int
+    {
+        return $this->details['truncate_length'] ?? null;
+    }
+
+    /**
      * Returns active hours start time
      *
      * @return ?string
