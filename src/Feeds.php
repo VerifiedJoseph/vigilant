@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Vigilant;
 
 use Vigilant\Feed\Feed;
-use Vigilant\Feed\Details;
 use Vigilant\Exception\AppException;
 use Vigilant\Exception\FeedsException;
 use Symfony\Component\Yaml\Yaml;

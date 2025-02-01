@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Vigilant\Helper;
 
 use Vigilant\Exception\AppException;
