@@ -2,6 +2,8 @@
 <ruleset name="vigilant">
   <exclude-pattern>./cache</exclude-pattern>
   <exclude-pattern>./vendor</exclude-pattern>
+  <exclude-pattern>./site</exclude-pattern>
+  <exclude-pattern>./.cache</exclude-pattern>
   <exclude-pattern>./coverage-reports</exclude-pattern>
 
   <rule ref="PSR12"/>
