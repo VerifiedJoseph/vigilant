@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace tests\Config\Validate;
 
 use PHPUnit\Framework\Attributes\CoversClass;
