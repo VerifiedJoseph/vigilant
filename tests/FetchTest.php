@@ -56,7 +56,7 @@ class FetchTest extends TestCase
         $this->expectException(FetchException::class);
         $this->expectExceptionMessage('ailed to fetch: http://example.invalid (500 Internal Server Error)');
 
-        $fetch = new Fetch(new \GuzzleHttp\Client(['handler' => $handlerStack]));
+        $fetch = new Fetch(new GuzzleHttp\Client(['handler' => $handlerStack]));
         $fetch->get('http://example.invalid');
     }
 
@@ -73,7 +73,7 @@ class FetchTest extends TestCase
         $this->expectException(FetchException::class);
         $this->expectExceptionMessage('Failed to fetch: http://example.invalid (404 Not Found)');
 
-        $fetch = new Fetch(new \GuzzleHttp\Client(['handler' => $handlerStack]));
+        $fetch = new Fetch(new GuzzleHttp\Client(['handler' => $handlerStack]));
         $fetch->get('http://example.invalid');
     }
 }
