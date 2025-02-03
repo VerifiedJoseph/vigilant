@@ -2,7 +2,10 @@
 
 declare(strict_types=1);
 
+namespace Tests;
+
 use PHPUnit\Framework\TestCase as BaseTestCase;
+use RuntimeException;
 
 /**
  * Class TestCase

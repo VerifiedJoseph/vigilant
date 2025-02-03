@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+namespace Tests\Feed;
+
+use Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -12,7 +15,7 @@ use Symfony\Component\Yaml\Yaml;
 
 #[CoversClass(Validate::class)]
 #[UsesClass(FeedsException::class)]
-#[UsesClass(Vigilant\Helper\Time::class)]
+#[UsesClass(\Vigilant\Helper\Time::class)]
 class ValidateTest extends TestCase
 {
     /**

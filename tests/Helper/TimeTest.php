@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+namespace Tests\Helper;
+
+use Tests\TestCase;
 use PHPUnit\Framework\Attributes\TestWith;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;

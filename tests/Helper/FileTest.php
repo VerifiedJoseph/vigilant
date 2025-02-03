@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+namespace Tests\Helper;
+
+use Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 use MockFileSystem\MockFileSystem as mockfs;
@@ -99,7 +102,7 @@ class FileTest extends TestCase
      */
     public function testReadEmptyFile(): void
     {
-        $this->expectException(Exception::class);
+        $this->expectException(\Exception::class);
         $this->expectExceptionMessage('File is empty');
 
         $file = mockfs::getUrl('/test.file');

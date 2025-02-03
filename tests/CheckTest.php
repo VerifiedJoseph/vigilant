@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace Tests;
+
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 use MockFileSystem\MockFileSystem as mockfs;
@@ -10,16 +12,17 @@ use Vigilant\Feed\Details;
 use Vigilant\Config;
 use Vigilant\Logger;
 use Vigilant\Fetch;
+use GuzzleHttp;
 
 #[CoversClass(Check::class)]
 #[UsesClass(Details::class)]
 #[UsesClass(Fetch::class)]
 #[UsesClass(Config::class)]
 #[UsesClass(Logger::class)]
-#[UsesClass(Vigilant\Cache::class)]
-#[UsesClass(Vigilant\Message::class)]
-#[UsesClass(Vigilant\Helper\File::class)]
-#[UsesClass(Vigilant\Helper\Json::class)]
+#[UsesClass(\Vigilant\Cache::class)]
+#[UsesClass(\Vigilant\Message::class)]
+#[UsesClass(\Vigilant\Helper\File::class)]
+#[UsesClass(\Vigilant\Helper\Json::class)]
 class CheckTest extends TestCase
 {
     private static Config $config;
@@ -46,7 +49,7 @@ class CheckTest extends TestCase
     {
         mockfs::create();
 
-        /** @var PHPUnit\Framework\MockObject\Stub&Config */
+        /** @var \PHPUnit\Framework\MockObject\Stub&Config */
         $config = self::createStub(Config::class);
         $config->method('getCachePath')->willReturn(mockfs::getUrl('/'));
         $config->method('getCacheFormatVersion')->willReturn(1);

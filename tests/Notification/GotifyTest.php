@@ -2,16 +2,20 @@
 
 declare(strict_types=1);
 
+namespace Tests\Notification;
+
+use Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 use Vigilant\Logger;
 use Vigilant\Notification\Gotify;
+use Vigilant\Notification\AbstractNotification;
 use Vigilant\Exception\NotificationException;
 
 #[CoversClass(Gotify::class)]
+#[CoversClass(AbstractNotification::class)]
 #[UsesClass(Logger::class)]
-#[CoversClass(Vigilant\Notification\AbstractNotification::class)]
 #[UsesClass(NotificationException::class)]
 class GotifyTest extends TestCase
 {
@@ -44,11 +48,11 @@ class GotifyTest extends TestCase
     public function testSend(): void
     {
         $client = self::createStub(\Gotify\Endpoint\Message::class);
-        $client->method('create')->willReturn(new stdClass());
+        $client->method('create')->willReturn(new \stdClass());
 
         $gotify = new Gotify($this->config, self::$logger);
 
-        $reflection = new ReflectionClass($gotify);
+        $reflection = new \ReflectionClass($gotify);
         $property = $reflection->getProperty('message');
         $property->setAccessible(true);
         $property->setValue($gotify, $client);

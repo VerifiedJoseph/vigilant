@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace Tests;
+
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 use MockFileSystem\MockFileSystem as mockfs;
@@ -12,7 +14,7 @@ use Vigilant\Helper\Json;
 #[CoversClass(Cache::class)]
 #[UsesClass(Config::class)]
 #[UsesClass(Json::class)]
-#[UsesClass(Vigilant\Helper\File::class)]
+#[UsesClass(\Vigilant\Helper\File::class)]
 class CacheTest extends TestCase
 {
     /**

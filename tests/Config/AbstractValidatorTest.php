@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+namespace Tests\Config;
+
+use Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Vigilant\Config\AbstractValidator;
 

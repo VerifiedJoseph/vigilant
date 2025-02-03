@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace Tests;
+
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
@@ -20,8 +22,8 @@ use Vigilant\Notification\Ntfy;
 #[UsesClass(Logger::class)]
 #[UsesClass(Gotify::class)]
 #[UsesClass(Ntfy::class)]
-#[UsesClass(Vigilant\Notification\AbstractNotification::class)]
-#[UsesClass(Vigilant\Exception\NotificationException::class)]
+#[UsesClass(\Vigilant\Notification\AbstractNotification::class)]
+#[UsesClass(\Vigilant\Exception\NotificationException::class)]
 class NotifyTest extends TestCase
 {
     private static Logger $logger;

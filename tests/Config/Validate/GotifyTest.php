@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace tests\Config\Validate;
 
+use Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 use Vigilant\Config;
@@ -15,7 +16,7 @@ use Vigilant\Exception\ConfigException;
 #[UsesClass(ConfigException::class)]
 #[UsesClass(\Vigilant\Config\Validator::class)]
 #[UsesClass(\Vigilant\Config\AbstractValidator::class)]
-class GotifyTest extends \TestCase
+class GotifyTest extends TestCase
 {
     /** @var array<string, mixed> $defaults */
     private static array $defaults = [];

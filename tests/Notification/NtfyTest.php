@@ -2,16 +2,20 @@
 
 declare(strict_types=1);
 
+namespace Tests\Notification;
+
+use Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 use Vigilant\Logger;
 use Vigilant\Notification\Ntfy;
+use Vigilant\Notification\AbstractNotification;
 use Vigilant\Exception\NotificationException;
 
 #[CoversClass(Ntfy::class)]
+#[CoversClass(AbstractNotification::class)]
 #[UsesClass(Logger::class)]
-#[CoversClass(Vigilant\Notification\AbstractNotification::class)]
 #[UsesClass(NotificationException::class)]
 class NtfyTest extends TestCase
 {
@@ -72,11 +76,11 @@ class NtfyTest extends TestCase
     public function testSend(): void
     {
         $client = self::createStub(\Ntfy\Client::class);
-        $client->method('send')->willReturn(new stdClass());
+        $client->method('send')->willReturn(new \stdClass());
 
         $ntfy = new Ntfy($this->config, self::$logger);
 
-        $reflection = new ReflectionClass($ntfy);
+        $reflection = new \ReflectionClass($ntfy);
         $property = $reflection->getProperty('client');
         $property->setAccessible(true);
         $property->setValue($ntfy, $client);
