@@ -8,6 +8,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use Vigilant\Logger;
 use DateTime;
 use DateTimeZone;
+use ReflectionClass;
 
 #[CoversClass(Logger::class)]
 class LoggerTest extends TestCase
@@ -59,7 +60,7 @@ class LoggerTest extends TestCase
     {
         $logger = new Logger('UTC', -1);
 
-        $reflection = new \ReflectionClass($logger);
+        $reflection = new ReflectionClass($logger);
         $actual = $reflection->getProperty('logLevel')->getValue($logger);
 
         $this->assertEquals(1, $actual);
@@ -72,7 +73,7 @@ class LoggerTest extends TestCase
     {
         $logger = new Logger('UTC', 3);
 
-        $reflection = new \ReflectionClass($logger);
+        $reflection = new ReflectionClass($logger);
         $actual = $reflection->getProperty('logLevel')->getValue($logger);
 
         $this->assertEquals(2, $actual);
