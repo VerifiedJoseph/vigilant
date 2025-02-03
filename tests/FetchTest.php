@@ -2,10 +2,14 @@
 
 declare(strict_types=1);
 
+namespace Tests;
+
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 use Vigilant\Fetch;
 use Vigilant\Exception\FetchException;
+use GuzzleHttp;
+use FeedIo;
 
 #[CoversClass(Fetch::class)]
 #[UsesClass(FetchException::class)]
@@ -32,7 +36,7 @@ class FetchTest extends TestCase
         ]);
         $handlerStack = GuzzleHttp\HandlerStack::create($mock);
 
-        $this->expectException(Exception::class);
+        $this->expectException(\Exception::class);
         $this->expectExceptionMessage('Failed to parse feed');
 
         $fetch = new Fetch(new \GuzzleHttp\Client(['handler' => $handlerStack]));

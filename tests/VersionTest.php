@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace Tests;
+
 use PHPUnit\Framework\Attributes\CoversClass;
 use Vigilant\Version;
 
@@ -13,7 +15,7 @@ class VersionTest extends TestCase
 
     public static function setUpBeforeClass(): void
     {
-        $reflection = new ReflectionClass(new Version());
+        $reflection = new \ReflectionClass(new Version());
         self::$expectedVersion = $reflection->getProperty('version')->getValue();
         self::$expectedCacheVersion = $reflection->getProperty('cacheFormatVersion')->getValue();
     }

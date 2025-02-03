@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace tests\Config\Validate;
+namespace Tests\Config;
 
+use Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 use MockFileSystem\MockFileSystem as mockfs;
@@ -17,7 +18,7 @@ use Vigilant\Exception\ConfigException;
 #[UsesClass(\Vigilant\Config\Validate\Ntfy::class)]
 #[UsesClass(\Vigilant\Config\Validate\Gotify::class)]
 #[UsesClass(\Vigilant\Config\AbstractValidator::class)]
-class ValidatorTest extends \TestCase
+class ValidatorTest extends TestCase
 {
     /** @var array<string, mixed> $defaults */
     private static array $defaults = [];

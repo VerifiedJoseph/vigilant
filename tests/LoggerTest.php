@@ -2,8 +2,12 @@
 
 declare(strict_types=1);
 
+namespace Tests;
+
 use PHPUnit\Framework\Attributes\CoversClass;
 use Vigilant\Logger;
+use DateTime;
+use DateTimeZone;
 
 #[CoversClass(Logger::class)]
 class LoggerTest extends TestCase

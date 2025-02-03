@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace Tests;
+
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 use Vigilant\Feeds;
@@ -13,16 +15,16 @@ use Vigilant\Exception\AppException;
 #[UsesClass(Config::class)]
 #[UsesClass(Logger::class)]
 #[UsesClass(AppException::class)]
-#[UsesClass(Vigilant\Cache::class)]
-#[UsesClass(Vigilant\Check::class)]
-#[UsesClass(Vigilant\Fetch::class)]
-#[UsesClass(Vigilant\Feed\Feed::class)]
-#[UsesClass(Vigilant\Feed\Details::class)]
-#[UsesClass(Vigilant\Feed\Validate::class)]
-#[UsesClass(Vigilant\ActiveHours::class)]
-#[UsesClass(Vigilant\Helper\Time::class)]
-#[UsesClass(Vigilant\Helper\File::class)]
-#[UsesClass(Vigilant\Exception\FeedsException::class)]
+#[UsesClass(\Vigilant\Cache::class)]
+#[UsesClass(\Vigilant\Check::class)]
+#[UsesClass(\Vigilant\Fetch::class)]
+#[UsesClass(\Vigilant\Feed\Feed::class)]
+#[UsesClass(\Vigilant\Feed\Details::class)]
+#[UsesClass(\Vigilant\Feed\Validate::class)]
+#[UsesClass(\Vigilant\ActiveHours::class)]
+#[UsesClass(\Vigilant\Helper\Time::class)]
+#[UsesClass(\Vigilant\Helper\File::class)]
+#[UsesClass(\Vigilant\Exception\FeedsException::class)]
 class FeedsTest extends TestCase
 {
     private static Logger $logger;
@@ -37,7 +39,7 @@ class FeedsTest extends TestCase
      */
     public function testGet(): void
     {
-        /** @var PHPUnit\Framework\MockObject\Stub&Config */
+        /** @var \PHPUnit\Framework\MockObject\Stub&Config */
         $config = $this->createStub(Config::class);
         $config->method('getFeedsPath')->willReturn(self::getSamplePath('feeds.yaml'));
         $config->method('getTimezone')->willReturn('UTC');
@@ -52,7 +54,7 @@ class FeedsTest extends TestCase
      */
     public function testNoFeedsException(): void
     {
-        /** @var PHPUnit\Framework\MockObject\Stub&Config */
+        /** @var \PHPUnit\Framework\MockObject\Stub&Config */
         $config = $this->createStub(Config::class);
         $config->method('getFeedsPath')->willReturn(self::getSamplePath('feeds-empty-file.yaml'));
 
@@ -67,7 +69,7 @@ class FeedsTest extends TestCase
      */
     public function testInvalidYamlFile(): void
     {
-        /** @var PHPUnit\Framework\MockObject\Stub&Config */
+        /** @var \PHPUnit\Framework\MockObject\Stub&Config */
         $config = $this->createStub(Config::class);
         $config->method('getFeedsPath')->willReturn(self::getSamplePath('invalid-file.yaml'));
 

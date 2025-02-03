@@ -2,9 +2,13 @@
 
 declare(strict_types=1);
 
+namespace Tests\Feed;
+
+use Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use Vigilant\Feed\Details;
 use Symfony\Component\Yaml\Yaml;
+use ReflectionClass;
 
 #[CoversClass(Details::class)]
 class DetailsTest extends TestCase

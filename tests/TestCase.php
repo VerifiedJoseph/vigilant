@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace Tests;
+
 use PHPUnit\Framework\TestCase as BaseTestCase;
 
 /**
@@ -18,7 +20,7 @@ abstract class TestCase extends BaseTestCase
         $contents = @file_get_contents($path);
 
         if ($contents === false) {
-            throw new RuntimeException(sprintf('Unable to load sample file: %s', $path));
+            throw new \RuntimeException(sprintf('Unable to load sample file: %s', $path));
         }
 
         return $contents;

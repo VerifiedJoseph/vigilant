@@ -2,16 +2,19 @@
 
 declare(strict_types=1);
 
+namespace Tests;
+
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 use Vigilant\Config;
 use Vigilant\Version;
+use ReflectionClass;
 
 #[CoversClass(Config::class)]
 #[CoversClass(Version::class)]
-#[UsesClass(Vigilant\Config\Validator::class)]
-#[UsesClass(Vigilant\Config\Validate\Ntfy::class)]
-#[UsesClass(Vigilant\Config\AbstractValidator::class)]
+#[UsesClass(\Vigilant\Config\Validator::class)]
+#[UsesClass(\Vigilant\Config\Validate\Ntfy::class)]
+#[UsesClass(\Vigilant\Config\AbstractValidator::class)]
 class ConfigTest extends TestCase
 {
     /** @var array<string, mixed> $defaults */

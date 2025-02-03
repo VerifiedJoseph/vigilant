@@ -2,10 +2,14 @@
 
 declare(strict_types=1);
 
+namespace Tests;
+
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 use Vigilant\ActiveHours;
 use Vigilant\Logger;
+use DateTime;
+use DateTimeZone;
 
 #[CoversClass(ActiveHours::class)]
 #[UsesClass(Logger::class)]
