@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ruleset name="vigilant">
-  <exclude-pattern>./cache</exclude-pattern>
-  <exclude-pattern>./vendor</exclude-pattern>
-  <exclude-pattern>./site</exclude-pattern>
-  <exclude-pattern>./.cache</exclude-pattern>
-  <exclude-pattern>./coverage-reports</exclude-pattern>
+  <file>./src</file>
+  <file>./tests</file>
+  <file>./vigilant.php</file>
+  <file>./config.example.php</file>
 
   <rule ref="PSR12"/>
   <rule ref="Generic.PHP.RequireStrictTypes">
-    <exclude-pattern>./config.php</exclude-pattern>
     <exclude-pattern>./config.example.php</exclude-pattern>
   </rule>
   <rule ref="PSR1.Classes.ClassDeclaration.MissingNamespace">
