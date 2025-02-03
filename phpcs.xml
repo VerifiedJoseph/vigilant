@@ -3,6 +3,7 @@
   <file>./src</file>
   <file>./tests</file>
   <file>./vigilant.php</file>
+  <exclude-pattern>./vendor</exclude-pattern>
 
   <rule ref="PSR12"/>
   <rule ref="Generic.PHP.RequireStrictTypes"/>
