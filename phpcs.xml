@@ -3,10 +3,12 @@
   <file>./src</file>
   <file>./tests</file>
   <file>./vigilant.php</file>
-  <exclude-pattern>./vendor</exclude-pattern>
+  <file>./config.example.php</file>
 
   <rule ref="PSR12"/>
-  <rule ref="Generic.PHP.RequireStrictTypes"/>
+  <rule ref="Generic.PHP.RequireStrictTypes">
+    <exclude-pattern>./config.example.php</exclude-pattern>
+  </rule>
   <rule ref="PSR1.Classes.ClassDeclaration.MissingNamespace">
     <exclude-pattern>./tests/*</exclude-pattern>
   </rule>
