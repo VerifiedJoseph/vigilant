@@ -2,6 +2,16 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.5.0](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.5.0) - 2025-02-03
+
+- Added option for truncating notification text ([#339](https://github.com/VerifiedJoseph/vigilant/pull/339), [`4edde55`](https://github.com/VerifiedJoseph/vigilant/commit/4edde55230cb380583ea1fb2dc1581e5c5d6dc1e))
+- Refactored cache class ([#337](https://github.com/VerifiedJoseph/vigilant/pull/337), [`feffc99`](https://github.com/VerifiedJoseph/vigilant/commit/feffc99717b365e338df79bbbcb41dbe96cbcb56))
+- Updated symfony/yaml from 7.2.0 to 7.2.3 ([#344](https://github.com/VerifiedJoseph/vigilant/pull/344), [`f4c1fd7`](https://github.com/VerifiedJoseph/vigilant/commit/f4c1fd7a4ab6a376c7a19754581b52cc15b9db78))
+- Dockerfile: Bump alpine from 3.21.0 to 3.21.2 ([#341](https://github.com/VerifiedJoseph/vigilant/pull/341), [`6ac2356`](https://github.com/VerifiedJoseph/vigilant/commit/6ac235678f3a13c8028b4e01a00a037befe4ac2d))
+- Dockerfile: Bump composer from 2.8.4 to 2.8.5 ([#342](https://github.com/VerifiedJoseph/vigilant/pull/42), [`3da7b28`](https://github.com/VerifiedJoseph/vigilant/commit/3da7b28da2f6c2f5b7cf85ca60e640d0b1c32544))
+
+All changes: [v1.4.7...v1.5.0](https://github.com/VerifiedJoseph/vigilant/compare/v1.4.7...v1.5.0)
+
 ## [1.4.7](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.4.7) - 2024-12-30
 
 - Updated verifiedjoseph/ntfy-php-library from 4.6.2 to 4.7.0 ([#325](https://github.com/VerifiedJoseph/vigilant/pull/325), [`768e186`](https://github.com/VerifiedJoseph/vigilant/commit/768e18662a08c20e38be7dc7b289755d8b40bb09))
