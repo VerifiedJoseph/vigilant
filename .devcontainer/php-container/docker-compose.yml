@@ -10,6 +10,7 @@ services:
     volumes:
       - ../../:/vigilant
       - vendor:/vigilant/vendor
+      - ./workspace/config/php.ini:/usr/local/etc/php/php.ini
     working_dir: /vigilant
 
 volumes:
