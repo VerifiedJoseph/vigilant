@@ -1,4 +1,4 @@
-FROM python:3.13.1-alpine3.20
+FROM python:3.13-alpine3.20
 
 # Install packages
 RUN apk add --no-cache git bash && pip install pipenv
