@@ -2,6 +2,14 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.5.1](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.5.1) - 2025-04-01
+
+- Updated symfony/yaml from 7.2.3 to 7.2.5 ([#378](https://github.com/VerifiedJoseph/vigilant/pull/378), [`4f730b1`](https://github.com/VerifiedJoseph/vigilant/commit/4f730b127db5eadaf2c1439d47139159423f7330))
+- Updated guzzlehttp/guzzle from 7.9.2 to 7.9.3 ([#377](https://github.com/VerifiedJoseph/vigilant/pull/377), [`c192bb6`](https://github.com/VerifiedJoseph/vigilant/commit/c192bb6b427cd74523e5c21e9aed45374c16a727))
+- Updated verifiedjoseph/gotify-api-php from 1.10.0 to 1.10.1 ([#384](https://github.com/VerifiedJoseph/vigilant/pull/384), [`b636c22`](https://github.com/VerifiedJoseph/vigilant/commit/b636c22733c89342c062b640f84644e79f694c05))
+- Updated verifiedjoseph/ntfy-php-library from 4.7.0 to 4.7.1 ([#382](https://github.com/VerifiedJoseph/vigilant/pull/382), [`10df00e`](https://github.com/VerifiedJoseph/vigilant/commit/10df00ecee0d8b82675250e1986cddf336493e60))
+- Dockerfile: Updated alpine from 3.21.2 to 3.21.3 ([#368](https://github.com/VerifiedJoseph/vigilant/pull/368), [`2a08d2a`](https://github.com/VerifiedJoseph/vigilant/commit/2a08d2a1fdf4aa87c413c4354ac8efdd9485e9f1))
+
 ## [1.5.0](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.5.0) - 2025-02-03
 
 - Added option for truncating notification text ([#339](https://github.com/VerifiedJoseph/vigilant/pull/339), [`4edde55`](https://github.com/VerifiedJoseph/vigilant/commit/4edde55230cb380583ea1fb2dc1581e5c5d6dc1e))
