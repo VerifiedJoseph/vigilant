@@ -142,7 +142,7 @@ final class Check
                 $newItems += 1;
 
                 $title = html_entity_decode($item->getTitle());
-                $body = strip_tags(html_entity_decode($item->getContent()));
+                $body = strip_tags(html_entity_decode($item->getContent() ?? $item->getSummary() ?? ''));
 
                 $this->logger->info(sprintf('Found...%s (%s)', $title, $hash));
 
