@@ -39,14 +39,12 @@ class FeedsTest extends TestCase
      */
     public function testGet(): void
     {
-        /** @var \PHPUnit\Framework\MockObject\Stub&Config */
         $config = $this->createStub(Config::class);
         $config->method('getFeedsPath')->willReturn(self::getSamplePath('feeds.yaml'));
         $config->method('getTimezone')->willReturn('UTC');
 
         $feeds = new Feeds($config, self::$logger);
-
-        $this->assertContainsOnlyInstancesOf('Vigilant\Feed\Feed', $feeds->get());
+        $this->assertCount(2, $feeds->get());
     }
 
     /**
@@ -54,7 +52,6 @@ class FeedsTest extends TestCase
      */
     public function testNoFeedsException(): void
     {
-        /** @var \PHPUnit\Framework\MockObject\Stub&Config */
         $config = $this->createStub(Config::class);
         $config->method('getFeedsPath')->willReturn(self::getSamplePath('feeds-empty-file.yaml'));
 
@@ -65,11 +62,24 @@ class FeedsTest extends TestCase
     }
 
     /**
+     * Test Feeds class with non-existent YAML file
+     */
+    public function testNonExistentYamlFile(): void
+    {
+        $config = $this->createStub(Config::class);
+        $config->method('getFeedsPath')->willReturn(self::getSamplePath('not-exist.yaml'));
+
+        $this->expectException(AppException::class);
+        $this->expectExceptionMessageMatches('/Feeds error: File "[\w\-\/]+not-exist\.yaml" does not exist\./');
+
+        new Feeds($config, self::$logger);
+    }
+
+    /**
      * Test Feeds class with file containing invalid YAML
      */
     public function testInvalidYamlFile(): void
     {
-        /** @var \PHPUnit\Framework\MockObject\Stub&Config */
         $config = $this->createStub(Config::class);
         $config->method('getFeedsPath')->willReturn(self::getSamplePath('invalid-file.yaml'));
 
