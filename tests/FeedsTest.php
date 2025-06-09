@@ -65,6 +65,20 @@ class FeedsTest extends TestCase
     }
 
     /**
+     * Test Feeds class with non-existent YAML file
+     */
+    public function testNonExistentYamlFile(): void
+    {
+        $config = $this->createStub(Config::class);
+        $config->method('getFeedsPath')->willReturn(self::getSamplePath('not-exist.yaml'));
+
+        $this->expectException(AppException::class);
+        $this->expectExceptionMessageMatches('/Feeds error: File "[\w\-\/]+not-exist\.yaml" does not exist\./');
+
+        new Feeds($config, self::$logger);
+    }
+
+    /**
      * Test Feeds class with file containing invalid YAML
      */
     public function testInvalidYamlFile(): void
