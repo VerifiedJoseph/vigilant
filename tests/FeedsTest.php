@@ -52,7 +52,6 @@ class FeedsTest extends TestCase
      */
     public function testNoFeedsException(): void
     {
-        /** @var \PHPUnit\Framework\MockObject\Stub&Config */
         $config = $this->createStub(Config::class);
         $config->method('getFeedsPath')->willReturn(self::getSamplePath('feeds-empty-file.yaml'));
 
@@ -81,7 +80,6 @@ class FeedsTest extends TestCase
      */
     public function testInvalidYamlFile(): void
     {
-        /** @var \PHPUnit\Framework\MockObject\Stub&Config */
         $config = $this->createStub(Config::class);
         $config->method('getFeedsPath')->willReturn(self::getSamplePath('invalid-file.yaml'));
 
