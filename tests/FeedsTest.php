@@ -39,14 +39,12 @@ class FeedsTest extends TestCase
      */
     public function testGet(): void
     {
-        /** @var \PHPUnit\Framework\MockObject\Stub&Config */
         $config = $this->createStub(Config::class);
         $config->method('getFeedsPath')->willReturn(self::getSamplePath('feeds.yaml'));
         $config->method('getTimezone')->willReturn('UTC');
 
         $feeds = new Feeds($config, self::$logger);
-
-        $this->assertContainsOnlyInstancesOf('Vigilant\Feed\Feed', $feeds->get());
+        $this->assertCount(2, $feeds->get());
     }
 
     /**
