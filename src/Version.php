@@ -9,7 +9,7 @@ class Version
     /**
      * @var string $version Vigilant version
      */
-    private static string $version = '1.5.1';
+    private static string $version = '1.5.2';
 
     /**
      * @var int $cacheFormatVersion Cache format version
