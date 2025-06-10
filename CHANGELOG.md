@@ -2,6 +2,14 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.5.2](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.5.2) - 2025-06-10
+
+- Fixed fatal error when processing some atom feeds. Commit by [@PhilRW](https://github.com/PhilRW) ([#404](https://github.com/VerifiedJoseph/vigilant/pull/404), [`d0354d7`](https://github.com/VerifiedJoseph/vigilant/commit/d0354d7eccabd33641f26cf19391f4f1c0e84c0b))
+- Updated symfony/yaml from 7.2.5 to 7.3.0 ([#399](https://github.com/VerifiedJoseph/vigilant/pull/399), [`7672441`](https://github.com/VerifiedJoseph/vigilant/commit/7672441e1a13aa390f7d16cba4bacc8306d410e8))
+- Dockerfile: Update alpine from 3.21.3 to 3.22.0 ([#402](https://github.com/VerifiedJoseph/vigilant/pull/402), [`119262f`](https://github.com/VerifiedJoseph/vigilant/commit/119262ff66bbd9c92c344bc800f0d77b7aac9c38))
+
+All changes: [v1.5.1...v1.5.2](https://github.com/VerifiedJoseph/vigilant/compare/v1.5.1...v1.5.2)
+
 ## [1.5.1](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.5.1) - 2025-04-01
 
 - Updated symfony/yaml from 7.2.3 to 7.2.5 ([#378](https://github.com/VerifiedJoseph/vigilant/pull/378), [`4f730b1`](https://github.com/VerifiedJoseph/vigilant/commit/4f730b127db5eadaf2c1439d47139159423f7330))
@@ -9,6 +17,8 @@ All notable changes to this project are documented in this file.
 - Updated verifiedjoseph/gotify-api-php from 1.10.0 to 1.10.1 ([#384](https://github.com/VerifiedJoseph/vigilant/pull/384), [`b636c22`](https://github.com/VerifiedJoseph/vigilant/commit/b636c22733c89342c062b640f84644e79f694c05))
 - Updated verifiedjoseph/ntfy-php-library from 4.7.0 to 4.7.1 ([#382](https://github.com/VerifiedJoseph/vigilant/pull/382), [`10df00e`](https://github.com/VerifiedJoseph/vigilant/commit/10df00ecee0d8b82675250e1986cddf336493e60))
 - Dockerfile: Updated alpine from 3.21.2 to 3.21.3 ([#368](https://github.com/VerifiedJoseph/vigilant/pull/368), [`2a08d2a`](https://github.com/VerifiedJoseph/vigilant/commit/2a08d2a1fdf4aa87c413c4354ac8efdd9485e9f1))
+
+All changes: [v1.5.0...v1.5.1](https://github.com/VerifiedJoseph/vigilant/compare/v1.5.0...v1.5.1)
 
 ## [1.5.0](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.5.0) - 2025-02-03
 
