@@ -2,6 +2,12 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.5.3](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.5.3) - 2025-07-02
+
+- Updated symfony/yaml from 7.3.0 to 7.3.1 ([#411](https://github.com/VerifiedJoseph/vigilant/pull/411), [`8e95083`](https://github.com/VerifiedJoseph/vigilant/commit/8e950831560cdf2b8747d7f8c29450b937eff95f))
+
+All changes: [v1.5.2...v1.5.3](https://github.com/VerifiedJoseph/vigilant/compare/v1.5.2...v1.5.3)
+
 ## [1.5.2](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.5.2) - 2025-06-10
 
 - Fixed fatal error when processing some atom feeds. Commit by [@PhilRW](https://github.com/PhilRW) ([#404](https://github.com/VerifiedJoseph/vigilant/pull/404), [`d0354d7`](https://github.com/VerifiedJoseph/vigilant/commit/d0354d7eccabd33641f26cf19391f4f1c0e84c0b))
