@@ -28,9 +28,8 @@ RUN apk add --no-cache \
 # Copy app folder from composer build stage
 COPY --from=composer /app /app
 
-# Copy daemon bash script
-COPY /docker/scripts/daemon.sh /app/daemon.sh
-RUN rm -r /app/docker
+# Move daemon bash script
+RUN mv /app/docker/scripts/daemon.sh /app/daemon.sh && rm -r /app/docker
 
 # Create symlink for php
 RUN ln -s /usr/bin/php82 /usr/bin/php
