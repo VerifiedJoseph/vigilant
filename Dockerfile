@@ -35,7 +35,8 @@ RUN rm -r /app/docker
 # Create symlink for php
 RUN ln -s /usr/bin/php82 /usr/bin/php
 
-WORKDIR /app
-RUN mkdir cache
+# Create cache folder
+RUN mkdir /app/cache
 
+WORKDIR /app
 CMD [ "bash", "./daemon.sh" ]
