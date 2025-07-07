@@ -13,9 +13,13 @@ services:
       - VIGILANT_NOTIFICATION_NTFY_TOPIC=testingtesting
     volumes:
       - "./feeds.yaml:/app/feeds.yaml"
+      - cache:/app/cache
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
+
+volumes:
+  cache:
 ```
 
 ## Manually

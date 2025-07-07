@@ -11,5 +11,6 @@ services:
       - VIGILANT_NOTIFICATION_NTFY_TOPIC=testingtesting
     volumes:
       - "../feeds.yaml:/app/feeds.yaml"
+      - "../cache:/app/cache"
     security_opt:
       - no-new-privileges:true
