@@ -2,6 +2,14 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.5.4](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.5.4) - 2025-08-01
+
+- Updated symfony/yaml from 7.3.1 to 7.3.2 ([#418](https://github.com/VerifiedJoseph/vigilant/pull/418), [`6ed1283`](https://github.com/VerifiedJoseph/vigilant/commit/6ed12834c044cd795bea65594cf96ee7a4e4e460))
+- Dockerfile: Updated alpine from 3.22.0 to 3.22.1 ([#423](https://github.com/VerifiedJoseph/vigilant/pull/423), [`2cea1e0`](https://github.com/VerifiedJoseph/vigilant/commit/2cea1e0477039f5e697063673b8dc6ca58e04f04))
+- Dockerfile: Create cache folder and remove redundant docker folder ([#415](https://github.com/VerifiedJoseph/vigilant/pull/415), [`0181106`](https://github.com/VerifiedJoseph/vigilant/commit/01811061bbae0df24368ef648521b8e3c86a6d7b))
+
+All changes: [v1.5.3...v1.5.4](https://github.com/VerifiedJoseph/vigilant/compare/v1.5.3...v1.5.4)
+
 ## [1.5.3](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.5.3) - 2025-07-02
 
 - Updated symfony/yaml from 7.3.0 to 7.3.1 ([#411](https://github.com/VerifiedJoseph/vigilant/pull/411), [`8e95083`](https://github.com/VerifiedJoseph/vigilant/commit/8e950831560cdf2b8747d7f8c29450b937eff95f))
