@@ -20,7 +20,7 @@ All changes: [v1.5.2...v1.5.3](https://github.com/VerifiedJoseph/vigilant/compar
 
 - Fixed fatal error when processing some atom feeds. Commit by [@PhilRW](https://github.com/PhilRW) ([#404](https://github.com/VerifiedJoseph/vigilant/pull/404), [`d0354d7`](https://github.com/VerifiedJoseph/vigilant/commit/d0354d7eccabd33641f26cf19391f4f1c0e84c0b))
 - Updated symfony/yaml from 7.2.5 to 7.3.0 ([#399](https://github.com/VerifiedJoseph/vigilant/pull/399), [`7672441`](https://github.com/VerifiedJoseph/vigilant/commit/7672441e1a13aa390f7d16cba4bacc8306d410e8))
-- Dockerfile: Update alpine from 3.21.3 to 3.22.0 ([#402](https://github.com/VerifiedJoseph/vigilant/pull/402), [`119262f`](https://github.com/VerifiedJoseph/vigilant/commit/119262ff66bbd9c92c344bc800f0d77b7aac9c38))
+- Dockerfile: Updated alpine from 3.21.3 to 3.22.0 ([#402](https://github.com/VerifiedJoseph/vigilant/pull/402), [`119262f`](https://github.com/VerifiedJoseph/vigilant/commit/119262ff66bbd9c92c344bc800f0d77b7aac9c38))
 
 All changes: [v1.5.1...v1.5.2](https://github.com/VerifiedJoseph/vigilant/compare/v1.5.1...v1.5.2)
 
