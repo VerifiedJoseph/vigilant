@@ -2,6 +2,16 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.6.0](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.6.0) - 2025-09-03
+
+- Replaced unmaintained dependency [alexdebril/feed-io](https://github.com/alexdebril/feed-io) with [php-feed-io/feed-io](https://github.com/php-feed-io/feed-io). ([#436](https://github.com/VerifiedJoseph/vigilant/pull/436), [`1af6f07`](https://github.com/VerifiedJoseph/vigilant/commit/1af6f07805dc7d3407b7892990614fe625cb82c8))
+- Updated symfony/yaml from 7.3.2 to 7.3.3 ([#425](https://github.com/VerifiedJoseph/vigilant/pull/425), [`6666d07`](https://github.com/VerifiedJoseph/vigilant/commit/6666d07e7dcd554f386acd536b5d7bdc17eb06e6))
+- Updated guzzlehttp/guzzle from 7.9.3 to 7.10.0 ([#428](https://github.com/VerifiedJoseph/vigilant/pull/428), [`3222280`](https://github.com/VerifiedJoseph/vigilant/commit/322228058a8351c98506ef181ee498263592bd6c))
+- Updated verifiedjoseph/ntfy-php-library from 4.7.1 to 4.7.2 ([#426](https://github.com/VerifiedJoseph/vigilant/pull/426), [`885b6ac`](https://github.com/VerifiedJoseph/vigilant/commit/885b6acd3a89b3169336a6c78521c53fd1dac0c8))
+- Updated verifiedjoseph/gotify-api-php from 1.10.1 to 1.10.2 ([#435](https://github.com/VerifiedJoseph/vigilant/pull/435), [`ee5e2da`](https://github.com/VerifiedJoseph/vigilant/commit/ee5e2da1232228ba9c760e5fed23854f8cc3a0fa))
+
+All changes: [v1.5.4...v1.6.0](https://github.com/VerifiedJoseph/vigilant/compare/v1.5.4...v1.6.0)
+
 ## [1.5.4](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.5.4) - 2025-08-01
 
 - Updated symfony/yaml from 7.3.1 to 7.3.2 ([#418](https://github.com/VerifiedJoseph/vigilant/pull/418), [`6ed1283`](https://github.com/VerifiedJoseph/vigilant/commit/6ed12834c044cd795bea65594cf96ee7a4e4e460))
