@@ -1,7 +1,7 @@
 version: '3'
 services:
   vigilant:
-    image: ghcr.io/verifiedjoseph/vigilant:1.5.4
+    image: ghcr.io/verifiedjoseph/vigilant:1.6.0
     environment:
       - VIGILANT_TIMEZONE=Europe/London
       - VIGILANT_NOTIFICATION_SERVICE=ntfy
