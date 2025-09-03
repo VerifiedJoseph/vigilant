@@ -1205,16 +1205,16 @@
         },
         {
             "name": "verifiedjoseph/ntfy-php-library",
-            "version": "v4.7.1",
+            "version": "v4.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/VerifiedJoseph/ntfy-php-library.git",
-                "reference": "b191721dfed447a94f220a89dd372861d4c41115"
+                "reference": "5c17dd6e5c34223472d055c7570af2e855552a54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/VerifiedJoseph/ntfy-php-library/zipball/b191721dfed447a94f220a89dd372861d4c41115",
-                "reference": "b191721dfed447a94f220a89dd372861d4c41115",
+                "url": "https://api.github.com/repos/VerifiedJoseph/ntfy-php-library/zipball/5c17dd6e5c34223472d055c7570af2e855552a54",
+                "reference": "5c17dd6e5c34223472d055c7570af2e855552a54",
                 "shasum": ""
             },
             "require": {
@@ -1246,16 +1246,18 @@
                     "homepage": "https://github.com/VerifiedJoseph"
                 }
             ],
-            "description": "PHP library for interacting with a Ntfy server",
+            "description": "PHP library for sending push notifications using ntfy.",
             "homepage": "https://github.com/VerifiedJoseph/ntfy-php-library",
             "keywords": [
-                "Ntfy"
+                "Ntfy",
+                "ntfy.sh",
+                "push notifications"
             ],
             "support": {
                 "issues": "https://github.com/VerifiedJoseph/ntfy-php-library/issues",
-                "source": "https://github.com/VerifiedJoseph/ntfy-php-library/tree/v4.7.1"
+                "source": "https://github.com/VerifiedJoseph/ntfy-php-library/tree/v4.7.2"
             },
-            "time": "2025-04-01T14:02:04+00:00"
+            "time": "2025-08-27T13:36:20+00:00"
         }
     ],
     "packages-dev": [
