@@ -16,38 +16,38 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      - name: Checkout code
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
-    - name: Setup PHP
-      uses: shivammathur/setup-php@ec406be512d7077f68eed36e63f4d91bc006edc4 # v2.35.4
-      with:
-        php-version: '8.2'
-        coverage: xdebug
-        extensions: mbstring
+      - name: Setup PHP
+        uses: shivammathur/setup-php@ec406be512d7077f68eed36e63f4d91bc006edc4 # v2.35.4
+        with:
+          php-version: '8.2'
+          coverage: xdebug
+          extensions: mbstring
     
-    - name: Setup problem matchers for PHP
-      run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
+      - name: Setup problem matchers for PHP
+        run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
 
-    - name: Setup problem matchers for PHPUnit
-      run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+      - name: Setup problem matchers for PHPUnit
+        run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
-    - name: "Validate composer.json and composer.lock"
-      run: "composer validate --no-check-publish"
+      - name: "Validate composer.json and composer.lock"
+        run: "composer validate --no-check-publish"
 
-    - name: Install dependencies with composer
-      run: composer install --prefer-dist
+      - name: Install dependencies with composer
+        run: composer install --prefer-dist
 
-    - name: Run phpunit
-      run: ./vendor/bin/phpunit --coverage-clover=coverage.xml --log-junit junit.xml
+      - name: Run phpunit
+        run: ./vendor/bin/phpunit --coverage-clover=coverage.xml --log-junit junit.xml
 
-    - name: Upload coverage reports to Codecov
-      uses: codecov/codecov-action@fdcc8476540edceab3de004e990f80d881c6cc00 # v5.5.0
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@fdcc8476540edceab3de004e990f80d881c6cc00 # v5.5.0
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
 
-    - name: Upload test results to Codecov
-      if: ${{ !cancelled() }}
-      uses: codecov/test-results-action@47f89e9acb64b76debcd5ea40642d25a4adced9f #v1.1.1
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
+      - name: Upload test results to Codecov
+        if: ${{ !cancelled() }}
+        uses: codecov/test-results-action@47f89e9acb64b76debcd5ea40642d25a4adced9f #v1.1.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
