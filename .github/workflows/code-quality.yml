@@ -38,7 +38,7 @@ jobs:
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: ${{ runner.os }}-composer
+          restore-keys: ${{ runner.os }}-composer-
 
       - name: "Validate composer.json and composer.lock"
         run: "composer validate --no-check-publish"
@@ -74,7 +74,7 @@ jobs:
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: ${{ runner.os }}-composer
+          restore-keys: ${{ runner.os }}-composer-
 
       - name: Install dependencies with composer
         run: composer install --prefer-dist
