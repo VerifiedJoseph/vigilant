@@ -10,6 +10,9 @@ on:
       - "**.php"
       - ".github/workflows/test.yml"
 
+permissions:
+  contents: read
+
 jobs:
   test:
     name: PHPUnit
