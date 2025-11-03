@@ -2,6 +2,14 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.6.1](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.6.1) - 2025-11-03
+
+- Updated php-feed-io/feed-io from 6.1.1 to 6.1.2 ([#442](https://github.com/VerifiedJoseph/vigilant/pull/442), [`f136788`](https://github.com/VerifiedJoseph/vigilant/commit/f136788c022fae184d4ebacb33e6c2ba2b69f07b))
+- Updated symfony/yaml from 7.3.3 to 7.3.5 ([#449](https://github.com/VerifiedJoseph/vigilant/pull/449), [`7763c50`](https://github.com/VerifiedJoseph/vigilant/commit/7763c50e6a18cca31582179983796f99e430ab25))
+- Dockerfile: Updated alpine from 3.22.1 to 3.22.2 ([#453](https://github.com/VerifiedJoseph/vigilant/pull/453), [`45d850a`](https://github.com/VerifiedJoseph/vigilant/commit/45d850a9cfc595c5dd7d01d7352d7f8a6e24628b))
+
+All changes: [v1.6.0...v1.6.1](https://github.com/VerifiedJoseph/vigilant/compare/v1.6.0...v1.6.1)
+
 ## [1.6.0](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.6.0) - 2025-09-03
 
 - Replaced unmaintained dependency [alexdebril/feed-io](https://github.com/alexdebril/feed-io) with [php-feed-io/feed-io](https://github.com/php-feed-io/feed-io). ([#436](https://github.com/VerifiedJoseph/vigilant/pull/436), [`1af6f07`](https://github.com/VerifiedJoseph/vigilant/commit/1af6f07805dc7d3407b7892990614fe625cb82c8))
