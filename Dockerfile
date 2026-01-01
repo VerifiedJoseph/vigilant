@@ -16,14 +16,14 @@ FROM alpine:3.23.2
 RUN apk add --no-cache \
   bash \
   curl \
-  php82 \
-  php82-curl \
-  php82-ctype \
-  php82-mbstring \
-  php82-openssl \
-  php82-phar \
-  php82-xml \
-  php82-xmlreader
+  php83 \
+  php83-curl \
+  php83-ctype \
+  php83-mbstring \
+  php83-openssl \
+  php83-phar \
+  php83-xml \
+  php83-xmlreader
 
 # Copy app folder from composer build stage
 COPY --from=composer /app /app
