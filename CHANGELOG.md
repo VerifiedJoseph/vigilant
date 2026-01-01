@@ -4,6 +4,7 @@ All notable changes to this project are documented in this file.
 
 ## [1.6.2](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.6.2) - 2026-01-01
 
+- Updated php from 8.2 to 8.3 ([#481](https://github.com/VerifiedJoseph/vigilant/pull/481), [`110d4df`](https://github.com/VerifiedJoseph/vigilant/commit/110d4dfbe899fb80f33c956eb342479c9d617d53))
 - Updated user agent string ([#477](https://github.com/VerifiedJoseph/vigilant/pull/477), [`f108628`](https://github.com/VerifiedJoseph/vigilant/commit/f10862852d75800df485152fd2daf61aeff82140))
 - Updated php-feed-io/feed-io from 6.1.2 to 6.2.0 ([#464](https://github.com/VerifiedJoseph/vigilant/pull/464), [`a3cb8bb`](https://github.com/VerifiedJoseph/vigilant/commit/a3cb8bb02e124c5a49fede6d01bd23932881cfb2))
 - Dockerfile: Updated composer from 2.8 to 2.9 ([#466](https://github.com/VerifiedJoseph/vigilant/pull/466), [`bb72b9f`](https://github.com/VerifiedJoseph/vigilant/commit/bb72b9fe7fc8b457d573f1088d74ba6ec7eef72a))
