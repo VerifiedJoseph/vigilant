@@ -2,6 +2,14 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.6.2](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.6.2) - 2026-01-01
+
+- Updated php-feed-io/feed-io from 6.1.2 to 6.2.0 ([#464](https://github.com/VerifiedJoseph/vigilant/pull/464), [`a3cb8bb`](https://github.com/VerifiedJoseph/vigilant/commit/a3cb8bb02e124c5a49fede6d01bd23932881cfb2))
+- Dockerfile: Updated composer from 2.8 to 2.9 ([#466](https://github.com/VerifiedJoseph/vigilant/pull/466), [`bb72b9f`](https://github.com/VerifiedJoseph/vigilant/commit/bb72b9fe7fc8b457d573f1088d74ba6ec7eef72a))
+- Dockerfile: Updated alpine from 3.22.2 to 3.23.2 ([#476](https://github.com/VerifiedJoseph/vigilant/pull/476), [`6049a2f`](https://github.com/VerifiedJoseph/vigilant/commit/6049a2fce94e3d80d9161436171b79d89aa62f92))
+
+All changes: [v1.6.1...v1.6.2](https://github.com/VerifiedJoseph/vigilant/compare/v1.6.1...v1.6.2)
+
 ## [1.6.1](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.6.1) - 2025-11-03
 
 - Updated php-feed-io/feed-io from 6.1.1 to 6.1.2 ([#442](https://github.com/VerifiedJoseph/vigilant/pull/442), [`f136788`](https://github.com/VerifiedJoseph/vigilant/commit/f136788c022fae184d4ebacb33e6c2ba2b69f07b))
