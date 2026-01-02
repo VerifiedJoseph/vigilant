@@ -2,6 +2,12 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.6.3](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.6.3) - 2026-01-02
+
+- Dockerfile: Fixed php symlink. ([#484](https://github.com/VerifiedJoseph/vigilant/pull/484), [`5541953`](https://github.com/VerifiedJoseph/vigilant/commit/55419534e161c76cffdea4433fb5d06be37b9583))
+
+All changes: [v1.6.2...v1.6.3](https://github.com/VerifiedJoseph/vigilant/compare/v1.6.2...v1.6.3)
+
 ## [1.6.2](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.6.2) - 2026-01-01
 
 - Updated php from 8.2 to 8.3 ([#481](https://github.com/VerifiedJoseph/vigilant/pull/481), [`110d4df`](https://github.com/VerifiedJoseph/vigilant/commit/110d4dfbe899fb80f33c956eb342479c9d617d53))
