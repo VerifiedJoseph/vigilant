@@ -32,7 +32,7 @@ COPY --from=composer /app /app
 RUN mv /app/docker/scripts/daemon.sh /app/daemon.sh && rm -r /app/docker
 
 # Create symlink for php
-RUN ln -s /usr/bin/php82 /usr/bin/php
+RUN ln -s /usr/bin/php83 /usr/bin/php
 
 # Create cache folder
 RUN mkdir /app/cache
