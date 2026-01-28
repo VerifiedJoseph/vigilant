@@ -82,7 +82,6 @@ class ConfigTest extends TestCase
 
         $reflection = new ReflectionClass($config);
         $property = $reflection->getProperty('config');
-        $property->setAccessible(true);
         $property->setValue($config, ['notification_service' => 'ntfy']);
 
         $this->assertEquals('ntfy', $config->getNotificationService());
@@ -97,7 +96,6 @@ class ConfigTest extends TestCase
 
         $reflection = new ReflectionClass($config);
         $property = $reflection->getProperty('config');
-        $property->setAccessible(true);
         $property->setValue($config, ['notification_ntfy_url' => 'https://ntfy.example.com/']);
 
         $this->assertEquals('https://ntfy.example.com/', $config->getNtfyUrl());
@@ -112,7 +110,6 @@ class ConfigTest extends TestCase
 
         $reflection = new ReflectionClass($config);
         $property = $reflection->getProperty('config');
-        $property->setAccessible(true);
         $property->setValue($config, ['notification_ntfy_topic' => 'hello-world']);
 
         $this->assertEquals('hello-world', $config->getNtfyTopic());
@@ -148,7 +145,6 @@ class ConfigTest extends TestCase
 
         $reflection = new ReflectionClass($config);
         $property = $reflection->getProperty('config');
-        $property->setAccessible(true);
         $property->setValue($config, ['notification_ntfy_username' => 'bob']);
 
         $this->assertEquals('bob', $config->getNtfyUsername());
@@ -163,7 +159,6 @@ class ConfigTest extends TestCase
 
         $reflection = new ReflectionClass($config);
         $property = $reflection->getProperty('config');
-        $property->setAccessible(true);
         $property->setValue($config, ['notification_ntfy_password' => 'qwerty']);
 
         $this->assertEquals('qwerty', $config->getNtfyPassword());
@@ -178,7 +173,6 @@ class ConfigTest extends TestCase
 
         $reflection = new ReflectionClass($config);
         $property = $reflection->getProperty('config');
-        $property->setAccessible(true);
         $property->setValue($config, ['notification_ntfy_token' => 'qwerty123456']);
 
         $this->assertEquals('qwerty123456', $config->getNtfyToken());
@@ -193,7 +187,6 @@ class ConfigTest extends TestCase
 
         $reflection = new ReflectionClass($config);
         $property = $reflection->getProperty('config');
-        $property->setAccessible(true);
         $property->setValue($config, ['notification_gotify_url' => 'https://gotify.example.com/']);
 
         $this->assertEquals('https://gotify.example.com/', $config->getGotifyUrl());
@@ -217,7 +210,6 @@ class ConfigTest extends TestCase
 
         $reflection = new ReflectionClass($config);
         $property = $reflection->getProperty('config');
-        $property->setAccessible(true);
         $property->setValue($config, ['notification_gotify_token' => 'qwerty']);
 
         $this->assertEquals('qwerty', $config->getGotifyToken());
