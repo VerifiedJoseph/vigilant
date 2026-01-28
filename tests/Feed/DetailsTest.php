@@ -43,7 +43,6 @@ class DetailsTest extends TestCase
 
         $reflection = new ReflectionClass($details);
         $property = $reflection->getProperty('details');
-        $property->setAccessible(true);
 
         $this->assertEquals(
             self::$feeds[0],
