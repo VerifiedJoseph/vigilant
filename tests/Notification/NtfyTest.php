@@ -82,7 +82,6 @@ class NtfyTest extends TestCase
 
         $reflection = new \ReflectionClass($ntfy);
         $property = $reflection->getProperty('client');
-        $property->setAccessible(true);
         $property->setValue($ntfy, $client);
 
         $this->expectOutputRegex('/Sent notification using Ntfy/');

@@ -54,7 +54,6 @@ class GotifyTest extends TestCase
 
         $reflection = new \ReflectionClass($gotify);
         $property = $reflection->getProperty('message');
-        $property->setAccessible(true);
         $property->setValue($gotify, $client);
 
         $this->expectOutputRegex('/Sent notification using Gotify/');
