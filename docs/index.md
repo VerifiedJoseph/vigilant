@@ -15,7 +15,7 @@ Vigilant is RSS/ATOM/JSON feed monitor that sends push notifications on new entr
 
 ## Requirements
 
-* PHP >= 8.2
+* PHP >= 8.3
 * Composer
 * PHP Extensions:
     * [`JSON`](https://www.php.net/manual/en/book.json.php)
@@ -29,7 +29,7 @@ Vigilant is RSS/ATOM/JSON feed monitor that sends push notifications on new entr
 - [`verifiedjoseph/gotify-api-php`](https://github.com/VerifiedJoseph/gotify-api-php)
 - [`verifiedjoseph/ntfy-php-library`](https://github.com/VerifiedJoseph/ntfy-php-library)
 - [`guzzlehttp/guzzle`](https://github.com/guzzle/guzzle/)
-- [`debril/feed-io`](https://github.com/alexdebril/feed-io)
+- [`php-feed-io/feed-io`](https://github.com/php-feed-io/feed-io)
 - [`symfony/yaml`](https://github.com/symfony/yaml)
 
 ## Credits
