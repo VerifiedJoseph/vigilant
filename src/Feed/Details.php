@@ -98,6 +98,16 @@ final class Details
     }
 
     /**
+     * Returns ntfy server url
+     *
+     * @return ?string
+     */
+    public function getNtfyUrl(): ?string
+    {
+        return $this->details['ntfy_url'] ?? null;
+    }
+
+    /**
      * Get Ntfy auth token
      *
      * @return ?string
