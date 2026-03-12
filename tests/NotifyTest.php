@@ -6,7 +6,6 @@ namespace Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
-use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 use Vigilant\Notify;
 use Vigilant\Feed\Details;
 use Vigilant\Config;
@@ -33,6 +32,21 @@ class NotifyTest extends TestCase
         'name' => 'GitHub status',
         'url' => 'https://www.githubstatus.com/history.rss',
         'interval' => 900
+    ];
+
+    private array $gotifyConfigValues = [
+        'priority' => 0,
+        'token' => 'fake-token',
+        'server' => 'https://gotify.example.com/',
+    ];
+
+    private array $ntfyConfigValues = [
+        'server' => 'https://ntfy.example.com/',
+        'topic' => '',
+        'priority' => 0,
+        'auth' => [
+            'method' => ''
+        ]
     ];
 
     public static function setUpBeforeClass(): void
@@ -62,11 +76,7 @@ class NotifyTest extends TestCase
     {
         $this->expectOutputRegex('/[Notification error]/');
 
-        $config = self::createStub(Config::class);
-        $config->method('getNotificationService')->willReturn('gotify');
-        $config->method('getGotifyUrl')->willReturn('https://gotify.example.com/');
-        $config->method('getGotifyPriority')->willReturn(0);
-        $config->method('getGotifyToken')->willReturn('fake-token');
+        $config = $this->createConfigStubForGotify();
 
         $messages = [
             new Message('Hello World', 'Hello??')
@@ -79,139 +89,175 @@ class NotifyTest extends TestCase
    /**
     * Test creating Gotify instance
     */
-    #[DoesNotPerformAssertions]
     public function testCreatingGotify(): void
     {
-        $config = self::createStub(Config::class);
-        $config->method('getNotificationService')->willReturn('gotify');
-        $config->method('getGotifyUrl')->willReturn('https://gotify.example.com/');
-        $config->method('getGotifyPriority')->willReturn(0);
-        $config->method('getGotifyToken')->willReturn('fake-token');
+        $config = $this->createConfigStubForGotify();
+        $notify = new notify(new Details($this->feed), $config, self::$logger);
 
-        new notify(new Details($this->feed), $config, self::$logger);
+        $notifyReflection = new \ReflectionClass('Vigilant\Notify');
+        $service = $notifyReflection->getProperty('service')->getValue($notify);
+
+        $gotifyReflection = new \ReflectionClass('Vigilant\Notification\Gotify');
+        $gotifyConfig = $gotifyReflection->getProperty('config')->getValue($service);
+
+        $this->assertEquals($this->gotifyConfigValues, $gotifyConfig);
     }
 
    /**
     * Test creating Gotify instance with priority from feed details
     */
-    #[DoesNotPerformAssertions]
     public function testCreatingGotifyWithPriorityFromFeedDetails(): void
     {
-        $config = self::createStub(Config::class);
-        $config->method('getNotificationService')->willReturn('gotify');
-        $config->method('getGotifyUrl')->willReturn('https://gotify.example.com/');
-        $config->method('getGotifyPriority')->willReturn(0);
-        $config->method('getGotifyToken')->willReturn('fake-token');
+        $config = $this->createConfigStubForGotify();
 
         $feed = $this->feed;
         $feed['gotify_priority'] = 5;
 
-        new notify(new Details($feed), $config, self::$logger);
+        $notify = new notify(new Details($feed), $config, self::$logger);
+
+        $notifyReflection = new \ReflectionClass('Vigilant\Notify');
+        $service = $notifyReflection->getProperty('service')->getValue($notify);
+
+        $gotifyReflection = new \ReflectionClass('Vigilant\Notification\Gotify');
+        $gotifyConfig = $gotifyReflection->getProperty('config')->getValue($service);
+
+        $this->assertEquals($feed['gotify_priority'],$gotifyConfig['priority']);
     }
 
    /**
     * Test creating Gotify instance with token from feed details
     */
-    #[DoesNotPerformAssertions]
     public function testCreatingGotifyWithTokenFromFeedDetails(): void
     {
-        $config = self::createStub(Config::class);
-        $config->method('getNotificationService')->willReturn('gotify');
-        $config->method('getGotifyUrl')->willReturn('https://gotify.example.com/');
-        $config->method('getGotifyPriority')->willReturn(0);
-        $config->method('getGotifyToken')->willReturn('fake-token');
+        $config = $this->createConfigStubForGotify();
 
         $feed = $this->feed;
         $feed['gotify_token'] = 'qwerty';
 
-        new notify(new Details($feed), $config, self::$logger);
+        $notify = new notify(new Details($feed), $config, self::$logger);
+
+        $notifyReflection = new \ReflectionClass('Vigilant\Notify');
+        $service = $notifyReflection->getProperty('service')->getValue($notify);
+
+        $gotifyReflection = new \ReflectionClass('Vigilant\Notification\Gotify');
+        $gotifyConfig = $gotifyReflection->getProperty('config')->getValue($service);
+
+        $this->assertEquals($feed['gotify_token'],$gotifyConfig['token']);
     }
 
    /**
     * Test creating Ntfy instance without auth
     */
-    #[DoesNotPerformAssertions]
     public function testCreatingNtfy(): void
     {
-        $config = self::createStub(Config::class);
-        $config->method('getNotificationService')->willReturn('ntfy');
-        $config->method('getNtfyUrl')->willReturn('https://ntfy.example.com/');
-        $config->method('getNtfyPriority')->willReturn(0);
+        $config = $this->createConfigStubForNtfy();
+        $notify = new notify(new Details($this->feed), $config, self::$logger);
 
-        new notify(new Details($this->feed), $config, self::$logger);
+        $notifyReflection = new \ReflectionClass('Vigilant\Notify');
+        $service = $notifyReflection->getProperty('service')->getValue($notify);
+
+        $ntfyReflection = new \ReflectionClass('Vigilant\Notification\Ntfy');
+        $ntfyConfig = $ntfyReflection->getProperty('config')->getValue($service);
+
+        $this->assertEquals($this->ntfyConfigValues, $ntfyConfig);
     }
 
    /**
     * Test creating Ntfy instance with password auth
     */
-    #[DoesNotPerformAssertions]
     public function testCreatingNtfyWithPasswordAuth(): void
     {
-        $config = self::createStub(Config::class);
-        $config->method('getNotificationService')->willReturn('ntfy');
-        $config->method('getNtfyUrl')->willReturn('https://ntfy.example.com/');
-        $config->method('getNtfyPriority')->willReturn(0);
-        $config->method('getNtfyAuthMethod')->willReturn('password');
-        $config->method('getNtfyUsername')->willReturn('bob');
-        $config->method('getNtfyPassword')->willReturn('qwerty');
+        $configValues = $this->ntfyConfigValues;
+        $configValues['auth']['method'] = 'password';
+        $configValues['auth']['username'] = 'bob';
+        $configValues['auth']['password'] = 'qwerty';
 
-        new notify(new Details($this->feed), $config, self::$logger);
+        $config = $this->createConfigStubForNtfy();
+        $config->method('getNtfyAuthMethod')->willReturn($configValues['auth']['method']);
+        $config->method('getNtfyUsername')->willReturn($configValues['auth']['username']);
+        $config->method('getNtfyPassword')->willReturn( $configValues['auth']['password']);
+
+        $notify = new notify(new Details($this->feed), $config, self::$logger);
+
+        $notifyReflection = new \ReflectionClass('Vigilant\Notify');
+        $service = $notifyReflection->getProperty('service')->getValue($notify);
+
+        $ntfyReflection = new \ReflectionClass('Vigilant\Notification\Ntfy');
+        $ntfyConfig = $ntfyReflection->getProperty('config')->getValue($service);
+
+        $this->assertEquals($configValues['auth'], $ntfyConfig['auth']);
     }
 
    /**
     * Test creating Ntfy instance with token auth
     */
-    #[DoesNotPerformAssertions]
     public function testCreatingNtfyWithTokenAuth(): void
     {
-        $config = self::createStub(Config::class);
-        $config->method('getNotificationService')->willReturn('ntfy');
-        $config->method('getNtfyUrl')->willReturn('https://ntfy.example.com/');
-        $config->method('getNtfyPriority')->willReturn(0);
-        $config->method('getNtfyToken')->willReturn('fake-token');
-        $config->method('getNtfyAuthMethod')->willReturn('token');
+        $configValues = $this->ntfyConfigValues;
+        $configValues['auth']['method'] = 'token';
+        $configValues['auth']['token'] = 'a_ntfy_token';
 
-        new notify(new Details($this->feed), $config, self::$logger);
+        $config = $this->createConfigStubForNtfy();
+        $config->method('getNtfyAuthMethod')->willReturn($configValues['auth']['method']);
+        $config->method('getNtfyToken')->willReturn($configValues['auth']['token']);
+
+        $notify = new notify(new Details($this->feed), $config, self::$logger);
+
+        $notifyReflection = new \ReflectionClass('Vigilant\Notify');
+        $service = $notifyReflection->getProperty('service')->getValue($notify);
+
+        $ntfyReflection = new \ReflectionClass('Vigilant\Notification\Ntfy');
+        $ntfyConfig = $ntfyReflection->getProperty('config')->getValue($service);
+
+        $this->assertEquals($configValues['auth'], $ntfyConfig['auth']);
     }
 
    /**
     * Test creating Ntfy instance with token from feed details
     */
-    #[DoesNotPerformAssertions]
     public function testCreatingNtfyWithTokenFromFeedDetails(): void
     {
-        $config = self::createStub(Config::class);
-        $config->method('getNotificationService')->willReturn('ntfy');
-        $config->method('getNtfyUrl')->willReturn('https://ntfy.example.com/');
-        $config->method('getNtfyPriority')->willReturn(0);
+        $config = $this->createConfigStubForNtfy();
 
         $feed = $this->feed;
-        $feed['ntfy_token'] = 'qwerty';
+        $feed['ntfy_token'] = 'a_ntfy_token';
 
-        new notify(new Details($feed), $config, self::$logger);
+        $notify = new notify(new Details($feed), $config, self::$logger);
+
+        $notifyReflection = new \ReflectionClass('Vigilant\Notify');
+        $service = $notifyReflection->getProperty('service')->getValue($notify);
+
+        $ntfyReflection = new \ReflectionClass('Vigilant\Notification\Ntfy');
+        $ntfyConfig = $ntfyReflection->getProperty('config')->getValue($service);
+
+        $this->assertEquals('token', $ntfyConfig['auth']['method']);
+        $this->assertEquals($feed['ntfy_token'], $ntfyConfig['auth']['token']);
     }
 
    /**
     * Test creating Ntfy instance with topic from feed details
     */
-    #[DoesNotPerformAssertions]
     public function testCreatingNtfyWithTopicFromFeedDetails(): void
     {
-        $config = self::createStub(Config::class);
-        $config->method('getNotificationService')->willReturn('ntfy');
-        $config->method('getNtfyUrl')->willReturn('https://ntfy.example.com/');
-        $config->method('getNtfyPriority')->willReturn(0);
+        $config = $this->createConfigStubForNtfy();
 
         $feed = $this->feed;
-        $feed['ntfy_topic'] = 'qwerty';
+        $feed['ntfy_topic'] = 'a_ntfy_topic';
 
-        new notify(new Details($feed), $config, self::$logger);
+        $notify = new notify(new Details($feed), $config, self::$logger);
+
+        $notifyReflection = new \ReflectionClass('Vigilant\Notify');
+        $service = $notifyReflection->getProperty('service')->getValue($notify);
+
+        $ntfyReflection = new \ReflectionClass('Vigilant\Notification\Ntfy');
+        $ntfyConfig = $ntfyReflection->getProperty('config')->getValue($service);
+
+        $this->assertEquals($feed['ntfy_topic'], $ntfyConfig['topic']);
     }
 
    /**
     * Test creating Ntfy instance with priority from feed details
     */
-    #[DoesNotPerformAssertions]
     public function testCreatingNtfyWithPriorityFromFeedDetails(): void
     {
         $config = self::createStub(Config::class);
@@ -222,6 +268,33 @@ class NotifyTest extends TestCase
         $feed = $this->feed;
         $feed['ntfy_priority'] = 5;
 
-        new notify(new Details($feed), $config, self::$logger);
+        $notify = new notify(new Details($feed), $config, self::$logger);
+
+        $notifyReflection = new \ReflectionClass('Vigilant\Notify');
+        $service = $notifyReflection->getProperty('service')->getValue($notify);
+
+        $ntfyReflection = new \ReflectionClass('Vigilant\Notification\Ntfy');
+        $ntfyConfig = $ntfyReflection->getProperty('config')->getValue($service);
+
+        $this->assertEquals($feed['ntfy_priority'], $ntfyConfig['priority']);
+    }
+
+    private function createConfigStubForGotify()
+    {
+        $stub = self::createStub(Config::class);
+        $stub->method('getNotificationService')->willReturn('gotify');
+        $stub->method('getGotifyUrl')->willReturn($this->gotifyConfigValues['server']);
+        $stub->method('getGotifyPriority')->willReturn($this->gotifyConfigValues['priority']);
+        $stub->method('getGotifyToken')->willReturn($this->gotifyConfigValues['token']);
+        return $stub;
+    }
+
+    private function createConfigStubForNtfy()
+    {
+        $stub = self::createStub(Config::class);
+        $stub->method('getNotificationService')->willReturn('ntfy');
+        $stub->method('getNtfyUrl')->willReturn($this->ntfyConfigValues['server']);
+        $stub->method('getNtfyPriority')->willReturn($this->ntfyConfigValues['priority']);
+        return $stub;
     }
 }
