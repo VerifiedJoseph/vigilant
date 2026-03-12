@@ -123,7 +123,7 @@ class NotifyTest extends TestCase
         $gotifyReflection = new \ReflectionClass('Vigilant\Notification\Gotify');
         $gotifyConfig = $gotifyReflection->getProperty('config')->getValue($service);
 
-        $this->assertEquals($feed['gotify_priority'],$gotifyConfig['priority']);
+        $this->assertEquals($feed['gotify_priority'], $gotifyConfig['priority']);
     }
 
    /**
@@ -144,7 +144,7 @@ class NotifyTest extends TestCase
         $gotifyReflection = new \ReflectionClass('Vigilant\Notification\Gotify');
         $gotifyConfig = $gotifyReflection->getProperty('config')->getValue($service);
 
-        $this->assertEquals($feed['gotify_token'],$gotifyConfig['token']);
+        $this->assertEquals($feed['gotify_token'], $gotifyConfig['token']);
     }
 
    /**
@@ -177,7 +177,7 @@ class NotifyTest extends TestCase
         $config = $this->createConfigStubForNtfy();
         $config->method('getNtfyAuthMethod')->willReturn($configValues['auth']['method']);
         $config->method('getNtfyUsername')->willReturn($configValues['auth']['username']);
-        $config->method('getNtfyPassword')->willReturn( $configValues['auth']['password']);
+        $config->method('getNtfyPassword')->willReturn($configValues['auth']['password']);
 
         $notify = new notify(new Details($this->feed), $config, self::$logger);
 
