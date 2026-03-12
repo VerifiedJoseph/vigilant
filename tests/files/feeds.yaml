@@ -11,6 +11,7 @@ feeds:
      name: GitHub status
      url: https://www.githubstatus.com/history.rss
      interval: 300
+     ntfy_url: https://ntfy.example.com
      ntfy_topic: GitHub_status
      ntfy_priority: 1
      ntfy_token: HQKPyHCODeoMFuN

@@ -155,6 +155,21 @@ class DetailsTest extends TestCase
     }
 
     /**
+     * Test getNtfyUrl()
+     */
+    public function testGetNtfyUrl(): void
+    {
+        $this->assertEquals(
+            self::$feeds[0]['ntfy_url'],
+            self::$details[0]->getNtfyUrl()
+        );
+
+        $this->assertNull(
+            self::$details[1]->getNtfyUrl()
+        );
+    }
+
+    /**
      * Test getNtfyTopic()
      */
     public function testGetNtfyTopic(): void
