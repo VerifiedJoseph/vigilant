@@ -6,6 +6,7 @@ namespace Tests;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Framework\MockObject\Stub;
 use Vigilant\Notify;
 use Vigilant\Feed\Details;
 use Vigilant\Config;
@@ -34,12 +35,14 @@ class NotifyTest extends TestCase
         'interval' => 900
     ];
 
+    /** @var array<string, mixed> $gotifyConfigValues Config values use by `createConfigStubForGotify()` */
     private array $gotifyConfigValues = [
         'priority' => 0,
         'token' => 'fake-token',
         'server' => 'https://gotify.example.com/',
     ];
 
+    /** @var array<string, mixed> $ntfyConfigValues Config values use by `createConfigStubForNtfy()` */
     private array $ntfyConfigValues = [
         'server' => 'https://ntfy.example.com/',
         'topic' => '',
@@ -76,12 +79,11 @@ class NotifyTest extends TestCase
     {
         $this->expectOutputRegex('/[Notification error]/');
 
-        $config = $this->createConfigStubForGotify();
-
         $messages = [
             new Message('Hello World', 'Hello??')
         ];
 
+        $config = $this->createConfigStubForGotify();
         $notify = new notify(new Details($this->feed), $config, self::$logger);
         $notify->send($messages);
     }
@@ -279,7 +281,7 @@ class NotifyTest extends TestCase
         $this->assertEquals($feed['ntfy_priority'], $ntfyConfig['priority']);
     }
 
-    private function createConfigStubForGotify()
+    private function createConfigStubForGotify(): Config&Stub
     {
         $stub = self::createStub(Config::class);
         $stub->method('getNotificationService')->willReturn('gotify');
@@ -289,7 +291,7 @@ class NotifyTest extends TestCase
         return $stub;
     }
 
-    private function createConfigStubForNtfy()
+    private function createConfigStubForNtfy(): Config&Stub
     {
         $stub = self::createStub(Config::class);
         $stub->method('getNotificationService')->willReturn('ntfy');
