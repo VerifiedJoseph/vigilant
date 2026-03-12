@@ -35,6 +35,7 @@ final class Validate
         $this->gotifyToken();
         $this->gotifyPriority();
 
+        $this->ntfyUrl();
         $this->ntfyTopic();
         $this->ntfyToken();
         $this->ntfyPriority();
@@ -169,6 +170,18 @@ final class Validate
              $this->details['gotify_priority'] === null
         ) {
             throw new FeedsException(sprintf('Empty Gotify priority given for feed: %s', $this->details['name']));
+        }
+    }
+
+    /**
+     * Validate entry ntfy URL
+     *
+     * @throws FeedsException if ntfy url is empty
+     */
+    private function ntfyUrl(): void
+    {
+        if (array_key_exists('ntfy_url', $this->details) === true && $this->details['ntfy_url'] === null) {
+            throw new FeedsException(sprintf('Empty Ntfy url given for feed: %s', $this->details['name']));
         }
     }
 
