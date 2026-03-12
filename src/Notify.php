@@ -70,6 +70,10 @@ class Notify
             'token' => $this->config->getGotifyToken()
         ];
 
+        if ($details->getGotifyUrl() !== null) {
+            $gotifyConfig['server'] = $details->getGotifyUrl();
+        }
+
         if ($details->hasGotifyPriority() === true) {
             $gotifyConfig['priority'] = $details->getGotifyPriority();
         }
