@@ -4,6 +4,7 @@ feeds:
      url: http://www.metoffice.gov.uk/public/data/PWSCache/WarningsRSS/Region/UK
      interval: 900
      title_prefix: Weather Alert!
+     gotify_url: https://gotify.example.com
      gotify_token: 7ZHeHM3awd45rn9W
      gotify_priority: 1
     -

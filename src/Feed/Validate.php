@@ -31,6 +31,7 @@ final class Validate
         $this->titlePrefix();
         $this->messageTruncation();
 
+        $this->gotifyUrl();
         $this->gotifyToken();
         $this->gotifyPriority();
 
@@ -129,6 +130,18 @@ final class Validate
                     $this->details['name']
                 ));
             }
+        }
+    }
+
+    /**
+     * Validate entry gotify URL
+     *
+     * @throws FeedsException if gotify url is empty
+     */
+    private function gotifyUrl(): void
+    {
+        if (array_key_exists('gotify_url', $this->details) === true && $this->details['gotify_url'] === null) {
+            throw new FeedsException(sprintf('Empty Gotify url given for feed: %s', $this->details['name']));
         }
     }
 

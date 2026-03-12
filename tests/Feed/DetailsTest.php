@@ -110,6 +110,21 @@ class DetailsTest extends TestCase
     }
 
     /**
+     * Test getGotifyUrl()
+     */
+    public function testGetGotifyUrl(): void
+    {
+        $this->assertEquals(
+            self::$feeds[0]['gotify_url'],
+            self::$details[0]->getGotifyUrl()
+        );
+
+        $this->assertNull(
+            self::$details[1]->getGotifyUrl()
+        );
+    }
+
+    /**
      * Test getGotifyToken()
      */
     public function testGetGotifyToken(): void

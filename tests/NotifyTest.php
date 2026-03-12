@@ -106,6 +106,27 @@ class NotifyTest extends TestCase
     }
 
    /**
+    * Test creating Gotify instance with server url from feed details
+    */
+    public function testCreatingGotifyWithServerFromFeedDetails(): void
+    {
+        $config = $this->createConfigStubForGotify();
+
+        $feed = $this->feed;
+        $feed['gotify_url'] = 'https://gotify.example.com';
+
+        $notify = new notify(new Details($feed), $config, self::$logger);
+
+        $notifyReflection = new \ReflectionClass('Vigilant\Notify');
+        $service = $notifyReflection->getProperty('service')->getValue($notify);
+
+        $gotifyReflection = new \ReflectionClass('Vigilant\Notification\Gotify');
+        $gotifyConfig = $gotifyReflection->getProperty('config')->getValue($service);
+
+        $this->assertEquals($feed['gotify_url'], $gotifyConfig['server']);
+    }
+
+   /**
     * Test creating Gotify instance with priority from feed details
     */
     public function testCreatingGotifyWithPriorityFromFeedDetails(): void

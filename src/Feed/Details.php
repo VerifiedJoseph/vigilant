@@ -68,6 +68,16 @@ final class Details
     }
 
     /**
+     * Returns gotify server url
+     *
+     * @return ?string
+     */
+    public function getGotifyUrl(): ?string
+    {
+        return $this->details['gotify_url'] ?? null;
+    }
+
+    /**
      * Get gotify applications token
      *
      * @return ?string
