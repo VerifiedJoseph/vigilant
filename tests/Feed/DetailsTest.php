@@ -160,12 +160,12 @@ class DetailsTest extends TestCase
     public function testGetNtfyUrl(): void
     {
         $this->assertEquals(
-            self::$feeds[0]['ntfy_url'],
-            self::$details[0]->getNtfyUrl()
+            self::$feeds[1]['ntfy_url'],
+            self::$details[1]->getNtfyUrl()
         );
 
         $this->assertNull(
-            self::$details[1]->getNtfyUrl()
+            self::$details[0]->getNtfyUrl()
         );
     }
 
