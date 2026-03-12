@@ -53,6 +53,14 @@ feeds:
       interval: 300
       title_prefix:
 
+  emptyGotifyUrl:
+    exception: Empty Gotify url given
+    data:
+      name: Example.com Feed
+      url: https://www.example.com/feed.rss
+      interval: 300
+      gotify_url:
+
   emptyGotifyToken:
     exception: Empty Gotify token given
     data:
