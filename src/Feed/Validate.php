@@ -22,8 +22,7 @@ final class Validate
         'name' => null,
         'url' => null,
         'interval' => null,
-        'truncate' => false,
-        'truncate_length' => null,
+        'truncate' => false
     ];
 
     /**
@@ -60,7 +59,7 @@ final class Validate
      */
     public function get(): array
     {
-        return $this->defaults;
+        return $this->details;
     }
 
     /**
@@ -154,7 +153,9 @@ final class Validate
         }
 
         if ($this->details['truncate'] === true) {
-            if ($this->details['truncate_length'] === null || $this->details['truncate_length'] === '') {
+            if (array_key_exists('truncate', $this->details) === false ||
+                $this->details['truncate_length'] === null ||
+                $this->details['truncate_length'] === '') {
                 throw new FeedsException(sprintf('No truncate length given for feed: %s', $this->details['truncate_length']));
             }
 
