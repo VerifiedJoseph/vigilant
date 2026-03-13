@@ -8,7 +8,7 @@ feeds:
   emptyName:
     exception: No name given
     data:
-      name:
+      name: ''
       url: https://www.example.com/feed.rss
       interval: 300
 
@@ -37,6 +37,13 @@ feeds:
       name: Example.com Feed
       url: https://www.example.com/feed.rss
       interval:
+
+  nonIntegerInterval:
+    exception: Non-integer interval given
+    data:
+      name: Example.com Feed
+      url: https://www.example.com/feed.rss
+      interval: string
 
   tooLowInterval:
     exception: Interval is less than 300 seconds for feed
@@ -77,13 +84,21 @@ feeds:
       interval: 300
       gotify_priority:
 
+  nonIntegerGotifyPriority:
+    exception: Non-integer Gotify priority given
+    data:
+      name: Example.com Feed
+      url: https://www.example.com/feed.rss
+      interval: 300
+      gotify_priority: string
+
   emptyNtfyUrl:
     exception: Empty Ntfy url given
     data:
       name: Example.com Feed
       url: https://www.example.com/feed.rss
       interval: 300
-      ntfy_url:
+      ntfy_url: ""
 
   emptyNtfyTopic:
     exception: Empty Ntfy topic given
@@ -100,6 +115,14 @@ feeds:
       url: https://www.example.com/feed.rss
       interval: 300
       ntfy_priority:
+
+  nonIntegerNtfyPriority:
+    exception: Non-integer Ntfy priority given
+    data:
+      name: Example.com Feed
+      url: https://www.example.com/feed.rss
+      interval: 300
+      ntfy_priority: string
 
   emptyNtfyToken:
     exception: Empty Ntfy token given
@@ -194,12 +217,22 @@ feeds:
       interval: 300
       truncate: string
 
+  noTruncateLengthValue:
+    exception: No truncate length given
+    data:
+      name: Example.com Feed
+      url: https://www.example.com/feed.rss
+      interval: 300
+      truncate: true
+      truncate_length:
+
   truncateLengthValueInvalid:
     exception: Invalid truncate length
     data:
       name: Example.com Feed
       url: https://www.example.com/feed.rss
       interval: 300
+      truncate: true
       truncate_length: string
 
   truncateLengthLessThanZero:
@@ -208,4 +241,5 @@ feeds:
       name: Example.com Feed
       url: https://www.example.com/feed.rss
       interval: 300
+      truncate: true
       truncate_length: -1
