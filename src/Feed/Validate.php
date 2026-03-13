@@ -158,13 +158,17 @@ final class Validate
                 $this->details['truncate_length'] === null ||
                 $this->details['truncate_length'] === ''
             ) {
-                throw new FeedsException(sprintf('No truncate length given for feed: %s', $this->details['truncate_length']));
+                throw new FeedsException(
+                    sprintf('No truncate length given for feed: %s', $this->details['truncate_length'])
+                );
             }
 
             $length = filter_var($this->details['truncate_length'], FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
 
             if ($length === null) {
-                throw new FeedsException(sprintf('Invalid truncate length given for feed: %s', $this->details['name']));
+                throw new FeedsException(
+                    sprintf('Invalid truncate length given for feed: %s', $this->details['name'])
+                );
             }
 
             if ($length < 0) {
