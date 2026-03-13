@@ -294,31 +294,4 @@ class DetailsTest extends TestCase
         $this->assertTrue(self::$details[0]->hasGotifyPriority());
         $this->assertFalse(self::$details[1]->hasGotifyPriority());
     }
-
-    /**
-     * Test hasNtfyTopic()
-     */
-    public function testHasNtfyTopic(): void
-    {
-        $this->assertTrue(self::$details[1]->hasNtfyTopic());
-        $this->assertFalse(self::$details[0]->hasNtfyTopic());
-    }
-
-    /**
-     * Test hasNtfyToken()
-     */
-    public function testHasNtfyToken(): void
-    {
-        $this->assertTrue(self::$details[1]->hasNtfyToken());
-        $this->assertFalse(self::$details[0]->hasNtfyToken());
-    }
-
-    /**
-     * Test hasNtfyPriority()
-     */
-    public function testHasNtfyPriority(): void
-    {
-        $this->assertTrue(self::$details[1]->hasNtfyPriority());
-        $this->assertFalse(self::$details[0]->hasNtfyPriority());
-    }
 }

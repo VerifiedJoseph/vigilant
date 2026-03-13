@@ -191,36 +191,6 @@ final class Details
     }
 
     /**
-     * Check if entry has a ntfy token parameter
-     *
-     * @return bool
-     */
-    public function hasNtfyToken(): bool
-    {
-        return $this->has('ntfy_token');
-    }
-
-    /**
-     * Check if entry has a ntfy topic parameter
-     *
-     * @return bool
-     */
-    public function hasNtfyTopic(): bool
-    {
-        return $this->has('ntfy_topic');
-    }
-
-    /**
-     * Check if entry has a ntfy priority parameter
-     *
-     * @return bool
-     */
-    public function hasNtfyPriority(): bool
-    {
-        return $this->has('ntfy_priority');
-    }
-
-    /**
      * Check if entry has a Gotify token parameter
      *
      * @return bool
