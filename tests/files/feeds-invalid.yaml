@@ -77,6 +77,14 @@ feeds:
       interval: 300
       gotify_priority:
 
+  emptyNtfyUrl:
+    exception: Empty Ntfy url given
+    data:
+      name: Example.com Feed
+      url: https://www.example.com/feed.rss
+      interval: 300
+      ntfy_url:
+
   emptyNtfyTopic:
     exception: Empty Ntfy topic given
     data:

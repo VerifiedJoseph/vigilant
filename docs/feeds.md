@@ -42,6 +42,7 @@ feeds:
 | `gotify_url`      | No       | string  | Gotify server URL. Overrides URL set with an environment variable.            |
 | `gotify_token`    | No       | string  | Gotify application token. Overrides token set with an environment variable.   |
 | `gotify_priority` | No       | integer | Gotify message priority. Overrides default value and/or environment variable. |
+| `ntfy_url`        | No       | string  | Ntfy server URL. Overrides URL set with an environment variable.              |
 | `ntfy_topic`      | No       | string  | Ntfy topic. Overrides topic set with an environment variable.                 |
 | `ntfy_token`      | No       | string  | Ntfy access token. Overrides token set with an environment variable.          |
 | `ntfy_priority`   | No       | integer | Ntfy message priority. Overrides default value and/or environment variable.   |

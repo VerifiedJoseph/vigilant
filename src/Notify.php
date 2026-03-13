@@ -101,6 +101,10 @@ class Notify
             ]
         ];
 
+        if ($details->getNtfyUrl() !== null) {
+            $ntfyConfig['server'] = $details->getNtfyUrl();
+        }
+
         if ($this->config->getNtfyAuthMethod() === 'password') {
             $ntfyConfig['auth']['username'] = $this->config->getNtfyUsername();
             $ntfyConfig['auth']['password'] = $this->config->getNtfyPassword();

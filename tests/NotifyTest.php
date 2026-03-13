@@ -236,6 +236,27 @@ class NotifyTest extends TestCase
     }
 
    /**
+    * Test creating Ntfy instance with server URL from feed details
+    */
+    public function testCreatingNtfyWithUrlFromFeedDetails(): void
+    {
+        $config = $this->createConfigStubForNtfy();
+
+        $feed = $this->feed;
+        $feed['ntfy_url'] = 'https://ntfy.example.com';
+
+        $notify = new notify(new Details($feed), $config, self::$logger);
+
+        $notifyReflection = new \ReflectionClass('Vigilant\Notify');
+        $service = $notifyReflection->getProperty('service')->getValue($notify);
+
+        $ntfyReflection = new \ReflectionClass('Vigilant\Notification\Ntfy');
+        $ntfyConfig = $ntfyReflection->getProperty('config')->getValue($service);
+
+        $this->assertEquals($feed['ntfy_url'], $ntfyConfig['server']);
+    }
+
+   /**
     * Test creating Ntfy instance with token from feed details
     */
     public function testCreatingNtfyWithTokenFromFeedDetails(): void
