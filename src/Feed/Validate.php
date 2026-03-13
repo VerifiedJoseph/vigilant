@@ -153,9 +153,11 @@ final class Validate
         }
 
         if ($this->details['truncate'] === true) {
-            if (array_key_exists('truncate', $this->details) === false ||
+            if (
+                array_key_exists('truncate', $this->details) === false ||
                 $this->details['truncate_length'] === null ||
-                $this->details['truncate_length'] === '') {
+                $this->details['truncate_length'] === ''
+            ) {
                 throw new FeedsException(sprintf('No truncate length given for feed: %s', $this->details['truncate_length']));
             }
 
