@@ -221,11 +221,15 @@ final class Validate
     {
         if (array_key_exists('gotify_priority', $this->details) === true) {
             if ($this->details['gotify_priority'] === null || $this->details['gotify_priority'] === '') {
-                throw new FeedsException(sprintf('Empty Gotify priority given for feed: %s', $this->details['name']));
+                throw new FeedsException(
+                    sprintf('Empty Gotify priority given for feed: %s', $this->details['name'])
+                );
             }
 
             if (filter_var($this->details['gotify_priority'], FILTER_VALIDATE_INT) === false) {
-                throw new FeedsException(sprintf('Non-integer Gotify priority given for feed: %s', $this->details['name']));
+                throw new FeedsException(
+                    sprintf('Non-integer Gotify priority given for feed: %s', $this->details['name'])
+                );
             }
         }
     }
@@ -289,7 +293,9 @@ final class Validate
             }
 
             if (filter_var($this->details['ntfy_priority'], FILTER_VALIDATE_INT) === false) {
-                throw new FeedsException(sprintf('Non-integer Ntfy priority given for feed: %s', $this->details['name']));
+                throw new FeedsException(
+                    sprintf('Non-integer Ntfy priority given for feed: %s', $this->details['name'])
+                );
             }
         }
     }
@@ -327,14 +333,20 @@ final class Validate
                 ));
             }
 
-            if ($this->details['active_hours']['start_time'] === null || $this->details['active_hours']['start_time'] === '') {
+            if (
+                $this->details['active_hours']['start_time'] === null ||
+                $this->details['active_hours']['start_time'] === ''
+            ) {
                 throw new FeedsException(sprintf(
                     'Empty active hours start time given for feed: %s',
                     $this->details['name']
                 ));
             }
 
-            if ($this->details['active_hours']['end_time'] === null || $this->details['active_hours']['end_time'] === '') {
+            if (
+                $this->details['active_hours']['end_time'] === null ||
+                $this->details['active_hours']['end_time'] === ''
+            ) {
                 throw new FeedsException(sprintf(
                     'Empty active hours end time given for feed: %s',
                     $this->details['name']
