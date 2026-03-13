@@ -112,18 +112,18 @@ class Notify
             $ntfyConfig['auth']['token'] = $this->config->getNtfyToken();
         }
 
-        if ($details->hasNtfyToken() === true) {
+        if ($details->getNtfyToken() !== null) {
             $ntfyConfig['auth'] = [
                 'method' => 'token',
                 'token' => $details->getNtfyToken()
             ];
         }
 
-        if ($details->hasNtfyTopic() === true) {
+        if ($details->getNtfyTopic() !== null) {
             $ntfyConfig['topic'] = $details->getNtfyTopic();
         }
 
-        if ($details->hasNtfyPriority() === true) {
+        if ($details->getNtfyPriority() !== null) {
             $ntfyConfig['priority'] = $details->getNtfyPriority();
         }
 
