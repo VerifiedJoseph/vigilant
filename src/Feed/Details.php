@@ -68,6 +68,16 @@ final class Details
     }
 
     /**
+     * Returns title override
+     *
+     * @return ?string
+     */
+    public function getTitleOverride(): ?string
+    {
+        return $this->details['title_override'] ?? null;
+    }
+
+    /**
      * Returns gotify server url
      *
      * @return ?string
