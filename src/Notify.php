@@ -74,7 +74,7 @@ class Notify
             $gotifyConfig['server'] = $details->getGotifyUrl();
         }
 
-        if ($details->hasGotifyPriority() === true) {
+        if ($details->getGotifyPriority() !== null) {
             $gotifyConfig['priority'] = $details->getGotifyPriority();
         }
 
