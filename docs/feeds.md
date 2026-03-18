@@ -32,6 +32,7 @@ feeds:
 | `url`             | **Yes**  | string  | Feed URL                                                                                        |
 | `interval`        | **Yes**  | integer | Interval between feed checks in seconds. Minimum value is `300` (5 minutes).                    |
 | `title_prefix`    | No       | string  | Text to prepend to notification titles.                                                         |
+| `title_override`  | No       | string  | Text to use as notification title, overrides value from RSS/ATOM/JSON feed.                     |
 | `truncate`        | No       | boolean | Truncate notification text. Disabled by default. Use `truncate_length` to set custom length.    |
 | `truncate_length` | No       | integer | Number of characters to truncate notification text to. Minimum is `0` and the default is `200`. |
 
