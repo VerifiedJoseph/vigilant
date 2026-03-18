@@ -191,16 +191,6 @@ final class Details
     }
 
     /**
-     * Check if entry has a Gotify token parameter
-     *
-     * @return bool
-     */
-    public function hasGotifyToken(): bool
-    {
-        return $this->has('gotify_token');
-    }
-
-    /**
      * heck if entry has a parameter
      *
      * @return bool
