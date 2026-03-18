@@ -52,6 +52,14 @@ feeds:
       url: https://www.example.com/feed.rss
       interval: 100
 
+  emptyTitleOverride:
+    exception: Empty title override given
+    data:
+      name: Example.com Feed
+      url: https://www.example.com/feed.rss
+      interval: 300
+      title_override:
+
   emptyTitlePrefix:
     exception: Empty title prefix given
     data:
