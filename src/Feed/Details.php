@@ -189,38 +189,4 @@ final class Details
 
         return false;
     }
-
-    /**
-     * Check if entry has a Gotify token parameter
-     *
-     * @return bool
-     */
-    public function hasGotifyToken(): bool
-    {
-        return $this->has('gotify_token');
-    }
-
-    /**
-     * Check if entry has a Gotify priority parameter
-     *
-     * @return bool
-     */
-    public function hasGotifyPriority(): bool
-    {
-        return $this->has('gotify_priority');
-    }
-
-    /**
-     * heck if entry has a parameter
-     *
-     * @return bool
-     */
-    private function has(string $name): bool
-    {
-        if (array_key_exists($name, $this->details) === true && $this->details[$name] !== '') {
-            return true;
-        }
-
-        return false;
-    }
 }
