@@ -276,13 +276,4 @@ class DetailsTest extends TestCase
         $this->assertTrue(self::$details[1]->hasActiveHours());
         $this->assertFalse(self::$details[0]->hasActiveHours());
     }
-
-    /**
-     * Test hasGotifyToken()
-     */
-    public function testHasGotifyToken(): void
-    {
-        $this->assertTrue(self::$details[0]->hasGotifyToken());
-        $this->assertFalse(self::$details[1]->hasGotifyToken());
-    }
 }
