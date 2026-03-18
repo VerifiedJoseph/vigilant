@@ -201,16 +201,6 @@ final class Details
     }
 
     /**
-     * Check if entry has a Gotify priority parameter
-     *
-     * @return bool
-     */
-    public function hasGotifyPriority(): bool
-    {
-        return $this->has('gotify_priority');
-    }
-
-    /**
      * heck if entry has a parameter
      *
      * @return bool
