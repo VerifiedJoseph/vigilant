@@ -8,7 +8,6 @@ use Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
 use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 use Vigilant\Feed\Validate;
 use Vigilant\Exception\FeedsException;
 use Symfony\Component\Yaml\Yaml;
@@ -23,9 +22,9 @@ class ValidateTest extends TestCase
      */
     private static int $minCheckInterval = 300;
 
-     /**
-      * @return array<int, mixed>
-      */
+    /**
+     * @return array<int, mixed>
+     */
     public static function invalidFeedDataProvider(): array
     {
         $data = [];
@@ -41,14 +40,31 @@ class ValidateTest extends TestCase
     }
 
     /**
-     * Test valid feed entry
+     * @return array<int, mixed>
      */
-    #[DoesNotPerformAssertions]
-    public function testValidEntry(): void
+    public static function validFeedDataProvider(): array
     {
-        $feeds = Yaml::parse(self::loadSample('feeds.yaml'));
+        $data = [];
+        $yaml = Yaml::parse(self::loadSample('feeds.yaml'));
 
-        new Validate($feeds['feeds'][0], self::$minCheckInterval);
+
+        foreach ($yaml['feeds'] as $item) {
+            $data[] = [$item];
+        }
+
+        return  $data;
+    }
+
+    /**
+     * Test valid feed entries
+     *
+     * @param array<string, mixed> $data Feed entry data
+     */
+    #[DataProvider('validFeedDataProvider')]
+    public function testValidEntries(array $data): void
+    {
+        $validate = new Validate($data, self::$minCheckInterval);
+        $this->assertEquals($data, $validate->get());
     }
 
     /**

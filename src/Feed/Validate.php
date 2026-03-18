@@ -16,6 +16,16 @@ final class Validate
     private array $details = [];
 
     /**
+     * @var array<string, mixed> $defaults Defaults feed details
+     */
+    private array $defaults = [
+        'name' => null,
+        'url' => null,
+        'interval' => null,
+        'truncate' => false
+    ];
+
+    /**
      * Constructor
      *
      * @param array<string, mixed> $feed
@@ -23,7 +33,7 @@ final class Validate
      */
     public function __construct(array $feed, int $minCheckInterval)
     {
-        $this->details = $feed;
+        $this->details = array_merge($this->defaults, $feed);
 
         $this->name();
         $this->url();
@@ -44,15 +54,26 @@ final class Validate
     }
 
     /**
+     * Returns validated feed details
+     * @return array<string, mixed>
+     */
+    public function get(): array
+    {
+        return $this->details;
+    }
+
+    /**
      * Validate entry name
      *
      * @throws FeedsException if name is not given
      */
     private function name(): void
     {
-        if (array_key_exists('name', $this->details) === false || $this->details['name'] === null) {
+        if ($this->details['name'] === null || $this->details['name'] === '') {
             throw new FeedsException('No name given for a feed');
         }
+
+        $this->details['name'] = (string) $this->details['name'];
     }
 
     /**
@@ -62,9 +83,11 @@ final class Validate
      */
     private function url(): void
     {
-        if (array_key_exists('url', $this->details) === false || $this->details['url'] === null) {
+        if ($this->details['url'] === null || $this->details['url'] === '') {
             throw new FeedsException(sprintf('No url given for feed: %s', $this->details['name']));
         }
+
+        // todo: Add url format check
     }
 
     /**
@@ -72,12 +95,17 @@ final class Validate
      *
      * @param int $minCheckInterval Minimum feed check interval
      * @throws FeedsException if interval is not given
+     * @throws FeedsException if interval is not a integer
      * @throws FeedsException if interval is less than minimum allowed interval
      */
     private function interval(int $minCheckInterval): void
     {
-        if (array_key_exists('interval', $this->details) === false || $this->details['interval'] === null) {
+        if ($this->details['interval'] === null || $this->details['interval'] === '') {
             throw new FeedsException(sprintf('No interval given for feed: %s', $this->details['name']));
+        }
+
+        if (filter_var($this->details['interval'], FILTER_VALIDATE_INT) === false) {
+            throw new FeedsException(sprintf('Non-integer interval given for feed: %s', $this->details['name']));
         }
 
         if ($this->details['interval'] < $minCheckInterval) {
@@ -96,8 +124,12 @@ final class Validate
      */
     private function titlePrefix(): void
     {
-        if (array_key_exists('title_prefix', $this->details) === true && $this->details['title_prefix'] === null) {
-            throw new FeedsException(sprintf('Empty title prefix given for feed: %s', $this->details['name']));
+        if (array_key_exists('title_prefix', $this->details) === true) {
+            if ($this->details['title_prefix'] === null || $this->details['title_prefix'] === '') {
+                throw new FeedsException(sprintf('Empty title prefix given for feed: %s', $this->details['name']));
+            }
+
+            $this->details['title_prefix'] = (string) $this->details['title_prefix'];
         }
     }
 
@@ -105,24 +137,38 @@ final class Validate
      * Validate entry message truncation
      *
      * @throws FeedsException if truncate value is invalid
-     * @throws FeedsException if truncate length value is invalid
+     * @throws FeedsException if truncate length value is not a integer
      * @throws FeedsException if truncate length value is less than zeo
      */
     private function messageTruncation(): void
     {
-        if (array_key_exists('truncate', $this->details) === true) {
+        if ($this->details['truncate'] !== null) {
             $truncate = filter_var($this->details['truncate'], FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
 
             if ($truncate === null) {
                 throw new FeedsException(sprintf('Invalid truncate value given for feed: %s', $this->details['name']));
             }
+
+            $this->details['truncate'] = $truncate;
         }
 
-        if (array_key_exists('truncate_length', $this->details) === true) {
+        if ($this->details['truncate'] === true) {
+            if (
+                array_key_exists('truncate', $this->details) === false ||
+                $this->details['truncate_length'] === null ||
+                $this->details['truncate_length'] === ''
+            ) {
+                throw new FeedsException(
+                    sprintf('No truncate length given for feed: %s', $this->details['truncate_length'])
+                );
+            }
+
             $length = filter_var($this->details['truncate_length'], FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
 
             if ($length === null) {
-                throw new FeedsException(sprintf('Invalid truncate length given for feed: %s', $this->details['name']));
+                throw new FeedsException(
+                    sprintf('Invalid truncate length given for feed: %s', $this->details['name'])
+                );
             }
 
             if ($length < 0) {
@@ -141,8 +187,13 @@ final class Validate
      */
     private function gotifyUrl(): void
     {
-        if (array_key_exists('gotify_url', $this->details) === true && $this->details['gotify_url'] === null) {
-            throw new FeedsException(sprintf('Empty Gotify url given for feed: %s', $this->details['name']));
+        if (array_key_exists('gotify_url', $this->details) === true) {
+            if ($this->details['gotify_url'] === null || $this->details['gotify_url'] === '') {
+                throw new FeedsException(sprintf('Empty Gotify url given for feed: %s', $this->details['name']));
+            }
+
+            // todo: check url format
+            $this->details['gotify_url'] = (string) $this->details['gotify_url'];
         }
     }
 
@@ -153,8 +204,10 @@ final class Validate
      */
     private function gotifyToken(): void
     {
-        if (array_key_exists('gotify_token', $this->details) === true && $this->details['gotify_token'] === null) {
-            throw new FeedsException(sprintf('Empty Gotify token given for feed: %s', $this->details['name']));
+        if (array_key_exists('gotify_token', $this->details) === true) {
+            if ($this->details['gotify_token'] === null || $this->details['gotify_token'] === '') {
+                throw new FeedsException(sprintf('Empty Gotify token given for feed: %s', $this->details['name']));
+            }
         }
     }
 
@@ -162,14 +215,22 @@ final class Validate
      * Validate entry gotify priority
      *
      * @throws FeedsException if gotify priority is empty
+     * @throws FeedsException if gotify priority is not an integer
      */
     private function gotifyPriority(): void
     {
-        if (
-            array_key_exists('gotify_priority', $this->details) === true &&
-             $this->details['gotify_priority'] === null
-        ) {
-            throw new FeedsException(sprintf('Empty Gotify priority given for feed: %s', $this->details['name']));
+        if (array_key_exists('gotify_priority', $this->details) === true) {
+            if ($this->details['gotify_priority'] === null || $this->details['gotify_priority'] === '') {
+                throw new FeedsException(
+                    sprintf('Empty Gotify priority given for feed: %s', $this->details['name'])
+                );
+            }
+
+            if (filter_var($this->details['gotify_priority'], FILTER_VALIDATE_INT) === false) {
+                throw new FeedsException(
+                    sprintf('Non-integer Gotify priority given for feed: %s', $this->details['name'])
+                );
+            }
         }
     }
 
@@ -180,8 +241,13 @@ final class Validate
      */
     private function ntfyUrl(): void
     {
-        if (array_key_exists('ntfy_url', $this->details) === true && $this->details['ntfy_url'] === null) {
-            throw new FeedsException(sprintf('Empty Ntfy url given for feed: %s', $this->details['name']));
+        if (array_key_exists('ntfy_url', $this->details) === true) {
+            if ($this->details['ntfy_url'] === null || $this->details['ntfy_url'] === '') {
+                throw new FeedsException(sprintf('Empty Ntfy url given for feed: %s', $this->details['name']));
+            }
+
+            // todo: check url format
+            $this->details['ntfy_url'] = (string) $this->details['ntfy_url'];
         }
     }
 
@@ -192,8 +258,10 @@ final class Validate
      */
     private function ntfyTopic(): void
     {
-        if (array_key_exists('ntfy_topic', $this->details) === true && $this->details['ntfy_topic'] === null) {
-            throw new FeedsException(sprintf('Empty Ntfy topic given for feed: %s', $this->details['name']));
+        if (array_key_exists('ntfy_topic', $this->details) === true) {
+            if ($this->details['ntfy_topic'] === null || $this->details['ntfy_topic'] === '') {
+                throw new FeedsException(sprintf('Empty Ntfy topic given for feed: %s', $this->details['name']));
+            }
         }
     }
 
@@ -204,8 +272,10 @@ final class Validate
      */
     private function ntfyToken(): void
     {
-        if (array_key_exists('ntfy_token', $this->details) === true && $this->details['ntfy_token'] === null) {
-            throw new FeedsException(sprintf('Empty Ntfy token given for feed: %s', $this->details['name']));
+        if (array_key_exists('ntfy_token', $this->details) === true) {
+            if ($this->details['ntfy_token'] === null || $this->details['ntfy_token'] === '') {
+                throw new FeedsException(sprintf('Empty Ntfy token given for feed: %s', $this->details['name']));
+            }
         }
     }
 
@@ -213,17 +283,20 @@ final class Validate
      * Validate entry ntfy priority
      *
      * @throws FeedsException if ntfy priority is empty
+     * @throws FeedsException if ntfy priority is not an integer
      */
     private function ntfyPriority(): void
     {
-        if (
-            array_key_exists('ntfy_priority', $this->details) === true &&
-             $this->details['ntfy_priority'] === null
-        ) {
-            throw new FeedsException(sprintf(
-                'Empty Ntfy priority given for feed: %s',
-                $this->details['name']
-            ));
+        if (array_key_exists('ntfy_priority', $this->details) === true) {
+            if ($this->details['ntfy_priority'] === null || $this->details['ntfy_priority'] === '') {
+                throw new FeedsException(sprintf('Empty Ntfy priority given for feed: %s', $this->details['name']));
+            }
+
+            if (filter_var($this->details['ntfy_priority'], FILTER_VALIDATE_INT) === false) {
+                throw new FeedsException(
+                    sprintf('Non-integer Ntfy priority given for feed: %s', $this->details['name'])
+                );
+            }
         }
     }
 
@@ -231,7 +304,7 @@ final class Validate
      * Validate active hours options in entries
      *
      * @throws FeedsException if no start time is given or is empty
-     * @throws FeedsException if no end time is given  or is empty
+     * @throws FeedsException if no end time is given or is empty
      * @throws FeedsException if start time format is invalid
      * @throws FeedsException if end time format is invalid
      * @throws FeedsException if end time is before the start emd
@@ -260,14 +333,20 @@ final class Validate
                 ));
             }
 
-            if ($this->details['active_hours']['start_time'] === null) {
+            if (
+                $this->details['active_hours']['start_time'] === null ||
+                $this->details['active_hours']['start_time'] === ''
+            ) {
                 throw new FeedsException(sprintf(
                     'Empty active hours start time given for feed: %s',
                     $this->details['name']
                 ));
             }
 
-            if ($this->details['active_hours']['end_time'] === null) {
+            if (
+                $this->details['active_hours']['end_time'] === null ||
+                $this->details['active_hours']['end_time'] === ''
+            ) {
                 throw new FeedsException(sprintf(
                     'Empty active hours end time given for feed: %s',
                     $this->details['name']

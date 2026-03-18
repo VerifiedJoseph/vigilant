@@ -45,24 +45,17 @@ final class Feed
         $this->config = $config;
         $this->logger = $logger;
 
-        $this->validate();
         $this->initiate();
-    }
-
-    /**
-     * Validate feed entry
-     */
-    private function validate(): void
-    {
-        new Validate(
-            $this->feed,
-            $this->config->getMinCheckInterval()
-        );
     }
 
     private function initiate(): void
     {
-        $this->details = new Details($this->feed);
+        $validate = new Validate(
+            $this->feed,
+            $this->config->getMinCheckInterval()
+        );
+
+        $this->details = new Details($validate->get());
         $this->check = new Check(
             $this->details,
             new Fetch(),
