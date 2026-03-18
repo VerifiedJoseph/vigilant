@@ -95,6 +95,21 @@ class DetailsTest extends TestCase
     }
 
     /**
+     * Test getTitleOverride()
+     */
+    public function testGetTitleOverride(): void
+    {
+        $this->assertEquals(
+            self::$feeds[1]['title_override'],
+            self::$details[1]->getTitleOverride()
+        );
+
+        $this->assertNull(
+            self::$details[0]->getTitleOverride()
+        );
+    }
+
+    /**
      * Test getTitlePrefix()
      */
     public function testGetTitlePrefix(): void
