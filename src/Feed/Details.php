@@ -189,18 +189,4 @@ final class Details
 
         return false;
     }
-
-    /**
-     * heck if entry has a parameter
-     *
-     * @return bool
-     */
-    private function has(string $name): bool
-    {
-        if (array_key_exists($name, $this->details) === true && $this->details[$name] !== '') {
-            return true;
-        }
-
-        return false;
-    }
 }
