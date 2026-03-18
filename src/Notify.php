@@ -78,7 +78,7 @@ class Notify
             $gotifyConfig['priority'] = $details->getGotifyPriority();
         }
 
-        if ($details->hasGotifyToken() === true) {
+        if ($details->getGotifyToken() !== null) {
             $gotifyConfig['token'] = $details->getGotifyToken();
         }
 
