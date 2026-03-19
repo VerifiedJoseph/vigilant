@@ -38,6 +38,7 @@ final class Validate
         $this->name();
         $this->url();
         $this->interval($minCheckInterval);
+        $this->titleOverride();
         $this->titlePrefix();
         $this->messageTruncation();
 
@@ -114,6 +115,22 @@ final class Validate
                 $minCheckInterval,
                 $this->details['name']
             ));
+        }
+    }
+
+    /**
+     * Validate entry title override
+     *
+     * @throws FeedsException if title override is empty
+     */
+    private function titleOverride(): void
+    {
+        if (array_key_exists('title_override', $this->details) === true) {
+            if ($this->details['title_override'] === null || $this->details['title_override'] === '') {
+                throw new FeedsException(sprintf('Empty title override given for feed: %s', $this->details['name']));
+            }
+
+            $this->details['title_override'] = $this->details['title_override'];
         }
     }
 

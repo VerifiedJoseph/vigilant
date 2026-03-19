@@ -12,6 +12,7 @@ feeds:
      name: GitHub status
      url: https://www.githubstatus.com/history.rss
      interval: 300
+     title_override: New Github service status
      ntfy_url: https://ntfy.example.com
      ntfy_topic: GitHub_status
      ntfy_token: HQKPyHCODeoMFuN
