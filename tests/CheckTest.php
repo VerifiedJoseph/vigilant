@@ -136,6 +136,34 @@ class CheckTest extends TestCase
     }
 
     /**
+     * Test `check()` with a feed that has `title_override` configured in its feed.yaml entry
+     */
+    public function testCheckWithTitleOverrideConfigured(): void
+    {
+        $feed = $this->feed;
+        $feed['title_override'] = 'An overridden item title';
+
+        $this->createCacheFIle(sha1( $feed['url']), $this->cache);
+
+        $mock = new GuzzleHttp\Handler\MockHandler([
+            new GuzzleHttp\Psr7\Response(200, body: (string) file_get_contents('tests/files/rss-feed.xml'))
+        ]);
+        $fetch = new Fetch(new \GuzzleHttp\Client([
+            'handler' => GuzzleHttp\HandlerStack::create($mock)
+        ]));
+
+        $details = new Details( $feed);
+        $check = new check($details, $fetch, self::$config, self::$logger);
+
+        $this->expectOutputRegex('/Found 1 new item\(s\)/');
+
+        $check->check();
+        $messages = $check->getMessages();
+
+        $this->assertEquals($feed['title_override'], $messages[0]->getTitle());
+    }
+
+    /**
      * Test `check()` when `Fetch` class returns an error and
      * cache `error_count` value is one below the max to trigger a message
      * telling the user that fetching the feed has repeatedly failed.
