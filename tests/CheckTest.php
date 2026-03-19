@@ -143,7 +143,7 @@ class CheckTest extends TestCase
         $feed = $this->feed;
         $feed['title_override'] = 'An overridden item title';
 
-        $this->createCacheFIle(sha1( $feed['url']), $this->cache);
+        $this->createCacheFIle(sha1($feed['url']), $this->cache);
 
         $mock = new GuzzleHttp\Handler\MockHandler([
             new GuzzleHttp\Psr7\Response(200, body: (string) file_get_contents('tests/files/rss-feed.xml'))
@@ -152,7 +152,7 @@ class CheckTest extends TestCase
             'handler' => GuzzleHttp\HandlerStack::create($mock)
         ]));
 
-        $details = new Details( $feed);
+        $details = new Details($feed);
         $check = new check($details, $fetch, self::$config, self::$logger);
 
         $this->expectOutputRegex('/Found 1 new item\(s\)/');
