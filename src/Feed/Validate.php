@@ -321,7 +321,7 @@ final class Validate
      *
      * @throws FeedsException if user agent string is empty
      */
-    private function userAgent()
+    private function userAgent(): void
     {
         if (array_key_exists('user_agent', $this->details) === true) {
             if ($this->details['user_agent'] === null || $this->details['user_agent'] === '') {
