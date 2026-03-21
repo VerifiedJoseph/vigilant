@@ -151,6 +151,34 @@ class ValidatorTest extends TestCase
     }
 
     /**
+     * Test `userAgent()`
+     */
+    public function testUserAgent(): void
+    {
+        putenv('VIGILANT_USER_AGENT=testing');
+
+        $validate = new Validator(self::$defaults);
+        $validate->userAgent();
+        $config = $validate->getConfig();
+
+        $this->assertEquals('testing', $config['user_agent']);
+    }
+
+    /**
+     * Test `userAgent()` with empty useragent string
+     */
+    public function testEmptyUserAgent(): void
+    {
+        $this->expectException(ConfigException::class);
+        $this->expectExceptionMessage('No user agent string given');
+
+        putenv('VIGILANT_USER_AGENT=');
+
+        $validate = new Validator(self::$defaults);
+        $validate->userAgent();
+    }
+
+    /**
      * Test `feedsFile()`
      */
     public function testFeedsFile(): void
