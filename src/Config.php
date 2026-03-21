@@ -87,6 +87,16 @@ class Config
     }
 
     /**
+     * Returns user agent
+     *
+     * @return string
+     */
+    public function getUserAgent(): string
+    {
+        return $this->config['user_agent'];
+    }
+
+    /**
      * Returns enabled notification service
      *
      * @return string

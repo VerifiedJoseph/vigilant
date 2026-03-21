@@ -75,6 +75,18 @@ class ConfigTest extends TestCase
     }
 
     /**
+     * Test `getUserAgent()`
+     */
+    public function testGetUserAgent(): void
+    {
+        $config = new Config();
+        $this->assertEquals(
+            self::$defaults['user_agent'],
+            $config->getUserAgent()
+        );
+    }
+
+    /**
      * Test `getNotificationService()`
      */
     public function testGetNotificationService(): void
