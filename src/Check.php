@@ -92,7 +92,10 @@ final class Check
                 $this->details->getUrl()
             ));
 
-            $result = $this->fetch->get($this->details->getUrl());
+            $result = $this->fetch->get(
+                $this->details->getUrl(),
+                $this->details->getUserAgent()
+            );
 
             $this->process($result);
             $this->cache->resetErrorCount();

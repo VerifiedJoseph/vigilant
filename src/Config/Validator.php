@@ -93,6 +93,22 @@ class Validator extends AbstractValidator
     }
 
     /**
+     * Check `VIGILANT_USER_AGENT`
+     *
+     * @throws ConfigException if user agent env has no value
+     */
+    public function userAgent(): void
+    {
+        if ($this->hasEnv('USER_AGENT') === true) {
+            if ($this->getEnv('USER_AGENT') === '') {
+                throw new ConfigException('No user agent string given [VIGILANT_USER_AGENT]');
+            }
+
+            $this->config['user_agent'] = $this->getEnv('USER_AGENT');
+        }
+    }
+
+    /**
      * Check `VIGILANT_FEEDS_FILE`
      *
      * @throws ConfigException if feeds file is not found

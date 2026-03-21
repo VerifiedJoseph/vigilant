@@ -8,6 +8,7 @@ feeds:
      gotify_url: https://gotify.example.com
      gotify_token: 7ZHeHM3awd45rn9W
      gotify_priority: 1
+     user_agent: RssBob/v1
     -
      name: GitHub status
      url: https://www.githubstatus.com/history.rss

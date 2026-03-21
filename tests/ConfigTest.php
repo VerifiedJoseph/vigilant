@@ -12,6 +12,7 @@ use ReflectionClass;
 
 #[CoversClass(Config::class)]
 #[CoversClass(Version::class)]
+#[UsesClass(\Vigilant\UserAgent::class)]
 #[UsesClass(\Vigilant\Config\Validator::class)]
 #[UsesClass(\Vigilant\Config\Validate\Ntfy::class)]
 #[UsesClass(\Vigilant\Config\AbstractValidator::class)]
@@ -70,6 +71,18 @@ class ConfigTest extends TestCase
         $this->assertEquals(
             self::$defaults['timezone'],
             $config->getTimezone()
+        );
+    }
+
+    /**
+     * Test `getUserAgent()`
+     */
+    public function testGetUserAgent(): void
+    {
+        $config = new Config();
+        $this->assertEquals(
+            self::$defaults['user_agent'],
+            $config->getUserAgent()
         );
     }
 
