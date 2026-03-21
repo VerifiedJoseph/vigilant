@@ -12,6 +12,7 @@ use ReflectionClass;
 
 #[CoversClass(Config::class)]
 #[CoversClass(Version::class)]
+#[UsesClass(\Vigilant\UserAgent::class)]
 #[UsesClass(\Vigilant\Config\Validator::class)]
 #[UsesClass(\Vigilant\Config\Validate\Ntfy::class)]
 #[UsesClass(\Vigilant\Config\AbstractValidator::class)]
