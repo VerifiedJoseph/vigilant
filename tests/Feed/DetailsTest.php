@@ -125,6 +125,21 @@ class DetailsTest extends TestCase
     }
 
     /**
+     * Test getUserAgent()
+     */
+    public function testGetUserAgent(): void
+    {
+        $this->assertEquals(
+            self::$feeds[0]['user_agent'],
+            self::$details[0]->getUserAgent()
+        );
+
+        $this->assertNull(
+            self::$details[1]->getUserAgent()
+        );
+    }
+
+    /**
      * Test getGotifyUrl()
      */
     public function testGetGotifyUrl(): void

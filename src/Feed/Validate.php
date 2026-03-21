@@ -26,8 +26,6 @@ final class Validate
     ];
 
     /**
-     * Constructor
-     *
      * @param array<string, mixed> $feed
      * @param int $minCheckInterval Minimum feed check interval
      */
@@ -51,6 +49,7 @@ final class Validate
         $this->ntfyToken();
         $this->ntfyPriority();
 
+        $this->userAgent();
         $this->activeHours();
     }
 
@@ -314,6 +313,22 @@ final class Validate
                     sprintf('Non-integer Ntfy priority given for feed: %s', $this->details['name'])
                 );
             }
+        }
+    }
+
+    /**
+     * Validate entry user agent
+     *
+     * @throws FeedsException if user agent string is empty
+     */
+    private function userAgent()
+    {
+        if (array_key_exists('user_agent', $this->details) === true) {
+            if ($this->details['user_agent'] === null || $this->details['user_agent'] === '') {
+                throw new FeedsException(sprintf('Empty user agent string given for feed: %s', $this->details['name']));
+            }
+
+            $this->details['user_agent'] = (string) $this->details['user_agent'];
         }
     }
 

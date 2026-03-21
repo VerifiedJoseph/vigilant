@@ -68,6 +68,14 @@ feeds:
       interval: 300
       title_prefix:
 
+  emptyUserAgent:
+    exception: Empty user agent string given
+    data:
+      name: Example.com Feed
+      url: https://www.example.com/feed.rss
+      interval: 300
+      user_agent:
+
   emptyGotifyUrl:
     exception: Empty Gotify url given
     data:
