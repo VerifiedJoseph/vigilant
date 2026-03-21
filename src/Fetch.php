@@ -14,15 +14,17 @@ class Fetch
 
     /** @var array<string, string> $headers HTTP headers */
     private array $headers = [
-        'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; rv:146.0) Gecko/20100101 Firefox/146.0',
         'Accept' => '*/*'
     ];
 
     /**
+     * @param string $userAgent Default user-agent string or from environment variable `VIGILANT_USER_AGENT`
      * @param null|\GuzzleHttp\Client $httpClient Custom GuzzleHttp client
      */
-    public function __construct(?\GuzzleHttp\Client $httpClient = null)
+    public function __construct(string $userAgent, ?\GuzzleHttp\Client $httpClient = null)
     {
+        $this->headers['User-Agent'] = $userAgent;
+
         if ($httpClient === null) {
             $httpClient = new \GuzzleHttp\Client(['headers' => $this->headers]);
         }

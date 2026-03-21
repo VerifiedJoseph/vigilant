@@ -54,6 +54,7 @@ class CheckTest extends TestCase
         $config->method('getCachePath')->willReturn(mockfs::getUrl('/'));
         $config->method('getCacheFormatVersion')->willReturn(1);
         $config->method('getTimezone')->willReturn('UTC');
+        $config->method('getUserAgent')->willReturn('Vigilant/Test (https://github.com/VerifiedJoseph/vigilant)');
         self::$config = $config;
 
         self::$logger = new Logger('UTC');
@@ -70,7 +71,12 @@ class CheckTest extends TestCase
     public function testIsDue(): void
     {
         $details = new Details($this->feed);
-        $check = new check($details, new Fetch(), self::$config, self::$logger);
+        $check = new check(
+            $details,
+            new Fetch(self::$config->getUserAgent()),
+            self::$config,
+            self::$logger
+        );
 
         $this->assertTrue($check->isDue());
     }
@@ -81,7 +87,12 @@ class CheckTest extends TestCase
     public function testGetNextCheckDate(): void
     {
         $details = new Details($this->feed);
-        $check = new check($details, new Fetch(), self::$config, self::$logger);
+        $check = new check(
+            $details,
+            new Fetch(self::$config->getUserAgent()),
+            self::$config,
+            self::$logger
+        );
 
         $this->assertEquals('1970-01-01 00:00:00', $check->getNextCheckDate());
     }
@@ -94,9 +105,12 @@ class CheckTest extends TestCase
         $mock = new GuzzleHttp\Handler\MockHandler([
             new GuzzleHttp\Psr7\Response(200, body: (string) file_get_contents('tests/files/rss-feed.xml'))
         ]);
-        $fetch = new Fetch(new \GuzzleHttp\Client([
-            'handler' => GuzzleHttp\HandlerStack::create($mock)
-        ]));
+        $fetch = new Fetch(
+            self::$config->getUserAgent(),
+            new \GuzzleHttp\Client([
+                'handler' => GuzzleHttp\HandlerStack::create($mock)
+            ])
+        );
 
         $details = new Details($this->feed);
         $check = new check($details, $fetch, self::$config, self::$logger);
@@ -118,9 +132,12 @@ class CheckTest extends TestCase
         $mock = new GuzzleHttp\Handler\MockHandler([
             new GuzzleHttp\Psr7\Response(200, body: (string) file_get_contents('tests/files/rss-feed.xml'))
         ]);
-        $fetch = new Fetch(new \GuzzleHttp\Client([
-            'handler' => GuzzleHttp\HandlerStack::create($mock)
-        ]));
+        $fetch = new Fetch(
+            self::$config->getUserAgent(),
+            new \GuzzleHttp\Client([
+                'handler' => GuzzleHttp\HandlerStack::create($mock)
+            ])
+        );
 
         $details = new Details($this->feed);
         $check = new check($details, $fetch, self::$config, self::$logger);
@@ -148,9 +165,12 @@ class CheckTest extends TestCase
         $mock = new GuzzleHttp\Handler\MockHandler([
             new GuzzleHttp\Psr7\Response(200, body: (string) file_get_contents('tests/files/rss-feed.xml'))
         ]);
-        $fetch = new Fetch(new \GuzzleHttp\Client([
-            'handler' => GuzzleHttp\HandlerStack::create($mock)
-        ]));
+        $fetch = new Fetch(
+            self::$config->getUserAgent(),
+            new \GuzzleHttp\Client([
+                'handler' => GuzzleHttp\HandlerStack::create($mock)
+            ])
+        );
 
         $details = new Details($feed);
         $check = new check($details, $fetch, self::$config, self::$logger);
@@ -177,9 +197,13 @@ class CheckTest extends TestCase
         $mock = new GuzzleHttp\Handler\MockHandler([
             new GuzzleHttp\Psr7\Response(404),
         ]);
-        $fetch = new Fetch(new \GuzzleHttp\Client([
-            'handler' => GuzzleHttp\HandlerStack::create($mock)
-        ]));
+        $fetch = new Fetch(
+            self::$config->getUserAgent(),
+            new \GuzzleHttp\Client([
+                'handler' => GuzzleHttp\HandlerStack::create($mock)
+            ])
+        );
+
         $details = new Details($this->feed);
         $check = new check($details, $fetch, self::$config, self::$logger);
 

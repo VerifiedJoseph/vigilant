@@ -58,7 +58,7 @@ final class Feed
         $this->details = new Details($validate->get());
         $this->check = new Check(
             $this->details,
-            new Fetch(),
+            new Fetch($this->config->getUserAgent()),
             $this->config,
             $this->logger
         );
