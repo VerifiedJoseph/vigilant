@@ -42,7 +42,7 @@ class Fetch
     public function get(string $url, ?string $useragent = null): Result
     {
         try {
-           $client = $this->client;
+            $client = $this->client;
 
             if ($useragent !== null) {
                 $headers = $this->headers;

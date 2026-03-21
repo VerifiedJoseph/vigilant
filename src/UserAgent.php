@@ -4,7 +4,7 @@ namespace Vigilant;
 
 class UserAgent
 {
-	/**
+    /**
      * Returns default user-agent string `Vigilant/VERSION (https://github.com/VerifiedJoseph/vigilant)`
      * @return string
      */
