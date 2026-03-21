@@ -27,6 +27,20 @@ class FetchTest extends TestCase
     }
 
     /**
+     * Test `get()` with custom useragent
+     */
+    public function testGetWithCustomUseragent(): void
+    {
+        $fetch = new Fetch();
+        $result = $fetch->get(
+            'https://www.githubstatus.com/history.rss',
+            'Mozilla/5.0 (Windows NT 10.0; rv:146.0) Gecko/20100101 Firefox/146.0'
+        );
+
+        $this->assertInstanceOf(FeedIo\Reader\Result::class, $result);
+    }
+
+    /**
      * Test `get()` with mock handler that does not return a rss feed
      */
     public function testGetParseError(): void
