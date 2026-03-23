@@ -1,4 +1,4 @@
-FROM composer:2.9 AS composer
+FROM composer:2.9.5@sha256:743aebe48ca67097c36819040633ea77e44a561eca135e4fc84c002e63a1ba07 AS composer
 
 COPY ./ /app
 WORKDIR /app
@@ -10,7 +10,7 @@ RUN composer install \
   --no-progress \
   --no-dev
 
-FROM alpine:3.23.3
+FROM alpine:3.23.3@sha256:25109184c71bdad752c8312a8623239686a9a2071e8825f20acb8f2198c3f659
 
 # Install packages
 RUN apk add --no-cache \
