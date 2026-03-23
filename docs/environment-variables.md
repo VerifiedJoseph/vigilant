@@ -14,7 +14,7 @@ By default, Vigilant uses the timezone of the host system or UTC when running in
 
 ## User agent
 
-By default, Vigilant uses the user agent `Vigilant/VERSION_NUMBER (https://github.com/VerifiedJoseph/vigilant)` when fetching feeds, this behaviour can be overridden by setting the environment variable `VIGILANT_USER_AGENT`. The user agent can also be controlled on a per-feed basis via [feeds.yaml](./feeds.md).
+By default, Vigilant uses the user agent `Vigilant/VERSION_NUMBER (https://github.com/VerifiedJoseph/vigilant)` when fetching feeds, this behaviour can be overridden by setting the environment variable `VIGILANT_USER_AGENT`. The user agent can also be controlled on a per-feed basis via [feeds config file](./feeds.md).
 
 | Name                  | Description                          |
 | --------------------- | ------------------------------------ |
