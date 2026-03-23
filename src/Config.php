@@ -39,11 +39,14 @@ class Config
 
     public function __construct()
     {
-        $this->validate = new Validator($this->defaults);
+        $defaults = $this->defaults;
+        $defaults['user_agent'] = UserAgent::getDefault();
+
+        $this->validate = new Validator($defaults);
         $this->validate->version(PHP_VERSION, $this->minPhpVersion);
         $this->validate->extensions($this->extensions);
 
-        $this->config = $this->defaults;
+        $this->config = $defaults;
         $this->config['timezone'] = date_default_timezone_get();
         $this->config['feeds_file'] = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'feeds.yaml';
     }
@@ -57,6 +60,7 @@ class Config
 
         $this->validate->verbose();
         $this->validate->timezone();
+        $this->validate->userAgent();
         $this->validate->folder($this->getCachePath());
         $this->validate->feedsFile();
         $this->validate->notificationService($this->notificationServices);
@@ -80,6 +84,16 @@ class Config
     public function getTimezone(): string
     {
         return $this->config['timezone'];
+    }
+
+    /**
+     * Returns user agent
+     *
+     * @return string
+     */
+    public function getUserAgent(): string
+    {
+        return $this->config['user_agent'];
     }
 
     /**

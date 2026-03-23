@@ -78,6 +78,16 @@ final class Details
     }
 
     /**
+     * Returns user agent
+     *
+     * @return ?string
+     */
+    public function getUserAgent(): ?string
+    {
+        return $this->details['user_agent'] ?? null;
+    }
+
+    /**
      * Returns gotify server url
      *
      * @return ?string

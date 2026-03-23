@@ -55,10 +55,11 @@ final class Feed
             $this->config->getMinCheckInterval()
         );
 
+        $fetch = new Fetch($this->config->getUserAgent());
         $this->details = new Details($validate->get());
         $this->check = new Check(
             $this->details,
-            new Fetch(),
+            $fetch,
             $this->config,
             $this->logger
         );

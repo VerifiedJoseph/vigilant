@@ -6,15 +6,23 @@ Alternatively, you can use `config.php` (copied from [`config.example.php`](http
 
 ## Timezone
 
-By default Vigilant uses the timezone of the host system or UTC when running in docker, this behavior can be overridden by setting the environment variable `VIGILANT_TIMEZONE`.
+By default, Vigilant uses the timezone of the host system or UTC when running in docker, this behaviour can be overridden by setting the environment variable `VIGILANT_TIMEZONE`.
 
 | Name                | Description                                                         |
 | ------------------- | ------------------------------------------------------------------- |
 | `VIGILANT_TIMEZONE` | Timezone ([php docs](https://www.php.net/manual/en/timezones.php)). |
 
+## User agent
+
+By default, Vigilant uses the user agent `Vigilant/VERSION_NUMBER (https://github.com/VerifiedJoseph/vigilant)` when fetching feeds, this behaviour can be overridden by setting the environment variable `VIGILANT_USER_AGENT`. The user agent can also be set on a per-feed basis via [feeds config file](./feeds.md).
+
+| Name                  | Description                          |
+| --------------------- | ------------------------------------ |
+| `VIGILANT_USER_AGENT` | User agent to use for HTTP requests. |
+
 ## Feeds File
 
-By default Vigilant looks for a `feeds.yaml` file in the project's main folder, this behavior can be overridden by setting the environment variable `VIGILANT_FEEDS_FILE`.
+By default, Vigilant looks for a `feeds.yaml` file in the project's main folder, this behaviour can be overridden by setting the environment variable `VIGILANT_FEEDS_FILE`.
 
 | Name                  | Description                  |
 | --------------------- | ---------------------------- |
