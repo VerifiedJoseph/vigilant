@@ -7,6 +7,7 @@ namespace Vigilant\Config;
 use DateTimeZone;
 use Vigilant\Config\Validate;
 use Vigilant\Exception\ConfigException;
+use Vigilant\UserAgent;
 
 class Validator extends AbstractValidator
 {
@@ -104,7 +105,7 @@ class Validator extends AbstractValidator
                 throw new ConfigException('No user agent string given [VIGILANT_USER_AGENT]');
             }
 
-            $this->config['user_agent'] = $this->getEnv('USER_AGENT');
+            $this->config['user_agent'] = UserAgent::format($this->getEnv('USER_AGENT'));
         }
     }
 
