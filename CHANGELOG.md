@@ -2,6 +2,18 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.7.0](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.7.0) - 2026-03-23
+
+- Added support for custom user agent strings ([#514](https://github.com/VerifiedJoseph/vigilant/pull/514), [`16b4a3f`](https://github.com/VerifiedJoseph/vigilant/commit/16b4a3f41ef0b55bd53b25df4673f0dae029b443))
+- Added support for overriding notification titles ([#513](https://github.com/VerifiedJoseph/vigilant/pull/513), [`2c349aa`](https://github.com/VerifiedJoseph/vigilant/commit/2c349aa8ff68430cb07abc86106c27526fb18d12))
+- Added support for per-feed Ntfy server URLs ([#509](https://github.com/VerifiedJoseph/vigilant/pull/509), [`271f587`](https://github.com/VerifiedJoseph/vigilant/commit/271f587219a43fb609379c49339776920c3fc602))
+- Added support for per-feed Gotify server URLs ([#508](https://github.com/VerifiedJoseph/vigilant/pull/508), [`cf17c6a`](https://github.com/VerifiedJoseph/vigilant/commit/cf17c6a4ef459d0928f4a41a9e0a3a555e37033a))
+- Changed the default user agent string to `Vigilant/VERSION (https://github.com/VerifiedJoseph/vigilant)`
+- Updated verifiedjoseph/gotify-api-php from 1.10.2 to 1.11.0 ([#495](https://github.com/VerifiedJoseph/vigilant/pull/495), [`946579f`](https://github.com/VerifiedJoseph/vigilant/commit/946579fe2efee23c9e60a1cb1314bd5d79440d27))
+- Dockerfile: Updated alpine from 3.23.2 to 3.23.3 ([#499](https://github.com/VerifiedJoseph/vigilant/pull/499), [`25c2862`](https://github.com/VerifiedJoseph/vigilant/commit/25c286250f04e8a42ecfecf794f6939e6b5ff6c2))
+
+All changes: [v1.6.3...v1.7.0](https://github.com/VerifiedJoseph/vigilant/compare/v1.6.3...v1.7.0)
+
 ## [1.6.3](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.6.3) - 2026-01-02
 
 - Dockerfile: Fixed php symlink. ([#484](https://github.com/VerifiedJoseph/vigilant/pull/484), [`5541953`](https://github.com/VerifiedJoseph/vigilant/commit/55419534e161c76cffdea4433fb5d06be37b9583))
