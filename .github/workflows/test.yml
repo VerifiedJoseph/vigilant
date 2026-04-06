@@ -3,12 +3,12 @@ on:
   pull_request:
     paths:
       - "**.php"
-      - ".github/workflows/tests.yml"
+      - ".github/workflows/test.yml"
   push:
     branches: [main]
     paths:
       - "**.php"
-      - ".github/workflows/tests.yml"
+      - ".github/workflows/test.yml"
 
 permissions:
   contents: read
