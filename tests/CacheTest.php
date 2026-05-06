@@ -243,7 +243,7 @@ class CacheTest extends TestCase
     public function testAddItems(): void
     {
         $items = ['iUz0s3QaHS', 'QwZF6yVJVu'];
-        $expected = self::$cache->getItems() + $items;
+        $expected = $items + self::$cache->getItems();
 
         self::$cache->addItems($items);
 
