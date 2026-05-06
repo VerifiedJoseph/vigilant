@@ -2,6 +2,12 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.8.0](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.8.0) - 2026-05-06
+
+- Reworked caching to prevent duplicate notifications ([#548](https://github.com/VerifiedJoseph/vigilant/pull/548), [`c282e2f`](https://github.com/VerifiedJoseph/vigilant/commit/c282e2f55fded42248925660193b84585fad2c8d))
+- Updated php-feed-io/feed-io from 6.2.0 to 6.3.1 ([#550](https://github.com/VerifiedJoseph/vigilant/pull/550), [`d5056aa`](https://github.com/VerifiedJoseph/vigilant/commit/d5056aac79fb5532522eaf503a7163c7e004d50a))
+- Updated verifiedjoseph/ntfy-php-library from 4.7.2 to 4.8.0 ([#540](https://github.com/VerifiedJoseph/vigilant/pull/540), [`dd4bb87`](https://github.com/VerifiedJoseph/vigilant/commit/dd4bb870345ed244d9290c6858de7c98b6ec7c19))
+
 ## [1.7.0](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.7.0) - 2026-03-23
 
 - Added support for custom user agent strings ([#514](https://github.com/VerifiedJoseph/vigilant/pull/514), [`16b4a3f`](https://github.com/VerifiedJoseph/vigilant/commit/16b4a3f41ef0b55bd53b25df4673f0dae029b443))
