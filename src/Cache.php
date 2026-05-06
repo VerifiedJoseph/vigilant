@@ -172,7 +172,7 @@ final class Cache
      */
     public function addItems(array $items): void
     {
-        $this->items = $this->items + $items;
+        $this->items = $items + $this->items;
     }
 
     /**
