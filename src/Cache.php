@@ -166,13 +166,13 @@ final class Cache
     }
 
     /**
-     * Update item hashes
+     * Add item hashes
      *
-     * @param array<int, string> $items item hashes
+     * @param array<string> $items item hashes
      */
-    public function updateItems(array $items): void
+    public function addItems(array $items): void
     {
-        $this->items = $items;
+        $this->items = $this->items + $items;
     }
 
     /**
