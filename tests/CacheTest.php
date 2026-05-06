@@ -238,15 +238,17 @@ class CacheTest extends TestCase
     }
 
     /**
-     * Test UpdateItems()
+     * Test addItems()
      */
-    public function testUpdateItems(): void
+    public function testAddItems(): void
     {
         $items = ['iUz0s3QaHS', 'QwZF6yVJVu'];
-        self::$cache->updateItems($items);
+        $expected = $items + self::$cache->getItems();
+
+        self::$cache->addItems($items);
 
         $this->assertEquals(
-            $items,
+            $expected,
             self::$cache->getItems()
         );
     }

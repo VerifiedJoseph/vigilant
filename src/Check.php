@@ -139,9 +139,9 @@ final class Check
 
         foreach ($result->getFeed() as $item) {
             $hash = sha1($item->getLink());
-            $itemHashes[] = $hash;
 
             if (in_array($hash, $this->cache->getItems()) === false) {
+                $itemHashes[] = $hash;
                 $newItems += 1;
 
                 $title = html_entity_decode($this->details->getTitleOverride() ?? $item->getTitle());
@@ -164,7 +164,7 @@ final class Check
 
         $this->logger->info(sprintf('Found %s new item(s).', $newItems));
 
-        $this->cache->updateItems($itemHashes);
+        $this->cache->addItems($itemHashes);
 
         if ($newItems > 0 && $this->cache->isFirstCheck() === true) {
             $this->logger->info('First feed check, not sending notifications for found items.');
