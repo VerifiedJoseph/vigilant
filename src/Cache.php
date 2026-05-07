@@ -127,6 +127,11 @@ final class Cache
         return $this->items;
     }
 
+    public function hasItem(string $hash): bool
+    {
+        return in_array($hash, $this->items, true);
+    }
+
     /**
      * Get number of feed errors
      *
@@ -166,13 +171,15 @@ final class Cache
     }
 
     /**
-     * Add item hashes
+     * Add item hash
      *
-     * @param array<string> $items item hashes
+     * @param string $hash item hash
      */
-    public function addItems(array $items): void
+    public function addItem(string $hash): void
     {
-        $this->items = $items + $this->items;
+        if ($this->hasItem($hash) === false) {
+            $this->items[] = $hash;
+        }
     }
 
     /**
