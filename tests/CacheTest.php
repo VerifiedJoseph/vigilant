@@ -149,6 +149,13 @@ class CacheTest extends TestCase
         );
     }
 
+    public function testHasItem(): void
+    {
+        $this->assertTrue(
+            self::$cache->hasItem(self::$fixtureData['items'][0])
+        );
+    }
+
     /**
      * Test getErrorCount()
      */
@@ -238,14 +245,14 @@ class CacheTest extends TestCase
     }
 
     /**
-     * Test addItems()
+     * Test addItem()
      */
-    public function testAddItems(): void
+    public function testAddItem(): void
     {
-        $items = ['iUz0s3QaHS', 'QwZF6yVJVu'];
-        $expected = $items + self::$cache->getItems();
+        $item = 'iUz0s3QaHS';
+        $expected = [...self::$cache->getItems(), $item];
 
-        self::$cache->addItems($items);
+        self::$cache->addItem($item);
 
         $this->assertEquals(
             $expected,
