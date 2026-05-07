@@ -2,6 +2,10 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.9.0](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.9.0) - 2026-05-07
+
+- Reworked adding items to cache ([#552](https://github.com/VerifiedJoseph/vigilant/pull/552), [`33f234a`](https://github.com/VerifiedJoseph/vigilant/commit/33f234ab90e6ab80cb5e57e6232e37b21143b627))
+
 ## [1.8.0](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.8.0) - 2026-05-06
 
 - Reworked caching to prevent duplicate notifications ([#548](https://github.com/VerifiedJoseph/vigilant/pull/548), [`c282e2f`](https://github.com/VerifiedJoseph/vigilant/commit/c282e2f55fded42248925660193b84585fad2c8d))
