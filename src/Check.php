@@ -134,14 +134,12 @@ final class Check
      */
     private function process(\FeedIo\Reader\Result $result): void
     {
-        $itemHashes = [];
         $newItems = 0;
 
         foreach ($result->getFeed() as $item) {
             $hash = sha1($item->getLink());
 
-            if (in_array($hash, $this->cache->getItems()) === false) {
-                $itemHashes[] = $hash;
+            if ($this->cache->hasItem($hash) === false) {
                 $newItems += 1;
 
                 $title = html_entity_decode($this->details->getTitleOverride() ?? $item->getTitle());
@@ -159,12 +157,12 @@ final class Check
                         $this->details->getTruncateLength()
                     );
                 }
+
+                $this->cache->addItem($hash);
             }
         }
 
         $this->logger->info(sprintf('Found %s new item(s).', $newItems));
-
-        $this->cache->addItems($itemHashes);
 
         if ($newItems > 0 && $this->cache->isFirstCheck() === true) {
             $this->logger->info('First feed check, not sending notifications for found items.');
