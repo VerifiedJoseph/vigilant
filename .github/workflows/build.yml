@@ -73,19 +73,6 @@ jobs:
           php-version: '8.3'
           coverage: none
 
-      - name: Get composer cache directory
-        id: composer-cache
-        shell: bash
-        run: |
-          echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
-
-      - name: Cache composer cache directory
-        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: ${{ runner.os }}-composer-
-
       - name: Run composer
         run: composer install --no-dev --optimize-autoloader
 
@@ -111,7 +98,6 @@ jobs:
         uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
         with:
           python-version: '3.13'
-          cache: 'pipenv'
 
       - name: Install pipenv
         run: pip install pipenv
