@@ -2,6 +2,13 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.9.1](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.9.1) - 2026-07-01
+
+- Updated symfony/yaml from 7.4.1 to 7.4.12 ([#571](https://github.com/VerifiedJoseph/vigilant/pull/571), [`c8876b0`](https://github.com/VerifiedJoseph/vigilant/commit/c8876b0d4dfd283e57d1043eafc60137517857ae))
+- Updated guzzlehttp/guzzle from 7.10.0 to 7.12.3 ([`20b7ede`](https://github.com/VerifiedJoseph/vigilant/commit/20b7edec6146e3fe57c88340aba6b3f5a523fd02), [`61518ff`](https://github.com/VerifiedJoseph/vigilant/commit/61518ff74f467bf73d6167b8e0cb7306b3ed348b))
+- Dockerfile: Updated alpine from 3.23.3 to 3.24.1 ([`86ba7b8`](https://github.com/VerifiedJoseph/vigilant/commit/86ba7b8aabdf18472fa07757b3d0e2efe175e9c1), [`2b2df9c`](https://github.com/VerifiedJoseph/vigilant/commit/2b2df9c3dc4f86ab508a9e33797f82fb19cce532))
+- Dockerfile: Updated composer from 2.9.5 to 2.10.1 ([`892d4ed`](https://github.com/VerifiedJoseph/vigilant/commit/892d4eda6fb9de1fb8f439c6b186ff603d6f64eb), [`d32b0cd`](https://github.com/VerifiedJoseph/vigilant/commit/d32b0cd7626b35568f0b86bb31d062400a333912))
+
 ## [1.9.0](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.9.0) - 2026-05-07
 
 - Reworked adding items to cache ([#552](https://github.com/VerifiedJoseph/vigilant/pull/552), [`33f234a`](https://github.com/VerifiedJoseph/vigilant/commit/33f234ab90e6ab80cb5e57e6232e37b21143b627))
