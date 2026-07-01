@@ -24,6 +24,9 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
+    ignore:
+      - dependency-name: "alpine"
+        update-types: ["version-update:semver-minor"]
     cooldown:
       default-days: 7
 
