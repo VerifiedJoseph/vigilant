@@ -2,6 +2,13 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.9.2](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.9.2) - 2026-08-01
+
+- Updated php-feed-io/feed-io from 6.3.1 to 6.4.1 ([#592](https://github.com/VerifiedJoseph/vigilant/pull/592), [`65fa729`](https://github.com/VerifiedJoseph/vigilant/commit/65fa7291669f6442f2c738f28aa43ee33b1de665))
+- Updated guzzlehttp/guzzle from 7.12.3 to 7.15.1 ([#586](https://github.com/VerifiedJoseph/vigilant/pull/586), [`d32fb20`](https://github.com/VerifiedJoseph/vigilant/commit/d32fb20f31306c3d694027679b2e862bd243b738))
+- Updated verifiedjoseph/gotify-api-php from 1.11.0 to 1.11.1 ([#595](https://github.com/VerifiedJoseph/vigilant/pull/595), [`43ca024`](https://github.com/VerifiedJoseph/vigilant/commit/43ca024d82b2b3d3fc46f3024b36ddbf37e3f8c2))
+- Updated verifiedjoseph/ntfy-php-library from 4.8.0 to 4.8.1 ([#594](https://github.com/VerifiedJoseph/vigilant/pull/594), [`f6b56bf`](https://github.com/VerifiedJoseph/vigilant/commit/f6b56bff01d9cbd8f9b20b4a1755fc0811009203))
+
 ## [1.9.1](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.9.1) - 2026-07-01
 
 - Updated symfony/yaml from 7.4.1 to 7.4.12 ([#571](https://github.com/VerifiedJoseph/vigilant/pull/571), [`c8876b0`](https://github.com/VerifiedJoseph/vigilant/commit/c8876b0d4dfd283e57d1043eafc60137517857ae))
