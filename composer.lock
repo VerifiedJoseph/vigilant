@@ -1257,16 +1257,16 @@
         },
         {
             "name": "verifiedjoseph/gotify-api-php",
-            "version": "v1.11.0",
+            "version": "v1.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/VerifiedJoseph/gotify-api-php.git",
-                "reference": "b9084afb164917b7b81b950d16c419fbfaad517c"
+                "reference": "77c32e817614bacb4c7f41e854d5ae2e93766b72"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/VerifiedJoseph/gotify-api-php/zipball/b9084afb164917b7b81b950d16c419fbfaad517c",
-                "reference": "b9084afb164917b7b81b950d16c419fbfaad517c",
+                "url": "https://api.github.com/repos/VerifiedJoseph/gotify-api-php/zipball/77c32e817614bacb4c7f41e854d5ae2e93766b72",
+                "reference": "77c32e817614bacb4c7f41e854d5ae2e93766b72",
                 "shasum": ""
             },
             "require": {
@@ -1279,7 +1279,7 @@
                 "phpstan/phpstan": "^2.0",
                 "phpstan/phpstan-deprecation-rules": "^2.0",
                 "phpstan/phpstan-phpunit": "^2.0",
-                "phpunit/phpunit": "^11.4",
+                "phpunit/phpunit": "^12.5",
                 "squizlabs/php_codesniffer": "^4.0"
             },
             "type": "library",
@@ -1305,9 +1305,9 @@
             ],
             "support": {
                 "issues": "https://github.com/VerifiedJoseph/gotify-api-php/issues",
-                "source": "https://github.com/VerifiedJoseph/gotify-api-php/tree/v1.11.0"
+                "source": "https://github.com/VerifiedJoseph/gotify-api-php/tree/v1.11.1"
             },
-            "time": "2026-01-03T15:44:58+00:00"
+            "time": "2026-07-02T09:18:04+00:00"
         },
         {
             "name": "verifiedjoseph/ntfy-php-library",
