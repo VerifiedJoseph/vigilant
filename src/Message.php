@@ -68,7 +68,7 @@ class Message
             return $this->truncate($this->body);
         }
 
-        if ($this->truncate === false && strlen($this->body) > $this->fallbackTruncateLength) {
+        if (strlen($this->body) > $this->fallbackTruncateLength) {
             $this->truncateLength = $this->fallbackTruncateLength;
             return $this->truncate($this->body);
         }
