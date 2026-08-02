@@ -12,6 +12,7 @@ class Message
     private string $url;
     private bool $truncate = false;
     private int $truncateLength = 200;
+    private int $fallbackTruncateLength = 4000;
 
     /**
      * @param string $title Message title
@@ -64,6 +65,11 @@ class Message
     public function getBody(): string
     {
         if ($this->truncate === true) {
+            return $this->truncate($this->body);
+        }
+
+        if ($this->truncate === false && strlen($this->body) > $this->fallbackTruncateLength) {
+            $this->truncateLength = $this->fallbackTruncateLength;
             return $this->truncate($this->body);
         }
 
