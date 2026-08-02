@@ -64,16 +64,7 @@ class Message
      */
     public function getBody(): string
     {
-        if ($this->truncate === true) {
-            return $this->truncate($this->body);
-        }
-
-        if (strlen($this->body) > $this->fallbackTruncateLength) {
-            $this->truncateLength = $this->fallbackTruncateLength;
-            return $this->truncate($this->body);
-        }
-
-        return $this->body;
+        return $this->truncate($this->body);
     }
 
     /**
@@ -92,11 +83,18 @@ class Message
      */
     private function truncate(string $text): string
     {
-        if (strlen($text) <= $this->truncateLength) {
+        $length = $this->truncateLength;
+
+        if (strlen($text) > $this->fallbackTruncateLength) {
+            $this->truncate = true;
+            $length = $this->fallbackTruncateLength;
+        }
+
+        if (strlen($text) <= $length || $this->truncate === false) {
             return $text;
         }
 
-        $text = substr($text, 0, $this->truncateLength);
+        $text = substr($text, 0, $length);
         $breakpoint = strrpos($text, '.');
 
         if ($breakpoint !== false) {
