@@ -35,7 +35,7 @@ class Message
         $this->prefix = $prefix;
         $this->truncate = $truncate;
 
-        if (is_null($truncateLength) === false && $truncateLength >= 0) {
+        if (is_null($truncateLength) === false && 0 < $truncateLength) {
             $this->truncateLength = $truncateLength;
         }
     }

@@ -81,6 +81,21 @@ class MessageTest extends TestCase
     }
 
     /**
+     * Test message truncation with text with truncation length of zero
+     */
+    public function testTruncationWithTruncationZeroLength(): void
+    {
+        $message = new Message(
+            title: '',
+            body: 'Hello World',
+            truncate: true,
+            truncateLength: 0
+        );
+
+        $this->assertEquals('Hello World', $message->getBody());
+    }
+
+    /**
      * Test message truncation with text that is shorter than given truncation length
      */
     public function testTruncationWithTextShorterThatTruncationLength(): void
