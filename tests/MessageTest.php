@@ -109,4 +109,17 @@ class MessageTest extends TestCase
 
         $this->assertEquals(self::$samples['short']['output'], $message->getBody());
     }
+
+    /**
+     * Test message truncation with text that is greater than fallback truncation length
+     */
+    public function testTruncationWithTextGreaterThanFallbackTruncationLength(): void
+    {
+        $message = new Message(
+            title: '',
+            body: self::$samples['long']['input'],
+        );
+
+        $this->assertEquals(self::$samples['long']['output'], $message->getBody());
+    }
 }
