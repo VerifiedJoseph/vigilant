@@ -33,7 +33,7 @@ feeds:
 | `interval`        | **Yes**  | integer | Interval between feed checks in seconds. Minimum value is `300` (5 minutes).                       |
 | `title_prefix`    | No       | string  | Text to prepend to notification titles.                                                            |
 | `title_override`  | No       | string  | Text to use as notification title, overrides value from feed.                        |
-| `truncate`        | No       | boolean | Truncate notification text. Use `truncate_length` to set a custom length.<br>When a message is longer than 4000 characters and truncation is disabled, it is automatically truncated to 4000 characters to guarantee delivery.  |
+| `truncate`        | No       | boolean | Truncate notification text. Use `truncate_length` to set a custom length.<br>When a message is longer than 4000 characters and truncation is disabled, it is automatically truncated to 4000 characters to ensure delivery.  |
 | `truncate_length` | No       | integer | Number of characters to truncate notification text to. Minimum is `0` and the default is `200`.    |
 | `user_agent`      | No       | string  | User agent string to use when fetching feeds. Overrides default value and/or environment variable. |
 

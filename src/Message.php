@@ -100,7 +100,7 @@ class Message
     /**
      * Returns boolean indicating whether text needs truncating
      * @param string $text Message text
-     * @return bool 
+     * @return bool
      */
     private function needsTruncating(string $text): bool
     {
