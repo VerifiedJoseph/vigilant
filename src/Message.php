@@ -12,6 +12,7 @@ class Message
     private string $url;
     private bool $truncate = false;
     private int $truncateLength = 200;
+    private int $fallbackTruncateLength = 4000;
 
     /**
      * @param string $title Message title
@@ -63,7 +64,7 @@ class Message
      */
     public function getBody(): string
     {
-        if ($this->truncate === true) {
+        if ($this->needsTruncating($this->body) === true) {
             return $this->truncate($this->body);
         }
 
@@ -80,16 +81,12 @@ class Message
     }
 
     /**
-     * Truncate message body
+     * Truncates message body
      * @param string $text
      * @return string
      */
     private function truncate(string $text): string
     {
-        if (strlen($text) <= $this->truncateLength) {
-            return $text;
-        }
-
         $text = substr($text, 0, $this->truncateLength);
         $breakpoint = strrpos($text, '.');
 
@@ -98,5 +95,28 @@ class Message
         }
 
         return $text . '...';
+    }
+
+    /**
+     * Returns boolean indicating whether text needs truncating
+     * @param string $text Message text
+     * @return bool
+     */
+    private function needsTruncating(string $text): bool
+    {
+        if (strlen($text) <= $this->truncateLength) {
+            return false;
+        }
+
+        if ($this->truncate === true) {
+            return true;
+        }
+
+        if (strlen($text) > $this->fallbackTruncateLength) {
+            $this->truncateLength = $this->fallbackTruncateLength;
+            return true;
+        }
+
+        return false;
     }
 }

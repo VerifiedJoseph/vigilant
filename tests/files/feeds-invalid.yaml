@@ -251,6 +251,15 @@ feeds:
       truncate: true
       truncate_length: string
 
+  truncateLengthGreaterThan4000:
+    exception: Truncate length greater than 4000
+    data:
+      name: Example.com Feed
+      url: https://www.example.com/feed.rss
+      interval: 300
+      truncate: true
+      truncate_length: 4500
+
   truncateLengthLessThanZero:
     exception: Truncate length less than zero
     data:

@@ -24,7 +24,7 @@ class MessageTest extends TestCase
     public function testClass(): void
     {
         $title = 'Hello World';
-        $body = 'Hello World from phpunit';
+        $body = self::$samples['default']['input'];
         $url = 'https://example.com/';
 
         $message = new Message($title, $body, $url);
@@ -66,6 +66,22 @@ class MessageTest extends TestCase
     }
 
     /**
+     * Test message with truncation explicitly disabled
+     */
+    public function testWithTruncationDisabled(): void
+    {
+        $body = self::$samples['default']['input'];
+
+        $message = new Message(
+            title: '',
+            body: $body,
+            truncate: false
+        );
+
+        $this->assertEquals($body, $message->getBody());
+    }
+
+    /**
      * Test message truncation with a custom truncation length
      */
     public function testCustomLengthTruncation(): void
@@ -83,7 +99,7 @@ class MessageTest extends TestCase
     /**
      * Test message truncation with text with truncation length of zero
      */
-    public function testTruncationWithTruncationZeroLength(): void
+    public function testTruncationWithTruncationLengthZero(): void
     {
         $message = new Message(
             title: '',
@@ -108,5 +124,18 @@ class MessageTest extends TestCase
         );
 
         $this->assertEquals(self::$samples['short']['output'], $message->getBody());
+    }
+
+    /**
+     * Test message truncation with text that is greater than fallback truncation length
+     */
+    public function testTruncationWithTextGreaterThanFallbackTruncationLength(): void
+    {
+        $message = new Message(
+            title: '',
+            body: self::$samples['long']['input'],
+        );
+
+        $this->assertEquals(self::$samples['long']['output'], $message->getBody());
     }
 }

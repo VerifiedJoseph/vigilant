@@ -189,6 +189,13 @@ final class Validate
                     $this->details['name']
                 ));
             }
+
+            if ($length > 4000) {
+                throw new FeedsException(sprintf(
+                    'Truncate length greater than 4000 given for feed: %s',
+                    $this->details['name']
+                ));
+            }
         }
     }
 
