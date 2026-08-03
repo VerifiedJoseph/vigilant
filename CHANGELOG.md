@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.10.0](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.10.0) - 2026-08-03
+
+- Added fallback message truncation ([#601](https://github.com/VerifiedJoseph/vigilant/pull/601), [`89e9b0a`](https://github.com/VerifiedJoseph/vigilant/commit/89e9b0aa21397a51a90202dca0f14233c9b217b1))
+- Fixed undefined array key warning in `Feed\Validate` ([#600](https://github.com/VerifiedJoseph/vigilant/pull/600), [`c55dae4`](https://github.com/VerifiedJoseph/vigilant/commit/c55dae4ead5250be6bb76fa157184b03569c8965))
+
 ## [1.9.2](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.9.2) - 2026-08-01
 
 - Updated php-feed-io/feed-io from 6.3.1 to 6.4.1 ([#592](https://github.com/VerifiedJoseph/vigilant/pull/592), [`65fa729`](https://github.com/VerifiedJoseph/vigilant/commit/65fa7291669f6442f2c738f28aa43ee33b1de665))
