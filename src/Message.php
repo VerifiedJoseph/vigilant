@@ -64,7 +64,11 @@ class Message
      */
     public function getBody(): string
     {
-        return $this->truncate($this->body);
+        if ($this->needsTruncating($this->body) === true) {
+            return $this->truncate($this->body);
+        }
+
+        return $this->body;
     }
 
     /**
@@ -83,18 +87,7 @@ class Message
      */
     private function truncate(string $text): string
     {
-        $length = $this->truncateLength;
-
-        if (strlen($text) > $this->fallbackTruncateLength) {
-            $this->truncate = true;
-            $length = $this->fallbackTruncateLength;
-        }
-
-        if (strlen($text) <= $length || $this->truncate === false) {
-            return $text;
-        }
-
-        $text = substr($text, 0, $length);
+        $text = substr($text, 0, $this->truncateLength);
         $breakpoint = strrpos($text, '.');
 
         if ($breakpoint !== false) {
@@ -102,5 +95,23 @@ class Message
         }
 
         return $text . '...';
+    }
+
+    private function needsTruncating(string $text)
+    {
+        if (strlen($text) <= $this->truncateLength) {
+            return false;
+        }
+
+        if ($this->truncate === true) {
+            return true;
+        }
+
+        if (strlen($text) > $this->fallbackTruncateLength) {
+            $this->truncateLength = $this->fallbackTruncateLength;
+            return true;
+        }
+
+        return false;
     }
 }
