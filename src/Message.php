@@ -98,7 +98,7 @@ class Message
     }
 
     /**
-     * Returns boolean interacting whether text needs truncating
+     * Returns boolean indicating whether text needs truncating
      * @param string $text Message text
      * @return bool 
      */
