@@ -97,7 +97,7 @@ class Message
         return $text . '...';
     }
 
-    private function needsTruncating(string $text)
+    private function needsTruncating(string $text): bool
     {
         if (strlen($text) <= $this->truncateLength) {
             return false;
