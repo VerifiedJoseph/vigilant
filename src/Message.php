@@ -81,7 +81,7 @@ class Message
     }
 
     /**
-     * Truncate message body
+     * Truncates message body
      * @param string $text
      * @return string
      */
@@ -97,6 +97,11 @@ class Message
         return $text . '...';
     }
 
+    /**
+     * Returns boolean interacting whether text needs truncating
+     * @param string $text Message text
+     * @return bool 
+     */
     private function needsTruncating(string $text): bool
     {
         if (strlen($text) <= $this->truncateLength) {
