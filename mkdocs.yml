@@ -1,5 +1,7 @@
 site_name: Vigilant
 theme:
+  features:
+    - content.code.copy
   palette:
     scheme: slate
   font: false
