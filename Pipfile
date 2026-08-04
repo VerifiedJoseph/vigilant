@@ -4,8 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-mkdocs = "==1.*"
-mkdocs-material = "==9.5.*"
+zensical = "*"
 
 [dev-packages]
 
