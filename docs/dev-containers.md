@@ -46,10 +46,10 @@ pipenv install
 
 Run the MkDocs development server
 ```
-pipenv run mkdocs serve
+pipenv run zensical serve
 ```
 
 Build the MkDocs documentation
 ```
-pipenv run mkdocs build
+pipenv run zensical build --clean
 ```

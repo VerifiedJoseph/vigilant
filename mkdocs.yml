@@ -1,9 +1,9 @@
 site_name: Vigilant
 theme:
-  name: material
+  features:
+    - content.code.copy
   palette:
     scheme: slate
-    primary: black
   font: false
   logo: img/logo/icon.png
   favicon: img/logo/favicon.ico
@@ -26,4 +26,11 @@ nav:
   - "Licenses": licenses.md
 
 markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
   - pymdownx.snippets
+  - pymdownx.superfences
+
