@@ -48,7 +48,7 @@ class Config
 
         $this->config = $defaults;
         $this->config['timezone'] = date_default_timezone_get();
-        $this->config['feeds_file'] = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'feeds.yaml';
+        $this->config['feeds_file'] = dirname(__DIR__) . '/feeds.yaml';
     }
 
     /**
@@ -252,8 +252,10 @@ class Config
      */
     private function requireConfigFile(): void
     {
-        if (file_exists('config.php') === true) {
-            include_once('config.php');
+        $path = dirname(__DIR__) . '/config.php';
+
+        if (file_exists($path) === true) {
+            include_once($path);
         }
     }
 }
