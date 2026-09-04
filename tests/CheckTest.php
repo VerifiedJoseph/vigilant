@@ -39,6 +39,7 @@ class CheckTest extends TestCase
     private array $cache = [
         'feed_url' => 'https://www.example.com/feed.rss',
         'first_check' => 1666292400,
+        'last_check' => 1666292400,
         'next_check' => 0,
         'error_count' => 3,
         'items' => ['4a12f90c6959a0b0cc134ea2a0564ade5d779c50'],
@@ -79,6 +80,27 @@ class CheckTest extends TestCase
         );
 
         $this->assertTrue($check->isDue());
+    }
+
+    /**
+     * Test `isDue()` false
+     */
+    public function testIsDueFalse(): void
+    {
+        $cacheData = $this->cache;
+        $cacheData['last_check'] = time() + 60;
+
+        $this->createCacheFIle(sha1($this->feed['url']), $cacheData);
+
+        $details = new Details($this->feed);
+        $check = new check(
+            $details,
+            new Fetch(self::$config->getUserAgent()),
+            self::$config,
+            self::$logger
+        );
+
+        $this->assertFalse($check->isDue());
     }
 
     /**
