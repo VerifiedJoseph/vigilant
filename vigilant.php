@@ -10,7 +10,7 @@ use Vigilant\Version;
 use Vigilant\Exception\ConfigException;
 use Vigilant\Exception\AppException;
 
-require('vendor/autoload.php');
+require(__DIR__ . '/vendor/autoload.php');
 
 try {
     $config = new Config();
