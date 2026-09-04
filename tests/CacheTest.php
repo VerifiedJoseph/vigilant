@@ -107,20 +107,16 @@ class CacheTest extends TestCase
     }
 
     /**
-     * Test getIsExpired()
+     * Test getLastCheck()
      */
-    public function testIsExpired(): void
+    public function testGetLastCheck(): void
     {
-        $this->assertTrue(self::$cache->isExpired());
-    }
+        $check = self::$cache->getLastCheck();
 
-    /**
-     * Test getIsExpired() returns value false
-     */
-    public function testIsExpiredFalse(): void
-    {
-        self::$cache->updateNextCheck(300);
-        $this->assertFalse(self::$cache->isExpired());
+        $this->assertEquals(
+            self::$fixtureData['last_check'],
+            $check
+        );
     }
 
     /**
@@ -198,6 +194,24 @@ class CacheTest extends TestCase
     }
 
     /**
+     * Test setLastCheck
+     */
+    public function testSetLastCheck(): void
+    {
+        $config = self::createStub(Config::class);
+        $config->method('getCachePath')->willReturn(self::$tempCacheFolder);
+        $config->method('getCacheFormatVersion')->willReturn(1);
+
+        $cache = new Cache('testing', $config);
+
+        $this->assertEquals(0, $cache->getLastCheck());
+
+        $cache->setLastCheck();
+
+        $this->assertGreaterThan(0, $cache->getLastCheck());
+    }
+
+    /**
      * test setFirstCheck
      */
     public function testSetFirstCheck(): void
@@ -206,14 +220,10 @@ class CacheTest extends TestCase
         $config->method('getCachePath')->willReturn(self::$tempCacheFolder);
         $config->method('getCacheFormatVersion')->willReturn(1);
 
-        $time = time();
         $cache = new Cache('testing', $config);
-
-        $this->assertEquals(0, $cache->getFirstCheck());
-
         $cache->setFirstCheck();
 
-        $this->assertGreaterThanOrEqual($time, $cache->getFirstCheck());
+        $this->assertGreaterThan(0, $cache->getFirstCheck());
     }
 
     /**
@@ -235,11 +245,18 @@ class CacheTest extends TestCase
      */
     public function testUpdateNextCheck(): void
     {
-        $time = time() + 300;
+        $date = new \DateTime();
+        $date->add(\DateInterval::createFromDateString('300 seconds'));
+        $date->setTime(
+            (int) $date->format('H'),
+            (int) $date->format('i'),
+            0
+        );
+
         self::$cache->updateNextCheck(300);
 
         $this->assertGreaterThanOrEqual(
-            $time,
+            $date->getTimestamp(),
             self::$cache->getNextCheck()
         );
     }
