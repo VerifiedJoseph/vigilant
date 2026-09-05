@@ -14,7 +14,7 @@ class Config
     private string $minPhpVersion = '8.2.0';
 
     /** @var array<int, string> $extensions Required PHP extensions */
-    private array $extensions = ['xml', 'xmlreader', 'ctype'];
+    private array $extensions = ['xml', 'xmlreader', 'ctype', 'mbstring'];
 
     /** @var int $minCheckInterval Minimum feed check interval in seconds */
     private int $minCheckInterval = 300;
