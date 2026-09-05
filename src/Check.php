@@ -57,7 +57,13 @@ final class Check
      */
     public function isDue(): bool
     {
-        return $this->cache->isExpired();
+        $diff = time() - $this->cache->getLastCheck();
+
+        if ($diff >= $this->details->getInterval()) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -123,6 +129,7 @@ final class Check
             }
 
             $this->cache->updateNextCheck($this->details->getInterval());
+            $this->cache->setLastCheck();
             $this->cache->save();
         }
     }
