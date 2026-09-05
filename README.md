@@ -25,6 +25,7 @@ Vigilant is RSS/ATOM/JSON feed monitor that sends push notifications on new entr
   - [`PCRE`](https://www.php.net/manual/en/book.pcre.php)
   - [`XML`](https://www.php.net/manual/en/book.xml.php)
   - [`XMLReader`](https://www.php.net/manual/en/book.xmlreader.php)
+  - [`mbstring`](https://www.php.net/manual/en/book.mbstring.php)
 
 ## Dependencies
 
