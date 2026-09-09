@@ -280,8 +280,8 @@ final class Cache
     }
 
     /**
-     * Returns unix timestamp with time to the current minute (zero seconds)
-     * @param int $interval Add date interval in seconds to add to the time
+     * Returns unix timestamp with time to the minute
+     * @param int $interval Account of seconds to add the to timestamp
      * @return int
      */
     private function getTimestamp(int $interval = 0): int
