@@ -245,18 +245,22 @@ class CacheTest extends TestCase
      */
     public function testUpdateNextCheck(): void
     {
-        $date = new \DateTime();
+        $interval = 300;
+        $time = time() + $interval;
+
+        /*$date = new \DateTime();
         $date->add(\DateInterval::createFromDateString('300 seconds'));
         $date->setTime(
             (int) $date->format('H'),
             (int) $date->format('i'),
             0
-        );
+        );*/
 
-        self::$cache->updateNextCheck(300);
+        self::$cache->updateNextCheck($interval);
 
         $this->assertGreaterThanOrEqual(
-            $date->getTimestamp(),
+            //$date->getTimestamp(),
+            $time,
             self::$cache->getNextCheck()
         );
     }
