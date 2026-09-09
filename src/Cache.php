@@ -172,7 +172,7 @@ final class Cache
      */
     public function setLastCheck(): void
     {
-        $this->lastCheck = $this->getTimestamp();
+        $this->lastCheck = time();
     }
 
     /**
@@ -182,7 +182,7 @@ final class Cache
      */
     public function updateNextCheck(int $interval): void
     {
-        $this->nextCheck = $this->getTimestamp($interval);
+        $this->nextCheck = time() + $interval;
     }
 
     /**
@@ -211,7 +211,7 @@ final class Cache
     public function setFirstCheck(): void
     {
         if ($this->firstCheck === 0) {
-            $this->firstCheck = $this->getTimestamp();
+            $this->firstCheck = time();
         }
     }
 
@@ -284,7 +284,7 @@ final class Cache
      * @param int $interval Account of seconds to add the to timestamp
      * @return int
      */
-    private function getTimestamp(int $interval = 0): int
+    /*private function getTimestamp(int $interval = 0): int
     {
         $date = new \DateTime();
 
@@ -299,5 +299,5 @@ final class Cache
         );
 
         return $date->getTimestamp();
-    }
+    }*/
 }
