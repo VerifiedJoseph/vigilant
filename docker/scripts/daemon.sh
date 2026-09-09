@@ -3,19 +3,19 @@
 sleep 2
 echo "Starting Vigilant daemon..."
 
-nextRun=$(bc <<< "$(date '+%s') - 300")
+lastRun=0
 
 while true
 do
 	now=$(date '+%s')
-	dif=$(bc <<< "$now - $nextRun")
+	dif=$(bc <<< "$now - $lastRun")
 
-	if [ "$dif" -ge 300 ]; then
+	if [ "$dif" -ge 60 ]; then
 		if ! php vigilant.php; then
 			exit 1
 		fi
 
-		nextRun=$(date '+%s')
+		lastRun=$(date '+%s')
 	fi
 
 	sleep 10
