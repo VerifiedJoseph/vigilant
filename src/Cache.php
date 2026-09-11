@@ -169,20 +169,23 @@ final class Cache
 
     /**
      * Set last check Unix timestamp
+     *
+     * @param int $timestamp Unix timestamp
      */
-    public function setLastCheck(): void
+    public function setLastCheck(int $timestamp): void
     {
-        $this->lastCheck = time();
+        $this->lastCheck = $timestamp;
     }
 
     /**
      * Update next check using interval value
      *
+     * @param int $timestamp Unix timestamp
      * @param int $interval Interval in seconds
      */
-    public function updateNextCheck(int $interval): void
+    public function updateNextCheck(int $timestamp, int $interval): void
     {
-        $this->nextCheck = time() + $interval;
+        $this->nextCheck = $timestamp + $interval;
     }
 
     /**
@@ -207,11 +210,13 @@ final class Cache
 
     /**
      * Set first check unix timestamp
+     *
+     * @param int $timestamp Unix timestamp
      */
-    public function setFirstCheck(): void
+    public function setFirstCheck(int $timestamp): void
     {
         if ($this->firstCheck === 0) {
-            $this->firstCheck = time();
+            $this->firstCheck = $timestamp;
         }
     }
 

@@ -202,13 +202,11 @@ class CacheTest extends TestCase
         $config->method('getCachePath')->willReturn(self::$tempCacheFolder);
         $config->method('getCacheFormatVersion')->willReturn(1);
 
+        $timestamp = time();
         $cache = new Cache('testing', $config);
+        $cache->setLastCheck($timestamp);
 
-        $this->assertEquals(0, $cache->getLastCheck());
-
-        $cache->setLastCheck();
-
-        $this->assertGreaterThan(0, $cache->getLastCheck());
+        $this->assertEquals($timestamp, $cache->getLastCheck());
     }
 
     /**
@@ -219,11 +217,12 @@ class CacheTest extends TestCase
         $config = self::createStub(Config::class);
         $config->method('getCachePath')->willReturn(self::$tempCacheFolder);
         $config->method('getCacheFormatVersion')->willReturn(1);
-
+        
+        $timestamp = time();
         $cache = new Cache('testing', $config);
-        $cache->setFirstCheck();
+        $cache->setFirstCheck($timestamp);
 
-        $this->assertGreaterThan(0, $cache->getFirstCheck());
+        $this->assertEquals($timestamp, $cache->getFirstCheck());
     }
 
     /**
@@ -246,7 +245,7 @@ class CacheTest extends TestCase
     public function testUpdateNextCheck(): void
     {
         $interval = 300;
-        $time = time() + $interval;
+        $timestamp = time() + $interval;
 
         /*$date = new \DateTime();
         $date->add(\DateInterval::createFromDateString('300 seconds'));
@@ -256,13 +255,9 @@ class CacheTest extends TestCase
             0
         );*/
 
-        self::$cache->updateNextCheck($interval);
+        self::$cache->updateNextCheck($timestamp,$interval);
 
-        $this->assertGreaterThanOrEqual(
-            //$date->getTimestamp(),
-            $time,
-            self::$cache->getNextCheck()
-        );
+        $this->assertEquals($timestamp, self::$cache->getNextCheck());
     }
 
     /**
