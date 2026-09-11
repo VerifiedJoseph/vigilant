@@ -217,7 +217,7 @@ class CacheTest extends TestCase
         $config = self::createStub(Config::class);
         $config->method('getCachePath')->willReturn(self::$tempCacheFolder);
         $config->method('getCacheFormatVersion')->willReturn(1);
-        
+
         $timestamp = time();
         $cache = new Cache('testing', $config);
         $cache->setFirstCheck($timestamp);
