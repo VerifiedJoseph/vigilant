@@ -57,7 +57,13 @@ final class Check
      */
     public function isDue(): bool
     {
-        return $this->cache->isExpired();
+        $diff = time() - $this->cache->getLastCheck();
+
+        if ($diff >= $this->details->getInterval()) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -85,6 +91,8 @@ final class Check
 
     public function check(): void
     {
+        $timestamp = time();
+
         try {
             $this->logger->info(sprintf(
                 'Checking...%s (%s)',
@@ -117,12 +125,13 @@ final class Check
                 $this->cache->resetErrorCount();
 
                 if ($this->cache->isFirstCheck() === true) {
-                    $this->cache->setFirstCheck();
+                    $this->cache->setFirstCheck($timestamp);
                     $this->cache->setFeedUrl($this->details->getUrl());
                 }
             }
 
-            $this->cache->updateNextCheck($this->details->getInterval());
+            $this->cache->updateNextCheck($timestamp, $this->details->getInterval());
+            $this->cache->setLastCheck($timestamp);
             $this->cache->save();
         }
     }

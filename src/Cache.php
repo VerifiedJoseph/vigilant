@@ -28,7 +28,12 @@ final class Cache
     private int $firstCheck = 0;
 
     /**
-     * @var int $firstCheck Unix timestamp of the next check
+     * @var int $lastCheck Unix timestamp of the last check
+     */
+    private int $lastCheck = 0;
+
+    /**
+     * @var int $nextCheck Unix timestamp of the next check
      */
     private int $nextCheck = 0;
 
@@ -70,7 +75,7 @@ final class Cache
     }
 
     /**
-     * Get first check unix timestamp
+     * Returns unix timestamp for the first check
      *
      * @return int
      */
@@ -80,7 +85,7 @@ final class Cache
     }
 
     /**
-     * Is this the first feed check
+     * Returns boolean indicating if this is the first check if a feed
      *
      * @return bool
      */
@@ -94,21 +99,17 @@ final class Cache
     }
 
     /**
-     * Has the cache expired
+     * Returns unix timestamp for the last check
      *
-     * @return bool
+     * @return int
      */
-    public function isExpired(): bool
+    public function getLastCheck(): int
     {
-        if (time() >= $this->nextCheck) {
-            return true;
-        }
-
-        return false;
+        return $this->lastCheck;
     }
 
     /**
-     * Get next check unix timestamp
+     * Returns unix timestamp for the next check
      *
      * @return int
      */
@@ -127,13 +128,19 @@ final class Cache
         return $this->items;
     }
 
+    /**
+     * Returns boolean indicating if hash is in the cache
+     *
+     * @param string $hash Feed item hash
+     * @return bool
+     */
     public function hasItem(string $hash): bool
     {
         return in_array($hash, $this->items, true);
     }
 
     /**
-     * Get number of feed errors
+     * Returns number of feed errors
      *
      * @return int
      */
@@ -161,13 +168,24 @@ final class Cache
     }
 
     /**
+     * Set last check Unix timestamp
+     *
+     * @param int $timestamp Unix timestamp
+     */
+    public function setLastCheck(int $timestamp): void
+    {
+        $this->lastCheck = $timestamp;
+    }
+
+    /**
      * Update next check using interval value
      *
+     * @param int $timestamp Unix timestamp
      * @param int $interval Interval in seconds
      */
-    public function updateNextCheck(int $interval): void
+    public function updateNextCheck(int $timestamp, int $interval): void
     {
-        $this->nextCheck = time() + $interval;
+        $this->nextCheck = $timestamp + $interval;
     }
 
     /**
@@ -192,11 +210,13 @@ final class Cache
 
     /**
      * Set first check unix timestamp
+     *
+     * @param int $timestamp Unix timestamp
      */
-    public function setFirstCheck(): void
+    public function setFirstCheck(int $timestamp): void
     {
         if ($this->firstCheck === 0) {
-            $this->firstCheck = time();
+            $this->firstCheck = $timestamp;
         }
     }
 
@@ -213,6 +233,7 @@ final class Cache
             if ($this->hasValidVersion($version) === true) {
                 $this->feedUrl = $data['feed_url'];
                 $this->firstCheck = $data['first_check'];
+                $this->lastCheck = $data['last_check'] ?? 0;
                 $this->nextCheck = $data['next_check'];
                 $this->errorCount = $data['error_count'];
                 $this->items = $data['items'];
@@ -231,6 +252,7 @@ final class Cache
         $json = Json::encode([
             'feed_url' => $this->feedUrl,
             'first_check' => $this->firstCheck,
+            'last_check' => $this->lastCheck,
             'next_check' => $this->nextCheck,
             'error_count' => $this->errorCount,
             'items' => $this->items,
@@ -261,4 +283,26 @@ final class Cache
 
         return false;
     }
+
+    /**
+     * Returns unix timestamp with time to the minute
+     * @param int $interval Account of seconds to add the to timestamp
+     * @return int
+     */
+    /*private function getTimestamp(int $interval = 0): int
+    {
+        $date = new \DateTime();
+
+        if ($interval > 0) {
+            $date->add(\DateInterval::createFromDateString($interval . ' seconds'));
+        }
+
+        $date->setTime(
+            (int) $date->format('H'),
+            (int) $date->format('i'),
+            0
+        );
+
+        return $date->getTimestamp();
+    }*/
 }
