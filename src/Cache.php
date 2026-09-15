@@ -85,7 +85,7 @@ final class Cache
     }
 
     /**
-     * Returns boolean indicating if this is the first check if a feed
+     * Returns boolean indicating if first check has occurred
      *
      * @return bool
      */
@@ -119,7 +119,7 @@ final class Cache
     }
 
     /**
-     * Get item hashes
+     * Returns item hashes
      *
      * @return array<int, string>
      */
