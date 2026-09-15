@@ -2,6 +2,14 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.11.0](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.11.0) - 2026-09-15
+
+- Reworked check interval handling ([#623](https://github.com/VerifiedJoseph/vigilant/pull/623), [`8c0d5d2`](https://github.com/VerifiedJoseph/vigilant/commit/8c0d5d2dcfebbb9ab40a594d3226613c9d2dfbc8))
+- Added mbstring to required php extensions ([`6ecac9d`](https://github.com/VerifiedJoseph/vigilant/commit/6ecac9d7d4da54f63ffad05a8aa2f85767e8dbe5), [`771d10b`](https://github.com/VerifiedJoseph/vigilant/commit/771d10b703d04eef9aba2a81638c06de17b2a9cf))
+- Reduced time between php script runs in docker image ([#624](https://github.com/VerifiedJoseph/vigilant/pull/624), [`a4fc9ff`](https://github.com/VerifiedJoseph/vigilant/commit/a4fc9ff54812391adb6a46bc9a022ed2632fb332))
+- Dockerfile: Added tini ([#629](https://github.com/VerifiedJoseph/vigilant/pull/629), [`b60634d`](https://github.com/VerifiedJoseph/vigilant/commit/b60634dbcb43012b674ed9b45dd6ae572c5b7d5f))
+- Dockerfile: Updated composer from 2.10.1 to 2.10.3 ([#621](https://github.com/VerifiedJoseph/vigilant/pull/621), [`48f346a`](https://github.com/VerifiedJoseph/vigilant/commit/48f346a9634192aeea25ece8094c08dd2ae239a2))
+
 ## [1.10.0](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.10.0) - 2026-08-03
 
 - Added fallback message truncation ([#601](https://github.com/VerifiedJoseph/vigilant/pull/601), [`89e9b0a`](https://github.com/VerifiedJoseph/vigilant/commit/89e9b0aa21397a51a90202dca0f14233c9b217b1))
