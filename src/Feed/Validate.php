@@ -26,11 +26,17 @@ final class Validate
     ];
 
     /**
-     * @param array<string, mixed> $feed
+     * @param mixed $feed
      * @param int $minCheckInterval Minimum feed check interval
+     *
+     * @throws FeedsException if feed entry from YAML is not an array
      */
-    public function __construct(array $feed, int $minCheckInterval)
+    public function __construct(mixed $feed, int $minCheckInterval)
     {
+        if (is_array($feed) === false) {
+            throw new FeedsException('Malformed feed entry in feeds.yaml');
+        }
+
         $this->details = array_merge($this->defaults, $feed);
 
         $this->name();
