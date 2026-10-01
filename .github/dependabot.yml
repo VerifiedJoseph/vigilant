@@ -5,6 +5,9 @@ updates:
     schedule:
       interval: "monthly"
     ignore:
+      - dependency-name: "guzzlehttp/guzzle"
+        update-types: ["version-update:semver-major"]
+
       - dependency-name: "symfony/yaml"
         update-types: ["version-update:semver-major"]
 
