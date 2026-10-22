@@ -10,7 +10,6 @@ All notable changes to this project are documented in this file.
 - Updated verifiedjoseph/ntfy-php-library from 4.8.1 to 4.8.2 ([`a848865`](https://github.com/VerifiedJoseph/vigilant/commit/a84886517c78d131bf232f4c344d3db5022f93bb))
 - Dockerfile: Updated alpine from 3.24.1 to 3.24.3 ([`ce11221`](https://github.com/VerifiedJoseph/vigilant/commit/ce11221bf29ab170a61ced882d25ce1dc1c4c646), [`46d0b68`](https://github.com/VerifiedJoseph/vigilant/commit/46d0b68b4ecd290af6acd48bd46fb89215b137c3))
 
-
 ## [1.11.0](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.11.0) - 2026-09-15
 
 - Reworked check interval handling ([#623](https://github.com/VerifiedJoseph/vigilant/pull/623), [`8c0d5d2`](https://github.com/VerifiedJoseph/vigilant/commit/8c0d5d2dcfebbb9ab40a594d3226613c9d2dfbc8))
