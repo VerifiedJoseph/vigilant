@@ -2,6 +2,14 @@
 
 All notable changes to this project are documented in this file.
 
+
+## [1.11.1](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.11.1) - 2026-10-22
+
+- Updated guzzlehttp/guzzle from 7.15.2 to 7.15.5 ([`ba80b0f`](https://github.com/VerifiedJoseph/vigilant/commit/ba80b0fa0c9247e23795ea7fdbd4892c4996fccb))
+- Updated symfony/yaml from 7.4.12 to 7.4.21 ([`1cb53ae`](https://github.com/VerifiedJoseph/vigilant/commit/1cb53aed68ee493b4db98ba8508294601dc334d8), [`b90120d`](https://github.com/VerifiedJoseph/vigilant/commit/b90120dbc6839f3ecd27a3a86c83bf2db6915773))
+- Updated verifiedjoseph/ntfy-php-library from 4.8.1 to 4.8.2 ([`a848865`](https://github.com/VerifiedJoseph/vigilant/commit/a84886517c78d131bf232f4c344d3db5022f93bb))
+- Dockerfile: Updated alpine from 3.24.1 to 3.24.3 ([`ce11221`](https://github.com/VerifiedJoseph/vigilant/commit/ce11221bf29ab170a61ced882d25ce1dc1c4c646), [`46d0b68`](https://github.com/VerifiedJoseph/vigilant/commit/46d0b68b4ecd290af6acd48bd46fb89215b137c3))
+
 ## [1.11.0](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.11.0) - 2026-09-15
 
 - Reworked check interval handling ([#623](https://github.com/VerifiedJoseph/vigilant/pull/623), [`8c0d5d2`](https://github.com/VerifiedJoseph/vigilant/commit/8c0d5d2dcfebbb9ab40a594d3226613c9d2dfbc8))
