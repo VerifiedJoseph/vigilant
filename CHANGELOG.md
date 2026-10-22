@@ -3,7 +3,7 @@
 All notable changes to this project are documented in this file.
 
 
-## [1.11.1](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.11.2) - 2026-10-22
+## [1.11.1](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.11.1) - 2026-10-22
 
 - Updated guzzlehttp/guzzle from 7.15.2 to 7.15.5 ([`ba80b0f`](https://github.com/VerifiedJoseph/vigilant/commit/ba80b0fa0c9247e23795ea7fdbd4892c4996fccb))
 - Updated symfony/yaml from 7.4.12 to 7.4.21 ([`1cb53ae`](https://github.com/VerifiedJoseph/vigilant/commit/1cb53aed68ee493b4db98ba8508294601dc334d8), [`b90120d`](https://github.com/VerifiedJoseph/vigilant/commit/b90120dbc6839f3ecd27a3a86c83bf2db6915773))
