@@ -107,20 +107,16 @@ class CacheTest extends TestCase
     }
 
     /**
-     * Test getIsExpired()
+     * Test getLastCheck()
      */
-    public function testIsExpired(): void
+    public function testGetLastCheck(): void
     {
-        $this->assertTrue(self::$cache->isExpired());
-    }
+        $check = self::$cache->getLastCheck();
 
-    /**
-     * Test getIsExpired() returns value false
-     */
-    public function testIsExpiredFalse(): void
-    {
-        self::$cache->updateNextCheck(300);
-        $this->assertFalse(self::$cache->isExpired());
+        $this->assertEquals(
+            self::$fixtureData['last_check'],
+            $check
+        );
     }
 
     /**
@@ -198,6 +194,22 @@ class CacheTest extends TestCase
     }
 
     /**
+     * Test setLastCheck
+     */
+    public function testSetLastCheck(): void
+    {
+        $config = self::createStub(Config::class);
+        $config->method('getCachePath')->willReturn(self::$tempCacheFolder);
+        $config->method('getCacheFormatVersion')->willReturn(1);
+
+        $timestamp = time();
+        $cache = new Cache('testing', $config);
+        $cache->setLastCheck($timestamp);
+
+        $this->assertEquals($timestamp, $cache->getLastCheck());
+    }
+
+    /**
      * test setFirstCheck
      */
     public function testSetFirstCheck(): void
@@ -206,14 +218,11 @@ class CacheTest extends TestCase
         $config->method('getCachePath')->willReturn(self::$tempCacheFolder);
         $config->method('getCacheFormatVersion')->willReturn(1);
 
-        $time = time();
+        $timestamp = time();
         $cache = new Cache('testing', $config);
+        $cache->setFirstCheck($timestamp);
 
-        $this->assertEquals(0, $cache->getFirstCheck());
-
-        $cache->setFirstCheck();
-
-        $this->assertGreaterThanOrEqual($time, $cache->getFirstCheck());
+        $this->assertEquals($timestamp, $cache->getFirstCheck());
     }
 
     /**
@@ -235,13 +244,13 @@ class CacheTest extends TestCase
      */
     public function testUpdateNextCheck(): void
     {
-        $time = time() + 300;
-        self::$cache->updateNextCheck(300);
+        $interval = 300;
+        $timestamp = time();
+        $expectedTimestamp = $timestamp + $interval;
 
-        $this->assertGreaterThanOrEqual(
-            $time,
-            self::$cache->getNextCheck()
-        );
+        self::$cache->updateNextCheck($timestamp, $interval);
+
+        $this->assertEquals($expectedTimestamp, self::$cache->getNextCheck());
     }
 
     /**

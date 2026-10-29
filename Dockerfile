@@ -1,4 +1,4 @@
-FROM composer:2.10.1@sha256:7725eb4545c438629ae8bde3ef0bb9a5038ef566126ad878442a69007242d267 AS composer
+FROM composer:2.10.3@sha256:d8f6343d3fae98107426bc49163ccad46ef85aabd4a27d80a74401fab4aba332 AS composer
 
 COPY ./ /app
 WORKDIR /app
@@ -10,10 +10,11 @@ RUN composer install \
   --no-progress \
   --no-dev
 
-FROM alpine:3.24.1@sha256:28bd5fe8b56d1bd048e5babf5b10710ebe0bae67db86916198a6eec434943f8b
+FROM alpine:3.24.3@sha256:b3413572228e34bd1c9245f5565e6cd127005655e8a7899aef33d8e83255c9e6
 
 # Install packages
 RUN apk add --no-cache \
+  tini \
   bash \
   curl \
   php83 \
@@ -38,4 +39,5 @@ RUN ln -s /usr/bin/php83 /usr/bin/php
 RUN mkdir /app/cache
 
 WORKDIR /app
+ENTRYPOINT ["tini", "--"]
 CMD [ "bash", "./daemon.sh" ]

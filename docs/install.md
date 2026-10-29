@@ -6,7 +6,7 @@
 version: '3'
 services:
   vigilant:
-    image: ghcr.io/verifiedjoseph/vigilant:1.10.0
+    image: ghcr.io/verifiedjoseph/vigilant:1.11.1
     environment:
       - VIGILANT_NOTIFICATION_SERVICE=ntfy
       - VIGILANT_NOTIFICATION_NTFY_URL=https://ntfy.sh/
@@ -34,9 +34,9 @@ volumes:
 	cp config.example.php config.php
 	```
 
-4) Create a scheduled task with cron (below) or similar that runs `vigilant.php` at least every 5 minutes.
+4) Create a scheduled task with cron (below) or similar that runs `vigilant.php` at least every 60 seconds.
 
 	```
-	*/5 * * * * php path/to/vigilant.php
+	1 * * * * php path/to/vigilant.php
 	```
 

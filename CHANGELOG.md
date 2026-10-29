@@ -2,6 +2,22 @@
 
 All notable changes to this project are documented in this file.
 
+
+## [1.11.1](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.11.1) - 2026-10-22
+
+- Updated guzzlehttp/guzzle from 7.15.2 to 7.15.5 ([`ba80b0f`](https://github.com/VerifiedJoseph/vigilant/commit/ba80b0fa0c9247e23795ea7fdbd4892c4996fccb))
+- Updated symfony/yaml from 7.4.12 to 7.4.21 ([`1cb53ae`](https://github.com/VerifiedJoseph/vigilant/commit/1cb53aed68ee493b4db98ba8508294601dc334d8), [`b90120d`](https://github.com/VerifiedJoseph/vigilant/commit/b90120dbc6839f3ecd27a3a86c83bf2db6915773))
+- Updated verifiedjoseph/ntfy-php-library from 4.8.1 to 4.8.2 ([`a848865`](https://github.com/VerifiedJoseph/vigilant/commit/a84886517c78d131bf232f4c344d3db5022f93bb))
+- Dockerfile: Updated alpine from 3.24.1 to 3.24.3 ([`ce11221`](https://github.com/VerifiedJoseph/vigilant/commit/ce11221bf29ab170a61ced882d25ce1dc1c4c646), [`46d0b68`](https://github.com/VerifiedJoseph/vigilant/commit/46d0b68b4ecd290af6acd48bd46fb89215b137c3))
+
+## [1.11.0](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.11.0) - 2026-09-15
+
+- Reworked check interval handling ([#623](https://github.com/VerifiedJoseph/vigilant/pull/623), [`8c0d5d2`](https://github.com/VerifiedJoseph/vigilant/commit/8c0d5d2dcfebbb9ab40a594d3226613c9d2dfbc8))
+- Added mbstring to required php extensions ([`6ecac9d`](https://github.com/VerifiedJoseph/vigilant/commit/6ecac9d7d4da54f63ffad05a8aa2f85767e8dbe5), [`771d10b`](https://github.com/VerifiedJoseph/vigilant/commit/771d10b703d04eef9aba2a81638c06de17b2a9cf))
+- Reduced time between php script runs in docker image ([#624](https://github.com/VerifiedJoseph/vigilant/pull/624), [`a4fc9ff`](https://github.com/VerifiedJoseph/vigilant/commit/a4fc9ff54812391adb6a46bc9a022ed2632fb332))
+- Dockerfile: Added tini ([#629](https://github.com/VerifiedJoseph/vigilant/pull/629), [`b60634d`](https://github.com/VerifiedJoseph/vigilant/commit/b60634dbcb43012b674ed9b45dd6ae572c5b7d5f))
+- Dockerfile: Updated composer from 2.10.1 to 2.10.3 ([#621](https://github.com/VerifiedJoseph/vigilant/pull/621), [`48f346a`](https://github.com/VerifiedJoseph/vigilant/commit/48f346a9634192aeea25ece8094c08dd2ae239a2))
+
 ## [1.10.0](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.10.0) - 2026-08-03
 
 - Added fallback message truncation ([#601](https://github.com/VerifiedJoseph/vigilant/pull/601), [`89e9b0a`](https://github.com/VerifiedJoseph/vigilant/commit/89e9b0aa21397a51a90202dca0f14233c9b217b1))

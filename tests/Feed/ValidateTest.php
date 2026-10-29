@@ -81,4 +81,15 @@ class ValidateTest extends TestCase
 
         new Validate($data, self::$minCheckInterval);
     }
+
+    /**
+     * Test 'Malformed feed entry' FeedsException
+     */
+    public function testMalformedFeedEntryFeedsException(): void
+    {
+        $this->expectException(FeedsException::class);
+        $this->expectExceptionMessage('Malformed feed entry in feeds.yaml');
+
+        new Validate('', self::$minCheckInterval);
+    }
 }

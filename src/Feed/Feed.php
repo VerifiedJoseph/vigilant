@@ -31,27 +31,23 @@ final class Feed
     /** @var Logger Logger class instance */
     private Logger $logger;
 
-    /** @var array<string, mixed> $feed Feed entry from feeds.yaml */
-    private array $feed = [];
-
     /**
-     * @param array<string, mixed> $feed
+     * @param mixed $feed
      * @param Config $config
      * @param Logger $logger
      */
-    public function __construct(array $feed, Config $config, Logger $logger)
+    public function __construct(mixed $feed, Config $config, Logger $logger)
     {
-        $this->feed = $feed;
         $this->config = $config;
         $this->logger = $logger;
 
-        $this->initiate();
+        $this->initiate($feed);
     }
 
-    private function initiate(): void
+    private function initiate(mixed $feed): void
     {
         $validate = new Validate(
-            $this->feed,
+            $feed,
             $this->config->getMinCheckInterval()
         );
 
