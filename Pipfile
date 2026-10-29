@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-zensical = "==0.*"
+zensical = "0.0.*"
 
 [dev-packages]
 
