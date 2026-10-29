@@ -44,12 +44,12 @@ Install dependencies
 pipenv install
 ```
 
-Run the MkDocs development server
+Run the documentation development server
 ```
 pipenv run zensical serve
 ```
 
-Build the MkDocs documentation
+Build the documentation
 ```
 pipenv run zensical build --clean
 ```
