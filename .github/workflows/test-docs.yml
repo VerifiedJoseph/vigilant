@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   test:
-    name: MkDocs
+    name: Zensical
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
