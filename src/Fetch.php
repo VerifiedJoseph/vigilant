@@ -57,7 +57,7 @@ class Fetch
 
             return (new \FeedIo\FeedIo($client))->read($url);
         } catch (\FeedIo\Reader\ReadErrorException $err) {
-            $exceptionName = ($err->getPrevious() !== null) ? get_class($err->getPrevious()): null;
+            $exceptionName = ($err->getPrevious() !== null) ? get_class($err->getPrevious()) : null;
 
             switch ($exceptionName) {
                 case 'FeedIo\Adapter\NotFoundException':
