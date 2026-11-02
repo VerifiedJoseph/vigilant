@@ -106,7 +106,7 @@ jobs:
         run: pipenv install
 
       - name: Build docs
-        run: pipenv run mkdocs build --strict
+        run: pipenv run zensical build --strict
 
       - name: Upload artifact
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
