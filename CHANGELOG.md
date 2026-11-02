@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.11.2](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.11.2) - 2026-11-02
+
+- Updated guzzlehttp/guzzle from 7.15.5 to 7.16.0 ([`de71bda`](https://github.com/VerifiedJoseph/vigilant/commit/de71bda993f188b6e29515051669d307f6f6369a))
+- Updated symfony/yaml from 7.4.21 to 7.4.22 ([`8f85b28`](https://github.com/VerifiedJoseph/vigilant/commit/8f85b28164002ac392951f113998eaae878102bd))
+- Updated php-feed-io/feed-io from 6.4.1 to 6.5.0 ([`2ece382`](https://github.com/VerifiedJoseph/vigilant/commit/2ece382b339268f6e7edc44957eaf4f66c25c5ea))
 
 ## [1.11.1](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.11.1) - 2026-10-22
 
