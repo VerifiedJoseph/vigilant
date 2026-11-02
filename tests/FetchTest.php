@@ -69,7 +69,7 @@ class FetchTest extends TestCase
     public function testGetServerError(): void
     {
         $this->expectException(FetchException::class);
-        $this->expectExceptionMessage('ailed to fetch: http://example.invalid (500 Internal Server Error)');
+        $this->expectExceptionMessage('Failed to parse feed (Server responded with: 500 Internal Server Error)');
 
         $mock = new GuzzleHttp\Handler\MockHandler([
             new GuzzleHttp\Psr7\Response(500, body: 'server error'),
