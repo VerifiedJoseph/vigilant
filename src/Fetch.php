@@ -57,14 +57,16 @@ class Fetch
 
             return (new \FeedIo\FeedIo($client))->read($url);
         } catch (\FeedIo\Reader\ReadErrorException $err) {
-            switch ($err->getMessage()) {
-                case 'not found':
+            $exceptionName = ($err->getPrevious() !== null) ? get_class($err->getPrevious()) : null;
+
+            switch ($exceptionName) {
+                case 'FeedIo\Adapter\NotFoundException':
                     $message = sprintf(
                         'Failed to fetch: %s (404 Not Found)',
                         $url,
                     );
                     break;
-                case 'internal server error':
+                case 'FeedIo\Adapter\ServerErrorException':
                     /** @var \FeedIo\Adapter\ServerErrorException $serverErr */
                     $serverErr = $err->getPrevious();
 
