@@ -57,6 +57,8 @@ class Fetch
 
             return (new \FeedIo\FeedIo($client))->read($url);
         } catch (\FeedIo\Reader\ReadErrorException $err) {
+            var_dump($err->getMessage());
+
             switch ($err->getMessage()) {
                 case 'not found':
                     $message = sprintf(
