@@ -112,11 +112,8 @@ class Request
         } catch (\GuzzleHttp\Exception\ConnectException $err) {
             throw new RequestException($err->getMessage());
         } catch (\GuzzleHttp\Exception\RequestException $err) {
+            /** @var \Psr\Http\Message\ResponseInterface $response */
             $response = $err->getResponse();
-
-            if ($response === null) {
-                throw new RequestException('Request failed');
-            }
 
             if ($response->getHeaderLine('Content-Type') === 'application/json') {
                 $this->handleErrorResponseBody(
