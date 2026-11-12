@@ -9,13 +9,23 @@ use Vigilant\Message;
 
 class ServicePayload
 {
+    /** @var Config Config class instance */
     private Config $config;
 
+    /**
+     * @param Config $config Config class instance
+     */
     public function __construct(Config $config)
     {
         $this->config = $config;
     }
 
+    /**
+     * Get message payload 
+     * @param Message $message
+     * @param array<string, mixed> $serviceConfig
+     * @return array<string, mixed>
+     */
     public function get(Message $message, array $serviceConfig): array
     {
         if ($this->config->getNotificationService() === 'gotify') {
