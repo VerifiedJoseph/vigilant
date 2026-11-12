@@ -23,30 +23,11 @@ use Vigilant\Logger;
 #[UsesClass(Logger::class)]
 class NotifyTest extends TestCase
 {
-    private static Logger $logger;
-
     /** @var array<string, mixed> $feed */
     private array $feed = [
         'name' => 'GitHub status',
         'url' => 'https://www.githubstatus.com/history.rss',
         'interval' => 900
-    ];
-
-    /** @var array<string, mixed> $gotifyConfigValues Config values use by `createConfigStubForGotify()` */
-    private array $gotifyConfigValues = [
-        'priority' => 0,
-        'token' => 'fake-token',
-        'server' => 'https://gotify.example.com/',
-    ];
-
-    /** @var array<string, mixed> $ntfyConfigValues Config values use by `createConfigStubForNtfy()` */
-    private array $ntfyConfigValues = [
-        'server' => 'https://ntfy.example.com/',
-        'topic' => '',
-        'priority' => 0,
-        'auth' => [
-            'method' => ''
-        ]
     ];
 
     public static function setUpBeforeClass(): void
@@ -56,7 +37,7 @@ class NotifyTest extends TestCase
 
     public function testSend(): void
     {
-        /*$this->expectOutputRegex('/Sent notification using ntfy/');
+        $this->expectOutputRegex('/Sent notification using ntfy/');
 
         $config = self::createStub(Config::class);
         $config->method('getNotificationService')->willReturn('ntfy');
@@ -68,7 +49,12 @@ class NotifyTest extends TestCase
             new Message('Hello World', 'Hello??')
         ];
 
-        $notify = new notify(new Details($this->feed), $config, self::$logger);
-        $notify->send($messages);*/
+        $notify = new notify(
+            new Details($this->feed),
+            $config,
+            new Logger('UTC')
+        );
+
+        $notify->send($messages);
     }
 }
