@@ -8,8 +8,8 @@ class Format
 {
     /**
      * Format a gotify server URL
-     * @param string $url 
-     * @return string 
+     * @param string $url
+     * @return string
      */
     public static function gotifyUrl(string $url): string
     {
