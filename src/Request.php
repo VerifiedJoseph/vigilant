@@ -120,7 +120,7 @@ class Request
                 );
             }
 
-            throw new RequestException(sprintf('Request failed (%s)', $err->getMessage()));
+            throw new RequestException(sprintf('Request failed (HTTP %s)',  $response->getStatusCode()));
         }
     }
 
