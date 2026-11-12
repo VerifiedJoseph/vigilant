@@ -82,7 +82,7 @@ class ServiceConfigTest extends TestCase
 
         $feed = $this->feed;
         $feed['gotify_priority'] = 5;
-        
+
         $data = $serviceConfig->get(new Details($feed));
 
         $this->assertEquals($feed['gotify_priority'], $data['priority']);
@@ -131,7 +131,7 @@ class ServiceConfigTest extends TestCase
         $config->method('getNtfyAuthMethod')->willReturn($configValues['auth']['method']);
         $config->method('getNtfyUsername')->willReturn($configValues['auth']['username']);
         $config->method('getNtfyPassword')->willReturn($configValues['auth']['password']);
-        
+
         $serviceConfig = new ServiceConfig($config);
         $data = $serviceConfig->get(new Details($this->feed));
 
