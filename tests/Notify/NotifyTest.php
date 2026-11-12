@@ -7,13 +7,14 @@ namespace Tests\Notify;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
-use PHPUnit\Framework\MockObject\Stub;
-use Vigilant\Notify\Notify;
 use Vigilant\Feed\Details;
 use Vigilant\Config;
 use Vigilant\Message;
 use Vigilant\Request;
 use Vigilant\Logger;
+use Vigilant\Notify\Notify;
+use Vigilant\Notify\Payload;
+use Vigilant\Notify\ServiceConfig;
 
 #[CoversClass(Notify::class)]
 #[UsesClass(Details::class)]
@@ -21,6 +22,8 @@ use Vigilant\Logger;
 #[UsesClass(Message::class)]
 #[UsesClass(Request::class)]
 #[UsesClass(Logger::class)]
+#[UsesClass(Payload::class)]
+#[UsesClass(ServiceConfig::class)]
 class NotifyTest extends TestCase
 {
     /** @var array<string, mixed> $feed */
@@ -29,11 +32,6 @@ class NotifyTest extends TestCase
         'url' => 'https://www.githubstatus.com/history.rss',
         'interval' => 900
     ];
-
-    public static function setUpBeforeClass(): void
-    {
-        self::$logger = new Logger('UTC');
-    }
 
     public function testSend(): void
     {
