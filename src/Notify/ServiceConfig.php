@@ -9,13 +9,22 @@ use Vigilant\Feed;
 
 class ServiceConfig
 {
+    /** @var Config Config class instance */
     private Config $config;
 
+    /**
+     * @param Config $config Config class instance
+     */
     public function __construct(Config $config)
     {
         $this->config = $config;
     }
 
+    /**
+     * Returns service config
+     * @param Feed\Details $details
+     * @return array<string, mixed>
+     */
     public function get(Feed\Details $details): array
     {
         if ($this->config->getNotificationService() === 'gotify') {
@@ -25,6 +34,11 @@ class ServiceConfig
         }
     }
 
+    /**
+     * Create gotify config
+     * @param Feed\Details $details
+     * @return array<string, mixed>
+     */
     private function createGotify(Feed\Details $details): array
     {
         $config = [
@@ -48,6 +62,11 @@ class ServiceConfig
         return $config;
     }
 
+    /**
+     * Create ntfy config
+     * @param Feed\Details $details
+     * @return array<string, mixed>
+     */
     private function createNtfy(Feed\Details $details): array
     {
         $config = [
