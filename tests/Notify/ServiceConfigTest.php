@@ -38,9 +38,7 @@ class ServiceConfigTest extends TestCase
         'server' => 'https://ntfy.example.com/',
         'topic' => '',
         'priority' => 0,
-        'auth' => [
-            'method' => ''
-        ]
+        'token' => null
     ];
 
    /**
@@ -117,48 +115,25 @@ class ServiceConfigTest extends TestCase
         $this->assertEquals($this->ntfyConfigValues, $data);
     }
 
- /**
-    * Test creating Ntfy instance with password auth
-    */
-    public function testCreatingNtfyWithPasswordAuth(): void
-    {
-        $configValues = $this->ntfyConfigValues;
-        $configValues['auth']['method'] = 'password';
-        $configValues['auth']['username'] = 'bob';
-        $configValues['auth']['password'] = 'qwerty';
-
-        $config = $this->createConfigStubForNtfy();
-        $config->method('getNtfyAuthMethod')->willReturn($configValues['auth']['method']);
-        $config->method('getNtfyUsername')->willReturn($configValues['auth']['username']);
-        $config->method('getNtfyPassword')->willReturn($configValues['auth']['password']);
-
-        $serviceConfig = new ServiceConfig($config);
-        $data = $serviceConfig->get(new Details($this->feed));
-
-        $this->assertEquals($configValues['auth'], $data['auth']);
-    }
-
    /**
-    * Test creating Ntfy instance with token auth
+    * Test creating Ntfy service config with token auth
     */
     public function testCreatingNtfyWithTokenAuth(): void
     {
         $configValues = $this->ntfyConfigValues;
-        $configValues['auth']['method'] = 'token';
-        $configValues['auth']['token'] = 'a_ntfy_token';
+        $configValues['token'] = 'a_ntfy_token';
 
         $config = $this->createConfigStubForNtfy();
-        $config->method('getNtfyAuthMethod')->willReturn($configValues['auth']['method']);
-        $config->method('getNtfyToken')->willReturn($configValues['auth']['token']);
+        $config->method('getNtfyToken')->willReturn($configValues['token']);
 
         $serviceConfig = new ServiceConfig($config);
         $data = $serviceConfig->get(new Details($this->feed));
 
-        $this->assertEquals($configValues['auth'], $data['auth']);
+        $this->assertEquals($configValues['token'], $data['token']);
     }
 
    /**
-    * Test creating Ntfy instance with server URL from feed details
+    * Test creating Ntfy service config with server URL from feed details
     */
     public function testCreatingNtfyWithUrlFromFeedDetails(): void
     {
@@ -174,7 +149,7 @@ class ServiceConfigTest extends TestCase
     }
 
    /**
-    * Test creating Ntfy instance with token from feed details
+    * Test creating Ntfy service config with token from feed details
     */
     public function testCreatingNtfyWithTokenFromFeedDetails(): void
     {
@@ -186,12 +161,11 @@ class ServiceConfigTest extends TestCase
         $serviceConfig = new ServiceConfig($config);
         $data = $serviceConfig->get(new Details($feed));
 
-        $this->assertEquals('token', $data['auth']['method']);
-        $this->assertEquals($feed['ntfy_token'], $data['auth']['token']);
+        $this->assertEquals($feed['ntfy_token'], $data['token']);
     }
 
    /**
-    * Test creating Ntfy instance with topic from feed details
+    * Test creating Ntfy service config with topic from feed details
     */
     public function testCreatingNtfyWithTopicFromFeedDetails(): void
     {
@@ -207,7 +181,7 @@ class ServiceConfigTest extends TestCase
     }
 
    /**
-    * Test creating Ntfy instance with priority from feed details
+    * Test creating Ntfy service config with priority from feed details
     */
     public function testCreatingNtfyWithPriorityFromFeedDetails(): void
     {

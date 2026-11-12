@@ -56,13 +56,10 @@ To use Ntfy, a URL and topic must be given, all other environment variable are o
 | `VIGILANT_NOTIFICATION_NTFY_TOPIC`    | Ntfy topic.                                                                             |
 | `VIGILANT_NOTIFICATION_NTFY_PRIORITY` | Ntfy [message priority](https://docs.ntfy.sh/publish/#message-priority). Defaults to 3. |
 
-Vigilant can be used a with ntfy server that has password or [access token](https://docs.ntfy.sh/config/#access-tokens) authentication enabled.
+Vigilant can be used a with ntfy server that has [access token](https://docs.ntfy.sh/config/#access-tokens) authentication enabled.
 
 | Name                                  | Description                                           |
 | ------------------------------------- | ----------------------------------------------------- |
-| `VIGILANT_NOTIFICATION_NTFY_AUTH`     | Authentication method. Values: `password` or `token`. |
-| `VIGILANT_NOTIFICATION_NTFY_USERNAME` | Ntfy authentication username.                         |
-| `VIGILANT_NOTIFICATION_NTFY_PASSWORD` | Ntfy authentication password.                         |
 | `VIGILANT_NOTIFICATION_NTFY_TOKEN`    | Ntfy access token.                                    |
 
 ## Logging

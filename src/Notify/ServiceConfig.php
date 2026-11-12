@@ -54,27 +54,15 @@ class ServiceConfig
             'server' => $this->config->getNtfyUrl(),
             'topic' => $this->config->getNtfyTopic(),
             'priority' => $this->config->getNtfyPriority(),
-            'auth' => [
-                'method' => $this->config->getNtfyAuthMethod()
-            ]
+            'token' => $this->config->getNtfyToken()
         ];
 
         if ($details->getNtfyUrl() !== null) {
             $config['server'] = $details->getNtfyUrl();
         }
 
-        if ($this->config->getNtfyAuthMethod() === 'password') {
-            $config['auth']['username'] = $this->config->getNtfyUsername();
-            $config['auth']['password'] = $this->config->getNtfyPassword();
-        } elseif ($this->config->getNtfyAuthMethod() === 'token') {
-            $config['auth']['token'] = $this->config->getNtfyToken();
-        }
-
         if ($details->getNtfyToken() !== null) {
-            $config['auth'] = [
-                'method' => 'token',
-                'token' => $details->getNtfyToken()
-            ];
+            $config['token'] = $details->getNtfyToken();
         }
 
         if ($details->getNtfyTopic() !== null) {
