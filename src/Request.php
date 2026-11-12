@@ -114,6 +114,10 @@ class Request
         } catch (\GuzzleHttp\Exception\RequestException $err) {
             $response = $err->getResponse();
 
+            if ($response === null) {
+                throw new RequestException('Request failed');
+            }
+
             if ($response->getHeaderLine('Content-Type') === 'application/json') {
                 $this->handleErrorResponseBody(
                     $response->getBody()->getContents(),
