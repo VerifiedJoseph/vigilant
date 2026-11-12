@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 use Vigilant\Config;
 use Vigilant\Feeds;
-use Vigilant\Notify;
 use Vigilant\Logger;
 use Vigilant\Version;
+use Vigilant\Notify\Notify;
 use Vigilant\Exception\ConfigException;
 use Vigilant\Exception\AppException;
 
