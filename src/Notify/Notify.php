@@ -75,6 +75,6 @@ class Notify
     private function createHeaders(): array
     {
         return (array_key_exists('token', $this->serviceConfig) === true) ?
-            ['Authorization' => 'Bearer ' . $this->serviceConfig['token']]: [];
+            ['Authorization' => 'Bearer ' . $this->serviceConfig['token']] : [];
     }
 }
