@@ -7,7 +7,7 @@ namespace Vigilant\Notify;
 use Vigilant\Config;
 use Vigilant\Message;
 
-class ServicePayload
+class Payload
 {
     /** @var Config Config class instance */
     private Config $config;

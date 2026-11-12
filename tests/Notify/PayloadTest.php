@@ -6,13 +6,12 @@ namespace Tests\Notify;
 
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\UsesClass;
-use Vigilant\Notify\ServicePayload;
+use Vigilant\Notify\Payload;
 use Vigilant\Config;
 use Vigilant\Message;
 
-#[CoversClass(ServicePayload::class)]
-class ServicePayloadTest extends TestCase
+#[CoversClass(Payload::class)]
+class PayloadTest extends TestCase
 {
     /**
      * @var array<string, mixed> $gotifyPayload
@@ -50,8 +49,7 @@ class ServicePayloadTest extends TestCase
         $message->method('getBody')->willReturn($this->gotifyPayload['message']);
         $message->method('getUrl')->willReturn('https://example.com');
 
-        $servicePayload = new ServicePayload($config);
-        $payload = $servicePayload->get(
+        $payload =  (new Payload($config))->get(
             $message,
             ['priority' => $this->gotifyPayload['priority']]
         );
@@ -69,8 +67,7 @@ class ServicePayloadTest extends TestCase
         $message->method('getBody')->willReturn($this->ntfyPayload['message']);
         $message->method('getUrl')->willReturn($this->ntfyPayload['click']);
 
-        $servicePayload = new ServicePayload($config);
-        $payload = $servicePayload->get(
+        $payload =  (new Payload($config))->get(
             $message,
             [
                 'priority' => $this->ntfyPayload['priority'],

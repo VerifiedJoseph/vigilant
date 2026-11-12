@@ -16,8 +16,8 @@ class Notify
     /** @var array<string, mixed> serviceConfig Service config */
     private array $serviceConfig;
 
-    /** @var ServicePayload ServicePayload class instance */
-    private ServicePayload $servicePayload;
+    /** @var Payload Payload class instance */
+    private Payload $payload;
 
     /** @var Config Config class instance */
     private Config $config;
@@ -42,7 +42,7 @@ class Notify
 
         $this->request = new Request($config->getUserAgent());
         $this->serviceConfig = (new ServiceConfig($config))->get($details);
-        $this->servicePayload = new ServicePayload($this->config);
+        $this->payload = new Payload($this->config);
     }
 
     /**
@@ -53,7 +53,7 @@ class Notify
     {
         foreach ($messages as $message) {
             try {
-                $payload = $this->servicePayload->get($message, $this->serviceConfig);
+                $payload = $this->payload->get($message, $this->serviceConfig);
 
                 $this->request->postJson(
                     $this->serviceConfig['server'],
