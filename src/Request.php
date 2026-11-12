@@ -6,7 +6,6 @@ namespace Vigilant;
 
 use FeedIo\Reader\Result;
 use GuzzleHttp\RequestOptions;
-
 use Vigilant\Helper\Json;
 use Vigilant\Exception\RequestException;
 
@@ -120,7 +119,7 @@ class Request
                 );
             }
 
-            throw new RequestException(sprintf('Request failed (HTTP %s)',  $response->getStatusCode()));
+            throw new RequestException(sprintf('Request failed (HTTP %s)', $response->getStatusCode()));
         }
     }
 
@@ -129,7 +128,7 @@ class Request
         $json = Json::decode($body);
 
         if (array_key_exists('errorDescription', $json) === true) {
-           throw new RequestException(sprintf(
+            throw new RequestException(sprintf(
                 '%s: %s (http code: %s)',
                 $json['error'],
                 $json['errorDescription'],
