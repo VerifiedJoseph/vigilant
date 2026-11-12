@@ -143,7 +143,7 @@ class RequestTest extends TestCase
         $request = new Request($this->userAgent);
         $request->postJson(
             'http://example.invalid',
-            $payload,  
+            $payload,
         );
     }
 
