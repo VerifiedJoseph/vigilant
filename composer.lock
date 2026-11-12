@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "989c61301a221805284c1e70436945ea",
+    "content-hash": "37806ae4c87bd4efb46a2639ef31d428",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -1254,116 +1254,6 @@
                 }
             ],
             "time": "2026-10-18T14:39:27+00:00"
-        },
-        {
-            "name": "verifiedjoseph/gotify-api-php",
-            "version": "v1.11.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/VerifiedJoseph/gotify-api-php.git",
-                "reference": "77c32e817614bacb4c7f41e854d5ae2e93766b72"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/VerifiedJoseph/gotify-api-php/zipball/77c32e817614bacb4c7f41e854d5ae2e93766b72",
-                "reference": "77c32e817614bacb4c7f41e854d5ae2e93766b72",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "ext-json": "*",
-                "guzzlehttp/guzzle": "^7.4.5",
-                "php": "^8.3"
-            },
-            "require-dev": {
-                "phpstan/phpstan": "^2.0",
-                "phpstan/phpstan-deprecation-rules": "^2.0",
-                "phpstan/phpstan-phpunit": "^2.0",
-                "phpunit/phpunit": "^12.5",
-                "squizlabs/php_codesniffer": "^4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Gotify\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "VerifiedJoseph",
-                    "homepage": "https://github.com/VerifiedJoseph"
-                }
-            ],
-            "description": "PHP library for interacting with a Gotify server using the Gotify REST-API.",
-            "homepage": "https://github.com/VerifiedJoseph/gotify-api-php",
-            "keywords": [
-                "gotify"
-            ],
-            "support": {
-                "issues": "https://github.com/VerifiedJoseph/gotify-api-php/issues",
-                "source": "https://github.com/VerifiedJoseph/gotify-api-php/tree/v1.11.1"
-            },
-            "time": "2026-07-02T09:18:04+00:00"
-        },
-        {
-            "name": "verifiedjoseph/ntfy-php-library",
-            "version": "v4.8.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/VerifiedJoseph/ntfy-php-library.git",
-                "reference": "746740cc3a361c98106205dd41ee05ccb5b3ddc7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/VerifiedJoseph/ntfy-php-library/zipball/746740cc3a361c98106205dd41ee05ccb5b3ddc7",
-                "reference": "746740cc3a361c98106205dd41ee05ccb5b3ddc7",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "ext-json": "*",
-                "guzzlehttp/guzzle": "^7.4",
-                "php": "^8.3"
-            },
-            "require-dev": {
-                "phpstan/phpstan": "^2.0",
-                "phpstan/phpstan-deprecation-rules": "^2.0",
-                "phpstan/phpstan-phpunit": "^2.0",
-                "phpunit/phpunit": "^12.5",
-                "squizlabs/php_codesniffer": "^4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Ntfy\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "VerifiedJoseph",
-                    "homepage": "https://github.com/VerifiedJoseph"
-                }
-            ],
-            "description": "PHP library for sending push notifications using ntfy.",
-            "homepage": "https://github.com/VerifiedJoseph/ntfy-php-library",
-            "keywords": [
-                "Ntfy",
-                "ntfy.sh",
-                "push notifications"
-            ],
-            "support": {
-                "issues": "https://github.com/VerifiedJoseph/ntfy-php-library/issues",
-                "source": "https://github.com/VerifiedJoseph/ntfy-php-library/tree/v4.8.2"
-            },
-            "time": "2026-09-01T13:21:10+00:00"
         }
     ],
     "packages-dev": [
@@ -3400,5 +3290,5 @@
         "php": "^8.3"
     },
     "platform-dev": {},
-    "plugin-api-version": "2.9.0"
+    "plugin-api-version": "2.11.0"
 }

@@ -7,7 +7,7 @@ namespace Vigilant\Feed;
 use DateTime;
 use DateTimeZone;
 use Vigilant\Check;
-use Vigilant\Fetch;
+use Vigilant\Request;
 use Vigilant\ActiveHours;
 use Vigilant\Config;
 use Vigilant\Logger;
@@ -51,11 +51,11 @@ final class Feed
             $this->config->getMinCheckInterval()
         );
 
-        $fetch = new Fetch($this->config->getUserAgent());
+        $request = new Request($this->config->getUserAgent());
         $this->details = new Details($validate->get());
         $this->check = new Check(
             $this->details,
-            $fetch,
+            $request,
             $this->config,
             $this->logger
         );

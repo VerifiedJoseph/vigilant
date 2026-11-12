@@ -141,43 +141,6 @@ class ConfigTest extends TestCase
     }
 
     /**
-     * Test `getNtfyAuthMethod()`
-     */
-    public function testGetNtfyAuthMethod(): void
-    {
-        $config = new Config();
-        $this->assertEquals('none', $config->getNtfyAuthMethod());
-    }
-
-    /**
-     * Test `getNtfyUsername()`
-     */
-    public function testGetNtfyUsername(): void
-    {
-        $config = new Config();
-
-        $reflection = new ReflectionClass($config);
-        $property = $reflection->getProperty('config');
-        $property->setValue($config, ['notification_ntfy_username' => 'bob']);
-
-        $this->assertEquals('bob', $config->getNtfyUsername());
-    }
-
-    /**
-     * Test `getNtfyPassword()`
-     */
-    public function testGetNtfyPassword(): void
-    {
-        $config = new Config();
-
-        $reflection = new ReflectionClass($config);
-        $property = $reflection->getProperty('config');
-        $property->setValue($config, ['notification_ntfy_password' => 'qwerty']);
-
-        $this->assertEquals('qwerty', $config->getNtfyPassword());
-    }
-
-    /**
      * Test `getNtfyToken()`
      */
     public function testGetNtfyToken(): void
