@@ -13,8 +13,10 @@ use Vigilant\Exception\RequestException;
 
 class Notify
 {
+    /** @var array<string, mixed> serviceConfig Service config */
     private array $serviceConfig;
 
+    /** @var ServicePayload ServicePayload class instance */
     private ServicePayload $servicePayload;
 
     /** @var Config Config class instance */
