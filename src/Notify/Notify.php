@@ -68,14 +68,13 @@ class Notify
         }
     }
 
+    /**
+     * Create request headers
+     * @return array<mixed>
+     */
     private function createHeaders(): array
     {
-        if (array_key_exists('token', $this->serviceConfig) === true) {
-            return [
-                'Authorization' => "Bearer $this->serviceConfig['token']"
-            ];
-        }
-
-        return [];
+        return (array_key_exists('token', $this->serviceConfig) === true) ?
+            ['Authorization' => 'Bearer ' . $this->serviceConfig['token']]: [];
     }
 }
