@@ -11,12 +11,12 @@ use Vigilant\Check;
 use Vigilant\Feed\Details;
 use Vigilant\Config;
 use Vigilant\Logger;
-use Vigilant\Fetch;
+use Vigilant\Request;
 use GuzzleHttp;
 
 #[CoversClass(Check::class)]
 #[UsesClass(Details::class)]
-#[UsesClass(Fetch::class)]
+#[UsesClass(Request::class)]
 #[UsesClass(Config::class)]
 #[UsesClass(Logger::class)]
 #[UsesClass(\Vigilant\Cache::class)]
@@ -74,7 +74,7 @@ class CheckTest extends TestCase
         $details = new Details($this->feed);
         $check = new check(
             $details,
-            new Fetch(self::$config->getUserAgent()),
+            new Request(self::$config->getUserAgent()),
             self::$config,
             self::$logger
         );
@@ -95,7 +95,7 @@ class CheckTest extends TestCase
         $details = new Details($this->feed);
         $check = new check(
             $details,
-            new Fetch(self::$config->getUserAgent()),
+            new Request(self::$config->getUserAgent()),
             self::$config,
             self::$logger
         );
@@ -111,7 +111,7 @@ class CheckTest extends TestCase
         $details = new Details($this->feed);
         $check = new check(
             $details,
-            new Fetch(self::$config->getUserAgent()),
+            new Request(self::$config->getUserAgent()),
             self::$config,
             self::$logger
         );
@@ -127,7 +127,7 @@ class CheckTest extends TestCase
         $mock = new GuzzleHttp\Handler\MockHandler([
             new GuzzleHttp\Psr7\Response(200, body: (string) file_get_contents('tests/files/rss-feed.xml'))
         ]);
-        $fetch = new Fetch(
+        $fetch = new Request(
             self::$config->getUserAgent(),
             new \GuzzleHttp\Client([
                 'handler' => GuzzleHttp\HandlerStack::create($mock)
@@ -154,7 +154,7 @@ class CheckTest extends TestCase
         $mock = new GuzzleHttp\Handler\MockHandler([
             new GuzzleHttp\Psr7\Response(200, body: (string) file_get_contents('tests/files/rss-feed.xml'))
         ]);
-        $fetch = new Fetch(
+        $fetch = new Request(
             self::$config->getUserAgent(),
             new \GuzzleHttp\Client([
                 'handler' => GuzzleHttp\HandlerStack::create($mock)
@@ -187,7 +187,7 @@ class CheckTest extends TestCase
         $mock = new GuzzleHttp\Handler\MockHandler([
             new GuzzleHttp\Psr7\Response(200, body: (string) file_get_contents('tests/files/rss-feed.xml'))
         ]);
-        $fetch = new Fetch(
+        $request = new Request(
             self::$config->getUserAgent(),
             new \GuzzleHttp\Client([
                 'handler' => GuzzleHttp\HandlerStack::create($mock)
@@ -195,7 +195,7 @@ class CheckTest extends TestCase
         );
 
         $details = new Details($feed);
-        $check = new check($details, $fetch, self::$config, self::$logger);
+        $check = new Check($details, $request, self::$config, self::$logger);
 
         $this->expectOutputRegex('/Found 1 new item\(s\)/');
 
@@ -219,7 +219,7 @@ class CheckTest extends TestCase
         $mock = new GuzzleHttp\Handler\MockHandler([
             new GuzzleHttp\Psr7\Response(404),
         ]);
-        $fetch = new Fetch(
+        $fetch = new Request(
             self::$config->getUserAgent(),
             new \GuzzleHttp\Client([
                 'handler' => GuzzleHttp\HandlerStack::create($mock)

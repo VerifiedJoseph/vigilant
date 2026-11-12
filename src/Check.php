@@ -7,15 +7,15 @@ namespace Vigilant;
 use DateTime;
 use DateTimeZone;
 use Vigilant\Config;
-use Vigilant\Exception\FetchException;
+use Vigilant\Exception\RequestException;
 
 final class Check
 {
     /** @var Feed\Details $details Feed details (name, url, interval and hash) */
     private Feed\Details $details;
 
-    /** @var Fetch Fetch class instance */
-    private Fetch $fetch;
+    /** @var Request Request class instance */
+    private Request $request;
 
     /** @var Config Config class instance */
     private Config $config;
@@ -35,13 +35,13 @@ final class Check
     /**
      * @param Feed\Details $details Feed details
      * @param Config $config Config class instance
-     * @param Fetch $fetch Fetch class instance
+     * @param Request $request Fetch class instance
      * @param Logger $logger Logger class instance
      */
-    public function __construct(Feed\Details $details, Fetch $fetch, Config $config, Logger $logger)
+    public function __construct(Feed\Details $details, Request $request, Config $config, Logger $logger)
     {
         $this->details = $details;
-        $this->fetch = $fetch;
+        $this->request = $request;
         $this->config = $config;
         $this->logger = $logger;
 
@@ -100,14 +100,14 @@ final class Check
                 $this->details->getUrl()
             ));
 
-            $result = $this->fetch->get(
+            $result = $this->request->getFeed(
                 $this->details->getUrl(),
                 $this->details->getUserAgent()
             );
 
             $this->process($result);
             $this->cache->resetErrorCount();
-        } catch (FetchException $err) {
+        } catch (RequestException $err) {
             $this->logger->error($err->getMessage());
 
             $this->cache->increaseErrorCount();
