@@ -6,6 +6,7 @@ namespace Vigilant\Notify;
 
 use Vigilant\Config;
 use Vigilant\Feed;
+use Vigilant\Helper\Format;
 
 class ServiceConfig
 {
@@ -42,13 +43,13 @@ class ServiceConfig
     private function createGotify(Feed\Details $details): array
     {
         $config = [
-            'server' => $this->config->getGotifyUrl(),
+            'server' => Format::gotifyUrl($this->config->getGotifyUrl()),
             'priority' => $this->config->getGotifyPriority(),
             'token' => $this->config->getGotifyToken()
         ];
 
         if ($details->getGotifyUrl() !== null) {
-            $config['server'] = $details->getGotifyUrl();
+            $config['server'] = Format::gotifyUrl($details->getGotifyUrl());
         }
 
         if ($details->getGotifyPriority() !== null) {

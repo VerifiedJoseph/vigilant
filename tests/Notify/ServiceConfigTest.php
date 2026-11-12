@@ -12,11 +12,13 @@ use Vigilant\Notify\ServiceConfig;
 use Vigilant\Feed\Details;
 use Vigilant\Config;
 use Vigilant\Request;
+use Vigilant\Helper\Format;
 
 #[CoversClass(ServiceConfig::class)]
 #[UsesClass(Details::class)]
 #[UsesClass(Config::class)]
 #[UsesClass(Request::class)]
+#[UsesClass(Format::class)]
 class ServiceConfigTest extends TestCase
 {
     /** @var array<string, mixed> $feed */
@@ -46,12 +48,15 @@ class ServiceConfigTest extends TestCase
     */
     public function testCreatingGotifyServiceConfig(): void
     {
+        $expected = $this->gotifyConfigValues;
+        $expected['server'] = 'https://gotify.example.com/message';
+
         $config = $this->createConfigStubForGotify();
         $serviceConfig = new ServiceConfig($config);
 
         $data = $serviceConfig->get(new Details($this->feed));
 
-        $this->assertEquals($this->gotifyConfigValues, $data);
+        $this->assertEquals($expected, $data);
     }
 
    /**
@@ -67,7 +72,7 @@ class ServiceConfigTest extends TestCase
 
         $data = $serviceConfig->get(new Details($feed));
 
-        $this->assertEquals($feed['gotify_url'], $data['server']);
+        $this->assertEquals('https://gotify.example.com/message', $data['server']);
     }
 
    /**
