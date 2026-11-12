@@ -190,7 +190,7 @@ class RequestTest extends TestCase
             new GuzzleHttp\Psr7\Response(
                 401,
                 ['Content-Type' => 'application/json'],
-                json_encode($responseBody)
+                (string) json_encode($responseBody)
             ),
         ]);
         $handlerStack = GuzzleHttp\HandlerStack::create($mock);
@@ -214,7 +214,7 @@ class RequestTest extends TestCase
             new GuzzleHttp\Psr7\Response(
                 403,
                 ['Content-Type' => 'application/json'],
-                json_encode([
+                (string) json_encode([
                     'error' => 'forbidden',
                     'code' => 40301,
                 ])
