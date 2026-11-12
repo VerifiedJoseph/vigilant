@@ -26,7 +26,6 @@ class Notify
     /** @var Logger Logger class instance */
     private Logger $logger;
 
-
     /**
      * Create and config Notification class
      *
@@ -64,31 +63,6 @@ class Notify
             } catch (RequestException $err) {
                 $this->logger->error($err->getMessage());
             }
-        }
-    }
-
-    private function createPayload(Message $message): array
-    {
-        if ($this->config->getNotificationService() === 'gotify') {
-            return [
-                'title' => $message->getTitle(),
-                'message' => $message->getBody(),
-                'priority' => $this->serviceConfig['priority'],
-                'extras' => [
-                    'client::notification' => [
-                        'click' => ['url' => $message->getUrl()]
-                    ]
-                ]
-            ];
-        } else {
-            return [
-                'topic' => $this->serviceConfig['topic'],
-                'title' => $message->getTitle(),
-                'message' => $message->getBody(),
-                'markdown' => false,
-                'priority' => $this->serviceConfig['priority'],
-                'click' => $message->getUrl(),
-            ];
         }
     }
 
