@@ -52,6 +52,7 @@ class ServiceConfig
             'server' => $this->config->getNtfyUrl(),
             'topic' => $this->config->getNtfyTopic(),
             'priority' => $this->config->getNtfyPriority(),
+            'token' => $this->config->getNtfyToken()
         ];
 
         if ($details->getNtfyUrl() !== null) {
