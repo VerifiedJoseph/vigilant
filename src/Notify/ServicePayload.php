@@ -21,7 +21,7 @@ class ServicePayload
     }
 
     /**
-     * Get message payload 
+     * Get message payload
      * @param Message $message
      * @param array<string, mixed> $serviceConfig
      * @return array<string, mixed>

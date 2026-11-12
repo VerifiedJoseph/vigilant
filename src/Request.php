@@ -93,7 +93,7 @@ class Request
      * @param string $url Request URL
      * @param array<string, mixed> $payload Request payload
      * @param array<string, mixed> $headers Request headers
-     * 
+     *
      * @throws RequestException if request failed
      */
     public function postJson(string $url, array $payload, array $headers = []): \Psr\Http\Message\ResponseInterface
