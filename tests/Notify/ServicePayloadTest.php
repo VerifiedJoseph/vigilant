@@ -14,17 +14,23 @@ use Vigilant\Message;
 #[CoversClass(ServicePayload::class)]
 class ServicePayloadTest extends TestCase
 {
+    /**
+     * @var array<string, mixed> $gotifyPayload
+     */
     protected array $gotifyPayload = [
         'title' => 'Hello',
         'message' => 'Hello World',
         'priority' => 10,
         'extras' => [
         'client::notification' => [
-            'click' => ['url' => 'https://example.com']
+             'click' => ['url' => 'https://example.com']
             ]
         ]
     ];
 
+    /**
+     * @var array<string, mixed> $ntfyPayload
+     */
     protected array $ntfyPayload = [
         'topic' => 'testing',
         'title' => 'Hello',
@@ -34,7 +40,7 @@ class ServicePayloadTest extends TestCase
         'click' => 'https://example.com',
     ];
 
-    public function testCreatingGotifyPayload()
+    public function testCreatingGotifyPayload(): void
     {
         $config = self::createStub(Config::class);
         $config->method('getNotificationService')->willReturn('gotify');
@@ -53,7 +59,7 @@ class ServicePayloadTest extends TestCase
         $this->assertEquals($this->gotifyPayload, $payload);
     }
 
-    public function testCreatingNtfyPayload()
+    public function testCreatingNtfyPayload(): void
     {
         $config = self::createStub(Config::class);
         $config->method('getNotificationService')->willReturn('ntfy');
