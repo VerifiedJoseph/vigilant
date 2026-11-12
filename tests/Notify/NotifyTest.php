@@ -7,6 +7,7 @@ namespace Tests\Notify;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
+use PHPUnit\Framework\MockObject\Stub;
 use Vigilant\Feed\Details;
 use Vigilant\Config;
 use Vigilant\Message;
@@ -37,15 +38,8 @@ class NotifyTest extends TestCase
     {
         $this->expectOutputRegex('/Sent notification using ntfy/');
 
-        $config = self::createStub(Config::class);
-        $config->method('getNotificationService')->willReturn('ntfy');
-        $config->method('getNtfyUrl')->willReturn('https://ntfy.sh');
-        $config->method('getNtfyTopic')->willReturn('testing');
-        $config->method('getNtfyPriority')->willReturn(0);
-
-        $messages = [
-            new Message('Hello World', 'Hello??')
-        ];
+        $config = $this->createConfigStub();
+        $messages = [new Message('Hello World', 'Hello??')];
 
         $notify = new notify(
             new Details($this->feed),
@@ -54,5 +48,47 @@ class NotifyTest extends TestCase
         );
 
         $notify->send($messages);
+    }
+
+    public function testSendFailure(): void
+    {
+        $this->expectOutputRegex('/Request failed/');
+
+        $config = $this->createConfigStub();
+        $messages = [new Message('Hello World', 'Hello??')];
+
+        $notify = new notify(
+            new Details($this->feed),
+            $config,
+            new Logger('UTC')
+        );
+
+        $mock = new \GuzzleHttp\Handler\MockHandler([
+            new \GuzzleHttp\Psr7\Response(
+                500
+            ),
+        ]);
+        $handlerStack = \GuzzleHttp\HandlerStack::create($mock);
+        $request = new Request(
+            $config->getUserAgent(),
+            new \GuzzleHttp\Client(['handler' => $handlerStack])
+        );
+
+        $reflection = new \ReflectionClass($notify);
+        $property = $reflection->getProperty('request');
+        $property->setValue($notify, $request);
+
+        $notify->send($messages);
+    }
+
+    private function createConfigStub(): Config&Stub
+    {
+        $config = self::createStub(Config::class);
+        $config->method('getNotificationService')->willReturn('ntfy');
+        $config->method('getNtfyUrl')->willReturn('https://ntfy.sh');
+        $config->method('getNtfyTopic')->willReturn('testing');
+        $config->method('getNtfyPriority')->willReturn(0);
+
+        return $config;
     }
 }
