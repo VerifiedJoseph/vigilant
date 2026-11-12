@@ -56,14 +56,16 @@ class Ntfy extends AbstractValidator
     /**
      * Validate `NOTIFICATION_NTFY_TOKEN`
      *
-     * @throws ConfigException if no Ntfy auth token is given
+     * @throws ConfigException if no Ntfy auth token is empty
      */
     public function token(): void
     {
-        if ($this->hasEnv('NOTIFICATION_NTFY_TOKEN') === false) {
-            throw new ConfigException('No ntfy authentication token given [VIGILANT_NOTIFICATION_NTFY_TOKEN]');
-        }
+        if ($this->hasEnv('NOTIFICATION_NTFY_TOKEN') === true) {
+            if ($this->getEnv('NOTIFICATION_NTFY_TOKEN') === '') {
+                throw new ConfigException('No ntfy authentication token given [VIGILANT_NOTIFICATION_NTFY_TOKEN]');
+            }
 
-        $this->config['notification_ntfy_token'] = $this->getEnv('NOTIFICATION_NTFY_TOKEN');
+            $this->config['notification_ntfy_token'] = $this->getEnv('NOTIFICATION_NTFY_TOKEN');
+        }
     }
 }
