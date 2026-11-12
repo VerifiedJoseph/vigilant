@@ -19,8 +19,7 @@ class FormatTest extends TestCase
         $this->assertEquals(
             'https://gotify.example.com/message',
             Format::gotifyUrl('https://gotify.example.com')
-        )
-        ;
+        );
     }
 
     /**
@@ -31,7 +30,6 @@ class FormatTest extends TestCase
         $this->assertEquals(
             'https://gotify.example.com/message',
             Format::gotifyUrl('https://gotify.example.com/')
-        )
-        ;
+        );
     }
 }
