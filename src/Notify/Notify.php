@@ -64,6 +64,7 @@ class Notify
                 $this->logger->info('Sent notification using ' . $this->config->getNotificationService());
             } catch (RequestException $err) {
                 $this->logger->error($err->getMessage());
+                $this->logger->info('Sending notification failed');
             }
         }
     }
