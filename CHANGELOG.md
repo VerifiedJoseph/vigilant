@@ -2,6 +2,15 @@
 
 All notable changes to this project are documented in this file.
 
+## [1.12.0](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.11.2) - 2026-11-16
+
+- Rewrote sending notifications ([`5faa4b6`](https://github.com/VerifiedJoseph/vigilant/commit/5faa4b6b77d3e6c1245545f3f7f3f0a9b5dc32c5))
+- Removed support for ntfy username and password authentication.
+- Removed verifiedjoseph/gotify-api-php dependency
+- Removed verifiedjoseph/ntfy-php-library dependency 
+- Updated symfony/yaml from 7.4.22 to 7.4.23 ([`93a53c9`](https://github.com/VerifiedJoseph/vigilant/commit/93a53c9d54278485eeabb2eb04786a227e3fcd76))
+- Updated guzzlehttp/guzzle from 7.16.0 to 7.16.1 ([`7b25d43`](https://github.com/VerifiedJoseph/vigilant/commit/7b25d437ed52a92ec764a6bb7abed1b369333d43))
+
 ## [1.11.2](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.11.2) - 2026-11-02
 
 - Reworked HTTP exception handling ([`b979409`](https://github.com/VerifiedJoseph/vigilant/commit/b9794098852923d938f5d73f85fb5d3cb29aafdf))
