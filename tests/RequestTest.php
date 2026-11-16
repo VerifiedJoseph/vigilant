@@ -17,6 +17,7 @@ use FeedIo;
 class RequestTest extends TestCase
 {
     private string $userAgent = 'Vigilant/Test (https://github.com/VerifiedJoseph/vigilant)';
+    private string $cloudflareWorker = 'https://user-agent-header.joseph-733.workers.dev/';
 
     /**
      * Test `getFeed()`
@@ -24,14 +25,17 @@ class RequestTest extends TestCase
     public function testGetFeed(): void
     {
         $request = new Request($this->userAgent);
-        $result = $request->getFeed('https://user-agent-header.joseph-733.workers.dev/');
+        $result = $request->getFeed($this->cloudflareWorker);
 
         $this->assertInstanceOf(FeedIo\Reader\Result::class, $result);
         $this->assertEquals(200, $result->getResponse()->getStatusCode());
-        $this->assertEquals(
-            $this->userAgent,
-            $result->getResponse()->getHeader('x-user-agent')[0]
-        );
+
+        foreach ($result->getResponse()->getHeader('x-user-agent') as $value) {
+            $this->assertEquals(
+                $this->userAgent,
+                $value
+            );
+        }
     }
 
     /**
@@ -43,15 +47,19 @@ class RequestTest extends TestCase
 
         $request = new Request($this->userAgent);
         $result = $request->getFeed(
-            'https://user-agent-header.joseph-733.workers.dev/',
+            $this->cloudflareWorker,
             $userAgent
         );
 
         $this->assertInstanceOf(FeedIo\Reader\Result::class, $result);
-        $this->assertEquals(
-            $userAgent,
-            $result->getResponse()->getHeader('x-user-agent')[0]
-        );
+        $this->assertEquals(200, $result->getResponse()->getStatusCode());
+
+        foreach ($result->getResponse()->getHeader('x-user-agent') as $value) {
+            $this->assertEquals(
+                $userAgent,
+                $value
+            );
+        }
     }
 
     /**
