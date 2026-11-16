@@ -17,7 +17,7 @@ use FeedIo;
 class RequestTest extends TestCase
 {
     private string $userAgent = 'Vigilant/Test (https://github.com/VerifiedJoseph/vigilant)';
-    private string $cloudflareWorker = 'vigilant-user-agent-test.joseph-733.workers.dev';
+    private string $cloudflareWorker = 'https://vigilant-user-agent-test.joseph-733.workers.dev';
 
     /**
      * Test `getFeed()`
