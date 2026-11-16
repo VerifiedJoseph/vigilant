@@ -24,9 +24,14 @@ class RequestTest extends TestCase
     public function testGetFeed(): void
     {
         $request = new Request($this->userAgent);
-        $result = $request->getFeed('https://www.githubstatus.com/history.rss');
+        $result = $request->getFeed('https://user-agent-header.joseph-733.workers.dev/');
 
         $this->assertInstanceOf(FeedIo\Reader\Result::class, $result);
+        $this->assertEquals(200, $result->getResponse()->getStatusCode());
+        $this->assertEquals(
+            $this->userAgent,
+            $result->getResponse()->getHeader('x-user-agent')[0]
+        );
     }
 
     /**
@@ -34,13 +39,19 @@ class RequestTest extends TestCase
      */
     public function testGetFeedWithCustomUseragent(): void
     {
+        $userAgent = 'Mozilla/5.0 (Windows NT 10.0; rv:146.0) Gecko/20100101 Firefox/146.0';
+
         $request = new Request($this->userAgent);
         $result = $request->getFeed(
-            'https://www.githubstatus.com/history.rss',
-            'Mozilla/5.0 (Windows NT 10.0; rv:146.0) Gecko/20100101 Firefox/146.0'
+            'https://user-agent-header.joseph-733.workers.dev/',
+            $userAgent
         );
 
         $this->assertInstanceOf(FeedIo\Reader\Result::class, $result);
+        $this->assertEquals(
+            $userAgent,
+            $result->getResponse()->getHeader('x-user-agent')[0]
+        );
     }
 
     /**
@@ -158,7 +169,7 @@ class RequestTest extends TestCase
         $mock = new GuzzleHttp\Handler\MockHandler([
             new GuzzleHttp\Psr7\Response(
                 500,
-                body: 'fg'
+                body: 'Generic 500 error'
             ),
         ]);
         $handlerStack = GuzzleHttp\HandlerStack::create($mock);

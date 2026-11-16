@@ -52,7 +52,7 @@ class Request
                 $headers['User-Agent'] = $useragent;
 
                 $client = new \FeedIo\Adapter\Http\Client(
-                    new \GuzzleHttp\Client($headers)
+                    new \GuzzleHttp\Client(['headers' => $headers])
                 );
             }
 
