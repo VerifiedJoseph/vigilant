@@ -2,7 +2,7 @@
 
 All notable changes to this project are documented in this file.
 
-## [1.12.0](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.11.2) - 2026-11-16
+## [1.12.0](https://github.com/VerifiedJoseph/vigilant/releases/tag/v1.12.0) - 2026-11-16
 
 - Rewrote sending notifications ([`5faa4b6`](https://github.com/VerifiedJoseph/vigilant/commit/5faa4b6b77d3e6c1245545f3f7f3f0a9b5dc32c5))
 - Removed support for ntfy username and password authentication.
