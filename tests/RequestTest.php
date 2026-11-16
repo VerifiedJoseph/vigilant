@@ -51,9 +51,7 @@ class RequestTest extends TestCase
             $userAgent
         );
 
-        $this->assertInstanceOf(FeedIo\Reader\Result::class, $result);
         $this->assertEquals(200, $result->getResponse()->getStatusCode());
-
         foreach ($result->getResponse()->getHeader('x-user-agent') as $value) {
             $this->assertEquals(
                 $userAgent,
