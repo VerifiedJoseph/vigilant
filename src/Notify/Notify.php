@@ -29,8 +29,6 @@ class Notify
     private Logger $logger;
 
     /**
-     * Create and config Notification class
-     *
      * @param Feed\Details $details Feed details
      * @param Config $config Config class instance
      * @param Logger $logger Logger class instance
