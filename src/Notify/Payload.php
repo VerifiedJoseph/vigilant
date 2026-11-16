@@ -12,27 +12,31 @@ class Payload
     /** @var Config Config class instance */
     private Config $config;
 
+    /** @var array<string, mixed> $serviceConfig */
+    private array $serviceConfig;
+
     /**
+     * @param array<string, mixed> $serviceConfig Notification service config
      * @param Config $config Config class instance
      */
-    public function __construct(Config $config)
+    public function __construct(array $serviceConfig, Config $config)
     {
+        $this->serviceConfig = $serviceConfig;
         $this->config = $config;
     }
 
     /**
      * Get message payload
      * @param Message $message
-     * @param array<string, mixed> $serviceConfig
      * @return array<string, mixed>
      */
-    public function get(Message $message, array $serviceConfig): array
+    public function get(Message $message): array
     {
         if ($this->config->getNotificationService() === 'gotify') {
             return [
                 'title' => $message->getTitle(),
                 'message' => $message->getBody(),
-                'priority' => $serviceConfig['priority'],
+                'priority' => $this->serviceConfig['priority'],
                 'extras' => [
                     'client::notification' => [
                         'click' => ['url' => $message->getUrl()]
@@ -41,11 +45,11 @@ class Payload
             ];
         } else {
             return [
-                'topic' => $serviceConfig['topic'],
+                'topic' => $this->serviceConfig['topic'],
                 'title' => $message->getTitle(),
                 'message' => $message->getBody(),
                 'markdown' => false,
-                'priority' => $serviceConfig['priority'],
+                'priority' => $this->serviceConfig['priority'],
                 'click' => $message->getUrl(),
             ];
         }

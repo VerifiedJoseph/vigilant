@@ -42,7 +42,7 @@ class Notify
 
         $this->request = new Request($config->getUserAgent());
         $this->serviceConfig = (new ServiceConfig($config))->get($details);
-        $this->payload = new Payload($this->config);
+        $this->payload = new Payload($this->serviceConfig, $this->config);
     }
 
     /**
@@ -53,7 +53,7 @@ class Notify
     {
         foreach ($messages as $message) {
             try {
-                $payload = $this->payload->get($message, $this->serviceConfig);
+                $payload = $this->payload->get($message);
 
                 $this->request->postJson(
                     $this->serviceConfig['server'],

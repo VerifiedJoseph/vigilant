@@ -49,10 +49,8 @@ class PayloadTest extends TestCase
         $message->method('getBody')->willReturn($this->gotifyPayload['message']);
         $message->method('getUrl')->willReturn('https://example.com');
 
-        $payload =  (new Payload($config))->get(
-            $message,
-            ['priority' => $this->gotifyPayload['priority']]
-        );
+        $serviceConfig = ['priority' => $this->gotifyPayload['priority']];
+        $payload = (new Payload($serviceConfig, $config))->get($message);
 
         $this->assertEquals($this->gotifyPayload, $payload);
     }
@@ -67,13 +65,8 @@ class PayloadTest extends TestCase
         $message->method('getBody')->willReturn($this->ntfyPayload['message']);
         $message->method('getUrl')->willReturn($this->ntfyPayload['click']);
 
-        $payload =  (new Payload($config))->get(
-            $message,
-            [
-                'priority' => $this->ntfyPayload['priority'],
-                'topic' => $this->ntfyPayload['topic']
-            ]
-        );
+        $serviceConfig = ['priority' => $this->ntfyPayload['priority'], 'topic' => $this->ntfyPayload['topic']];
+        $payload =  (new Payload($serviceConfig, $config))->get($message);
 
         $this->assertEquals($this->ntfyPayload, $payload);
     }
