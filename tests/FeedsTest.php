@@ -17,7 +17,7 @@ use Vigilant\Exception\AppException;
 #[UsesClass(AppException::class)]
 #[UsesClass(\Vigilant\Cache::class)]
 #[UsesClass(\Vigilant\Check::class)]
-#[UsesClass(\Vigilant\Fetch::class)]
+#[UsesClass(\Vigilant\Request::class)]
 #[UsesClass(\Vigilant\Feed\Feed::class)]
 #[UsesClass(\Vigilant\Feed\Details::class)]
 #[UsesClass(\Vigilant\Feed\Validate::class)]

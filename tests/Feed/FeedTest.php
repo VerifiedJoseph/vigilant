@@ -17,7 +17,7 @@ use Symfony\Component\Yaml\Yaml;
 #[UsesClass(Logger::class)]
 #[UsesClass(\Vigilant\Cache::class)]
 #[UsesClass(\Vigilant\Check::class)]
-#[UsesClass(\Vigilant\Fetch::class)]
+#[UsesClass(\Vigilant\Request::class)]
 #[UsesClass(\Vigilant\ActiveHours::class)]
 #[UsesClass(\Vigilant\Helper\File::class)]
 #[UsesClass(\Vigilant\Feed\Details::class)]
