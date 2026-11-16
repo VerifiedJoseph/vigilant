@@ -56,7 +56,7 @@ class Ntfy extends AbstractValidator
     /**
      * Validate `NOTIFICATION_NTFY_TOKEN`
      *
-     * @throws ConfigException if no Ntfy auth token is empty
+     * @throws ConfigException if Ntfy auth token is empty
      */
     public function token(): void
     {
